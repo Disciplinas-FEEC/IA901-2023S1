@@ -20,14 +20,12 @@ Seu repositório deverá obrigatoriamente conter o arquivo README.md, arquivo de
 ├── README.md          <- apresentação do projeto
 │
 ├── data
-│   ├── external       <- dados de terceiros
-│   ├── interim        <- dados intermediários, e.g., resultado de transformação
 │   ├── processed      <- dados finais usados para a modelagem
 │   └── raw            <- dados originais sem modificações
 │
 ├── notebooks          <- Jupyter notebooks ou equivalentes
 │
-├── src                <- fonte em linguagem de programação ou sistema (e.g., Orange)
+├── src                <- fonte em linguagem de programação (e.g., C++)
 │   └── README.md      <- instruções básicas de instalação/execução
 │
 └── assets             <- mídias usadas no projeto
@@ -44,7 +42,7 @@ Existem também múltiplas ferramentas para edição de Markdown como, por exemp
 
 Dados utilizados no projeto respeitadas as possíveis implicações éticas, se você tiver licença para tal e se o volume for suportado pelo Github. Você pode optar por colocar um subconjunto ilustrativo dos dados.
 
-É importante que sejam colocados os dados originais (se for possível) para garantir a reprodutibilidade do processo. Os originais são colocados na subpasta `raw` se forem produzidos pela equipe e na subpasta `external` se forem de terceiros. Também podem ser colocados aqui dados intermediários (por exemplo, dados tratados, resumidos etc.) na pasta `interim`. Finalmente, coloque os dados finais que serviram de entrada para as suas análises na subpasta `processed`.
+É importante que sejam colocados os dados originais (se for possível) para garantir a reprodutibilidade do processo. Os originais são colocados na subpasta `raw`. Coloque os dados finais que serviram de entrada para as suas análises na subpasta `processed`.
 
 ## `notebooks`
 
@@ -61,8 +59,6 @@ Se for código em linguagem de programação, tente organizá-lo de forma que se
 Qualquer mídia usada no seu projeto: vídeo, ilustrações, arquivos PDF etc.
 
 Note que nem todos os diretórios ou arquivos serão necessários para todos os projetos. Foque em seguir o padrão para os diretórios que forem necessários. Não crie diretórios que não serão utilizados.
-
-Seu repositório deverá obrigatoriamente conter o arquivo README.md, arquivo de documentação Markdown, que deverá conter a descrição do projeto conforme orientações a seguir.
 
 
 > Tudo o que aparecer neste modo de citação se refere a algo que deve ser substituído pelo indicado. 

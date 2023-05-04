@@ -41,6 +41,9 @@ Título da Base | http://base1.org/ | Breve resumo (duas ou três linhas) sobre 
 # Ferramentas
 > Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
 
+# Workflow
+> Seu projeto deve ser descrito na forma de workflow. Você pode usar um gerenciador de workflow (Sacred, Pachyderm, etc) ou optar por usar uma ferramenta que permita gerar o workflow e salvá-lo como uma imagem (Draw.io).
+
 # Experimentos e Resultados preliminares
 > Descreva de forma sucinta e organizada os experimentos realizados
 > Para cada experimento, apresente os principais resultados obtidos
