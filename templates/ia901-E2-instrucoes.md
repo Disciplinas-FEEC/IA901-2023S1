@@ -1,4 +1,4 @@
-# IA901 - Projeto - Segunsa Entrega (E2)
+# IA901 - Projeto - Segunda Entrega (E2)
 
 ## Instruções Gerais
 
