@@ -21,6 +21,7 @@ Seu repositório deverá obrigatoriamente conter o arquivo README.md, arquivo de
 │
 ├── data
 │   ├── processed      <- dados finais usados para a modelagem
+│   ├── interim        <- dados intermediários, e.g., resultado de transformação
 │   └── raw            <- dados originais sem modificações
 │
 ├── notebooks          <- Jupyter notebooks ou equivalentes
@@ -42,7 +43,7 @@ Existem também múltiplas ferramentas para edição de Markdown como, por exemp
 
 Dados utilizados no projeto respeitadas as possíveis implicações éticas, se você tiver licença para tal e se o volume for suportado pelo Github. Você pode optar por colocar um subconjunto ilustrativo dos dados.
 
-É importante que sejam colocados os dados originais (se for possível) para garantir a reprodutibilidade do processo. Os originais são colocados na subpasta `raw`. Coloque os dados finais que serviram de entrada para as suas análises na subpasta `processed`.
+É importante que sejam colocados os dados originais (se for possível) para garantir a reprodutibilidade do processo. Os originais são colocados na subpasta `raw`. Dados intermediários devem ser colocados na pasta `interim`. Coloque os dados finais que serviram de entrada para as suas análises na subpasta `processed`.
 
 ## `notebooks`
 
