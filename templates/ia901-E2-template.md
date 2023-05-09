@@ -9,9 +9,9 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 > Incluir nome RA e foco de especialização de cada membro do grupo. Os projetos devem ser desenvolvidos em trios.
 > |Nome  | RA | Curso|
 > |--|--|--|
-> | Nome1  | 123456  | Mestrado em xxxx|
-> | Nome2  | 123456  | Graduação em xxx|
-> | Nome3  | 123456  | xxxx|
+> | Octavio S Guaschi  | 218390  | Mestrado em Eng. Elétrica|
+> | Breno Portela  | XXX  | Mestrado em Eng. Elétrica|
+> | Cesar  | 264521  | Mestrado em Eng. Elétrica|
 
 
 ## Descrição do Projeto
