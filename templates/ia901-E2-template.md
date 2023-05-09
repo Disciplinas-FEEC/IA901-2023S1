@@ -9,9 +9,9 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 > Incluir nome RA e foco de especialização de cada membro do grupo. Os projetos devem ser desenvolvidos em trios.
 > |Nome  | RA | Curso|
 > |--|--|--|
-> | Nome1  | 123456  | Eng. Elétrica|
-> | Nome2  | 123456  | Eng. Elétrica|
-> | Nome3  | 123456  | Eng. Elétrica|
+> | Nome1  | 123456  | Mestrado em xxxx|
+> | Nome2  | 123456  | Graduação em xxx|
+> | Nome3  | 123456  | xxxx|
 
 
 ## Descrição do Projeto
@@ -40,7 +40,9 @@ Título da Base | http://base1.org/ | Breve resumo (duas ou três linhas) sobre 
 > Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
 
 # Workflow
-> Seu projeto deve ser descrito na forma de workflow.  Use uma ferramenta que permita desenhar o workflow e salvá-lo como uma imagem (Draw.io, por exemplo). Lembre-se que o objetivo de desenhar o workflow é ajudar a quem quiser reproduzir seus experimentos. Você pode optar por usar um gerenciador de workflow (Sacred, Pachyderm, etc) e nesse caso use o gerenciador para gerar uma figura para você.
+> Use uma ferramenta que permita desenhar o workflow e salvá-lo como uma imagem (Draw.io, por exemplo). Insira a imagem nessa seção.
+> Você pode optar por usar um gerenciador de workflow (Sacred, Pachyderm, etc) e nesse caso use o gerenciador para gerar uma figura para você.
+> Lembre-se que o objetivo de desenhar o workflow é ajudar a quem quiser reproduzir seus experimentos. 
 
 # Experimentos e Resultados preliminares
 > Descreva de forma sucinta e organizada os experimentos realizados
