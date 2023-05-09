@@ -11,7 +11,7 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 > |--|--|--|
 > | Eduardo Parducci  | 170272  | Graduação em Eng. de Computação|
 > | Nome2  | 123456  | Graduação em xxx|
-> | Nome3  | 123456  | xxxx|
+> | Pedro Rodrigues Corrêa  | 243236  | Graduação em Física|
 
 
 ## Descrição do Projeto
