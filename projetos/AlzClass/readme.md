@@ -11,7 +11,7 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 > |--|--|--|
 > | Nome1  | 123456  | Mestrado em xxxx|
 > | Nome2  | 123456  | Graduação em xxx|
-> | Nome3  | 123456  | xxxx|
+> | Fabio Grassiotto  | 890441  | Doutorado em IA aplicada a Autismo |
 
 
 ## Descrição do Projeto
@@ -28,7 +28,7 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 
 Base de Dados | Endereço na Web | Resumo descritivo
 ----- | ----- | -----
-Título da Base | http://base1.org/ | Breve resumo (duas ou três linhas) sobre a base.
+Open Access Series of Imaging Studies (OASIS) | https://www.oasis-brains.org/ | O OASIS (Open Access Series of Imaging Studies) é um projeto que visa tornar conjuntos de dados de neuroimagem do cérebro disponíveis gratuitamente para a comunidade científica. Existem quatro bases disponibilizadas - OASIS 1 a OASIS 4, com OASIS 1 e OASIS 2 consideradas as bases mais apropriadas para projetos acadêmicos.
 
 > Faça uma descrição sobre o que concluiu sobre esta base. Sugere-se que respondam perguntas ou forneçam informações indicadas a seguir:
 > * Qual o formato dessa base, tamanho, tipo de anotação?
@@ -38,6 +38,10 @@ Título da Base | http://base1.org/ | Breve resumo (duas ou três linhas) sobre 
 
 # Ferramentas
 > Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
+
+> Nibabel - NeuroImaging em Python - https://nipy.org/nibabel/, para a manipulação das bases de imagens.
+
+> Pytorch (framework de machine/deep learning) - https://pytorch.org/
 
 # Workflow
 > Use uma ferramenta que permita desenhar o workflow e salvá-lo como uma imagem (Draw.io, por exemplo). Insira a imagem nessa seção.
