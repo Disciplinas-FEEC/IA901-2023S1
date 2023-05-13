@@ -1,17 +1,16 @@
-# `<Título em Português do Projeto>`
-# `<Project Title in in English>`
+# `<Reconhecimento de ação humana em imagens de veículos aéreos não tripulado (UAVs)>`
+# `<Recognition of human action in Unmanned Aerial Vehicles (UAVs) images>`
 
 ## Apresentação
 
-O presente projeto foi originado no contexto das atividades da disciplina de pós-graduação *IA901 - Processamento de Imagens e Reconhecimento de Padrões*, 
-oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dra. Leticia Rittner, do Departamento de Engenharia de Computação e Automação (DCA) da Faculdade de Engenharia Elétrica e de Computação (FEEC).
+O presente projeto foi originado no contexto das atividades da disciplina de pós-graduação *IA901 - Processamento de Imagens e Reconhecimento de Padrões*, oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dra. Leticia Rittner, do Departamento de Engenharia de Computação e Automação (DCA) da Faculdade de Engenharia Elétrica e de Computação (FEEC).
 
 > Incluir nome RA e foco de especialização de cada membro do grupo. Os projetos devem ser desenvolvidos em trios.
 > |Nome  | RA | Curso|
 > |--|--|--|
-> | Nome1  | 123456  | Mestrado em xxxx|
-> | Nome2  | 123456  | Graduação em xxx|
-> | Nome3  | 123456  | xxxx|
+> | Débora Simões  | 263621  | Doutorado em Engenharia Civil|
+> | Lucas Ueda  | 156368  | Doutorado em Engenharia Elétrica|
+> | Wesna de Araújo  | 225843  | Graduação em Engenharia Elétrica|
 
 
 ## Descrição do Projeto
