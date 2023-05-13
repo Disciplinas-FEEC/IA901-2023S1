@@ -82,4 +82,8 @@ Neptune.ai | https://neptune.ai/ | Experiment tracker and model registry
 
 http://human-pose.mpi-inf.mpg.de/#dataset
 
-https://www.kaggle.com/datasets/deepshah16/silhouettes-of-human-posture)
+https://www.kaggle.com/datasets/deepshah16/silhouettes-of-human-posture
+
+https://github.com/liruilong940607/OCHumanApi
+
+
