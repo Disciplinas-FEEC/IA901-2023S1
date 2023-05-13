@@ -56,6 +56,14 @@ Drive Projeto | https://drive.google.com/drive/folders/1zanWzsALmWM7ZpEFpN4s_mhR
 # Ferramentas
 > Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
 
+Ferramentas | Endereço na Web | Resumo descritivo
+----- | ----- | -----
+Draw.io | https://app.diagrams.net/ | Desenho de arquitetura e Workflow
+Google Colab | https://colab.research.google.com/ | Notebooks para implementação de código
+Google Drive | https://drive.google.com/ | Repositório de Dados e Imagens
+GitHub | https://github.com/ | Repositório de Código
+Neptune.ai | https://neptune.ai/ | Experiment tracker and model registry
+
 # Workflow
 > Use uma ferramenta que permita desenhar o workflow e salvá-lo como uma imagem (Draw.io, por exemplo). Insira a imagem nessa seção.
 > Você pode optar por usar um gerenciador de workflow (Sacred, Pachyderm, etc) e nesse caso use o gerenciador para gerar uma figura para você.
