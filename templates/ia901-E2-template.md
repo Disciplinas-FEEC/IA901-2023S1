@@ -16,17 +16,15 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 
 ## Descrição do Projeto
 
-> O objetivo desse projeto é tratar fotos de pessoas em diferentes posições (Em pé, sentado, deitado), visando construir um modelo articulado da estrutura humana. Por conseguinte, esses dados serão inseridos em uma rede neural que irá avaliar a posição do indíviduo.
+O objetivo desse projeto é tratar fotos de pessoas em diferentes posições (Em pé, sentado, deitado), visando construir um modelo articulado da estrutura humana. Por conseguinte, esses dados serão inseridos em uma rede neural que irá avaliar a posição do indíviduo.
 
 > Descrição do objetivo principal do projeto, incluindo contexto gerador, motivação.
-> 
 > Qual problema vocês pretendem solucionar? 
-> (form> Quais os principais desafios que o tema de projeto escolhido irá trazer para o grupo? )
-> Realizar segmentação das pessoas nas imagens e a diferenciação entre em pé e deitado.
-> 
 > Qual a relevância do problema e o impacto da solução do mesmo?
 
-
+Qual problema vocês pretendem solucionar? 
+(form> Quais os principais desafios que o tema de projeto escolhido irá trazer para o grupo? )
+Realizar segmentação das pessoas nas imagens e a diferenciação entre em pé e deitado.
 
 # Metodologia
 > Proposta de metodologia incluindo especificação de quais técnicas pretende-se explorar. Espera-se que nesta entrega você já seja capaz de descrever de maneira mais específica (do que na Entrega 1) quais as técnicas a serem empregadas em cada etapa do projeto.
