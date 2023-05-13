@@ -11,7 +11,7 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 > |--|--|--|
 > | Octavio S Guaschi  | 218390  | Mestrado em Eng. Elétrica|
 > | Breno Portela  | 253502  | Mestrado em Eng. Elétrica|
-> | Cesar Bastos  | 264521  | Mestrado em Eng. Elétrica|
+> | Cesar Bastos  | 264521  | Doutorado em Eng. Elétrica|
 
 
 ## Descrição do Projeto
@@ -19,9 +19,11 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 > O objetivo desse projeto é tratar fotos de pessoas em diferentes posições (Em pé, sentado, deitado), visando construir um modelo articulado da estrutura humana. Por conseguinte, esses dados serão inseridos em uma rede neural que irá avaliar a posição do indíviduo.
 
 > Descrição do objetivo principal do projeto, incluindo contexto gerador, motivação.
+> 
 > Qual problema vocês pretendem solucionar? 
 > (form> Quais os principais desafios que o tema de projeto escolhido irá trazer para o grupo? )
 > Realizar segmentação das pessoas nas imagens e a diferenciação entre em pé e deitado.
+> 
 > Qual a relevância do problema e o impacto da solução do mesmo?
 
 
@@ -32,7 +34,8 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 Métodos visto em sala a serem utilizados - Limiarização, segmentação e redes neurais convolucionais.
 
 
-Avaliação de resultados; qualitativo ou quantitativo. Avaliaremos com base em um baixo nível de falso positivo e falso negativo, sem priorizar um entre os dois, considerando a alta possibilidade de falsa detecção para posições de em pé e deitado, avaliando de forma mais quantitativa do que qualitativa, pois casos de falso positivo ou falsos negativos não são graves.
+Avaliação de resultados; qualitativo ou quantitativo. 
+Avaliaremos com base em um baixo nível de falso positivo e falso negativo, sem priorizar um entre os dois, considerando a alta possibilidade de falsa detecção para posições de em pé e deitado, avaliando de forma mais quantitativa do que qualitativa, pois casos de falso positivo ou falsos negativos não são graves.
 
 Métrica utilizada para avaliar os resultados quantitativamente - Acurácia, loss e matriz confusão.
 
