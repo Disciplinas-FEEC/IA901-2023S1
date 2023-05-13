@@ -1,5 +1,5 @@
-# `<Reconhecimento de ação humana em imagens de veículos aéreos não tripulado (UAVs)>`
-# `<Recognition of human action in Unmanned Aerial Vehicles (UAVs) images>`
+# `Reconhecimento de ação humana em imagens de veículos aéreos não tripulado (UAVs)`
+# `Recognition of human action in Unmanned Aerial Vehicles (UAVs) images`
 
 ## Apresentação
 
