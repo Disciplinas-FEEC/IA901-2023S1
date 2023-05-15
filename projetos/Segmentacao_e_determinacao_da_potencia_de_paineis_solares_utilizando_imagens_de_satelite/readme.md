@@ -16,11 +16,11 @@ Incluir nome RA e foco de especialização de cada membro do grupo. Os projetos 
 -->
 
 Grupo <br /> <sub> Group: </sub>
-> |Nome <br /><sub> Name </sub>            | RA      | Curso  <br /><sub> Course </sub>                                                                             |
-> |----------------------------------------|---------|--------------------------------------------------------------------------------------------------------------|
-> | Juan Carlos Cortez Aucapiña            | 265568  | Doutorado em Engenharia Elétrica (Energia) <br /><sub> Ph.D. Student of Electrical Engineering (Energy)</sub>|
-> | Luiza Higino Silva Santos              | 264535  | Doutorado em Engenharia Elétrica (Energia) <br /><sub> Ph.D. Student of Electrical Engineering (Energy)</sub>|
-> | Sérgio Augusto de Almeida Christoforo  | 249522  | Mestrado em Engenharia Elétrica (Energia)  <br /><sub> M.Sc. Student of Electrical Engineering (Energy)</sub>|
+|Nome <br /><sub> Name </sub>            | RA      | Curso  <br /><sub> Course </sub>                                                                             |
+|----------------------------------------|---------|--------------------------------------------------------------------------------------------------------------|
+| Juan Carlos Cortez Aucapiña            | 265568  | Doutorado em Engenharia Elétrica (Energia) <br /><sub> Ph.D. Student of Electrical Engineering (Energy)</sub>|
+| Luiza Higino Silva Santos              | 264535  | Doutorado em Engenharia Elétrica (Energia) <br /><sub> Ph.D. Student of Electrical Engineering (Energy)</sub>|
+| Sérgio Augusto de Almeida Christoforo  | 249522  | Mestrado em Engenharia Elétrica (Energia)  <br /><sub> M.Sc. Student of Electrical Engineering (Energy)</sub>|
 
 
 ## Descrição do Projeto  <br /> <sub> Project Description </sub>
