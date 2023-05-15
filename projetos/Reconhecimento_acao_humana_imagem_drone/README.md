@@ -25,6 +25,51 @@ Nesse contexto, o objetivo do presente projeto é detectar pessoas e reconhecer 
 # Metodologia
 > Proposta de metodologia incluindo especificação de quais técnicas pretende-se explorar. Espera-se que nesta entrega você já seja capaz de descrever de maneira mais específica (do que na Entrega 1) quais as técnicas a serem empregadas em cada etapa do projeto.
 
+Para desenvolvimento deste projeto, é adotada a base de dados “NTUT 4K Drone Photo Dataset for Human Detection”, descrita com mais detalhes na seção a seguir (“Bases de Dados e Evolução”).
+
+> Pré-processamento. Verificar o redimensionamento das imagens. 
+> Coloquei como "normalização" das imagens um pré-processamento, mas acho que a rede já faz isso. Verificar.
+
+As imagens disponíveis têm dimensão 3840 x 2160 pixels. Assim, todas as imagens foram redimensionadas para XXXX x YYYY pixels. 
+Para se obter as melhores métricas de classificação, testaram-se os seguintes pré-processamentos nas imagens:
+
+•	Teste 1: as imagens coloridas foram convertidas para tons de cinza (imagens pancromáticas), objetivando minimizar o custo computacional;
+
+•	Testes 2 e 3: aplicou-se uma filtragem no domínio espacial, objetivando realçar detalhes na imagem (bordas e linhas que possam contribuir para a detecção de pessoas e de suas poses) – filtros de aguçamento. No Teste 2, adotou-se o filtro de Sobel: aplicou-se o gradiente obtido a partir das duas máscaras de Sobel (horizontal e vertical). No Teste 3, aplicou-se o filtro Laplaciano (GONZALES; WOODS, 2010);
+
+•	Teste 4: normalização das imagens.
+
+> Definição das classes:
+
+Para a detecção de pessoas, observou-se que, no conjunto de dados de treinamento, há 2156 imagens de drone. Como em uma mesma imagem pode haver mais de uma pessoa, considerando todos os registros (labels), tem-se 31805 amostras, sendo que cada amostra corresponde a uma pessoa detectada na imagem. Em cada um desses 31805 dados, há o registro do nome da imagem em que a pessoa está sendo detectada, das coordenadas digitais que definem o bounding box e do rótulo correspondente à pose em que a pessoa se encontra. Entretanto, observou-se muitas classes correspondentes às poses humanas eram indefinidas (registradas como “id” ou “block”). Desse modo, inicialmente, os dados de treinamento foram analisados e definiram-se quatro classes a serem adotadas no presente projeto, dentre as registradas no Dataset. Essas classes são as que contém o maior número de amostras:
+
+•	Walk: 6155 amostras;
+
+•	Stand: 2551 amostras;
+
+•	Sit: 424 amostras;
+
+•	Riding: 2487 amostras.
+
+> Data augmentation:
+
+Objetivando balancear o número de amostras por classe, adotou-se Data augmentation. Considerando possíveis movimentos a serem realizados por um drone no momento da aquisição das imagens, foram testados três processos de aumentação dos dados objetivando melhorar as métricas de classificação – disponíveis em PyTorch (2023): 
+
+•	Espelhamento Horizontal (RandomHorizontalFlip);
+
+•	Espelhamento Vertical (RandomVerticalFlip);
+
+•	Rotação de 15° (RandomRotation).
+
+> Arquitetura adotada: YoloV7
+
+Para detecção das pessoas nas imagens de drone e classificação de suas poses, adotou-se uma a arquitetura YOLOv7, que, segundo Wang, Bochkovskiy e Liao, supera todos os detectores de objetos conhecidos em velocidade e precisão (tem menos parâmetros, menor custo computacional e alcança maior precisão). Para o presente projeto, adaptou-se o código da YOLOv7, disponível em https:// github.com/WongKinYiu/yolov7, alterando o número de classes e o nome das mesmas de acordo com o problema em questão. 
+
+> Verificar se há mais alterações na rede.
+
+> Métricas de avaliação: 
+
+
 ## Bases de Dados e Evolução
 > Elencar bases de dados utilizadas no projeto.
 > Para cada base, coloque uma mini-tabela no modelo a seguir e depois detalhamento sobre como ela foi analisada/usada, conforme exemplo a seguir.
@@ -63,6 +108,10 @@ NTUT 4K Drone Photo Dataset for Human Detection | [Link](https://www.kaggle.com/
 BRASIL. Departamento de Controle do Espaço Aéreo. Aeronaves Não Tripuladas e o Acesso ao Espaço Aéreo Brasileiro. ICA 100-40.  Ministério da Defesa, 2020. Disponível em: <https://publicacoes.decea.mil.br/publicacao/ica-100-40>. Acesso em 13 mai. 2023.
 
 DEL ROSARIO, J. R. B. et al. Development of a Multi-Object Detection and Human Tracking System from Cooperative Dual Cameras in an Unmanned Aerial Vehicle. In: 2021 IEEE 13th International Conference on Humanoid, Nanotechnology, Information Technology, Communication and Control, Environment, and Management (HNICEM). IEEE, 2021. pág. 1-4. Disponível em: <https://doi.org/10.1109/HNICEM54116.2021.9732035>.
+
+GONZALEZ, R. ; WOODS, R. E. Processamento Digital de Imagens. 3 ed. Pearson, 2009.
+
+PYTORCH. Transforming and augmenting images. Disponível em: <https://pytorch.org/vision/0.12/transforms.html>. Acesso em: 15 maio 2023.
 
 WANG, C.; BOCHKOVSKIY, A.; LIAO, H. M. YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors. arXiv preprint arXiv:2207.02696, 2022. Disponível em: 
 <https://doi.org/10.48550/arXiv.2207.02696>.
