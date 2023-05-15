@@ -63,7 +63,7 @@ Objetivando balancear o número de amostras por classe, adotou-se Data augmentat
 
 > Arquitetura adotada: YoloV7
 
-Para detecção das pessoas nas imagens de drone e classificação de suas poses, adotou-se uma a arquitetura YOLOv7, que, segundo Wang, Bochkovskiy e Liao, supera todos os detectores de objetos conhecidos em velocidade e precisão (tem menos parâmetros, menor custo computacional e alcança maior precisão). Para o presente projeto, adaptou-se o código da YOLOv7, disponível em https:// github.com/WongKinYiu/yolov7, alterando o número de classes e o nome das mesmas de acordo com o problema em questão. 
+Para detecção das pessoas nas imagens de drone e classificação de suas poses, adotou-se uma a arquitetura YOLOv7, que, segundo Wang, Bochkovskiy e Liao (2022), supera todos os detectores de objetos conhecidos em velocidade e precisão (tem menos parâmetros, menor custo computacional e alcança maior precisão). Para o presente projeto, adaptou-se o código da YOLOv7, disponível em https:// github.com/WongKinYiu/yolov7, alterando-se as classes na etapa de estimativa de pose (YOLOv7 inclui um modelo de estimativa de pose humana). 
 
 > Verificar se há mais alterações na rede.
 
