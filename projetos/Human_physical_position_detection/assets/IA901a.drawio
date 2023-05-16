@@ -1,4 +1,93 @@
-<mxfile host="app.diagrams.net" modified="2023-05-16T18:24:30.947Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="HxbkTIetONpdxy68F4T4" version="21.3.0" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2023-05-16T18:57:06.803Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="ObfjGvjO5rlXSH1NHvVe" version="21.3.0" type="github" pages="2">
+  <diagram id="-KC26STIBj3t9MYH2vu2" name="Workflow">
+    <mxGraphModel dx="1908" dy="1122" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="IXbX5ewmI5MATIdYdqmd-11" target="IXbX5ewmI5MATIdYdqmd-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-11" value="Obter Imagens silhueta" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="130" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-12" value="&lt;h1 style=&quot;font-size: 10px;&quot;&gt;https://www.kaggle.com/datasets/deepshah16/silhouettes-of-human-posture&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;/h1&gt;&lt;div&gt;Separar as imagens nas seguintes pastas:&lt;/div&gt;&lt;div style=&quot;&quot;&gt;1)Bending&lt;/div&gt;&lt;div style=&quot;&quot;&gt;2)Lying&lt;/div&gt;&lt;div style=&quot;&quot;&gt;3)Sitting&lt;/div&gt;&lt;div style=&quot;&quot;&gt;4)Standing&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="50" y="200" width="170" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="IXbX5ewmI5MATIdYdqmd-13" target="IXbX5ewmI5MATIdYdqmd-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-13" value="Obter Imagens de poses humanas" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="330" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-14" value="&lt;h1 style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;http://human-pose.mpi-inf.mpg.de/#download&lt;br&gt;&lt;/font&gt;&lt;/h1&gt;&lt;div style=&quot;&quot;&gt;Realizar o Download das poses juntamente com as anotações e coloca-las em um diretório local&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="50" y="400" width="230" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-1" value="Modelo Silhueta" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=7;" vertex="1" parent="1">
+          <mxGeometry x="1218.6666666666665" y="151" width="69.66666666666666" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-2" value="Modelo Posição&amp;nbsp;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=7;" vertex="1" parent="1">
+          <mxGeometry x="1434" y="151" width="76" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=7;" edge="1" parent="1" source="IXbX5ewmI5MATIdYdqmd-3" target="IXbX5ewmI5MATIdYdqmd-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-3" value="Base Treino" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=7;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="150" width="38" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="IXbX5ewmI5MATIdYdqmd-5" target="IXbX5ewmI5MATIdYdqmd-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-5" value="Base local" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=7;" vertex="1" parent="1">
+          <mxGeometry x="330" y="332" width="38" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=7;" edge="1" parent="1" source="IXbX5ewmI5MATIdYdqmd-7" target="IXbX5ewmI5MATIdYdqmd-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-7" value="Base Silhueta" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=7;" vertex="1" parent="1">
+          <mxGeometry x="1332.6666666666665" y="144" width="38" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=7;" edge="1" parent="1" source="IXbX5ewmI5MATIdYdqmd-1" target="IXbX5ewmI5MATIdYdqmd-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="IXbX5ewmI5MATIdYdqmd-15" target="IXbX5ewmI5MATIdYdqmd-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-15" value="Rodar Script &quot;converte_anotacoes_human-pose&quot;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="330" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="IXbX5ewmI5MATIdYdqmd-18" target="IXbX5ewmI5MATIdYdqmd-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-18" value="Base local" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=7;" vertex="1" parent="1">
+          <mxGeometry x="330" y="132" width="38" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="IXbX5ewmI5MATIdYdqmd-21" target="IXbX5ewmI5MATIdYdqmd-24">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="760" y="510" />
+              <mxPoint x="760" y="223" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <UserObject label="Criar estrutura de diretórios conforme orientação" link="https://github.com/OctavioGuaschi/IA901-2023S1/blob/main/templates/ia901-E2-instrucoes.md" linkTarget="_blank" id="IXbX5ewmI5MATIdYdqmd-21">
+          <mxCell style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+            <mxGeometry x="440" y="480" width="210" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="IXbX5ewmI5MATIdYdqmd-22" target="IXbX5ewmI5MATIdYdqmd-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-22" value="Base local" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=7;" vertex="1" parent="1">
+          <mxGeometry x="690" y="330" width="38" height="56" as="geometry" />
+        </mxCell>
+        <UserObject label="Adicionar Imagens no diretório; &quot;data/raw&quot;" link="https://github.com/OctavioGuaschi/IA901-2023S1/blob/main/templates/ia901-E2-instrucoes.md" linkTarget="_blank" id="IXbX5ewmI5MATIdYdqmd-24">
+          <mxCell style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+            <mxGeometry x="780" y="193" width="210" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+      </root>
+    </mxGraphModel>
+  </diagram>
   <diagram name="Page-1" id="c7558073-3199-34d8-9f00-42111426c3f3">
     <mxGraphModel dx="954" dy="561" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="826" pageHeight="1169" background="none" math="0" shadow="0">
       <root>
@@ -313,14 +402,6 @@
         <mxCell id="96" value="System&#xa;version" style="text;spacingTop=-5;align=center" parent="1" vertex="1">
           <mxGeometry x="350.9999999999998" y="461" width="30" height="20" as="geometry" />
         </mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
-  <diagram id="-KC26STIBj3t9MYH2vu2" name="Workflow">
-    <mxGraphModel dx="954" dy="561" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
       </root>
     </mxGraphModel>
   </diagram>
