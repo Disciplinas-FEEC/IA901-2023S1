@@ -9,7 +9,7 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 > Incluir nome RA e foco de especialização de cada membro do grupo. Os projetos devem ser desenvolvidos em trios.
 > |Nome  | RA | Curso|
 > |--|--|--|
-> | Nome1  | 123456  | Mestrado em xxxx|
+> | Pedro Piquet | 223251 | Mestrado em Física Aplicada |
 > | Nome2  | 123456  | Graduação em xxx|
 > | Fabio Grassiotto  | 890441  | Doutorado em IA aplicada a Autismo |
 
