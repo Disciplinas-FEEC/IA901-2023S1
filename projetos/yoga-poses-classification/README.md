@@ -13,6 +13,7 @@ Sara Mirthis Dantas dos Santos | 224018 | Aluna Especial - Engenharia Elétrica
 Yasmin Martins Perci           | 271281 | Aluna Especial - Engenharia Elétrica
 
 ## Descrição do Projeto
+O objetivo deste trabalho é realizar um estudo comparativo entre o desempenho de uma CNN e um algoritmo clássico para classificar posturas de Yoga. A partir de processamento de imagem, como aplicação de filtros, detecção de bordas, detecção de esqueletos, criação de descritores, entre outros, o modelo clássico será treinado com alguns atributos extraídos das imagens e, a partir das métricas de avaliação, o seu desempenho será comparado com o de uma CNN.
 
 
 # Metodologia
