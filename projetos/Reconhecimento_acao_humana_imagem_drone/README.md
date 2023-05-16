@@ -98,7 +98,9 @@ outros  |    19760      |   13723
 
 Note que a classe "outros" é referente a rotulações que não especificam diretamente a pose da pessoa detectada, ao invés disso nomeia com o termo id_ seguido de um número ou usa a palavra blocked. Assim, considerando o tamanho do conjunto e a fim de evitar as classes não nomeadas optou-se por utilizar as 4 classes mais numerosas de modo a obter um conjunto de dados mais balanceado. Dessa forma, foram selecionadas apenas as classes walk, stand, sit e riding. O histograma abaixo ilustra a distribuição de dados, tanto do conjunto de treino (11617 amostras) quanto do conjunto de teste (7163 amostras) com a nova seleção.
 
-![image](https://github.com/Debora-Simoes/IA901-2023S1/assets/40005866/fbc35902-1998-4d86-a08b-0058a44d1425)
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/Dados_selecionados_treino_teste.png" height="350">
+</p>
 
 <!--confirmar se vamos ter que rerotular os labels --> 
 
