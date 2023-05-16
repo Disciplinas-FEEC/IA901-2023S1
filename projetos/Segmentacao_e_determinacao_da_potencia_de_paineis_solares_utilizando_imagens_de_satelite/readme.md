@@ -1,5 +1,5 @@
-# `Segmentação e determinação da Potência de painéis solares utilizando imagens de satélite`
-# <sub> `Solar panels segmentation and power estimation using satellite images` <br /> Segmentation and determination of the power of solar panels using satellite images </sub>
+# `Segmentação e estimação da Potência de painéis solares utilizando imagens de satélite`
+# <sub> `Solar panels segmentation and power estimation using satellite imagery`
 
 This readme has the project description in English as well :sunglasses:
 
