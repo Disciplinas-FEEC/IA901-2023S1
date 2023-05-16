@@ -69,21 +69,45 @@ Para detecção das pessoas nas imagens de drone e classificação de suas poses
 
 > Métricas de avaliação: 
 
-
 ## Bases de Dados e Evolução
+<!--
 > Elencar bases de dados utilizadas no projeto.
-> Para cada base, coloque uma mini-tabela no modelo a seguir e depois detalhamento sobre como ela foi analisada/usada, conforme exemplo a seguir.
+> Para cada base, coloque uma mini-tabela no modelo a seguir e depois detalhamento sobre como ela foi analisada/usada, conforme exemplo a seguir.-->
+A tabela abaixo mostra resumidamente algumas informações sobre o banco de dados utilizado no desenvolvimento do projeto.
 
 Base de Dados | Endereço na Web | Resumo descritivo
 ----- | :-----: | -----
 NTUT 4K Drone Photo Dataset for Human Detection | [Link](https://www.kaggle.com/datasets/kuantinglai/ntut-4k-drone-photo-dataset-for-human-detection) | <!--Breve resumo (duas ou três linhas) sobre a base.--> Esse banco de dados é formado por imagens de alta resolução extraídas de vídeos gravados por drones em Taiwan. Para cada imagem, estão disponíveis as coordenadas digitais que definem o *bounding box* em torno de uma pessoa detectada, bem como o rótulo que identifica a pose do indivíduo detectado.
+---
+A base de dados NTUT 4K Drone Photo Dataset for Human Detection, como comentado anteriormente, é formada por 4095 imagens de drone coletadas em Taiwan com dimensões 3840 x 2160 pixels, sendo as imagens organizadas em pastas de acordo com o cenário, altura de voo e orientação da câmera. Dessa quantidade, 2156 imagens (53% do conjunto de dados) foram separadas para treino emquanto que 1939 (47% do conjunto de dados) foram destinados para teste. Como em cada imagem pode haver mais de uma pessoa realizando ações distintas o conjunto de treino passa a ter ao todo 31804 amostras, ao passo que o conjunto de teste tem 20920 amostras. Além disso, todas as imagens estão em formato jpg.
 
+Como forma de rotulação, cada pasta vem acompanhada de um arquivo csv que informa para cada amostra as coordenadas do centro do *bounding box* em torno de uma pessoa detectada, isto é, (Xmin, Ymin, Xmax e Ymax) e ainda tráz a informação sobre a pose da pessoa detectada (walk, push, stand, etc).
 
+Através de uma análise considerando todas as classes existentes nos conjuntos de treino e teste, chegou-se aos seguintes valores:
+
+Classes | Dados de Treino | Dados de teste
+----- | :-----: | :-----:
+walk  |     6155    |   4858 
+stand |     2551    |   1752 
+push  |    143      |   34
+watchphone  |     167     |   0
+baseball  |     118     |   0
+sit  |    424      |    481 
+riding  |    2487      |    72 
+outros  |    19760      |   13723 
+
+Note que a classe "outros" é referente a rotulações que não especificam diretamente a pose da pessoa detectada, ao invés disso nomeia com o termo id_ seguido de um número ou usa a palavra blocked. Assim, considerando o tamanho do conjunto e a fim de evitar as classes não nomeadas optou-se por utilizar as 4 classes mais numerosas de modo a obter um conjunto de dados mais balanceado. Dessa forma, foram selecionadas apenas as classes walk, stand, sit e riding. O histograma abaixo ilustra a distribuição de dados, tanto do conjunto de treino (11617 amostras) quanto do conjunto de teste (7163 amostras) com a nova seleção.
+
+![image](https://github.com/Debora-Simoes/IA901-2023S1/assets/40005866/fbc35902-1998-4d86-a08b-0058a44d1425)
+
+<!--confirmar se vamos ter que rerotular os labels --> 
+
+<!--
 > Faça uma descrição sobre o que concluiu sobre esta base. Sugere-se que respondam perguntas ou forneçam informações indicadas a seguir:
 > * Qual o formato dessa base, tamanho, tipo de anotação?
 > * Quais as transformações e tratamentos feitos? Limpeza, reanotação, etc.
 > * Inclua um sumário com estatísticas descritivas da(s) base(s) de estudo.
-> * Utilize tabelas e/ou gráficos que descrevam os aspectos principais da base que são relevantes para o projeto.
+> * Utilize tabelas e/ou gráficos que descrevam os aspectos principais da base que são relevantes para o projeto.-->
 
 # Ferramentas
 > Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
