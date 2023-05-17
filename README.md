@@ -9,8 +9,8 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 > Incluir nome RA e foco de especialização de cada membro do grupo. Os projetos devem ser desenvolvidos em trios.
 > |Nome  | RA | Curso|
 > |--|--|--|
-> | Nome1  | 123456  | Mestrado em xxxx|
-> | Nome2  | 123456  | Graduação em xxx|
+> | Johsac Isbac Gomez Sanchez  | 216401  | Doutorado em Engenharia Elétrica|
+> | Robson Assis Colares  | 264369  | Doutorado em Engenharia Elétrica |
 > | Suellen Sena da Silva  | 177261  | Mestrado em Engenharia da Computação|
 
 
