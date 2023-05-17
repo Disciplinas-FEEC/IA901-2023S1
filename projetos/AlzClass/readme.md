@@ -11,7 +11,7 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 > |--|--|--|
 > | Pedro Piquet | 223251 | Mestrado em Física Aplicada |
 > | Nome2  | 123456  | Graduação em xxx|
-> | Fabio Grassiotto  | 890441  | Doutorado em IA aplicada a Autismo |
+> | Fabio Grassiotto  | 890441  | Doutorado em Engenharia Elétrica |
 
 
 ## Descrição do Projeto
@@ -28,7 +28,16 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 
 Base de Dados | Endereço na Web | Resumo descritivo
 ----- | ----- | -----
+Kaggle Alzheimer MRI Preprocessed Dataset | https://www.kaggle.com/datasets/sachinkumar413/alzheimer-mri-dataset | Dataset do Kaggle para experimentos iniciais
 Open Access Series of Imaging Studies (OASIS) | https://www.oasis-brains.org/ | O OASIS (Open Access Series of Imaging Studies) é um projeto que visa tornar conjuntos de dados de neuroimagem do cérebro disponíveis gratuitamente para a comunidade científica. Existem quatro bases disponibilizadas - OASIS 1 a OASIS 4, com OASIS 1 e OASIS 2 consideradas as bases mais apropriadas para projetos acadêmicos.
+
+**Kaggle Dataset**: Os dados são coletados de vários sites/hospitais/repositórios públicos. O conjunto de dados consiste em imagens MRI pré-processadas (imagem por ressonância magnética). Todas as imagens são redimensionadas em 128 x 128 pixels.
+
+O Dataset tem quatro classes de imagens, com um total de 6.400 imagens de ressonância magnética.
+- Classe - 1: Demente Leve (896 imagens)
+- Classe - 2: Demente Moderado (64 imagens)
+- Classe - 3: Não Demente (3200 imagens)
+- Classe - 4: Demente Muito Leve (2240 imagens)
 
 **OASIS1**: De acordo com o website, a OASIS1 é uma base de exames de ressonância magnética de 416 pacientes entre 18 e 96 anos. Para cada indivíduo, são incluídos 3 ou 4 exames individuais do tipo T1-weighted obtidos em sessões de exame único.
 
