@@ -14,9 +14,8 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 
 
 ## Descrição do Projeto
-> Descrição do objetivo principal do projeto, incluindo contexto gerador, motivação.
-> Qual problema vocês pretendem solucionar?
-> Qual a relevância do problema e o impacto da solução do mesmo?
+Esse projeto parte da motivação de se realizar algo que pudesse, de alguma forma, ser feito em prol da sociedade (ou, no caso, de um grupo dela). Indo de encontro a um problema ou questão enfrentada por um grupo de pessoas e poder responder a essa questão. Dessa forma, temos como projeto um classificador de pacientes com Alzheimer e controle. Utilizando imagens de ressonância magnética, a ideia é primeiramente, projetarmos um classificador binário entre pacientes do grupo com Alzheimer e pacientes do grupo de controle. E após isso, solucionar o problema central desse projeto: projetar um classificador capaz de classificar as 4 classes existentes (demente leve, demente moderado, não demente e demente muito leve).
+Um classificador de pacientes com Alzheimer é algo que tem se desenvolvido na comunidade, pois é uma realidade recorrente da sociedade atual e partimos da ideia de projetarmos um classificador no qual consigamos obter uma acurácia melhor do que encontramos em nossas pesquisas até aqui. O diagnóstico (precoce ou não) correto é extremante necessário, de forma que, toda melhoria obtida para proporcionar um diagnóstico cada vez mais seguro é muito importante para o avanço da comunidade médica e dos grupos de estudo. Assim, acreditamos que sendo possível projetar esse classificador em busca dessa melhoria na acurácia dos resultados, será possível aplicar essa melhoria nos diagnósticos futuros.
 
 # Metodologia
 > Proposta de metodologia incluindo especificação de quais técnicas pretende-se explorar. Espera-se que nesta entrega você já seja capaz de descrever de maneira mais específica (do que na Entrega 1) quais as técnicas a serem empregadas em cada etapa do projeto.
