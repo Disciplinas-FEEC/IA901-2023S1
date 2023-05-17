@@ -95,10 +95,14 @@ sit  |    424      |    481
 riding  |    2487      |    72 
 outros  |    19760      |   13723 
 
-Note que a classe "outros" é referente a rotulações que não especificam diretamente a pose da pessoa detectada, ao invés disso nomeia com o termo id_ seguido de um número ou usa a palavra block. Assim, considerando o tamanho do conjunto e a fim de evitar as classes não nomeadas, optou-se por utilizar as 4 classes mais numerosas de modo a obter um conjunto de dados mais balanceado. Dessa forma, foram selecionadas apenas as classes walk, stand, sit e riding. O histograma abaixo ilustra a distribuição de dados, tanto do conjunto de treino (11617 amostras) quanto do conjunto de teste (7163 amostras) com a nova seleção.
+Note que a classe "outros" é referente a rotulações que não especificam diretamente a pose da pessoa detectada, ao invés disso nomeia com o termo id_ seguido de um número ou usa a palavra block. Assim, considerando o tamanho do conjunto e a fim de evitar as classes não nomeadas, optou-se por utilizar as 4 classes mais numerosas de modo a obter um conjunto de dados mais balanceado. Dessa forma, foram selecionadas apenas as classes walk, stand, sit e riding. 
+
+Além disso, foi necessário separar os dados de treino, teste e validação. Em relação ao conjunto de teste após a filtragem das classes obteve-se um total de 7163 amostras. Como o banco de dados bruto possui apenas o conjunto de treino, sem considerar validação, foi definido que 20% (2323 amostras) dos dados de treino já selecionados com as 4 classes seriam destinados ao conjunto de validação enquanto que os 80% (9294 amostras) restante formariam o conjunto de treino.
+
+O histograma abaixo ilustra a distribuição de dados do conjunto de treino, teste e validação que serão utilizados durante o projeto.
 
 <p align="left">
-    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/Dados_selecionados_treino_teste.png" height="350">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/Dados_selecionados_treino_teste_validacao.png" height="350">
 </p>
 
 <!--confirmar se vamos ter que rerotular os labels --> 
