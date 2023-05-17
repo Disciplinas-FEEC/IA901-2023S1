@@ -6,12 +6,11 @@
 O presente projeto foi originado no contexto das atividades da disciplina de pós-graduação *IA901 - Processamento de Imagens e Reconhecimento de Padrões*, 
 oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dra. Leticia Rittner, do Departamento de Engenharia de Computação e Automação (DCA) da Faculdade de Engenharia Elétrica e de Computação (FEEC).
 
-> Incluir nome RA e foco de especialização de cada membro do grupo. Os projetos devem ser desenvolvidos em trios.
-> |Nome  | RA | Curso|
-> |--|--|--|
-> | Pedro Piquet | 223251 | Mestrado em Física Aplicada |
-> | Nome2  | 123456  | Graduação em xxx|
-> | Fabio Grassiotto  | 890441  | Doutorado em Engenharia Elétrica |
+|Nome  | RA | Curso|
+|--|--|--|
+| Pedro Piquet | 223251 | Mestrado em Física Aplicada |
+| Lais Oliveira  | 159809  | Mestrado em Engenharia Elétrica |
+| Fabio Grassiotto  | 890441  | Doutorado em Engenharia Elétrica |
 
 
 ## Descrição do Projeto
@@ -22,9 +21,8 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 # Metodologia
 > Proposta de metodologia incluindo especificação de quais técnicas pretende-se explorar. Espera-se que nesta entrega você já seja capaz de descrever de maneira mais específica (do que na Entrega 1) quais as técnicas a serem empregadas em cada etapa do projeto.
 
+
 ## Bases de Dados e Evolução
-> Elencar bases de dados utilizadas no projeto.
-> Para cada base, coloque uma mini-tabela no modelo a seguir e depois detalhamento sobre como ela foi analisada/usada, conforme exemplo a seguir.
 
 Base de Dados | Endereço na Web | Resumo descritivo
 ----- | ----- | -----
@@ -47,31 +45,24 @@ Os pacientes são todos destros e incluem homens e mulheres. 100 dos indivíduos
 
 Os pacientes são todos destros e incluem homens e mulheres. 72 dos indivíduos foram caracterizados como não dementes ao longo do estudo, enquanto que 64 dos indivíduos incluídos foram caracterizados como dementes no momento de suas visitas iniciais e permaneceram assim para exames subsequentes, incluindo 51 indivíduos com doença de Alzheimer leve a moderada. Outros 14 indivíduos foram caracterizados como não dementes no momento de sua visita inicial e posteriormente caracterizados como dementes em uma visita posterior.
 
-> Faça uma descrição sobre o que concluiu sobre esta base. Sugere-se que respondam perguntas ou forneçam informações indicadas a seguir:
-> * Qual o formato dessa base, tamanho, tipo de anotação?
-> * Quais as transformações e tratamentos feitos? Limpeza, reanotação, etc.
-> * Inclua um sumário com estatísticas descritivas da(s) base(s) de estudo.
-> * Utilize tabelas e/ou gráficos que descrevam os aspectos principais da base que são relevantes para o projeto.
-
 # Ferramentas
-> Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
 
-> Nibabel - NeuroImaging em Python - https://nipy.org/nibabel/, para a manipulação das bases de imagens.
+Nibabel - NeuroImaging em Python - https://nipy.org/nibabel/, para a manipulação das bases de imagens.
 
-> Pytorch (framework de machine/deep learning) - https://pytorch.org/
+Pytorch (framework de machine/deep learning) - https://pytorch.org/
 
 # Workflow
-> Use uma ferramenta que permita desenhar o workflow e salvá-lo como uma imagem (Draw.io, por exemplo). Insira a imagem nessa seção.
-> Você pode optar por usar um gerenciador de workflow (Sacred, Pachyderm, etc) e nesse caso use o gerenciador para gerar uma figura para você.
-> Lembre-se que o objetivo de desenhar o workflow é ajudar a quem quiser reproduzir seus experimentos. 
+Nosso workflow para os datasets descritos acima será:
+![Workflow](workflow.drawio.svg)
 
 # Experimentos e Resultados preliminares
-> Descreva de forma sucinta e organizada os experimentos realizados
-> Para cada experimento, apresente os principais resultados obtidos
-> Aponte os problemas encontrados nas soluções testadas até aqui
+Nesta primeira fase do experimento, iremos analisar as imagens disponibilizadas pelo dataset da Kaggle e executaremos classificação utilizando a rede ResNet18 com fine-tuning.
 
 # Próximos passos
-> Liste as próximas etapas planejadas para conclusão do projeto, com uma estimativa de tempo para cada etapa
+- Migração para o dataset do OASIS, criando um dataloader apropriado. (estimativa: 1 semana)
+- Executar o workflow definido pelo projeto na nova base, utilizando para classificação a rede InceptionV4 (estimativa: 2 semanas)
+- Analisar e apresentar os resultados obtidos com a nova rede, comparando com os resultados iniciais da base do Kaggle (estimativa: 1 semana)
 
 ## Referências (ATUALIZAR SE NECESSÁRIO)
 > Seção obrigatória. Inclua aqui referências utilizadas no projeto.
+
