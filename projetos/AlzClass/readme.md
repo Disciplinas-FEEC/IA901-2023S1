@@ -47,12 +47,12 @@ Os pacientes são todos destros e incluem homens e mulheres. 72 dos indivíduos 
 
 # Ferramentas
 
-Nibabel - NeuroImaging em Python - https://nipy.org/nibabel/, para a manipulação das bases de imagens.
-
-Pytorch (framework de machine/deep learning) - https://pytorch.org/
+- Nibabel - NeuroImaging em Python - https://nipy.org/nibabel/, para a manipulação das bases de imagens.
+- Pytorch (framework de machine/deep learning) - https://pytorch.org/
 
 # Workflow
-Nosso workflow para os datasets descritos acima será:
+Definimos abaixo o workflow que utilizaremos para a ingestão, pré-processamento e classificação dos dados.
+
 ![Workflow](workflow.drawio.svg)
 
 # Experimentos e Resultados preliminares
