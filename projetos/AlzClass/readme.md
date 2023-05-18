@@ -56,7 +56,25 @@ Definimos abaixo o workflow que utilizaremos para a ingestão, pré-processament
 ![Workflow](workflow.drawio.svg)
 
 # Experimentos e Resultados preliminares
-Nesta primeira fase do experimento, iremos analisar as imagens disponibilizadas pelo dataset da Kaggle e executaremos classificação utilizando a rede ResNet18 com fine-tuning.
+
+## Rede AlexNet com a base do Kaggle
+Nesta primeira fase do experimento, iremos analisar as imagens disponibilizadas pelo dataset da Kaggle e executaremos classificação utilizando a rede AlexNet, ao longo de 20 épocas.
+
+Os resultados obtidos inicialmente podem ser visualizados nos gráficos abaixo:
+
+**Perda na base de treinamento**
+![AlexNet Train Loss](Images/Kaggle_AlexNet/train_loss.png)
+
+**Acurácia na base de treinamento**
+![AlexNet Train Acc](Images/Kaggle_AlexNet/train_acc.png)
+
+**Perda na base de testes**
+![AlexNet Test Loss](Images/Kaggle_AlexNet/test_loss.png)
+
+**Acurácia na base de testes**
+![AlexNet Test Acc](Images/Kaggle_AlexNet/test_acc.png)
+
+Notamos que a melhor acurácia obtida com a base de testes foi de cerca de **0.875**.
 
 # Próximos passos
 - Migração para o dataset do OASIS, criando um dataloader apropriado. (estimativa: 1 semana)
