@@ -31,7 +31,37 @@ A relevância desse problema reside na alta taxa de mortalidade associada ao mel
 
 
 # Metodologia
-> Proposta de metodologia incluindo especificação de quais técnicas pretende-se explorar. Espera-se que nesta entrega você já seja capaz de descrever de maneira mais específica (do que na Entrega 1) quais as técnicas a serem empregadas em cada etapa do projeto.
+**Proposta de metodologia incluindo especificação de quais técnicas pretende-se explorar. Espera-se que nesta entrega você já seja capaz de descrever de maneira mais específica (do que na Entrega 1) quais as técnicas a serem empregadas em cada etapa do projeto.**
+
+Nossa metodologia aborda o problema de reduzir falsos negativos na detecção de melanoma e classificar corretamente os casos de melanoma maligno. Descreveremos as etapas que serão realizadas no projeto:
+
+1. Pré-processamento de dados:
+
+- Normalização da imagem: aplicaremos técnicas de normalização para garantir que todas as imagens tenham uma escala e um intervalo de valores consistentes.
+
+- Aumento de dados: usaremos técnicas de aumento de dados, como rotação, translação e zoom, para aumentar o número de amostras de treinamento e melhorar a capacidade de generalização do modelo.
+
+2. Extração de recursos:
+
+- Extração Manual de Recursos: Investigaremos e usaremos técnicas manuais de extração de recursos, como histogramas de cores, texturas e recursos geométricos, que podem ser relevantes para a detecção de melanoma maligno.
+
+- Extração de recursos baseada em aprendizado profundo: usaremos redes neurais convolucionais (CNNs) pré-treinadas, como ResNet, Inception ou VGG, para extrair recursos de alto nível de imagens.
+
+3. Construção do modelo de classificação:
+
+- Tuning de hiperparâmetros: Faremos uma busca de hiperparâmetros para otimizar os modelos e melhorar seu desempenho.
+
+4. Avaliação e validação:
+
+- Divisão de dados: separaremos nosso conjunto de dados em conjuntos de treinamento, validação e teste para avaliar e validar o desempenho do modelo.
+
+- Métricas de avaliação: Usaremos métricas como precisão, recall, exatidão e área sob a curva ROC (AUC-ROC) para avaliar a qualidade de nossas classificações e comparar os resultados obtidos.
+
+5. Melhoria e refinamento:
+
+- Análise de erros: investigaremos os casos em que nosso modelo cometeu erros e analisaremos as causas subjacentes para identificar possíveis melhorias.
+
+- Ajuste e refinamento do modelo: Faremos iterações adicionais para ajustar e refinar nosso modelo com base nos resultados obtidos na etapa de avaliação e validação.
 
 ## Bases de Dados e Evolução
 > Elencar bases de dados utilizadas no projeto.
