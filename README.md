@@ -17,12 +17,12 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 ## Descrição do Projeto
 **Descrição do objetivo principal do projeto, incluindo contexto gerador, motivação.**
 
-O principal objetivo do nosso projeto é desenvolver um modelo CNN que seja capaz de classificar lesões cutâneas de melanoma, a fim de reduzir a taxa de falsos negativos na classificação de imagens de lesões cutâneas malignas dadas lesões benignas. Temos um banco de dados de 33.126 imagens onde 32.542 são lesões benignas e 584 imagens são lesões malignas, um banco de dados bastante desbalanceado, sendo um desafio treinar o conjunto de dados, dado o alto viés que apresenta no tamanho da amostra em suas categorias.
+O principal objetivo do nosso projeto é desenvolver um modelo utilizando CNN e outros algoritmos de Machine Learning que seja capaz de classificar lesões cutâneas de melanoma, a fim de reduzir a taxa de falsos negativos na classificação de imagens de lesões cutâneas malignas dadas lesões benignas. Temos um banco de dados de 33.126 imagens onde 32.542 são lesões benignas e 584 imagens são lesões malignas, um banco de dados bastante desbalanceado, sendo um desafio treinar o conjunto de dados, dado o alto viés que apresenta no tamanho da amostra em suas categorias.
 
 
 **Qual problema vocês pretendem solucionar?**
 
-O problema que pretendemos resolver é o erro de classificação dos melanomas malignos como benignos. Isso pode levar a um atraso no diagnóstico e tratamento adequados, o que é fundamental para a saúde e a vida dos pacientes. Ao desenvolver um sistema de classificação mais preciso, buscamos identificar corretamente os casos de melanoma maligno, o que permitirá a detecção precoce e o tratamento oportuno.
+O problema que pretendemos resolver é o erro de classificação dos melanomas malignos como benignos. Isso pode levar a um atraso no diagnóstico e tratamento adequados, o que é fundamental para a saúde e a vida dos pacientes. Ao desenvolver um sistema de classificação mais preciso, buscamos identificar corretamente os casos de melanoma maligno, o que permitirá a detecção precoce e o tratamento oportuno. Para efeito de comparação, estamos consultando a base de dados médicos UpToDate, para compreender como é feito o diagnóstico do melanoma pelo médico.
 
 
 **Qual a relevância do problema e o impacto da solução do mesmo?**
@@ -49,13 +49,13 @@ Nossa metodologia aborda o problema de reduzir falsos negativos na detecção de
 
 3. Construção do modelo de classificação:
 
-- Tuning de hiperparâmetros: Faremos uma busca de hiperparâmetros para otimizar os modelos e melhorar seu desempenho.
+- Ajuste de hiperparâmetros: Faremos uma busca de hiperparâmetros para otimizar os modelos e melhorar seu desempenho.
 
 4. Avaliação e validação:
 
 - Divisão de dados: separaremos nosso conjunto de dados em conjuntos de treinamento, validação e teste para avaliar e validar o desempenho do modelo.
 
-- Métricas de avaliação: Usaremos métricas como precisão, recall, exatidão e área sob a curva ROC (AUC-ROC) para avaliar a qualidade de nossas classificações e comparar os resultados obtidos.
+- Métricas de avaliação: usaremos métricas como precisão, recall, exatidão e área sob a curva ROC (AUC-ROC) para avaliar a qualidade de nossas classificações e comparar os resultados obtidos.
 
 5. Melhoria e refinamento:
 
@@ -69,7 +69,7 @@ Nossa metodologia aborda o problema de reduzir falsos negativos na detecção de
 
 Base de Dados | Endereço na Web | Resumo descritivo
 ----- | ----- | -----
-SIIM-ISIC Melanoma Classification | https://www.kaggle.com/competitions/siim-isic-melanoma-classification/data |  O conjunto possui imagens de lesões de pele e 
+SIIM-ISIC Melanoma Classification | https://www.kaggle.com/competitions/siim-isic-melanoma-classification/data |  O conjunto possui imagens de lesões de pele, tanto de melanomas benignos quanto malignos.
 
 > Faça uma descrição sobre o que concluiu sobre esta base. Sugere-se que respondam perguntas ou forneçam informações indicadas a seguir:
 > * Qual o formato dessa base, tamanho, tipo de anotação?
@@ -80,6 +80,14 @@ A base possui 88251 imagens do tipo dicom, jpg e tfrecords, totalizando 116.16 G
 
 # Ferramentas
 > Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
+
+Utilizaremos neste projeto o Google Colab inicialmente, caso não haja problemas de utilização das GPUs. Algumas bibliotecas utilizadas são:
+Keras, pela facilidade de manuseio dos algoritmos de aprendizado de máquina e processamento de imagens
+OS, para movimentação dos arquivos
+Numpy, para realização de cálculos diversos
+Matplotlib, utilizada para plotar gráficos variados
+Tensorflow, para utilização de modelos de aprendizado de máquina
+
 
 # Workflow
 > Use uma ferramenta que permita desenhar o workflow e salvá-lo como uma imagem (Draw.io, por exemplo). Insira a imagem nessa seção.
