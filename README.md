@@ -79,9 +79,13 @@ Idade | 0 | 90 |
 # Ferramentas
 Utilizaremos neste projeto o Google Colab inicialmente para treinamento das redes com GPUs. Algumas bibliotecas utilizadas são:
 Keras, pela facilidade de manuseio dos algoritmos de aprendizado de máquina e processamento de imagens
+
 OS, para movimentação dos arquivos
+
 Numpy, para realização de cálculos diversos
+
 Matplotlib, utilizada para plotar gráficos variados
+
 Tensorflow, para utilização de modelos de aprendizado de máquina
 
 
