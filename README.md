@@ -88,6 +88,7 @@ Matplotlib, utilizada para plotar gráficos variados
 
 Tensorflow, para utilização de modelos de aprendizado de máquina
 
+Draw.IO, para confecção do Workflow
 
 # Workflow
 > Use uma ferramenta que permita desenhar o workflow e salvá-lo como uma imagem (Draw.io, por exemplo). Insira a imagem nessa seção.
