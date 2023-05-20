@@ -126,7 +126,8 @@ Ao considerar que o nosso principal objetivo de minimizar é minimizar a taxa de
 
 Embora sua complexidade, os resultados apresentados a seguir demonstram a dificuldade de discriminar as lesões de pele entre malignas e benignas. Os ganhos foram de apenas 6 acertos na classe de predizer corretamente lesões malignas. Entretanto, a taxa de falsos positivos foi de 0.04%
 
-![image](https://github.com/robsoncolares/IA901-2023S1/assets/63214041/6fe0bbd3-e9bd-42b3-8662-3830eda62a13)
+![image](https://github.com/robsoncolares/IA901-2023S1/assets/63214041/8cdb2241-a9e1-485a-9161-f54120efb308)
+
 ![image](https://github.com/robsoncolares/IA901-2023S1/assets/63214041/99d42a06-f75c-4c8e-a16b-12bb838aa38d)
 
 # Próximos passos
