@@ -114,6 +114,7 @@ Problemas: O experimento não permitiu concluir que a diminuição do desbalance
 ![Test](/Figuras/exp3_matriz.png "Matriz de Confusão")
 
 Experimento 2 - CNN com o conjunto completo
+----- 
 Descrição: Experimentos foram realizados com uma rede mais simples e manualmente construída a fim de verificar a métrica AUC no conjunto de dados de melanoma. Para efeitos de comparação, o mesmo conjunto de dados e exatamente a mesma divisão entre treinamento e validação foi utilizada. 24402 imagens foram usadas para treinamento, e 8608 imagens foram usadas para validação. Também a título de comparação, todas as imagens foram inseridas na rede convolucional com dimensões 224 x 224. <br>
 Metodologia: Uma rede neural de alta complexidade (muitas camadas convolucionais) foi treinada com as imagens do dataset por 20 épocas, semelhante ao treinamento efetuado com a Resnet50. <br>
 Resultados: Os resultados foram<br>
