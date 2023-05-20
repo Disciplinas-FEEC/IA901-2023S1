@@ -96,7 +96,7 @@ Draw.IO, para confecção do Workflow
 > Lembre-se que o objetivo de desenhar o workflow é ajudar a quem quiser reproduzir seus experimentos. 
 
 
-![Test](/Workflow_Melanoma.png "Workflow")
+![Test](/Figuras/Workflow_Melanoma.png "Workflow")
 
 # Experimentos e Resultados preliminares
 > Descreva de forma sucinta e organizada os experimentos realizados
