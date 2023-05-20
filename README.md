@@ -110,16 +110,16 @@ Resultados:
 Problemas:
 
 Experimento 2 - CNN de alta complexidade<br>
-Descrição: Experimentos foram realizados com uma rede mais simples e manualmente construída a fim de verificar a métrica AUC no conjunto de dados de melanoma. Para efeitos de comparação, o mesmo conjunto de dados e exatamente a mesma divisão entre treinamento e validação foi utilizada. 24402 imagens foram usadas para treinamento, e 8608 imagens foram usadas para validação. Também a título de comparação, todas as imagens foram inseridas na rede convolucional com dimensões 224 x 224. 
-Metodologia: Uma rede neural de alta complexidade (muitas camadas convolucionais) foi treinada com as imagens do dataset por 20 épocas, semelhante ao treinamento efetuado com a Resnet50. 
-Resultados: Os resultados foram
+Descrição: Experimentos foram realizados com uma rede mais simples e manualmente construída a fim de verificar a métrica AUC no conjunto de dados de melanoma. Para efeitos de comparação, o mesmo conjunto de dados e exatamente a mesma divisão entre treinamento e validação foi utilizada. 24402 imagens foram usadas para treinamento, e 8608 imagens foram usadas para validação. Também a título de comparação, todas as imagens foram inseridas na rede convolucional com dimensões 224 x 224. <br>
+Metodologia: Uma rede neural de alta complexidade (muitas camadas convolucionais) foi treinada com as imagens do dataset por 20 épocas, semelhante ao treinamento efetuado com a Resnet50. <br>
+Resultados: Os resultados foram<br>
 Problemas: Um dos principais problemas foi o tempo despendido para treinamento da rede neural convolucional.
 
-Experimento 3 - Diminuição da Quantidade de Imagens da Classe "Benigno"
-Descrição: Diminuímos o conjunto de dados de treinamento e validação benigno para 10% do tamanho total, para observar o comportamento em relação à acurácia e AUC. 
-Metodologia: As imagens foram aleatoriamente selecionadas para que o tamanho do conjunto de dados Benigno se tornasse 10% do tamanho original. As imagens foram então usadas para treinamento de uma rede convolucional de alta complexidade. 
-Resultados: Os resultados de acurácia foram bastante altos, porém ainda há o mesmo problema de todas as amostras da classe maligna ser classificada como benigna. 
-Problemas: O experimento não permitiu concluir que a diminuição do desbalanceamento conduzisse a um resultado favorável de classificação da classe com menores amostras.
+Experimento 3 - Diminuição da Quantidade de Imagens da Classe "Benigno"<br>
+Descrição: Diminuímos o conjunto de dados de treinamento e validação benigno para 10% do tamanho total, para observar o comportamento em relação à acurácia e AUC. <br>
+Metodologia: As imagens foram aleatoriamente selecionadas para que o tamanho do conjunto de dados Benigno se tornasse 10% do tamanho original. As imagens foram então usadas para treinamento de uma rede convolucional de alta complexidade. <br>
+Resultados: Os resultados de acurácia foram bastante altos, porém ainda há o mesmo problema de todas as amostras da classe maligna ser classificada como benigna. <br>
+Problemas: O experimento não permitiu concluir que a diminuição do desbalanceamento conduzisse a um resultado favorável de classificação da classe com menores amostras.<br>
 
 # Próximos passos
 Estudos recentes avaliam a utilização de arquiteturas de redes neurais com essemble para garantir resultados superiores na classificação de lesões de pele. Dado isso, os próximos passos serao: 
