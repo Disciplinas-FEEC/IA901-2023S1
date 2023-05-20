@@ -72,9 +72,9 @@ Estatísicas Qualitativas | Proporções
 Sexo | 52% homens e 48% mulheres
 Diagnóstico | 98% benignos e 2% malignos
 
-Estatísticas quantitativas | Máximo | Mínimo
+Estatísticas quantitativas | Mínimo | Máximo | Média
 ----- | ----- | ----- 
-Idade | 0 | 90
+Idade | 0 | 90 |
 
 # Ferramentas
 Utilizaremos neste projeto o Google Colab inicialmente para treinamento das redes com GPUs. Algumas bibliotecas utilizadas são:
