@@ -64,13 +64,11 @@ Base de Dados | Endereço na Web | Resumo descritivo
 ----- | ----- | -----
 SIIM-ISIC Melanoma Classification | https://www.kaggle.com/competitions/siim-isic-melanoma-classification/data |  O conjunto possui imagens de lesões de pele, tanto de melanomas benignos quanto malignos.
 
-> Faça uma descrição sobre o que concluiu sobre esta base. Sugere-se que respondam perguntas ou forneçam informações indicadas a seguir:
-> * Qual o formato dessa base, tamanho, tipo de anotação?
+Faça uma descrição sobre o que concluiu sobre esta base. Sugere-se que respondam perguntas ou forneçam informações indicadas a seguir:
+
 A base possui 88251 imagens do tipo dicom, jpg e tfrecords, totalizando 116.16 GB de tamanho e anotações de identificador exclusivo da imagem, identificador único do paciente, sexo, idade aproximada do paciente no momento da imagem, localização do site com imagem, informações de diagnóstico detalhadas e indicador de malignidade da lesão na imagem.
 
-> * Quais as transformações e tratamentos feitos? Limpeza, reanotação, etc.
 Não houve necessidade de reanotação dos dados para o conjunto proposto. No entanto, pacientes se repetem na base pois podem possuir mais de uma lesão de pele e, para a separação dos conjuntos de treino e validação, garantiu-se que estes pacientes repetidos tivessem suas images apenas em um dos conjuntos. Dessa forma, não há possibilidade de que a rede treinada confunda a classificação lesões malignas ou benignas por reconhecer a pele do paciente nas fotos.
-
 
 > * Inclua um sumário com estatísticas descritivas da(s) base(s) de estudo.
 > * Utilize tabelas e/ou gráficos que descrevam os aspectos principais da base que são relevantes para o projeto.
@@ -78,7 +76,7 @@ Não houve necessidade de reanotação dos dados para o conjunto proposto. No en
 # Ferramentas
 > Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
 
-Utilizaremos neste projeto o Google Colab inicialmente, caso não haja problemas de utilização das GPUs. Algumas bibliotecas utilizadas são:
+Utilizaremos neste projeto o Google Colab inicialmente para treinamento das redes com GPUs. Algumas bibliotecas utilizadas são:
 Keras, pela facilidade de manuseio dos algoritmos de aprendizado de máquina e processamento de imagens
 OS, para movimentação dos arquivos
 Numpy, para realização de cálculos diversos
