@@ -102,12 +102,8 @@ Draw.IO, para confecção do Workflow
 > Descreva de forma sucinta e organizada os experimentos realizados
 > Para cada experimento, apresente os principais resultados obtidos
 > Aponte os problemas encontrados nas soluções testadas até aqui
+Os experimentos foram realizados através de diferentes arquiteturas, tamanho de batch e transformações de dados com augmentation. Ainda, devido a quantidade de imagens os primeiros testes foram realizados em uma amostra de dados menor, visando garantir que os primeiros testes iriam ocorrer corretamente ao longo de todo o fluxo de pré processamento, treinamento e validação dos resultados. Dessa forma, os experimentos basearam-se no seguinte resultado:
 
-Experimento 1 - Resnet50
-Descrição:
-Metodologia:
-Resultados:
-Problemas:
 
 Experimento 2 - CNN de alta complexidade<br>
 Descrição: Experimentos foram realizados com uma rede mais simples e manualmente construída a fim de verificar a métrica AUC no conjunto de dados de melanoma. Para efeitos de comparação, o mesmo conjunto de dados e exatamente a mesma divisão entre treinamento e validação foi utilizada. 24402 imagens foram usadas para treinamento, e 8608 imagens foram usadas para validação. Também a título de comparação, todas as imagens foram inseridas na rede convolucional com dimensões 224 x 224. <br>
@@ -122,6 +118,15 @@ Resultados: Os resultados de acurácia foram bastante altos, porém ainda há o 
 Problemas: O experimento não permitiu concluir que a diminuição do desbalanceamento conduzisse a um resultado favorável de classificação da classe com menores amostras.<br>
 ![Test](/Figuras/exp3_resultados_treinamento.png "Curvas de Erro e AUC de Treinamento e Validação")
 ![Test](/Figuras/exp3_matriz.png "Matriz de Confusão")
+
+Experimento 4 - Resnet50
+
+Ao considerar que o nosso principal objetivo de minimizar é minimizar a taxa de falsos positivos, validamos a aplicação de uma arquitetura mais complexa no conjunto, previamente treinada em imagens. A ResNet50 é uma arquitetura de rede neural convolucional (CNN) proposta em 2015 e ainda muito utilizada. Ela é conhecida por sua capacidade de treinar redes muito profundas com maior eficiência, superando o desafio de degradação do desempenho que ocorre ao aumentar a profundidade da rede. A ResNet50 foi pré-treinada em um grande conjunto de dados chamado ImageNet, que contém mais de um milhão de imagens rotuladas em 1000 classes diferentes. Dessa forma, utilizar essa arquitetura permite aproveitar os recursos de alto nível aprendidos durante o treinamento para extrair características relevantes das imagens e aplicá-las a novas tarefas, como detecção de objetos, segmentação de imagens e muito mais. 
+
+Embora sua complexidade, os resultados apresentados a seguir demonstram a dificuldade de discriminar as lesões de pele entre malignas e benignas. Os ganhos foram de apenas 6 acertos na classe de predizer corretamente lesões malignas. Entretanto, a taxa de falsos positivos foi de 0.04%
+
+![image](https://github.com/robsoncolares/IA901-2023S1/assets/63214041/6fe0bbd3-e9bd-42b3-8662-3830eda62a13)
+![image](https://github.com/robsoncolares/IA901-2023S1/assets/63214041/99d42a06-f75c-4c8e-a16b-12bb838aa38d)
 
 # Próximos passos
 Estudos recentes avaliam a utilização de arquiteturas de redes neurais com essemble para garantir resultados superiores na classificação de lesões de pele. Dado isso, os próximos passos serao: 
