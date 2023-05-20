@@ -6,12 +6,12 @@
 O presente projeto foi originado no contexto das atividades da disciplina de pós-graduação *IA901 - Processamento de Imagens e Reconhecimento de Padrões*, 
 oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dra. Leticia Rittner, do Departamento de Engenharia de Computação e Automação (DCA) da Faculdade de Engenharia Elétrica e de Computação (FEEC).
 
-> Incluir nome RA e foco de especialização de cada membro do grupo. Os projetos devem ser desenvolvidos em trios.
-> |Nome  | RA | Curso|
-> |--|--|--|
-> | Johsac Isbac Gomez Sanchez  | 216401  | Doutorado em Engenharia Elétrica|
-> | Robson Assis Colares  | 264369  | Doutorado em Engenharia Elétrica |
-> | Suellen Sena da Silva  | 177261  | Mestrado em Engenharia da Computação|
+
+ |Nome  | RA | Curso|
+ |--|--|--|
+ | Johsac Isbac Gomez Sanchez  | 216401  | Doutorado em Engenharia Elétrica|
+ | Robson Assis Colares  | 264369  | Doutorado em Engenharia Elétrica |
+ | Suellen Sena da Silva  | 177261  | Mestrado em Engenharia da Computação|
 
 
 ## Descrição do Projeto
@@ -57,25 +57,26 @@ Essas técnicas de aumento de dados são aplicadas com o objetivo de aumentar a 
 - Ajuste e refinamento do modelo: Faremos iterações adicionais para ajustar e refinar nosso modelo com base nos resultados obtidos na etapa de avaliação e validação.
 
 ## Bases de Dados e Evolução
-> Elencar bases de dados utilizadas no projeto.
-> Para cada base, coloque uma mini-tabela no modelo a seguir e depois detalhamento sobre como ela foi analisada/usada, conforme exemplo a seguir.
 
 Base de Dados | Endereço na Web | Resumo descritivo
 ----- | ----- | -----
 SIIM-ISIC Melanoma Classification | https://www.kaggle.com/competitions/siim-isic-melanoma-classification/data |  O conjunto possui imagens de lesões de pele, tanto de melanomas benignos quanto malignos.
 
-Faça uma descrição sobre o que concluiu sobre esta base. Sugere-se que respondam perguntas ou forneçam informações indicadas a seguir:
+A base possui 88251 imagens do tipo dicom, jpg e tfrecords, totalizando 116.16 GB de tamanho e anotações de identificador exclusivo da imagem, identificador único do paciente, sexo, idade aproximada do paciente no momento da imagem, localização do site com imagem, informações de diagnóstico detalhadas e indicador de malignidade da lesão. Para este projeto, serão utilizadas apenas as imagens jpg, totalizando 33007 arquivos.
 
-A base possui 88251 imagens do tipo dicom, jpg e tfrecords, totalizando 116.16 GB de tamanho e anotações de identificador exclusivo da imagem, identificador único do paciente, sexo, idade aproximada do paciente no momento da imagem, localização do site com imagem, informações de diagnóstico detalhadas e indicador de malignidade da lesão na imagem.
+Não houve necessidade de reanotação dos dados para o conjunto proposto. No entanto, a base possui 2056 pacientes distintos, onde muitos se repetem por possuir mais de uma lesão de pele. Ainda, é importante ressaltar que, para a separação dos conjuntos de treino e validação, garantiu-se que pacientes repetidos tivessem todas as suas imagens em apenas um dos conjuntos. Dessa forma, não há possibilidade de que a rede treinada confunda a classificação de lesões malignas ou benignas por reconhecer o padrão de pele do paciente nas fotos.
 
-Não houve necessidade de reanotação dos dados para o conjunto proposto. No entanto, pacientes se repetem na base pois podem possuir mais de uma lesão de pele e, para a separação dos conjuntos de treino e validação, garantiu-se que estes pacientes repetidos tivessem suas images apenas em um dos conjuntos. Dessa forma, não há possibilidade de que a rede treinada confunda a classificação lesões malignas ou benignas por reconhecer a pele do paciente nas fotos.
 
-> * Inclua um sumário com estatísticas descritivas da(s) base(s) de estudo.
-> * Utilize tabelas e/ou gráficos que descrevam os aspectos principais da base que são relevantes para o projeto.
+Estatísicas Qualitativas | Proporções
+----- | ----- 
+Sexo | 52% homens e 48% mulheres
+Diagnóstico | 98% benignos e 2% malignos
+
+Estatísticas quantitativas | Máximo | Mínimo
+----- | ----- | ----- 
+Idade | 0 | 90
 
 # Ferramentas
-> Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
-
 Utilizaremos neste projeto o Google Colab inicialmente para treinamento das redes com GPUs. Algumas bibliotecas utilizadas são:
 Keras, pela facilidade de manuseio dos algoritmos de aprendizado de máquina e processamento de imagens
 OS, para movimentação dos arquivos
