@@ -49,6 +49,8 @@ Os pacientes são todos destros e incluem homens e mulheres. 72 dos indivíduos 
 
 - Nibabel - NeuroImaging em Python - https://nipy.org/nibabel/, para a manipulação das bases de imagens.
 - Pytorch (framework de machine/deep learning) - https://pytorch.org/
+- TensorFlow (biblioteca de código aberto para machine learning) - https://www.tensorflow.org/
+- Keras (biblioteca para deep learning implementada utilizando TensorFlow) - https://keras.io e https://www.tensorflow.org/guide/keras?hl=pt-br
 
 # Workflow
 Definimos abaixo o workflow que utilizaremos para a ingestão, pré-processamento e classificação dos dados.
