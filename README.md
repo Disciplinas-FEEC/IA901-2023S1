@@ -96,7 +96,14 @@ Tensorflow, para utilização de modelos de aprendizado de máquina
 > Aponte os problemas encontrados nas soluções testadas até aqui
 
 # Próximos passos
-> Liste as próximas etapas planejadas para conclusão do projeto, com uma estimativa de tempo para cada etapa
+Estudos recentes avaliam a utilização de arquiteturas de redes neurais com essemble para garantir resultados superiores na classificação de lesões de pele. Dado isso, os próximos passos serao: 
 
-## Referências (ATUALIZAR SE NECESSÁRIO)
-> Seção obrigatória. Inclua aqui referências utilizadas no projeto.
+- Construção do ensemble: Crie um ensemble combinando as previsões das redes DenseNet e EfficientNet com o modelo ResNet50. Isso pode ser feito por votação majoritária ou média das probabilidades de classe preditas pelos modelos.
+- Validação do ensemble: Avalie o desempenho do ensemble usando o conjunto de validação. Calculando métricas de avaliação e comparando com os resultados obtidos pela ResNet50 individualmente para avaliar se de fato o ensemble melhora a precisão e o desempenho geral do modelo.
+- Testar outras técnicas de data augmentation e tamanhos de batch
+- Teste e avaliação final: Após ajustar o ensemble e obter resultados satisfatórios na validação, teste o modelo final usando o conjunto de teste separado.
+
+## Referências 
+1. Data Augmentation for Skin Lesion Analysis, CoRR 2018, Fábio Perez, Cristina Vasconcelos, Sandra Avila, Eduardo Valle
+2. Identifying Melanoma Images using EfficientNet Ensemble: Winning Solution to the SIIM-ISIC Melanoma Classification Challenge, CoRR 2020. Qishen Ha, Bo Liu, Fuxu Liu
+3. SIIM-ISIC Melanoma Classification With DenseNet, 2021 IEEE 2nd International Conference on Big Data, Y. Zhang and C. Wang, 
