@@ -36,9 +36,7 @@ Ao trabalhar com dados de domínio público, é essencial realizar algumas etapa
 
 Durante a etapa de pré-processamento, buscou-se analisar a existência de contaminação entre os dados presentes no dataset de treinamento e teste, disponibilizados pelo Kaggle, através da utilização da métrica de similaridade SSIM (Structural Similarity Index).
 
-As imagens presentes nos datasets possuem tamanhos variados e através de uma inspeção visual de todos os dados, foi possível verificar que existem casos onde há contaminação, por diferenciação apenas do tamanho da imagem. Assim optou-se por primeiro padronizar todas as imagens nos dataset para o tamanho de (120x120), antes de se aplicar a métrica SSIM.  A métrica de similaridade compara características estruturais das imagens, levando em consideração elementos como texturas, contrastes e detalhes visuais. Ele calcula valores de similaridade que variam de -1 até 1.  
-
-Outro problema existente nos datasets públicos é a variedade de dados em formatos diferentes e representados por diferentes canais, optou-se em utilizar imagens apenas no formato RGB no formato PNG, eliminando-se todo o restante.
+Outro problema existente nos datasets públicos é a variedade de dados em formatos diferentes e representados por diferentes canais, optou-se em utilizar imagens apenas no formato RGB no formato PNG.
 
 Após o pré-processamento dos dados, separou-se o conjunto de treinamento do  Kaggle em treinamento e validação por meio da criação da pasta “VAL”, onde foram adicionadas as pastas e imagens das 5 posturas de yoga destinadas.
 
@@ -48,7 +46,7 @@ Nesta etapa, utilizou-se métodos de processamento de imagens para distinguir as
 
 A fim de facilitar o desenvolvimento desta etapa, foram subdivididas em cinco etapas principais: Remoção de ruídos das imagens, transformações para realce, segmentação, detecção de bordas e extração de características.
 
-A primeira etapa envolve a remoção de ruídos das imagens. Isso é importante para eliminar interferências e imperfeições que possam prejudicar a detecção das pessoas nas imagens, para esse método optou-se por estudar quatro diferentes filtros, sendo eles (média, gaussiana, bilateral e filtro morfológico ASF(abertura e fechamento), para então levantar qual deveria ser utilizado no projeto.
+A primeira etapa envolve a remoção de ruídos das imagens. Isso é importante para eliminar interferências e imperfeições que possam prejudicar a detecção das pessoas nas imagens, para esse método optou-se por estudar quatro diferentes filtros, sendo eles média, gaussiana, bilateral e filtro morfológico ASF(abertura e fechamento), para então levantar qual deveria ser utilizado no projeto.
 
 levantou-se um estudo do canal apropriado a ser trabalhado ( Matiz, saturação, níveis de cinza), com o intuito de melhorar os realces na imagem e facilitar o processo de segmentação das pessoas.
 
