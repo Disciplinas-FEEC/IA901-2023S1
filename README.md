@@ -120,6 +120,8 @@ Descrição: Diminuímos o conjunto de dados de treinamento e validação benign
 Metodologia: As imagens foram aleatoriamente selecionadas para que o tamanho do conjunto de dados Benigno se tornasse 10% do tamanho original. As imagens foram então usadas para treinamento de uma rede convolucional de alta complexidade. <br>
 Resultados: Os resultados de acurácia foram bastante altos, porém ainda há o mesmo problema de todas as amostras da classe maligna ser classificada como benigna. <br>
 Problemas: O experimento não permitiu concluir que a diminuição do desbalanceamento conduzisse a um resultado favorável de classificação da classe com menores amostras.<br>
+![Test](/Figuras/exp3_resultados_treinamento.png "Curvas de Erro e AUC de Treinamento e Validação")
+![Test](/Figuras/exp3_matriz.png "Matriz de Confusão")
 
 # Próximos passos
 Estudos recentes avaliam a utilização de arquiteturas de redes neurais com essemble para garantir resultados superiores na classificação de lesões de pele. Dado isso, os próximos passos serao: 
