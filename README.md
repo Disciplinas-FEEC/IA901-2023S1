@@ -89,6 +89,8 @@ Tensorflow, para utilização de modelos de aprendizado de máquina
 > Use uma ferramenta que permita desenhar o workflow e salvá-lo como uma imagem (Draw.io, por exemplo). Insira a imagem nessa seção.
 > Você pode optar por usar um gerenciador de workflow (Sacred, Pachyderm, etc) e nesse caso use o gerenciador para gerar uma figura para você.
 > Lembre-se que o objetivo de desenhar o workflow é ajudar a quem quiser reproduzir seus experimentos. 
+
+
 ![Test](/Workflow_Melanoma.png "Workflow")
 
 # Experimentos e Resultados preliminares
