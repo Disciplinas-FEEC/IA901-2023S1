@@ -98,6 +98,15 @@ A figura abaixo mostra como ficou distribuido cada classe em cada conjunto de da
 
 # Ferramentas
 
+No pré-processamento de dados, utilizou-se a biblioteca “os” para interagir com o sistema operacional e realizar ações como acessar, ler arquivos, entre outros. A fim de eliminar a contaminação dos dados, utilizou-se o módulo “skimage.metrics” da biblioteca “skimage” para calcular índices de similaridade das imagens. Para dividir os dados de treinamento em treinamento e validação, utilizou-se a biblioteca “os” para acessar os arquivos, a “shutil” para movê-los e a biblioteca “random” para fazer a seleção aleatória das imagens a serem separadas em treinamento e validação.
+
+Para o processamento de imagens, utilizou-se a biblioteca “opencv” para realizar alterações de forma, limiarização, detecção de bordas e outros processamentos, a fim de realizar a segmentação das imagens. De forma complementar, utilizou-se a biblioteca “skimage”, por meio de  módulos referentes a mudanças nas cores e alterações morfológicas. 
+
+Para desenvolver a KNN, utilizou-se o módulo “sklearn.neighbors” da biblioteca “sklearn”. Já a rede CNN foi implementada utilizando a biblioteca “pytorch”, por ser mais flexível para o desenvolvimento de modelos. Também utilizou-se a biblioteca “torchvision” para utilizar as arquiteturas de modelo e transformações de imagem presentes nessa biblioteca. Além disso, utilizou-se a biblioteca “torchsummary” para imprimir os parâmetros treináveis ​​e não treináveis do modelo. Para o acompanhamento das alterações nos modelos, utilizou-se a biblioteca “torch.utils.tensorboard” que possui utilitários que permitem o registro de modelos e métricas do PyTorch em um diretório para visualização na interface do TensorBoard.
+
+Por fim, para avaliar o desempenho da KNN e da CNN foram utilizadas as métricas de acurácia, acurácia balanceada, F1-score e matriz de confusão calculadas por meio de módulos da biblioteca “sklearn”.
+
+
 
 # Workflow
 
