@@ -64,6 +64,16 @@ Com relação ao processamento das imagens, realizou-se um redimensionamento par
 
 
 ## Bases de Dados e Evolução
+A base de dados utilizada no projeto foi a "Yoga Poses Dataset", contendo as cinco mais conhecidas poses de Yoga: cachorro olhando para baixo (classe "downdog"), deusa (classe "goddess"), árvore (classe "tree"), prancha (classe "plank") e guerreiro (classe "warrior2").
+
+Ela foi obtida na plataforma Kaggle, disponibilizada pela Niharika Pandit, sob a licença Open Database.
+
+Base de Dados | Endereço na Web | Resumo descritivo
+----- | ----- | -----
+Título da Base | https://www.kaggle.com/datasets/niharika41298/yoga-poses-dataset | Conjunto de 5 classes com um total de 1551 amostras, sendo 1081 de treino e 470 de teste, nos formatos .jpg, .png e .jpeg.
+
+
+
 
 
 # Ferramentas
