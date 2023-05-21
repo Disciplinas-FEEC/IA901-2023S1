@@ -26,9 +26,9 @@ O projeto é composto por três vertentes distintas de desenvolvimento, as quais
 
 A primeira vertente está relacionada ao tratamento dos dados. Nessa etapa, os dados coletados são analisados, limpos e preparados.
 
-A segunda vertente envolve o processamento desses dados com o objetivo de extrair atributos importantes para a classificação. Esses atributos são utilizados em um algoritmo de classificação conhecido como KNN (K-Nearest Neighbors), que tem como propósito identificar as classes e classificar as diferentes poses de yoga.
+A segunda vertente envolve o processamento desses dados com o objetivo de extrair atributos importantes para a classificação. Esses atributos são utilizados em um algoritmo de classificação conhecido como KNN (*K-Nearest Neighbors*), que tem como propósito identificar as classes e classificar as diferentes poses de yoga.
 
-A última vertente concentra-se no desenvolvimento de uma CNN (Convolutional Neural Network) utilizando a arquitetura MobileNet. Essa CNN é responsável por classificar as diferentes poses de Yoga. Essa etapa é crucial para comparar os resultados obtidos pela KNN e avaliar a eficácia do modelo de classificação.
+A última vertente concentra-se no desenvolvimento de uma CNN (*Convolutional Neural Network*) utilizando a arquitetura MobileNet. Essa CNN é responsável por classificar as diferentes poses de Yoga. Essa etapa é crucial para comparar os resultados obtidos pela KNN e avaliar a eficácia do modelo de classificação.
 
 **Pré-processamento**:
 
@@ -73,8 +73,23 @@ Base de Dados | Endereço na Web | Resumo descritivo
 Título da Base | https://www.kaggle.com/datasets/niharika41298/yoga-poses-dataset | Conjunto de 5 classes com um total de 1551 amostras, sendo 1081 de treino e 470 de teste, nos formatos .jpg, .png e .jpeg.
 
 
+Como o conjunto de dados já estava separado em pastas de treino e teste e subpastas com as classes, a primeira etapa foi fazer uma inspeção visual dos dados, e foi analisado que existia contaminação, ou seja, a mesma informação na pasta de treino e teste, às vezes variando apenas o tamanho das imagens.
 
 
+Dessa forma, foi criado um *script* para automatizar a limpeza dos dados. Inicialmente, foi feita uma padronização das imagens, visto que elas possuem tamanho e formatos variados. Apenas as imagens RGB no formato PNG foram selecionadas, e em seguida redimensionadas para o tamanho 120x120.
+
+
+A métrica SSIM (*Structural Similarity Index Method*) foi utilizada a fim de analisar o nível de similaridade entre as imagens no conjunto de treino e teste. Ela compara características estruturais das imagens, levando em consideração elementos como texturas, contrastes e detalhes visuais. O valor do SSIM varia entre -1 até 1, sendo 1 o valor resultante quando as duas imagens comparadas são idênticas, e -1 quando são completamente diferentes. Nesse caso, as imagem com SSIM acima de 0.95 foram consideradas semelhantes e removidas do conjunto de treinamento. 
+
+Por fim, a pasta de treino desse novo conjunto de dados foi dividida aleatoriamente em treino e validação, na proporção 80%-20%.
+
+
+
+Conjunto de dados   | Quantidade
+--------------------|------------
+Treino              | 736
+Validação           | 174
+Teste               | 424
 
 # Ferramentas
 
