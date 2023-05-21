@@ -97,7 +97,7 @@ outros  |    19760      |   13723
 
 Note que a classe "outros" é referente a rotulações que não especificam diretamente a pose da pessoa detectada, ao invés disso nomeia com o termo id_ seguido de um número ou usa a palavra block. Assim, considerando o tamanho do conjunto e a fim de evitar as classes não nomeadas, optou-se por utilizar as 4 classes mais numerosas de modo a obter um conjunto de dados mais balanceado. Dessa forma, foram selecionadas apenas as classes walk, stand, sit e riding. 
 
-Além disso, foi necessário separar os dados de treino, teste e validação. Em relação ao conjunto de teste após a filtragem das classes obteve-se um total de 7163 amostras. Como o banco de dados bruto possui apenas o conjunto de treino, sem considerar validação, foi definido que 20% (2323 amostras) dos dados de treino já selecionados com as 4 classes seriam destinados ao conjunto de validação enquanto que os 80% (9294 amostras) restante formariam o conjunto de treino.
+Além disso, foi necessário separar os dados de treino, teste e validação. Em relação ao conjunto de teste após a filtragem das classes obteve-se um total de 6271 amostras (1266 imagens). Como o banco de dados bruto possui apenas o conjunto de treino, sem considerar validação, foi definido que 20% dos dados de treino já selecionados com as 4 classes seriam destinados ao conjunto de validação enquanto que os 80% restante formariam o conjunto de treino. Assim, 8479 amostras foram destinadas para treino (1677 imagens) e 2123 amostras ficaram para a validação (1006 imagens).
 
 O histograma abaixo ilustra a distribuição de dados do conjunto de treino, teste e validação que serão utilizados durante o projeto.
 
@@ -105,7 +105,16 @@ O histograma abaixo ilustra a distribuição de dados do conjunto de treino, tes
     <img src="../Reconhecimento_acao_humana_imagem_drone/assets/Dados_selecionados_treino_teste_validacao.png" height="350">
 </p>
 
-<!--confirmar se vamos ter que rerotular os labels --> 
+Ademais é importante destacar que as classes walk, stand, sit e riding foram remapeadas com valores númericos para se adequar ao algoritimo da rede YOLOv7. A tabela abaixo mostra a nova identificação.
+
+Classe Original | Classe YOLOv7
+:-----: | :-----: | 
+walk  |     0   
+riding |    1
+stand |     2
+sit   |     3
+
+Por fim, os valores do *bounding box* foram normalizados para atender também as especificações da rede YOLOv7.
 
 <!--
 > Faça uma descrição sobre o que concluiu sobre esta base. Sugere-se que respondam perguntas ou forneçam informações indicadas a seguir:
@@ -124,15 +133,43 @@ O histograma abaixo ilustra a distribuição de dados do conjunto de treino, tes
 > <!-- [](image.jpg)-->
 
 # Experimentos e Resultados preliminares
+<!--
 > Descreva de forma sucinta e organizada os experimentos realizados
 > Para cada experimento, apresente os principais resultados obtidos
-> Aponte os problemas encontrados nas soluções testadas até aqui
+> Aponte os problemas encontrados nas soluções testadas até aqui-->
+
+Na primeira parte do projeto buscou-se um melhor entendimento sobre o conjunto de dados utilizado bem como da rede YOLOv7 que será usada tanto no reconhecimento de pessoas em imagens de drone quanto na classificação de suas ações. Assim, inicialmente foi feita uma seleção de imagens para garantir que todas estivessem devidamente rotuladas (com labels conhecidas) e que de fato estivessem presentes tanto na pasta de imagens original quanto no csv original (algumas imagens apareciam no csv mas não estavam presentes nas pastas de imagem). Dessa forma, depois de dividir as imagens em três grupos (treino, teste e validação) foi feita uma etapa de processamento afim de futuramente avaliar o desempenho da rede. Com isso, foram aplicadas 4 técnicas de processamento:
+
+- Escala em Cinza;
+- Filtro de Sobel;
+- Filtro Laplaciano;
+- Filtro de Prewitt.
+
+Todas as técnicas aplicadas foram salvas em pastas intermediárias.
+
+Com o objetivo de fazer uma comparação entre as diferentes técnicas de processamento e os dados brutos (apenas com a seleção inicial) tentou-se fazer um primeiro treinamento com a rede YOLOv7 com os dados sem processamento utilizando a plataforma Google Collaboratory. Foram definidas como ponto de partida 10 épocas. No entanto, devido ao tamanho das imagens e da limitação de uso de GPU que o Google Collaboratory disponibiliza a rede foi treinada apenas até a época 4, não atingindo resultados satisfatórios.
+
+Além disso, durante o processamento das imagens com o filtro Laplaciano perecebeu-se que este possívelmente não traria bons resultados pois não realçava de maneira adequada as imagens (os datalhes/contornos das imagens foram cobertos por uma camada cinza densa). Por isso, pensou-se em utilizar um outro filtro de aguçamento: o filtro de Prewitt.
+
+De maneira geral, os principais desafios enfrentados até o momento estão relacionados as limitações do uso da plataforma Google Collaboratory, ao tamanho das imagens o que implica na demora do treinamento por época e no rearranjo do conjunto de dados escolhido para se adequar a rede YOLOv7.
+
 
 # Próximos passos
+<!--
 > Liste as próximas etapas planejadas para conclusão do projeto, com uma estimativa de tempo para cada etapa
+-->
+
+Para as próximas etapas pretende-se:
+
+- Salvar o treinamento da rede por etapas afim de contornar o problema da limitação do Google Collaboratory ou ainda procurar a disponibilidade de computadores com GPU para o treinamento da rede;
+- Treinar a rede com os dados brutos e processados para obter uma comparação;
+- Implementar a métrica IoU para validar a qualidade do reconhecimento de pessoas;
+- Caso o desempenho não seja satisfatório, aplicar *Data augmentation* em algumas classes (com menos dados) para balancea-las e auxiliar na generalização da rede.
 
 ## Referências (ATUALIZAR SE NECESSÁRIO)
+<!--
 > Seção obrigatória. Inclua aqui referências utilizadas no projeto.
+-->
 
 BRASIL. Departamento de Controle do Espaço Aéreo. Aeronaves Não Tripuladas e o Acesso ao Espaço Aéreo Brasileiro. ICA 100-40.  Ministério da Defesa, 2020. Disponível em: <https://publicacoes.decea.mil.br/publicacao/ica-100-40>. Acesso em 13 mai. 2023.
 
