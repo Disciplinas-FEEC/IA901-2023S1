@@ -81,15 +81,20 @@ Dessa forma, foi criado um *script* para automatizar a limpeza dos dados. Inicia
 
 A métrica SSIM (*Structural Similarity Index Method*) foi utilizada a fim de analisar o nível de similaridade entre as imagens no conjunto de treino e teste. Ela compara características estruturais das imagens, levando em consideração elementos como texturas, contrastes e detalhes visuais. O valor do SSIM varia entre -1 até 1, sendo 1 o valor resultante quando as duas imagens comparadas são idênticas, e -1 quando são completamente diferentes. Nesse caso, as imagem com SSIM acima de 0.95 foram consideradas semelhantes e removidas do conjunto de treinamento. 
 
-Por fim, a pasta de treino desse novo conjunto de dados foi dividida aleatoriamente em treino e validação, na proporção 80%-20%.
+Por fim, para se obter um conjunto de validação, a pasta de treino desse novo conjunto de dados foi dividida aleatoriamente em treino e validação, na proporção 80%-20%. 
 
+O conjunto de treino representa 55.17% do total de dados, validação 13.04% e teste 31.78%, como pode ser visto na tabela abaixo.
 
+Conjunto de dados   | Quantidade de imagens
+--------------------|----------------------
+Treino              | 736                  
+Validação           | 174                  
+Teste               | 424                  
 
-Conjunto de dados   | Quantidade
---------------------|------------
-Treino              | 736
-Validação           | 174
-Teste               | 424
+A figura abaixo mostra como ficou distribuido cada classe em cada conjunto de dados. Como pode-se observar, não há um grande desbalanceamento entre classes, porém há menos imagens das classes "tree" e "goddess" em todos os conjuntos de dados.
+
+![plot_imgs_classe](./assets/total_imgs_classe.png)
+
 
 # Ferramentas
 
