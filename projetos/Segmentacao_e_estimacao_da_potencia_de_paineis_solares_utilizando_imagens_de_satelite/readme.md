@@ -107,9 +107,9 @@ Experimento <br /><sub>Experiment</sub>        | Resultados <br /><sub>Results</
 -->
 - [x] Entrega 1 - Formulário com informações gerais do projeto (Sérgio, Juan Carlos e Luiza)
 - [x] Entrega 2: 
-    - [x] Script 1: remoção de imagens com erro e separação dos conjuntos de treinamento, validação e teste(Sérgio)
-    - [x] Script 2: para treinamento/teste das redes convolucionais para segmentação (Juan Carlos)
-    - [x] Organização preliminar GitHub (Luiza) 
+    - [x] Script 1: Identificação de imagens com erro e dados sobre o dataset 
+    - [x] Script 2: para treinamento/teste das redes convolucionais para segmentação 
+    - [x] Organização preliminar GitHub 
 - [ ] Entrega 3: 
     - [ ] Rede convolucional para segmentação
         - [ ] Junção dos dois scripts da Entrega 2
