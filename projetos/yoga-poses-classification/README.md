@@ -112,6 +112,23 @@ Por fim, para avaliar o desempenho da KNN e da CNN foram utilizadas as métricas
 
 # Experimentos e Resultados preliminares
 
+A estrutura de processamento de dados final foi determinada por meio da análise dos resultados obtidos ao aplicar diferentes métodos e técnicas de processamento de imagem. O objetivo era otimizar a detecção de pessoas nas imagens. A seguir, descreveremos cada etapa do processo de processamento de dados e os resultados obtidos.
+
+Na etapa de remoção de ruídos, foi escolhido o filtro bilateral devido à sua capacidade de preservar as bordas e remover os ruídos das imagens. O filtro bilateral conseguiu remover efetivamente os ruídos, mantendo a qualidade das bordas. Por outro lado, a abertura e o fechamento não se mostraram tão eficazes, destacando e salientando bordas indesejadas de outros objetos na imagem.
+
+Na seleção do canal apropriado para melhorar os realces na imagem e facilitar a segmentação das pessoas, foram analisadas as representações HSV e escala de cinza. Inicialmente, considerou-se a saturação como o canal prioritário devido ao contraste da cor da pele humana. No entanto, devido à variação do cenário de fundo, a saturação se mostrou menos eficiente, pois algumas regiões das pessoas se confundiam com o fundo. Assim, optou-se pelo uso exclusivo do canal de escala de cinza por meio de uma simples conversão das imagens.
+
+A etapa de segmentação teve como objetivo separar as pessoas do restante da imagem. Após a análise comparativa, a técnica de limiarização, OTSU se destacou como a mais eficaz na segmentação das pessoas. Essa técnica conseguiu automaticamente encontrar o valor aceitável de limiar, considerando a distribuição dos níveis de cinza na imagem. Para algumas imagens mais complexas, não foi possível separar totalmente a pessoa na imagem do restante dos objetos.
+
+Entre os diversos métodos disponíveis, o Canny se mostrou mais adequado para a tarefa de encontro da borda, proporcionando resultados satisfatórios, além de detectar a borda via a utilização de gradiente, ele aplica um filtro gaussiano o que contribui para remoção de artefatos indesejáveis na imagem.
+
+Por fim, para a extração de características, optou-se pelo uso do código da cadeia com uma vizinhança de 8. Entretanto, verificou-se que, devido à presença de bordas de outros objetos na imagem, o código da cadeia acabou representando apenas uma pequena parte das pessoas nas imagens. É importante ressaltar que para a detecção do código da cadeia, foi usado uma transformada de abertura e uma de gradiente, na imagem de borda, permitindo retirar os contornos da imagem que alimentaram o código da cadeia.
+
+Em conclusão, o processo de processamento de dados foi cuidadosamente projetado e refinado para a detecção precisa de pessoas nas imagens. A escolha dos filtros, a seleção do canal de escala de cinza, a segmentação com a técnica OTSU, a detecção de bordas com o método Canny e a extração de características com o código da cadeia foram os principais passos adotados. 
+
+
+A KNN foi implementada para receber os vetores que representam as imagens na regra da cadeia, este processo está sendo finalizado. Espera-se treinar o modelo e verificar a eficiência do mesmo ao utilizar o código de cadeia como informação.
+
 
 # Próximos passos
 
