@@ -58,7 +58,7 @@ Por fim, avaliou-se qual caminho de técnicas fornece características relevante
 
 Com o objetivo de criar um estudo comparativo entre os métodos de processamento de imagem e o uso de uma rede convolucional, desenvolveu-se uma CNN a partir do modelo MobileNet V2,onde ajustou-se apenas os hiperparâmetros após uma normalização e redimensionamento dos dados. O modelo MobileNet V2 foi escolhido pela quantidade razoável de 2.230.277 parâmetros treinados, sendo considerado adequado para o tamanho do dataset, por possuir poucas amostras. Essa arquitetura de rede neural foi inicialmente adaptada para dispositivos móveis e ambientes com recursos restritos, diminuindo significativamente o número de operações e memória necessária, mantendo uma boa precisão.
 
-Com relação ao processamento das imagens, realizou-se um redimensionamento para o tamanho (128,128) e uma normalização. Após realizar testes variando os hiperparâmetros da rede (otimizador, *learning rate*, número de épocas, tamanho do batch), analisou-se o desempenho da rede, com base na curva de acurácia x *loss*.
+Com relação ao processamento das imagens, realizou-se um redimensionamento para o tamanho (128,128) e uma normalização. Após realizar testes variando os hiperparâmetros da rede (otimizador, taxa de aprendizagem, número de épocas, tamanho do lote), analisou-se o desempenho da rede, com base na curva de acurácia x *loss*.
 
 ## Bases de Dados e Evolução
 A base de dados utilizada no projeto foi a "Yoga Poses Dataset", contendo as cinco mais conhecidas poses de Yoga: cachorro olhando para baixo (classe "downdog"), deusa (classe "goddess"), árvore (classe "tree"), prancha (classe "plank") e guerreiro (classe "warrior2").
@@ -113,23 +113,36 @@ A seguir, é mostrado o workflow do projeto.
 
 # Experimentos e Resultados preliminares
 
-A estrutura de processamento de dados final foi determinada por meio da análise dos resultados obtidos ao aplicar diferentes métodos e técnicas de processamento de imagem. O objetivo era otimizar a detecção de pessoas nas imagens. A seguir, descreveremos cada etapa do processo de processamento de dados e os resultados obtidos.
+A estrutura de processamento de dados final foi determinada por meio da análise dos resultados obtidos ao aplicar diferentes métodos e técnicas de processamento de imagem. O objetivo era otimizar a detecção de pessoas nas imagens. A seguir, descreveremos os resultados obtidos em cada etapa do processamento de dados.
 
-Na etapa de remoção de ruídos, foi escolhido o filtro bilateral devido à sua capacidade de preservar as bordas e remover os ruídos das imagens. O filtro bilateral conseguiu remover efetivamente os ruídos, mantendo a qualidade das bordas. Por outro lado, a abertura e o fechamento não se mostraram tão eficazes, destacando e salientando bordas indesejadas de outros objetos na imagem.
+Na etapa de remoção de ruídos, foi escolhido o filtro bilateral devido à sua capacidade de preservar as bordas e remover os ruídos das imagens. Por outro lado, as técnicas de abertura e fechamento não se mostraram tão eficazes, destacando bordas indesejadas de outros objetos na imagem.
 
 Na seleção do canal apropriado para melhorar os realces na imagem e facilitar a segmentação das pessoas, foram analisadas as representações HSV e escala de cinza. Inicialmente, considerou-se a saturação como o canal prioritário devido ao contraste da cor da pele humana. No entanto, devido à variação do cenário de fundo, a saturação se mostrou menos eficiente, pois algumas regiões das pessoas se confundiam com o fundo. Assim, optou-se pelo uso exclusivo do canal de escala de cinza por meio de uma simples conversão das imagens.
 
-A etapa de segmentação teve como objetivo separar as pessoas do restante da imagem. Após a análise comparativa, a técnica de limiarização, OTSU se destacou como a mais eficaz na segmentação das pessoas. Essa técnica conseguiu automaticamente encontrar o valor aceitável de limiar, considerando a distribuição dos níveis de cinza na imagem. Para algumas imagens mais complexas, não foi possível separar totalmente a pessoa na imagem do restante dos objetos.
+Após a análise comparativa das técnicas de segmentação, a de limiarização por OTSU se destacou como a mais eficaz. Essa técnica conseguiu automaticamente encontrar o valor aceitável de limiar, considerando a distribuição dos níveis de cinza na imagem. Para algumas imagens mais complexas, como com marca d'água, textos e fundo com bastante textura, não foi possível separar totalmente a pessoa na imagem do restante dos objetos.
 
-Entre os diversos métodos disponíveis, o Canny se mostrou mais adequado para a tarefa de encontro da borda, proporcionando resultados satisfatórios, além de detectar a borda via a utilização de gradiente, ele aplica um filtro gaussiano o que contribui para remoção de artefatos indesejáveis na imagem.
+Com relação a detecção da borda, entre os diversos métodos disponíveis, o Canny se mostrou mais adequado para a tarefa, proporcionando resultados satisfatórios. Além de detectar a borda por meio do gradiente, ele aplica um filtro gaussiano que contribui para remoção de artefatos indesejáveis na imagem.
 
-Por fim, para a extração de características, optou-se pelo uso do código da cadeia com uma vizinhança de 8. Entretanto, verificou-se que, devido à presença de bordas de outros objetos na imagem, o código da cadeia acabou representando apenas uma pequena parte das pessoas nas imagens. É importante ressaltar que para a detecção do código da cadeia, foi usado uma transformada de abertura e uma de gradiente, na imagem de borda, permitindo retirar os contornos da imagem que alimentaram o código da cadeia.
+Comparando as duas vertentes analisadas para a extração de características, optou-se pelo uso do código da cadeia com uma vizinhança de 8. Entretanto, verificou-se que, devido à presença de bordas de outros objetos na imagem, ele acabou representando apenas uma pequena parte das pessoas nas imagens. É importante ressaltar que para a detecção do código da cadeia, foi usado uma transformada morfológica de abertura para a limpeza da imagem e extração do gradiente, para a alimentação do código da cadeia.
 
-Em conclusão, o processo de processamento de dados foi cuidadosamente projetado e refinado para a detecção precisa de pessoas nas imagens. A escolha dos filtros, a seleção do canal de escala de cinza, a segmentação com a técnica OTSU, a detecção de bordas com o método Canny e a extração de características com o código da cadeia foram os principais passos adotados. 
+Em seguida, a KNN foi implementada para receber os vetores que representam as imagens do código da cadeia, porém essa etapa foi postergada para melhorar a fase de processamento de dados.
 
+Em paralelo, foi realizado o treinamento de uma rede neural convolucional (CNN) do tipo MobileNet V2, pré-treinada. Para o processamento das imagens, foi realizado apenas um redimensionamento para o tamanho (128,128) e aplicada uma etapa de normalização. Isso foi feito com o objetivo de padronizar os dados de entrada e melhorar o aprendizado da rede.
 
-A KNN foi implementada para receber os vetores que representam as imagens na regra da cadeia, este processo está sendo finalizado. Espera-se treinar o modelo e verificar a eficiência do mesmo ao utilizar o código de cadeia como informação.
+Durante os experimentos, diversos hiperparâmetros foram variados, incluindo o otimizador, a taxa de aprendizagem, o número de épocas e o tamanho do lote (*batch size*). Após análise das curvas de acurácia e de *loss*, os hiperparâmetros foram ajustados da seguinte forma: 
 
+* tamanho do lote: 32;
+* otimizador: Adam;
+* taxa de aprendizagem: 0.000015;
+* número de épocas: 40. 
+
+O tamanho do lote foi escolhido de modo que o custo computacional fosse reduzido, mas que fosse evitado o overfitting. Em relação aos otimizadores, observou-se que o Adam convergiu mais rápido para o mínimo global devido aos recursos adaptativos. A taxa de aprendizagem escolhida foi de 0.000015, considerada baixa, para evitar oscilações bruscas no treinamento que atrapalham a convergência do processo de aprendizado. Por estar associada ao otimizador Adam, essa taxa de aprendizado baixa não ocasionou lentidão do treinamento. Dessa forma, em apenas 40 épocas já foi alcançada uma acurácia de validação de 94% e *loss* de 22%, conforme observado nas figuras abaixo. 
+
+![plot_loss](./assets/loss.png)
+
+![plot_acc](./assets/acc.png)
+
+A partir dessas figuras observou-se que a convergência ocorreu de forma gradual, em que a *loss* de treinamento ficou muito próxima de 0% e a de validação estabilizou-se em 22%. Com relação a acurácia, a de treinamento alcançou 100%, mas sem apresentar *overfitting*, visto que a curva de loss de validação não aumentou ao longo das épocas, representando que os parâmetros da rede estavam adequados tanto para o conjunto de treinamento quanto para o conjunto de validação. 
 
 # Próximos passos
 
