@@ -85,8 +85,9 @@ Estatísicas Qualitativas | Proporções
 Sexo | 52% homens e 48% mulheres
 Diagnóstico | 98% benignos e 2% malignos
 
+
 Estatísticas quantitativas | Mínimo | Máximo | Média
------ | ----- | ----- 
+----- | ----- | ----- | -----
 Idade | 0 | 90 | 55
 
 # Ferramentas
