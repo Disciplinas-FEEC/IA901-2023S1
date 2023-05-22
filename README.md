@@ -27,10 +27,10 @@ Texto sin alinear
 
 **Taxa de falso negativo:** 
 
-$$P(\hat{f}(x)=Benigno \,\,| f(x)=Maligno)=\frac{FN}{FN+VN}$$
+$$P(\hat{f}(x)=\text{Benigno} \, | f(x)=\text{Maligno})=\frac{FN}{FN+VN}$$
 
 **Recall**
-$$P(\hat{f}(x)=Maligno \,\,\ | f(x)=Maligno)=\frac{VN}{FN+VN}$$
+$$P(\hat{f}(x)=\text{Maligno} \quad | f(x)=\text{Maligno})=\frac{VN}{FN+VN}$$
 
 O contexto gerador do projeto é a necessidade de melhorar a precisão na classificação de lesões de pele em imagens médicas. Com uma base de dados de 33.007 imagens, das quais apenas 582 são de tumores malignos, o projeto enfrenta o desafio de lidar com um conjunto de dados altamente desequilibrado. A classificação precisa dessas imagens é essencial para identificar corretamente os casos malignos e benignos, a fim de fornecer um diagnóstico adequado e tomar decisões de tratamento adequadas.
 
