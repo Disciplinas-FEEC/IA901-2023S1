@@ -26,15 +26,9 @@ Nesse contexto, o objetivo do presente projeto é detectar pessoas e reconhecer 
 
 Para desenvolvimento deste projeto, é adotada a base de dados “NTUT 4K Drone Photo Dataset for Human Detection”, descrita com mais detalhes na seção a seguir (“Bases de Dados e Evolução”).
 
-As imagens disponíveis têm dimensão 3840 x 2160 pixels. Assim, todas as imagens foram redimensionadas para XXXX x YYYY pixels. Objetivando melhorar as métricas de avaliação do modelo, testaram-se os seguintes **pré-processamentos** nas imagens:
-
-•	Teste 1: conversão das imagens para tons de cinza;
-
-•	Testes 2 e 3: filtragem no domínio espacial, objetivando realçar detalhes na imagem (bordas e linhas que possam contribuir para a detecção de pessoas e de suas poses). Assim, foram adotados filtros de aguçamento. No Teste 2, adotou-se o filtro de Sobel: aplicou-se o gradiente obtido a partir das duas máscaras de Sobel (horizontal e vertical). No Teste 3, aplicou-se o filtro Laplaciano (GONZALES; WOODS, 2010).
-
 Para a detecção de pessoas, observou-se que, no conjunto de dados de treinamento, há 2156 imagens de drone. Já que em uma mesma imagem pode haver mais de uma pessoa, considerando todos os registros (labels) correspondentes às poses humanas, tem-se 31805 amostras no conjunto de treinamento, sendo que cada amostra corresponde a uma pessoa detectada na imagem. Em cada um desses 31805 dados, são registrados: o nome da imagem em que a pessoa está sendo detectada, as coordenadas digitais que definem o bounding box, e o rótulo correspondente à pose em que a pessoa se encontra. 
 
-Entretanto, observou-se que muitas classes correspondentes às poses humanas eram indefinidas (registradas como “id” ou “block”). Desse modo, inicialmente, os dados de treinamento foram analisados e definiram-se quatro classes a serem adotadas no presente projeto. Essas classes são as que contém o maior número de amostras, dentre as classes encontradas no Dataset:
+Como algumas classes correspondentes às poses humanas eram indefinidas (registradas como “id_” ou “block_”), os dados foram analisados e, considerando as classes com maior número de amostras, definiram-se quatro classes a serem adotadas no presente projeto:
 
 •	Walk: 6155 amostras;
 
@@ -44,17 +38,37 @@ Entretanto, observou-se que muitas classes correspondentes às poses humanas era
 
 •	Riding: 2487 amostras.
 
-Objetivando balancear o número de amostras por classe, adotou-se **Data augmentation**. Considerando possíveis movimentos a serem realizados por um drone no momento da aquisição das imagens, foram testados três processos de aumentação dos dados objetivando melhorar as métricas de classificação – disponíveis em PyTorch (2023): 
+Filtrados os dados com base nas quatro classes estabelecidas, dividiu-se os dados de treino em Treino (80%) e Validação (20%). Os dados de teste, já disponíveis no dataset “NTUT 4K Drone Photo Dataset for Human Detection” e com 20920 amostras, também foi filtrado com base nas quatro classes. 
 
-•	Espelhamento Horizontal (RandomHorizontalFlip);
+Dispondo, portanto, dos conjuntos de treino (1677 imagens), teste (1266 imagens) e validação (1006 imagens), definiram-se os arquivos (.txt) correspondentes aos labels das quatro classes, considerando as imagens que foram mantidas após a filtragem. Nos arquivos "label_train.txt", "label_val.txt" e "label_test.txt" são registrados: nome da imagem (image), coordenadas em pixels do bounding box (xmin, ymin, xmax, ymax) e o rótulo da classe (label).
 
-•	Espelhamento Vertical (RandomVerticalFlip);
+A partir desses dados, realizou-se o treinamento do modelo (arquitetura Yolov7). Tanto para a detecção das pessoas nas imagens de drone quanto  para a classificação de suas poses, adotou-se uma a arquitetura YOLOv7, que, segundo Wang, Bochkovskiy e Liao (2022), supera todos os detectores de objetos conhecidos em velocidade e precisão (tem menos parâmetros, menor custo computacional e alcança maior precisão). Para o presente projeto, adaptou-se o código da YOLOv7, disponível em <https://github.com/WongKinYiu/yolov7>.
 
-•	Rotação de 15° (RandomRotation).
+Para tanto, inicialmente, criou-se um arquivo (.txt) para cada uma das imagens, com as informações de "ids" das classes presentes naquela imagem ('walk': 0, 'riding': 1, 'stand': 2, 'sit': 3), as coordenadas do centro do "bouding box" normalizadas (x_center e y_center) e a largura (w) e altura(h) do "bounding box" normalizado. Para o treinamento, redimensinou-se as imagens para 640x640 pixels. Os hiperparâmetros definidos foram: tamanho dos mini batches (BATCH_SIZE = 16 imagens) e número de épocas (EPOCHS = 20).
 
-Para detecção das pessoas nas imagens de drone e classificação de suas poses, adotou-se uma a arquitetura YOLOv7, que, segundo Wang, Bochkovskiy e Liao (2022), supera todos os detectores de objetos conhecidos em velocidade e precisão (tem menos parâmetros, menor custo computacional e alcança maior precisão). Para o presente projeto, adaptou-se o código da YOLOv7, disponível em <https://github.com/WongKinYiu/yolov7>.
+Além do treinamento adotando os dados filtrados (imagens RGB), realizaram-se treinamentos com as imagens resultantes dos seguintes pré-processamentos, a fim de melhorar as métricas de avaliação do modelo:
 
-Por fim, para avaliar o modelo, foram adotadas as seguintes **métricas**:
+•	Pré-processamento 1: conversão das imagens RGB para imagens em níveis de cinza;
+
+•	Pré-processamento 2: filtragem no domínio espacial, adotando o filtro de Sobel (aplicou-se o gradiente obtido a partir das duas máscaras de Sobel - horizontal e vertical) (GONZALES; WOODS, 2009);
+
+•	Pré-processamento 3: filtragem no domínio espacial, adotando o filtro de Prewitt (aplicou-se o gradiente obtido a partir das duas máscaras de Prewitt - horizontal e vertical) (GONZALES; WOODS, 2009).
+
+Cabe ressaltar que um quarto pré-processamento também foi realizado  - filtragem no domínio espacial, adotando o filtro de Laplace (GONZALES; WOODS, 2009). Entretanto, em função das imagens resultantes dessa filtragem, optou-se por não utilizá-las para treinamento do modelo.
+
+Destaca-se, também, que para cada conjunto de imagens obtido após os pré-processamentos dos conjuntos de imagens de treino, teste e validação, copiou-se o arquivo (.txt) correspondente às labels, bem como os arquivos gerados para cada uma das imagens com as informações de "ids" das classes presentes naquela imagem ('walk': 0, 'riding': 1, 'stand': 2, 'sit': 3), coordenadas do centro do "bouding box" normalizadas (x_center e y_center) e a largura (w) e altura(h) do "bounding box" normalizado.
+
+Assim, no total, quatro treinamentos foram realizados até o momento para o presente projeto:
+
+- Treinamento 1: adotando as imagens RBG;
+
+- Treinamento 2: adotando as imagens em nível de cinza;
+
+- Treinamento 3: adotando as imagens filtradas pelo Filtro de Sobel;
+
+- Treinamento 4: adotando as imagens filtradas pelo Filtro de Prewitt.
+
+Para avaliar o modelo, foram adotadas as seguintes métricas:
 
 •	**Intersection Over Union (IoU)**:  avalia o grau de sobreposição entre a região de "Ground Truth" e "Prediction". É dada pela razão entre a área de sobreposição e a área combinada de previsão e dados de campo, e seus valores podem variar de 0 (nenhuma sobreposição) a 1 (sobreposição perfeita). Esse métrica é adotada, especificamente, para avaliar a detecção de pessoas, sendo, portanto, uma métrica auxiliar para avaliar a exatidão do modelo (KUKIL, 2022a); 
 
@@ -67,6 +81,22 @@ Por fim, para avaliar o modelo, foram adotadas as seguintes **métricas**:
 •	**Precisão média (AP)**: AP = 1/11*(Soma de 11 valores de precisão interpolados). Os valores de precisão são interpolados em 11 valores de chamada e a precisão interpolada é, de forma simplificada, o máximo valor de precisão à direita. AP é definida para cada uma das classes (KUKIL, 2022b);
 
 •	**Mean Average Precision (mAP)**: é a média das "Precisão média (AP)" calculadas para todas as classes - mAP = 1/n * soma(APs), onde n é o número de classes (KUKIL, 2022b).
+
+
+
+**RETIRAR DATA AUGMENTATION?**
+
+Objetivando balancear o número de amostras por classe, adotou-se **Data augmentation**. Considerando possíveis movimentos a serem realizados por um drone no momento da aquisição das imagens, foram testados três processos de aumentação dos dados objetivando melhorar as métricas de classificação – disponíveis em PyTorch (2023): 
+
+•	Espelhamento Horizontal (RandomHorizontalFlip);
+
+•	Espelhamento Vertical (RandomVerticalFlip);
+
+•	Rotação de 15° (RandomRotation).
+
+
+
+
 
 ## Bases de Dados e Evolução
 <!--
