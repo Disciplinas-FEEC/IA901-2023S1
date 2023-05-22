@@ -22,16 +22,16 @@ falsos negativo (ou seja, o classificador classifica como "benigno" quando na ve
 Texto sin alinear
 
 <p align="center">
-  <img src="/Figuras/Tabela_confusao.png">
+  <img src="Figuras/Tabela_confusao.png">
 </p>
 
-Texto sin alinear
-![Confusao](/Figuras/Tabela_confusao.png "Descrição do Projeto")
+`![Confusao](/Figuras/Tabela_confusao.png "Descrição do Projeto")`
 
-Taxa de falso negativo: 
+**Taxa de falso negativo:** 
+
 $$P(\hat{f}(x)=Benigno | f(x)=Maligno)=\frac{FN}{FN+VN}$$
 
-Recall
+**Recall**
 $$P(\hat{f}(x)=Maligno | f(x)=Maligno)=\frac{VN}{FN+VN}$$
 
 O contexto gerador do projeto é a necessidade de melhorar a precisão na classificação de lesões de pele em imagens médicas. Com uma base de dados de 33.007 imagens, das quais apenas 582 são de tumores malignos, o projeto enfrenta o desafio de lidar com um conjunto de dados altamente desequilibrado. A classificação precisa dessas imagens é essencial para identificar corretamente os casos malignos e benignos, a fim de fornecer um diagnóstico adequado e tomar decisões de tratamento adequadas.
