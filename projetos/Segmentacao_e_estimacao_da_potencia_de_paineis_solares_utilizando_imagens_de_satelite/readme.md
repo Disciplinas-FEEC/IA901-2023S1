@@ -132,8 +132,8 @@ Para utilização dos datasets para treino da rede convolucional, os conjuntos p
 -->
 Experimento <br /><sub>Experiment</sub>        | Resultados <br /><sub>Results</sub>             |
 | -------------------------------------------- | ------------------------------------------------| 
-| U-Net treinada do zero com imagens do Google |Params: 487 297  </br>Cross-entropy Binary Loss: Train - 0.0135 / Val - 0.016 </br> AVG DICE Score Test: 0.7672 |
-| ResNet 50 fine-tunning com imagens do Google |Params: 20 676 545 </br>Cross-entropy Binary Loss: Train - 0.0078 / Val - 0.0092 </br>AVG DICE Score Test: 0.9330 </br> Base IGN - AVG DICE Score: 0.5888 |
+| U-Net treinada do zero com imagens do Google </br><sub>U-Net trained from scratch with Google Imagery</sub> |Parâmetros: 487 297</br>Loss de Entropia Cruzada Binária: Treino - 0.0135 / Val - 0.016</br>Pontuação Média DICE no Teste: 0.7672</br><sub>Params: 487 297  </br>Cross-entropy Binary Loss: Train - 0.0135 / Val - 0.016 </br> AVG DICE Score Test: 0.7672 </sub>|
+| Resnet50 fine-tunning com imagens do Google </br><sub>Resnet50 fine-tunned with Google Imagery</sub>|Parâmetross: 20 676 545 </br>Loss de Entropia Cruzada Binária: Treino - 0.0078 / Val - 0.0092 </br>Pontuação Média DICE no Teste: 0.9330 </br>Base IGN - Pontuação Média DICE: 0.5888</br><sub>Params: 20 676 545 </br>Cross-entropy Binary Loss: Train - 0.0078 / Val - 0.0092 </br>AVG DICE Score Test: 0.9330 </br> Base IGN - AVG DICE Score: 0.5888</sub> |
 
 
 # Próximos passos  <br /> <sub> Next steps </sub>
