@@ -92,16 +92,16 @@ Seguindo essa fase do projeto, para fins de comparação, estamos realizando a c
 Os resultados são apresentados nos gráficos abaixo:
 
 **Perda na base de treinamento**
-![ResNet18 Train Loss](assets/Images/Kaggle_Resnet/train_loss.png)
+![ResNet18 Train Loss](assets/Images/Kaggle_ResNet/train_loss.png)
 
 **Acurácia na base de treinamento**
-![ResNet18 Train Acc](assets/Images/Kaggle_Resnet/train_acc.png)
+![ResNet18 Train Acc](assets/Images/Kaggle_ResNet/train_acc.png)
 
 **Perda na base de testes**
-![ResNet18 Test Loss](assets/Images/Kaggle_Resnet/test_loss.png)
+![ResNet18 Test Loss](assets/Images/Kaggle_ResNet/test_loss.png)
 
 **Acurácia na base de testes**
-![ResNet Test Acc](assets/Images/Kaggle_Resnet/test_acc.png)
+![ResNet Test Acc](assets/Images/Kaggle_ResNet/test_acc.png)
 
 O treinamento com a rede ResNet18 está em fase de testes, para garantirmos que os resultados obtidos não sofreram overfitting. Mas como primeiro resultado, temos que a acurácia obtida foi em torno de **0.97**
 
