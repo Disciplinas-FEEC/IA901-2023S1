@@ -140,7 +140,8 @@ Por fim, os valores do *bounding box* foram normalizados para atender também as
 > Use uma ferramenta que permita desenhar o workflow e salvá-lo como uma imagem (Draw.io, por exemplo). Insira a imagem nessa seção.
 > Você pode optar por usar um gerenciador de workflow (Sacred, Pachyderm, etc) e nesse caso use o gerenciador para gerar uma figura para você.
 > Lembre-se que o objetivo de desenhar o workflow é ajudar a quem quiser reproduzir seus experimentos. 
-> <!-- [](image.jpg)-->
+> 
+![](IA901_workflow.png "workflow")
 
 # Experimentos e Resultados preliminares
 <!--
