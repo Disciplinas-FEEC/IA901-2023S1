@@ -16,52 +16,49 @@ Yasmin Martins Perci           | 271281 | Aluna Especial - Engenharia Elétrica
 
 A classificação de posturas de yoga pode ser muito útil para instrutores, praticantes e para o desenvolvimento de aplicativos ou dispositivos de assistência. Além disso, esse classificador pode ser aprimorado para aplicações de monitoramento de progresso individual, correção de posturas inadequadas e, consequentemente, prevenção de lesões dos praticantes. 
 
-Trabalhos anteriores de classificação de posturas de yoga utilizam deep learning [3], [6]. Já outros utilizam técnicas de machine learning para extrair atributos relacionados a ângulos e distância entre pontos do esqueleto [2], [5], [7], [12]. Nesse contexto, o objetivo deste trabalho é realizar um estudo comparativo entre o desempenho de uma CNN e uma KNN com atributos extraídos por meio de processamento de imagem para classificar 5 posturas de Yoga. A partir de processamento de imagem, com a aplicação de filtros, detecção de bordas, detecção de esqueletos, criação de descritores, a KNN será treinada com alguns atributos extraídos das imagens e, a partir das métricas de avaliação, o seu desempenho será comparado com o de uma CNN.
+Trabalhos anteriores de classificação de posturas de yoga utilizam deep learning [3], [6]. Já outros utilizam técnicas de machine learning para extrair atributos relacionados a ângulos e distância entre pontos do esqueleto [2], [5], [7], [12]. Nesse contexto, o objetivo deste trabalho é realizar um estudo comparativo entre o desempenho de uma CNN e uma KNN com atributos extraídos por meio de processamento de imagem para classificar 5 posturas de Yoga. A partir de processamento de imagem, com a aplicação de filtros, detecção de bordas, a KNN será treinada com o vetor resultante do código da cadeia de Freeman, e, a partir das métricas de avaliação, o seu desempenho será comparado com o de uma CNN.
 
-Portanto, a principal contribuição do trabalho é ressaltar a relevância do processamento de imagem, mesmo em um cenário dominado por técnicas de deep learning. Dessa forma, visa-se demonstrar que é possível obter resultados significativos usando algoritmos mais simples e clássicas, como KNN, quando associadas ao processamento de imagens. 
+Portanto, a principal contribuição do trabalho é ressaltar a relevância do processamento de imagem, mesmo em um cenário dominado por técnicas de deep learning. Dessa forma, visa-se demonstrar que é possível obter resultados significativos usando algoritmos mais simples e clássicos, como KNN, quando associados ao processamento de imagens. 
 
 # Metodologia
 
-O projeto é composto por três vertentes distintas de desenvolvimento, as quais trabalham em conjunto para fornecer informações relevantes como um todo.
+O projeto é composto por três etapas distintas de desenvolvimento, as quais trabalham em conjunto para fornecer informações relevantes como um todo.
 
-A primeira vertente está relacionada ao tratamento dos dados. Nessa etapa, os dados coletados são analisados, limpos e preparados.
+A primeira etapa está relacionada ao pré-processamento dos dados, onde eles são analisados, limpos e preparados. O principal foco é a análise de contaminação entre conjuntos de dados, sobretudo ao se trabalhar com dados de domínio público. Essa contaminação pode causar dificuldades no treinamento do modelo e levar a erros no processo de classificação. Além disso, nessa parte é feita a seleção e padronização das imagens que serão usadas no processamento.
 
-A segunda vertente envolve o processamento desses dados com o objetivo de extrair atributos importantes para a classificação. Esses atributos são utilizados em um algoritmo de classificação conhecido como KNN (*K-Nearest Neighbors*), que tem como propósito identificar as classes e classificar as diferentes poses de yoga.
+A segunda etapa envolve o processamento desses dados com o objetivo de extrair atributos importantes para a classificação, através de um algoritmo de classificação conhecido como KNN (*K-Nearest Neighbors*), que tem como propósito identificar as classes e classificar as diferentes poses de yoga.
 
-A última vertente concentra-se no desenvolvimento de uma CNN (*Convolutional Neural Network*) utilizando a arquitetura MobileNet. Essa CNN é responsável por classificar as diferentes poses de Yoga. Essa etapa é crucial para comparar os resultados obtidos pela KNN e avaliar a eficácia do modelo de classificação.
+A última etapa concentra-se no desenvolvimento de uma CNN (*Convolutional Neural Network*) utilizando a arquitetura MobileNet V2, responsável por classificar as diferentes poses de Yoga. Essa etapa é crucial para comparar os resultados obtidos pela KNN e avaliar a eficácia do modelo de classificação.
 
-**Pré-processamento**:
-
-Ao trabalhar com dados de domínio público, é essencial realizar algumas etapas iniciais para garantir a integridade dos dados. Uma etapa crucial é verificar se há contaminação entre os conjuntos de dados e validar seus formatos. A presença de dados idênticos em diferentes conjuntos pode causar dificuldades no treinamento do modelo e levar a erros no processo de classificação.
-
-Durante a etapa de pré-processamento, buscou-se analisar a existência de contaminação entre os dados presentes no dataset de treinamento e teste, disponibilizados pelo Kaggle, através da utilização da métrica de similaridade SSIM (Structural Similarity Index).
-
-Outro problema existente nos datasets públicos é a variedade de dados em formatos diferentes e representados por diferentes canais, optou-se em utilizar imagens apenas no formato RGB no formato PNG.
-
-Após o pré-processamento dos dados, separou-se o conjunto de treinamento do  Kaggle em treinamento e validação por meio da criação da pasta “VAL”, onde foram adicionadas as pastas e imagens das 5 posturas de yoga destinadas.
 
 **Processamento:**
 
-Nesta etapa, utilizou-se métodos de processamento de imagens para distinguir as pessoas do restante da imagem, separando-as do plano de fundo. Isso é essencial para isolar as regiões de interesse e facilitar a análise. Uma vez que as pessoas foram identificadas, aplicou-se métodos de extração de características para capturar informações relevantes que possibilitem a classificação das poses que cada pessoa está realizando. Essas características incluem posições das articulações, orientação corporal, ângulos dos membros e outros elementos.
+Nesta etapa, utilizou-se métodos de processamento de imagens para distinguir as pessoas do restante da imagem, separando-as do plano de fundo. Isso é essencial para isolar as regiões de interesse e facilitar a análise. Uma vez que as pessoas foram detectadas, aplicou-se métodos de extração de características para capturar informações relevantes que possibilitem a classificação das poses que cada pessoa está realizando. Foram abordadas 2 vertentes: extração das posições das articulações através de um esqueleto e o resultante do código da cadeia de Freeman.
 
-A fim de facilitar o desenvolvimento desta etapa, foram subdivididas em cinco etapas principais: Remoção de ruídos das imagens, transformações para realce, segmentação, detecção de bordas e extração de características.
 
-A primeira etapa envolve a remoção de ruídos das imagens. Isso é importante para eliminar interferências e imperfeições que possam prejudicar a detecção das pessoas nas imagens, para esse método optou-se por estudar quatro diferentes filtros, sendo eles média, gaussiana, bilateral e filtro morfológico ASF(abertura e fechamento), para então levantar qual deveria ser utilizado no projeto.
+![plot_skeleton](./assets/esqueleto.png)
 
-levantou-se um estudo do canal apropriado a ser trabalhado ( Matiz, saturação, níveis de cinza), com o intuito de melhorar os realces na imagem e facilitar o processo de segmentação das pessoas.
+![plot_freeman](./assets/freeman.png)
 
-A etapa de segmentação é responsável por separar as pessoas do restante da imagem, isolando-as do plano de fundo e de outros objetos indesejáveis. Usou-se diferentes técnicas de segmentação. Entre as técnicas estão limiarização usando OTSU, Adaptive Mean, Watershed  e Histogram-based segmentation.
 
-Após a segmentação, detectou-se as bordas das imagens, com o objetivo de identificar de forma mais precisa as bordas dos corpos das pessoas. Para isso, estudou-se o método Canny.
 
-Avaliou-se qual caminho de técnicas fornece características relevantes para servirem de treinamento na KNN.
+A fim de facilitar o desenvolvimento desta fase, ela foi subdivididas em cinco etapas principais: Remoção de ruídos das imagens, transformações para realce, segmentação, detecção de bordas e extração de características.
+
+A primeira etapa envolve a remoção de ruídos das imagens. Isso é importante para eliminar interferências e imperfeições que possam prejudicar a detecção das pessoas nas imagens, para esse método optou-se por estudar quatro diferentes filtros, sendo eles média, gaussiana, bilateral e filtro morfológico ASF (abertura e fechamento), para então levantar qual deveria ser utilizado no projeto.
+
+Levantou-se um estudo do canal apropriado a ser trabalhado (Matiz, saturação, níveis de cinza), com o intuito de melhorar os realces na imagem e facilitar o processo de segmentação das pessoas.
+
+A etapa de segmentação usou-se diferentes técnicas, a fim de separar a pessoa do plano de fundo e de outros objetos indesejáveis. Entre as técnicas investigadas estão limiarização usando OTSU, *Adaptive Mean*, *Watershed* e *Histogram-based segmentation*.
+
+Após a segmentação, detectou-se as bordas das imagens utilizando o método Canny.
+
+Por fim, avaliou-se qual caminho de técnicas fornece características relevantes para servirem de treinamento na KNN.
 
 **Desenvolvimento da CNN:** 
 
-Com o objetivo de criar um estudo comparativo entre os métodos de processamento de imagem e o uso de uma rede convolucional, desenvolveu-se uma CNN a partir do modelo MobileNet V2,onde ajustou-se apenas os hiperparâmetros após uma normalização dos dados. O modelo MobileNet V2 foi escolhido pela quantidade razoável de 2.230.277 parâmetros treinados, considerado adequado para o tamanho do dataset. Essa arquitetura de rede neural foi inicialmente adaptada para dispositivos móveis e ambientes com recursos restritos, diminuindo significativamente o número de operações e memória necessária, mantendo uma boa precisão.
+Com o objetivo de criar um estudo comparativo entre os métodos de processamento de imagem e o uso de uma rede convolucional, desenvolveu-se uma CNN a partir do modelo MobileNet V2,onde ajustou-se apenas os hiperparâmetros após uma normalização e redimensionamento dos dados. O modelo MobileNet V2 foi escolhido pela quantidade razoável de 2.230.277 parâmetros treinados, sendo considerado adequado para o tamanho do dataset, por possuir poucas amostras. Essa arquitetura de rede neural foi inicialmente adaptada para dispositivos móveis e ambientes com recursos restritos, diminuindo significativamente o número de operações e memória necessária, mantendo uma boa precisão.
 
-Com relação ao processamento das imagens, realizou-se um redimensionamento para o tamanho (128,128) e uma normalização. Após realizar testes variando os hiperparâmetros da rede (optimizer, learning rate, número de épocas, tamanho do batch), alcançou-se um modelo com desempenho satisfatório.
-
+Com relação ao processamento das imagens, realizou-se um redimensionamento para o tamanho (128,128) e uma normalização. Após realizar testes variando os hiperparâmetros da rede (otimizador, *learning rate*, número de épocas, tamanho do batch), analisou-se o desempenho da rede, com base na curva de acurácia x *loss*.
 
 ## Bases de Dados e Evolução
 A base de dados utilizada no projeto foi a "Yoga Poses Dataset", contendo as cinco mais conhecidas poses de Yoga: cachorro olhando para baixo (classe "downdog"), deusa (classe "goddess"), árvore (classe "tree"), prancha (classe "plank") e guerreiro (classe "warrior2").
@@ -73,7 +70,7 @@ Base de Dados | Endereço na Web | Resumo descritivo
 Título da Base | https://www.kaggle.com/datasets/niharika41298/yoga-poses-dataset | Conjunto de 5 classes com um total de 1551 amostras, sendo 1081 de treino e 470 de teste, nos formatos .jpg, .png e .jpeg.
 
 
-Como o conjunto de dados já estava separado em pastas de treino e teste e subpastas com as classes, a primeira etapa foi fazer uma inspeção visual dos dados, e foi analisado que existia contaminação, ou seja, a mesma informação na pasta de treino e teste, às vezes variando apenas o tamanho das imagens.
+Como o conjunto de dados já estava separado em pastas de treino e teste e em subpastas com as classes, a primeira etapa consistiu em realizar uma inspeção visual dos dados, onde foi analisado que existia contaminação, ou seja, a mesma informação na pasta de treino e teste, às vezes variando apenas o tamanho das imagens.
 
 
 Dessa forma, foi criado um *script* para automatizar a limpeza dos dados. Inicialmente, foi feita uma padronização das imagens, visto que elas possuem tamanho e formatos variados. Apenas as imagens RGB no formato PNG foram selecionadas, e em seguida redimensionadas para o tamanho 120x120.
@@ -98,7 +95,7 @@ A figura abaixo mostra como ficou distribuido cada classe em cada conjunto de da
 
 # Ferramentas
 
-No pré-processamento de dados, utilizou-se a biblioteca “os” para interagir com o sistema operacional e realizar ações como acessar, ler arquivos, entre outros. A fim de eliminar a contaminação dos dados, utilizou-se o módulo “skimage.metrics” da biblioteca “skimage” para calcular índices de similaridade das imagens. Para dividir os dados de treinamento em treinamento e validação, utilizou-se a biblioteca “os” para acessar os arquivos, a “shutil” para movê-los e a biblioteca “random” para fazer a seleção aleatória das imagens a serem separadas em treinamento e validação.
+No pré-processamento de dados, utilizou-se a biblioteca “os” para interagir com o sistema operacional e realizar ações como acessar, ler arquivos, entre outros. A fim de eliminar a contaminação dos dados, utilizou-se o módulo “skimage.metrics” da biblioteca “skimage” para calcular índices de similaridade das imagens. A “shutil” foi utilizada para mover as imagens na etapa de divisão dos dados de treinamento em treinamento e validação e a biblioteca “random” para fazer a seleção aleatória das imagens a serem separadas em treinamento e validação.
 
 Para o processamento de imagens, utilizou-se a biblioteca “opencv” para realizar alterações de forma, limiarização, detecção de bordas e outros processamentos, a fim de realizar a segmentação das imagens. De forma complementar, utilizou-se a biblioteca “skimage”, por meio de  módulos referentes a mudanças nas cores e alterações morfológicas. 
 
@@ -111,7 +108,7 @@ Por fim, para avaliar o desempenho da KNN e da CNN foram utilizadas as métricas
 
 A seguir, é mostrado o workflow do projeto.
 
-![plot_imgs_classe](./assets/Workflow.drawio.png)
+![plot_workflow](./assets/Workflow.drawio.png)
 
 
 # Experimentos e Resultados preliminares
@@ -135,6 +132,8 @@ A KNN foi implementada para receber os vetores que representam as imagens na reg
 
 
 # Próximos passos
+
+
 
 # Referências
 
