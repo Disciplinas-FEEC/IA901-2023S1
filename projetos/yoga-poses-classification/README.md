@@ -26,9 +26,9 @@ O projeto é composto por três vertentes distintas de desenvolvimento, as quais
 
 A primeira vertente está relacionada ao tratamento dos dados. Nessa etapa, os dados coletados são analisados, limpos e preparados.
 
-A segunda vertente envolve o processamento desses dados com o objetivo de extrair atributos importantes para a classificação. Esses atributos são utilizados em um algoritmo de classificação conhecido como KNN (K-Nearest Neighbors), que tem como propósito identificar as classes e classificar as diferentes poses de yoga.
+A segunda vertente envolve o processamento desses dados com o objetivo de extrair atributos importantes para a classificação. Esses atributos são utilizados em um algoritmo de classificação conhecido como KNN (*K-Nearest Neighbors*), que tem como propósito identificar as classes e classificar as diferentes poses de yoga.
 
-A última vertente concentra-se no desenvolvimento de uma CNN (Convolutional Neural Network) utilizando a arquitetura MobileNet. Essa CNN é responsável por classificar as diferentes poses de Yoga. Essa etapa é crucial para comparar os resultados obtidos pela KNN e avaliar a eficácia do modelo de classificação.
+A última vertente concentra-se no desenvolvimento de uma CNN (*Convolutional Neural Network*) utilizando a arquitetura MobileNet. Essa CNN é responsável por classificar as diferentes poses de Yoga. Essa etapa é crucial para comparar os resultados obtidos pela KNN e avaliar a eficácia do modelo de classificação.
 
 **Pré-processamento**:
 
@@ -64,9 +64,48 @@ Com relação ao processamento das imagens, realizou-se um redimensionamento par
 
 
 ## Bases de Dados e Evolução
+A base de dados utilizada no projeto foi a "Yoga Poses Dataset", contendo as cinco mais conhecidas poses de Yoga: cachorro olhando para baixo (classe "downdog"), deusa (classe "goddess"), árvore (classe "tree"), prancha (classe "plank") e guerreiro (classe "warrior2").
+
+Ela foi obtida na plataforma Kaggle, disponibilizada pela Niharika Pandit, sob a licença Open Database.
+
+Base de Dados | Endereço na Web | Resumo descritivo
+----- | ----- | -----
+Título da Base | https://www.kaggle.com/datasets/niharika41298/yoga-poses-dataset | Conjunto de 5 classes com um total de 1551 amostras, sendo 1081 de treino e 470 de teste, nos formatos .jpg, .png e .jpeg.
+
+
+Como o conjunto de dados já estava separado em pastas de treino e teste e subpastas com as classes, a primeira etapa foi fazer uma inspeção visual dos dados, e foi analisado que existia contaminação, ou seja, a mesma informação na pasta de treino e teste, às vezes variando apenas o tamanho das imagens.
+
+
+Dessa forma, foi criado um *script* para automatizar a limpeza dos dados. Inicialmente, foi feita uma padronização das imagens, visto que elas possuem tamanho e formatos variados. Apenas as imagens RGB no formato PNG foram selecionadas, e em seguida redimensionadas para o tamanho 120x120.
+
+
+A métrica SSIM (*Structural Similarity Index Method*) foi utilizada a fim de analisar o nível de similaridade entre as imagens no conjunto de treino e teste. Ela compara características estruturais das imagens, levando em consideração elementos como texturas, contrastes e detalhes visuais. O valor do SSIM varia entre -1 até 1, sendo 1 o valor resultante quando as duas imagens comparadas são idênticas, e -1 quando são completamente diferentes. Nesse caso, as imagem com SSIM acima de 0.95 foram consideradas semelhantes e removidas do conjunto de treinamento. 
+
+Por fim, para se obter um conjunto de validação, a pasta de treino desse novo conjunto de dados foi dividida aleatoriamente em treino e validação, na proporção 80%-20%. 
+
+O conjunto de treino representa 55.17% do total de dados, validação 13.04% e teste 31.78%, como pode ser visto na tabela abaixo.
+
+Conjunto de dados   | Quantidade de imagens
+--------------------|----------------------
+Treino              | 736                  
+Validação           | 174                  
+Teste               | 424                  
+
+A figura abaixo mostra como ficou distribuido cada classe em cada conjunto de dados. Como pode-se observar, não há um grande desbalanceamento entre classes, porém há menos imagens das classes "tree" e "goddess" em todos os conjuntos de dados.
+
+![plot_imgs_classe](./assets/total_imgs_classe.png)
 
 
 # Ferramentas
+
+No pré-processamento de dados, utilizou-se a biblioteca “os” para interagir com o sistema operacional e realizar ações como acessar, ler arquivos, entre outros. A fim de eliminar a contaminação dos dados, utilizou-se o módulo “skimage.metrics” da biblioteca “skimage” para calcular índices de similaridade das imagens. Para dividir os dados de treinamento em treinamento e validação, utilizou-se a biblioteca “os” para acessar os arquivos, a “shutil” para movê-los e a biblioteca “random” para fazer a seleção aleatória das imagens a serem separadas em treinamento e validação.
+
+Para o processamento de imagens, utilizou-se a biblioteca “opencv” para realizar alterações de forma, limiarização, detecção de bordas e outros processamentos, a fim de realizar a segmentação das imagens. De forma complementar, utilizou-se a biblioteca “skimage”, por meio de  módulos referentes a mudanças nas cores e alterações morfológicas. 
+
+Para desenvolver a KNN, utilizou-se o módulo “sklearn.neighbors” da biblioteca “sklearn”. Já a rede CNN foi implementada utilizando a biblioteca “pytorch”, por ser mais flexível para o desenvolvimento de modelos. Também utilizou-se a biblioteca “torchvision” para utilizar as arquiteturas de modelo e transformações de imagem presentes nessa biblioteca. Além disso, utilizou-se a biblioteca “torchsummary” para imprimir os parâmetros treináveis ​​e não treináveis do modelo. Para o acompanhamento das alterações nos modelos, utilizou-se a biblioteca “torch.utils.tensorboard” que possui utilitários que permitem o registro de modelos e métricas do PyTorch em um diretório para visualização na interface do TensorBoard.
+
+Por fim, para avaliar o desempenho da KNN e da CNN foram utilizadas as métricas de acurácia, acurácia balanceada, F1-score e matriz de confusão calculadas por meio de módulos da biblioteca “sklearn”.
+
 
 
 # Workflow
