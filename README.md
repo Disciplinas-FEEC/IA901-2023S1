@@ -87,7 +87,7 @@ Diagnóstico | 98% benignos e 2% malignos
 
 Estatísticas quantitativas | Mínimo | Máximo | Média
 ----- | ----- | ----- 
-Idade | 0 | 90 |
+Idade | 0 | 90 | 55
 
 # Ferramentas
 Utilizaremos neste projeto o Google Colab inicialmente para treinamento das redes com GPUs. Algumas bibliotecas utilizadas são:
