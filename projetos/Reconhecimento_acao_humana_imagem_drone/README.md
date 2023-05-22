@@ -134,7 +134,15 @@ Por fim, os valores do *bounding box* foram normalizados para atender também as
 > * Utilize tabelas e/ou gráficos que descrevam os aspectos principais da base que são relevantes para o projeto.-->
 
 # Ferramentas
-> Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
+
+Ferramentas adotadas no desenvolvimento do projeto:
+
+- Google Colab, ou "Colaboratory": permitiu escrever e executar Python no navegador, além de contar com acesso a GPUs sem custo financeiro, que foram adotadas para o treinamento do modelo. Acesso ao Google Colab: <https://colab.research.google.com/#scrollTo=5fCEDCU_qrC0> (versão do Google Colab utilizada: atualizada em 05/05/2023);
+- Google Drive: tanto os dados brutos (dataset "NTUT 4K Drone Photo Dataset for Human Detection") quanto os dados filtrados e aqueles resultados dos pré-processados foram armazenados no Google Drive. Os notebooks desenvolvidos no Google Colab também encontram-se salvos no Google Drive.
+- Github: um repositório no Github (<https://github.com/>) foi criado e contém todos os arquivos do projeto, histórico de revisão e discussões dos colaboradores (Versão do Github adotada: atualizada em 08/2022).
+
+Quanto às bibliotecas adotadas no projeto, todas se encontram definidas no arquivo "requirements.txt" (disponível em: 
+<https://drive.google.com/file/d/11c1_tUSCeSvkG8aUJiVq-PQIpSXtAFUh/view?usp=sharing>).
 
 # Workflow
 <!-- > Use uma ferramenta que permita desenhar o workflow e salvá-lo como uma imagem (Draw.io, por exemplo). Insira a imagem nessa seção.
