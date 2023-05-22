@@ -179,7 +179,7 @@ Filtro de Prewitt   |  0.277   | 0.073  | 0.0117
 
 Conforme pode-se ver na tabela anterior, as métricas obtidas adotando apenas 10 épocas de treinamento são ruins. Destaca-se que mais épocas não foram utilizadas em função da limitação de GPU ao usar a plataforma Google Colaboratory. 
 
-As figuras a seguir também apresentam resultados obtidos com os treinamentos realizados até o momento (10 épocas). Verifica-se que a classe com melhor desempenho é "walk" - que possui maior número de amostras. Assim, se após os próximos experimentos (treinamentos com 30 épocas, *a priori*), ainda houver baixo desempenho para as demais classes, será aplicado *Data augmentation*.
+As figuras a seguir também apresentam resultados obtidos com os treinamentos realizados até o momento (10 épocas).
 
 **- Experimento 1: adoção dos dados brutos (imagens RGB):**
 
@@ -220,8 +220,16 @@ As figuras a seguir também apresentam resultados obtidos com os treinamentos re
 <p align="left">
     <img src="../Reconhecimento_acao_humana_imagem_drone/assets/results_prewitt.png" height="350">
 </p>
- 
+
+Verifica-se que a classe com melhor desempenho é "walk" - que possui maior número de amostras. Assim, se após os próximos experimentos (treinamentos com 30 épocas, *a priori*), ainda houver baixo desempenho para as demais classes, será aplicado *Data augmentation*.
+
 De maneira geral, os principais desafios enfrentados até o momento estão relacionados às limitações do uso da plataforma Google Collaboratory; ao tamanho das imagens - o que implica na demora do treinamento por época; no rearranjo do conjunto de dados escolhido para se adequar a rede YOLOv7 e na escolha de um pré processamento que melhore o desempenho da rede.
+
+Apesar dos resultados insatisfatórios obtidos nessa versão preliminar, é possível realizar inferências, como se pode visualizar na imagem do conjunto de Teste apresentada a seguir. Assim, o grupo espera que, com novos treinamentos e, se necessário, adoção de *Data augmentation*, possa-se obter resultados satisfatórios na entrega final do projeto.
+
+
+
+
 
 # Próximos passos
 
