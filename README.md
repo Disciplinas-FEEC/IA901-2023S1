@@ -25,8 +25,6 @@ Texto sin alinear
   <img src="Figuras/Tabela_confusao.png">
 </p>
 
-%![Confusao](/Figuras/Tabela_confusao.png "Descrição do Projeto")
-
 **Taxa de falso negativo:** 
 
 $$P(\hat{f}(x)=Benigno | f(x)=Maligno)=\frac{FN}{FN+VN}$$
