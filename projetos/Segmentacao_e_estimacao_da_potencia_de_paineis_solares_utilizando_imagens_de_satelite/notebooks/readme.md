@@ -7,8 +7,8 @@ Pré-requisitos:
 
 ![imagem assets 1](../assets/step1.png)
     - Passo 2: no pop-up do atalho, selecionar no menu superior "Todos os locais" e em seguida "Meu drive", como destino do atalho. Clicar em Adicionar.
-![imagem assets 2](../assets/step2.png)    
-    - Passo 3: verificar se o atalho foi criado no seu drive. Para isso, acesse e procure a pasta com nome bdappv
+![imagem assets 2](../assets/step2.png) 
+    - Passo 3: verificar se o atalho foi criado no seu drive. Para isso, acesse https://drive.google.com/ e procure a pasta com nome bdappv (certifique-se de estar com a conta google da UNICAMP
 ![imagem assets 2](../assets/step3.png)   
     
 
