@@ -48,7 +48,7 @@ Therefore, this project aims to segment solar panels in satellite images using i
 > Proposta de metodologia incluindo especificação de quais técnicas pretende-se explorar. Espera-se que nesta entrega você já seja capaz de descrever de maneira mais específica (do que na Entrega 1) quais as técnicas a serem empregadas em cada etapa do projeto.
 -->
  
-A metodologia do projeto conta com o uso de um dataset anotado disponibilizado num artigo científico, e com redes convolucionais (U-Net, Resnet) com fine-tunning para segmentação dos painéis solares. 
+A metodologia do projeto adotada até agora (22 de maio de 2023) contou com o uso de um dataset anotado disponibilizado num artigo científico, e com redes convolucionais (U-Net, Resnet) com fine-tunning para segmentação dos painéis solares. 
  
 ## Bases de Dados e Evolução  <br /> <sub> Databases and evolution </sub>
 <!---
@@ -58,7 +58,7 @@ A metodologia do projeto conta com o uso de um dataset anotado disponibilizado n
  
 Base de Dados <br /><sub>Database</sub>| Endereço na Web <br /><sub>Link</sub> | Resumo descritivo <br /><sub>Descriptive Summary</sub>
 ----- | ----- | -----
-A crowdsourced dataset of aerial images with annotated solar photovoltaic  arrays and installation metadata | https://zenodo.org/record/7358126#.ZDVdg3bMK39 | * Installation metadata for more than 28000 installations </br> - Ground truth segmentation masks for 13000 installations, including 7000 with annotations for two different image providers. </br> - Installation metadata that matches the annotation for more than 8000 installations. </br> - Dataset applications include end-to-end PV registry construction, robust PV installations mapping, and analysis of crowdsourced datasets.
+A crowdsourced dataset of aerial images with annotated solar photovoltaic  arrays and installation metadata | https://zenodo.org/record/7358126#.ZDVdg3bMK39 | - Installation metadata for more than 28000 installations </br> - Ground truth segmentation masks for 13000 installations, including 7000 with annotations for two different image providers. </br> - Installation metadata that matches the annotation for more than 8000 installations. </br> - Dataset applications include end-to-end PV registry construction, robust PV installations mapping, and analysis of crowdsourced datasets.
 
 ### A crowdsourced dataset of aerial images with annotated solar photovoltaic  arrays and installation metadata  
 <!---
@@ -74,7 +74,12 @@ GRÁFICOS E TABELAS -- JUAN CARLOS
 <!---
 > Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
 -->
- 
+- Tensor Flow 
+- Sk Learn
+- Matplotlib
+- LucidChart 
+- ...
+
 # Workflow 
 <!---
 > Use uma ferramenta que permita desenhar o workflow e salvá-lo como uma imagem (Draw.io, por exemplo). Insira a imagem nessa seção.
@@ -90,10 +95,9 @@ GRÁFICOS E TABELAS -- JUAN CARLOS
 -->
 Experimento <br /><sub>Experiment</sub>        | Resultados <br /><sub>Results</sub>             |
 | -------------------------------------------- | ------------------------------------------------|
-| U-Net treinada do zero com imagens do Google | Binary Loss: </br> DICE score: </br> xxx: xxxx  |
-| U-Net fine-tunning                           | Binary Loss: </br> DICE score: </br> xxx: xxxx  |
-| xxxxxxxxxxxxxxxxxx                           | Binary Loss: </br> DICE score: </br> xxx: xxxx  |
-| xxxxxxxxxxxxxxxxxx                           | Binary Loss: </br> DICE score: </br> xxx: xxxx  |
+| U-Net treinada do zero com imagens do Google |Params: 487 297  </br>Cross-entropy Binary Loss: 0.0135 </br>AVG DICE score: 0.7672 |
+| ResNet 50 fine-tunning com imagens do Google |Params: 20 676 545 </br>Cross-entropy Binary Loss: 0.0059 </br>AVG DICE score: 0.9330 </br>Teste na base IGN - DICE score: 0.5888 |
+
 
 # Próximos passos  <br /> <sub> Next steps </sub>
 <!---
@@ -115,12 +119,16 @@ Experimento <br /><sub>Experiment</sub>        | Resultados <br /><sub>Results</
         - [ ] Avaliação dos resultados
         - [ ] Melhorias nos hiperparâmetros da rede neural 
     - [ ] Avaliações quantitativas (segmentação e estimação) e qualitativas (segmentação)
+    - [ ] Nova atualização do Git (readme, workflow, notebooks) 
 - [ ] Finalização do projeto :tada:
 
-## Referências (ATUALIZAR SE NECESSÁRIO)  <br /> <sub> References </sub>
+## Referências <br /> <sub> References </sub>
 <!---
 > Seção obrigatória. Inclua aqui referências utilizadas no projeto.
 -->
+
+"A crowdsourced dataset of aerial images with annotated solar photovoltaic  arrays and installation metadata" - https://www.nature.com/articles/s41597-023-01951-4 
+
 
 "Segmentation of Satellite Images of Solar Panels Using Fast Deep Learning Model" - https://www.ijrer.org/ijrer/index.php/ijrer/article/view/11607/pdf
 
