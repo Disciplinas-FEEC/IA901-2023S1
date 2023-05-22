@@ -24,43 +24,74 @@ Grupo <br /> <sub> Group: </sub>
 
 
 ## Descrição do Projeto  <br /> <sub> Project Description </sub>
+<!---
 > Descrição do objetivo principal do projeto, incluindo contexto gerador, motivação.
 > Qual problema vocês pretendem solucionar?
 > Qual a relevância do problema e o impacto da solução do mesmo?
+-->
+ 
+A modernização dos sistemas elétricos é decorrente do desenvolvimento tecnológico, causado principalmente pela busca de fontes de energia renováveis. Com isso, nos últimos anos, houve um aumento considerável no uso de recursos distribuídos de energia, como geração solar fotovoltaica. A geração fotovoltaica é a mais difundida nas residências de todo o mundo, pelo seu caráter renovável e pelo baixo custo de aquisição, quando comparada com outras fontes renováveis. 
+ 
+Uma vez que a modernização dos sistemas elétricos de potência permite que seus usuários tenham agora um papel ativo, injetando potência no sistema, é de extrema importância para as empresas distribuidoras de energia acompanharem a adoção destas tecnologias, para o planejamento de melhorias e expansão. A geração fotovoltaica é, em sua maioria, instalada no telhados de casas ou com médias/grandes usinas. Sendo o sol a fonte de energia, imagens de satélite permitem saber onde estão estes painéis fotovoltaicos.
+ 
+Dessa forma, pretende-se, neste projeto, segmentar painéis solares em imagens de satélite utilizando técnicas de análise de imagem e reconhecimento de padrões. Em seguida, pretende-se estimar a geração do sistema em questão, ustilizando redes neurais. 
 
+<sub> Modernizing electrical systems results from technological development, primarily driven by the pursuit of renewable energy sources. As a result, there has been a significant increase in the use of distributed energy resources, such as solar photovoltaic generation. Photovoltaic generation is the most widespread in residential areas worldwide due to its renewable nature and low acquisition cost compared to other renewable sources.
+\
+Given that the modernization of power systems allows users to play an active role by injecting power into the system, energy distribution companies must monitor the adoption of these technologies for planning improvements and expansions. Photovoltaic generation is mainly installed on rooftops or in medium/large-scale solar farms. Since the sun is the energy source, satellite images can provide information on the locations of these photovoltaic panels.
+\
+Therefore, this project aims to segment solar panels in satellite images using image analysis and pattern recognition techniques. Subsequently, the aim is to estimate the system's generation using neural networks.
+</sub>
+ 
 # Metodologia  <br /> <sub> Methodology </sub>
+<!---
 > Proposta de metodologia incluindo especificação de quais técnicas pretende-se explorar. Espera-se que nesta entrega você já seja capaz de descrever de maneira mais específica (do que na Entrega 1) quais as técnicas a serem empregadas em cada etapa do projeto.
+-->
+ 
+A metodologia do projeto conta com o uso de um dataset anotado disponibilizado num artigo científico, e com redes convolucionais (U-Net, Resnet) com fine-tunning para segmentação dos painéis solares. 
  
 ## Bases de Dados e Evolução  <br /> <sub> Databases and evolution </sub>
+<!---
 > Elencar bases de dados utilizadas no projeto.
 > Para cada base, coloque uma mini-tabela no modelo a seguir e depois detalhamento sobre como ela foi analisada/usada, conforme exemplo a seguir.
-
-Base de Dados | Endereço na Web | Resumo descritivo
+-->
+ 
+Base de Dados <br /><sub>Database</sub>| Endereço na Web <br /><sub>Link</sub> | Resumo descritivo <br /><sub>Descriptive Summary</sub>
 ----- | ----- | -----
-Título da Base | http://base1.org/ | Breve resumo (duas ou três linhas) sobre a base.
+A crowdsourced dataset of aerial images </br> with annotated solar photovoltaic </br> arrays and installation metadata | https://zenodo.org/record/7358126#.ZDVdg3bMK39 | * Installation metadata for more than 28000 installations </br> * Ground truth segmentation masks for 13000 installations, </br> including 7000 with annotations for two different image providers. </br> * Installation metadata that matches the annotation for more than 8000 installations. </br> Dataset applications include end-to-end PV registry construction, robust PV installations mapping, and analysis of crowdsourced datasets.
 
 ### Título da Base 
+<!---
 > Faça uma descrição sobre o que concluiu sobre esta base. Sugere-se que respondam perguntas ou forneçam informações indicadas a seguir:
 > * Qual o formato dessa base, tamanho, tipo de anotação?
 > * Quais as transformações e tratamentos feitos? Limpeza, reanotação, etc.
 > * Inclua um sumário com estatísticas descritivas da(s) base(s) de estudo.
 > * Utilize tabelas e/ou gráficos que descrevam os aspectos principais da base que são relevantes para o projeto.
-
+-->
+ 
 # Ferramentas  <br /> <sub> Tools </sub>
+<!---
 > Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
-
-# Workflow  
+-->
+ 
+# Workflow 
+<!---
 > Use uma ferramenta que permita desenhar o workflow e salvá-lo como uma imagem (Draw.io, por exemplo). Insira a imagem nessa seção.
 > Você pode optar por usar um gerenciador de workflow (Sacred, Pachyderm, etc) e nesse caso use o gerenciador para gerar uma figura para você.
 > Lembre-se que o objetivo de desenhar o workflow é ajudar a quem quiser reproduzir seus experimentos. 
-
+-->
+ 
 # Experimentos e Resultados preliminares  <br /> <sub> Experiments and Preliminary Results </sub>
+<!---
 > Descreva de forma sucinta e organizada os experimentos realizados
 > Para cada experimento, apresente os principais resultados obtidos
 > Aponte os problemas encontrados nas soluções testadas até aqui
-
+-->
 # Próximos passos  <br /> <sub> Next steps </sub>
+<!---
 > Liste as próximas etapas planejadas para conclusão do projeto, com uma estimativa de tempo para cada etapa
-
+-->
 ## Referências (ATUALIZAR SE NECESSÁRIO)  <br /> <sub> References </sub>
+<!---
 > Seção obrigatória. Inclua aqui referências utilizadas no projeto.
+-->
