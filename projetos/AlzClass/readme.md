@@ -63,7 +63,7 @@ Os pacientes são todos destros e incluem homens e mulheres. 72 dos indivíduos 
 # Workflow
 Definimos abaixo o workflow que utilizaremos para a ingestão, pré-processamento e classificação dos dados.
 
-![Workflow](workflow.drawio.svg)
+![Workflow](assets/workflow.drawio.svg)
 
 # Experimentos e Resultados preliminares
 
@@ -73,16 +73,16 @@ Nesta primeira fase do experimento, iremos analisar as imagens disponibilizadas 
 Os resultados obtidos inicialmente podem ser visualizados nos gráficos abaixo:
 
 **Perda na base de treinamento**
-![AlexNet Train Loss](Images/Kaggle_AlexNet/train_loss.png)
+![AlexNet Train Loss](assets/Images/Kaggle_AlexNet/train_loss.png)
 
 **Acurácia na base de treinamento**
-![AlexNet Train Acc](Images/Kaggle_AlexNet/train_acc.png)
+![AlexNet Train Acc](assets/Images/Kaggle_AlexNet/train_acc.png)
 
 **Perda na base de testes**
-![AlexNet Test Loss](Images/Kaggle_AlexNet/test_loss.png)
+![AlexNet Test Loss](assets/Images/Kaggle_AlexNet/test_loss.png)
 
 **Acurácia na base de testes**
-![AlexNet Test Acc](Images/Kaggle_AlexNet/test_acc.png)
+![AlexNet Test Acc](assets/Images/Kaggle_AlexNet/test_acc.png)
 
 Notamos que a melhor acurácia obtida com a base de testes foi de cerca de **0.875**.
 
