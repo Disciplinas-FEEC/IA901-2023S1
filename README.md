@@ -18,7 +18,7 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 **Descrição do objetivo principal do projeto, incluindo contexto gerador, motivação.**
 
 O objetivo do projeto é desenvolver um sistema de classificação de imagens de lesões de pele em malignas e benignas utilizando arquiteturas de redes neurais convolucionais. O sistema visa fornecer uma ferramenta precisa e eficiente para ajudar na detecção precoce de tumores malignos, contribuindo para o diagnóstico médico e reduzindo a taxa de 
-falsos negativo (ou seja, o classificador classifica como "benigno" quando na verdade é "maligno").
+falsos negativo (ou seja, o classificador classifica como "benigno" quando na verdade é "maligno"). Um complemento, por exemplo, seria melhorar o recall, que é a taxa de malignos classificados como malignos.
 
 O contexto gerador do projeto é a necessidade de melhorar a precisão na classificação de lesões de pele em imagens médicas. Com uma base de dados de 33.007 imagens, das quais apenas 582 são de tumores malignos, o projeto enfrenta o desafio de lidar com um conjunto de dados altamente desequilibrado. A classificação precisa dessas imagens é essencial para identificar corretamente os casos malignos e benignos, a fim de fornecer um diagnóstico adequado e tomar decisões de tratamento adequadas.
 
