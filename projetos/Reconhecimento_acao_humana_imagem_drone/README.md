@@ -178,12 +178,9 @@ Para as próximas etapas, pretende-se:
 
 O cronograma a seguir apresenta o tempo estimado para cada etapa futura:
 
-<!--
-> Incluir a figura
-> <p align="left">
-    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/Dados_selecionados_treino_teste_validacao.png" height="350">
-> </p>
--->
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/Cronograma_etapas_futuras.png" height="200">
+</p>
 
 ## Referências
 
