@@ -181,7 +181,7 @@ Conforme pode-se ver na tabela anterior, as métricas obtidas adotando apenas 10
 
 As figuras a seguir também apresentam resultados obtidos com os treinamentos realizados até o momento (10 épocas).
 
-**- Experimento 1: adoção dos dados brutos (imagens RGB):**
+**- Experimento 1 - adoção dos dados brutos (imagens RGB):**
 
 <p align="left">
     <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_rbg.png" height="350">
@@ -191,7 +191,7 @@ As figuras a seguir também apresentam resultados obtidos com os treinamentos re
     <img src="../Reconhecimento_acao_humana_imagem_drone/assets/results_rgb.png" height="350">
 </p>
 
-**- Experimento 2: utilização de imagens em escala de cinza:**
+**- Experimento 2 - utilização de imagens em escala de cinza:**
 
 <p align="left">
     <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_nc.png" height="350">
@@ -201,7 +201,7 @@ As figuras a seguir também apresentam resultados obtidos com os treinamentos re
     <img src="../Reconhecimento_acao_humana_imagem_drone/assets/results_nc.png" height="350">
 </p>
 
-**- Experimento 3: imagens obtidas com o filtro de Sobel:**
+**- Experimento 3 - imagens obtidas com o filtro de Sobel:**
 
 <p align="left">
     <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_sobel.png" height="350">
@@ -211,7 +211,7 @@ As figuras a seguir também apresentam resultados obtidos com os treinamentos re
     <img src="../Reconhecimento_acao_humana_imagem_drone/assets/results_sobel.png" height="350">
 </p>
 
-**- Experimento 4: imagens obtidas com o filtro de Prewitt:**
+**- Experimento 4 - imagens obtidas com o filtro de Prewitt:**
 
 <p align="left">
     <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_prewitt.png" height="350">
@@ -227,9 +227,9 @@ De maneira geral, os principais desafios enfrentados até o momento estão relac
 
 Apesar dos resultados insatisfatórios obtidos nessa versão preliminar, é possível realizar inferências, como se pode visualizar na imagem do conjunto de Teste apresentada a seguir. Assim, o grupo espera que, com novos treinamentos e, se necessário, adoção de *Data augmentation*, possa-se obter resultados satisfatórios na entrega final do projeto.
 
-
-
-
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/Result_1.png" height="450">
+</p>
 
 # Próximos passos
 
