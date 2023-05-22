@@ -138,24 +138,24 @@ Experimento <br /><sub>Experiment</sub>        | Resultados <br /><sub>Results</
 <!---
 > Liste as próximas etapas planejadas para conclusão do projeto, com uma estimativa de tempo para cada etapa
 -->
-- [x] Entrega 1 - Formulário com informações gerais do projeto (Sérgio, Juan Carlos e Luiza)
-- [x] Entrega 2: 
-    - [x] Script 1: Identificação de imagens com erro e dados sobre o dataset 
-    - [x] Script 2: para treinamento/teste das redes convolucionais para segmentação 
-    - [x] Organização preliminar GitHub 
-- [ ] Entrega 3: 
-    - [ ] Rede convolucional para segmentação
-        - [ ] Junção dos dois scripts da Entrega 2
-        - [ ] Data-augmentation nas imagens de entrada para melhoria de resultados 
-        - [ ] Otimização dos hiperparâmetros da rede convolucional (grid-search)
-        - [ ] Pós-processamento da segmentação realizada
-    - [ ] Treinamento e teste da rede neural para estimação da potência da geração fotovoltaica
-        - [ ] Definição dos dados de entrada
-        - [ ] Avaliação dos resultados
-        - [ ] Otimização dos hiperparâmetros da rede neural 
-    - [ ] Avaliações quantitativas (segmentação e estimação) e qualitativas (segmentação)
-    - [ ] Nova atualização do Git (readme, workflow, notebooks) 
-- [ ] Finalização do projeto :tada:
+- [x] Entrega 1 - Formulário com informações gerais do projeto </br><sub>Delivery 1 - Forms with general project information </sub>
+- [x] Entrega 2:</br><sub>Delivery 2:</sub> 
+    - [x] Script 1: Identificação de imagens com erro e dados sobre o dataset </br><sub> Identification of images with errors and dataset information </sub>
+    - [x] Script 2: para treinamento/teste das redes convolucionais para segmentação </br><sub> Convolutional network training/testing for segmentation </sub>
+    - [x] Organização preliminar GitHub </br><sub> Preliminary GitHub organization </sub>
+- [ ] Entrega 3: </br><sub>Delivery 3:</sub>
+    - [ ] Rede convolucional para segmentação </br><sub>Convolutional network for segmentation</sub>
+        - [ ] Integração dos dois scripts da Entrega 2 </br><sub> Integration of the two scripts from Delivery 2</sub>
+        - [ ] Data-augmentation nas imagens de entrada para melhoria de resultados </br><sub> Data augmentation on input images for improved results</sub>
+        - [ ] Otimização dos hiperparâmetros da rede convolucional (grid-search) </br><sub> Optimization of convolutional network hyperparameters (grid search)</sub>
+        - [ ] Pós-processamento da segmentação realizada </br><sub> Post-processing of the segmentation results</sub>
+    - [ ] Treinamento e teste da rede neural para estimação da potência da geração fotovoltaica </br><sub>Training and testing of the neural network for photovoltaic generation power estimation </sub>
+        - [ ] Definição dos dados de entrada</br><sub> Definition of input data</sub>
+        - [ ] Avaliação dos resultados</br><sub>Evaluation of results </sub>
+        - [ ] Otimização dos hiperparâmetros da rede neural </br><sub>Optimization of neural network hyperparameters</sub>
+    - [ ] Avaliações quantitativas (segmentação e estimação) e qualitativas (segmentação)</br><sub> Quantitative evaluations (segmentation and estimation) and qualitative evaluations (segmentation)</sub>
+    - [ ] Atualização do Git (readme, workflow, notebooks) </br><sub>Git update (readme, workflow, notebooks) </sub>
+- [ ] Finalização do projeto </br><sub> Project completion </sub> :tada: 
 
 ## Referências <br /> <sub> References </sub>
 <!---
