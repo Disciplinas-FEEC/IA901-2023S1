@@ -157,10 +157,6 @@ Quanto às bibliotecas adotadas no projeto, todas se encontram definidas no arqu
 O workflow dos nossos procedimentos é apresentado na figura acima. Inicialmente os dados são baixados da plataforma Kaggle e colocados em uma pasta do GoogleDrive compartilhada entre os membros do projeto. A partir disso, um notebook [Dados.ipynb](../Reconhecimento_acao_humana_imagem_drone/notebooks/Dados.ipynb) é rodado para uma seleção e filtragem prévia dos dados, retirando-se imagens com rótulos diferentes de ['walk','stand','sit','riding'], separando o dataset nos conjuntos de treino, validação e teste. Isto tudo engloba o bloco "Data Wrangling I". Em seguida, opcionalmente, um [pre processamento](../Reconhecimento_acao_humana_imagem_drone/notebooks/Pre_processing.ipynb) é rodado nas imagens (transformações de cor, aplicação de filtros, etc). Está etapa é chamada de "Data Pre-Processing", e é opcional pois é possível rodar com os dados crus. Por fim, a etapa de "Data Wrangling II" é rodada ("[Creating labels from folders.ipynb](../Reconhecimento_acao_humana_imagem_drone/notebooks/Creating_labels_from_folders.ipynb)") para formatar os dados de acordo com a pipeline da Yolov7, isto é, formatação das labels por imagem e organização das pastas. Por fim, podemos rodar o [training_template.ipynb](../Reconhecimento_acao_humana_imagem_drone/notebooks/Template_tutorial.ipynb) para treinar o modelo e [inference.ipynb](../Reconhecimento_acao_humana_imagem_drone/notebooks/Inference_notebook.ipynb) para a avaliação dos resultados.
 
 # Experimentos e Resultados preliminares
-<!--
-> Descreva de forma sucinta e organizada os experimentos realizados
-> Para cada experimento, apresente os principais resultados obtidos
-> Aponte os problemas encontrados nas soluções testadas até aqui-->
 
 Na primeira parte do projeto buscou-se um melhor entendimento sobre o conjunto de dados utilizado bem como da rede YOLOv7 que será usada tanto no reconhecimento de pessoas em imagens de drone quanto na classificação de suas ações. Assim, inicialmente foi feita uma seleção de imagens para garantir que todas estivessem devidamente rotuladas (com labels conhecidas) e que de fato estivessem presentes tanto na pasta de imagens original quanto no csv original (algumas imagens apareciam no csv mas não estavam presentes nas pastas de imagem). Dessa forma, depois de dividir as imagens em três grupos (treino, teste e validação) foi feita uma etapa de processamento afim de futuramente avaliar o desempenho da rede. Com isso, foram aplicadas 4 técnicas de processamento:
 
@@ -181,22 +177,49 @@ Escala de Cinza |  0.526   |  0.0168 | 0.00558  |
 Filtro Sobel |     0.555    |  0.131  |  0.0341 |
 Filtro de Prewitt   |  0.277   | 0.073  | 0.0117
 
-
-
-
-
 Conforme pode-se ver na tabela anterior, as métricas obtidas adotando apenas 10 épocas de treinamento são ruins. Destaca-se que mais épocas não foram utilizadas em função da limitação de GPU ao usar a plataforma Google Colaboratory. 
 
 As figuras a seguir também apresentam resultados obtidos com os treinamentos realizados até o momento (10 épocas). Verifica-se que a classe com melhor desempenho é "walk" - que possui maior número de amostras. Assim, se após os próximos experimentos (treinamentos com 30 épocas, *a priori*), ainda houver baixo desempenho para as demais classes, será aplicado *Data augmentation*.
 
 **- Experimento 1: adoção dos dados brutos (imagens RGB):**
 
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_rbg.png" height="350">
+</p>
+
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/results_rgb.png" height="350">
+</p>
+
 **- Experimento 2: utilização de imagens em escala de cinza:**
+
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_nc.png" height="350">
+</p>
+
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/results_nc.png" height="350">
+</p>
 
 **- Experimento 3: imagens obtidas com o filtro de Sobel:**
 
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_sobel.png" height="350">
+</p>
+
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/results_sobel.png" height="350">
+</p>
+
 **- Experimento 4: imagens obtidas com o filtro de Prewitt:**
 
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_prewitt.png" height="350">
+</p>
+
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/results_prewitt.png" height="350">
+</p>
  
 De maneira geral, os principais desafios enfrentados até o momento estão relacionados às limitações do uso da plataforma Google Collaboratory; ao tamanho das imagens - o que implica na demora do treinamento por época; no rearranjo do conjunto de dados escolhido para se adequar a rede YOLOv7 e na escolha de um pré processamento que melhore o desempenho da rede.
 
