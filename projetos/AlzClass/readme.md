@@ -19,8 +19,16 @@ Esse projeto parte da motivação de se realizar algo que pudesse, de alguma for
 Um classificador de pacientes com Alzheimer é algo que tem se desenvolvido na comunidade, pois é uma realidade recorrente da sociedade atual e partimos da ideia de projetarmos um classificador no qual consigamos obter uma acurácia melhor do que encontramos em nossas pesquisas até aqui. O diagnóstico precoce correto é extremante necessário, de forma que, toda melhoria obtida para proporcionar um diagnóstico cada vez mais seguro é muito importante para o avanço da comunidade médica e dos grupos de estudo. Assim, acreditamos que sendo possível projetar esse classificador em busca dessa melhoria na acurácia dos resultados, será possível aplicar essa melhoria nos diagnósticos futuros.
 
 # Metodologia
-> Proposta de metodologia incluindo especificação de quais técnicas pretende-se explorar. Espera-se que nesta entrega você já seja capaz de descrever de maneira mais específica (do que na Entrega 1) quais as técnicas a serem empregadas em cada etapa do projeto.
+Para iniciar este projeto procuramos determinar qual o dataset mais apropriado para este projeto. Encontramos um conjunto rico de imagens de ressonância magnética disponíveis com acesso livre no site do OASIS (Open Access Series of Imaging Studies), que definimos como o dataset base para o desenvolvimento do projeto.
+Em uma análise preliminar dos dados no OASIS notamos que o processamento das imagens é custoso e portanto definimos que a exploração inicial seria realizada em uma base mais simples como as disponíveis no Kaggle, e em particular escolhemos a Kaggle Alzheimer MRI Preprocessed Dataset.
+Para a exploração inicial utilizamos códigos de livre acesso disponíveis no site.
 
+Propomos como próximos passos para o projeto:
+* Definição de etapas de pré-processamento de imagens para melhorar as métricas de classificação.
+* Uso de técnicas de balanceamento de classes no dataset para melhoria de métricas de classificação.
+* Exploração e comparação entre arquiteturas de redes neurais para a solução do problema de classificação (AlexNet, ResNet e InceptionV4). Em especial, selecionamos estas arquiteturas ....
+* Comparação dos resultados utilizando a base disponível no OASIS (OASIS 1).
+* Comparação com resultados disponíveis na literatura.
 
 ## Bases de Dados e Evolução
 
