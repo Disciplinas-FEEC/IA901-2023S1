@@ -58,7 +58,7 @@ A metodologia do projeto conta com o uso de um dataset anotado disponibilizado n
  
 Base de Dados <br /><sub>Database</sub>| Endereço na Web <br /><sub>Link</sub> | Resumo descritivo <br /><sub>Descriptive Summary</sub>
 ----- | ----- | -----
-A crowdsourced dataset of aerial images with annotated solar photovoltaic  arrays and installation metadata | https://zenodo.org/record/7358126#.ZDVdg3bMK39 | * Installation metadata for more than 28000 installations </br>* Ground truth segmentation masks for 13000 installations, including 7000 with annotations for two different image providers. </br>* Installation metadata that matches the annotation for more than 8000 installations. </br> * Dataset applications include end-to-end PV registry construction, robust PV installations mapping, and analysis of crowdsourced datasets.
+A crowdsourced dataset of aerial images with annotated solar photovoltaic  arrays and installation metadata | https://zenodo.org/record/7358126#.ZDVdg3bMK39 | * Installation metadata for more than 28000 installations </br> - Ground truth segmentation masks for 13000 installations, including 7000 with annotations for two different image providers. </br> - Installation metadata that matches the annotation for more than 8000 installations. </br> - Dataset applications include end-to-end PV registry construction, robust PV installations mapping, and analysis of crowdsourced datasets.
 
 ### A crowdsourced dataset of aerial images with annotated solar photovoltaic  arrays and installation metadata  
 <!---
@@ -99,11 +99,20 @@ Experimento <br /><sub>Experiment</sub>        | Resultados <br /><sub>Results</
 <!---
 > Liste as próximas etapas planejadas para conclusão do projeto, com uma estimativa de tempo para cada etapa
 -->
-- [x] Entrega 1 - formulário com informações gerais do projeto
-- [x] Entrega 2 - Testes preliminares e organização GitHub
-- [ ] Correção de erros, melhorias hiperparâmetros da rede convolucional --> Melhorar resultados usando a base IGN como teste
-- [ ] Rede neural para previsão da geração fotovoltaica
-- [ ] Avaliação qualitativa da segmentação
+- [x] Entrega 1 - formulário com informações gerais do projeto (Sérgio, Juan Carlos e Luiza)
+- [x] Entrega 2: 
+    - [x] Script para remoção de imagens com erro (Sérgio)
+    - [x] Script para treinamento/teste das redes convolucionais para segmentação (Juan Carlos)
+    - [x] Organização preliminar GitHub (Luiza) 
+- [ ] Entrega 3: 
+    - [ ]Data-augmentation nas imagens de entrada para melhorar resultados 
+    - [ ] Melhorias dos hiperparâmetros da rede convolucional 
+    - [ ] Pós-processamento da segmentação realizada
+    - [ ] Treinamento e teste da rede neural para previsão da geração fotovoltaica
+        - [ ] Definição dos dados de entrada
+        - [ ] Avaliação dos resultados
+    - [ ] Melhorias nos hiperparâmetros da rede neural 
+    - [ ] Avaliações quantitativas e qualitativas
 - [ ] Finalização do projeto :tada:
 
 ## Referências (ATUALIZAR SE NECESSÁRIO)  <br /> <sub> References </sub>
