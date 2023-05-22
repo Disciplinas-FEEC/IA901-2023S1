@@ -119,7 +119,7 @@ Experimento <br /><sub>Experiment</sub>        | Resultados <br /><sub>Results</
     - [ ] Treinamento e teste da rede neural para estimação da potência da geração fotovoltaica
         - [ ] Definição dos dados de entrada
         - [ ] Avaliação dos resultados
-        - [ ] Melhorias nos hiperparâmetros da rede neural 
+        - [ ] Otimização dos hiperparâmetros da rede neural 
     - [ ] Avaliações quantitativas (segmentação e estimação) e qualitativas (segmentação)
     - [ ] Nova atualização do Git (readme, workflow, notebooks) 
 - [ ] Finalização do projeto :tada:
