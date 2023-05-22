@@ -48,9 +48,9 @@ Therefore, this project aims to segment solar panels in satellite images using i
 > Proposta de metodologia incluindo especificação de quais técnicas pretende-se explorar. Espera-se que nesta entrega você já seja capaz de descrever de maneira mais específica (do que na Entrega 1) quais as técnicas a serem empregadas em cada etapa do projeto.
 -->
  
-A metodologia do projeto adotada até agora (22 de maio de 2023) contou com o uso de um dataset anotado disponibilizado num artigo científico, e com redes convolucionais (U-Net, Resnet) para segmentação dos painéis solares. 
+A metodologia do projeto adotada até agora (22 de maio de 2023) contou com o uso de um dataset anotado disponibilizado num artigo científico, e com redes convolucionais (U-Net, Resnet) para segmentação dos painéis solares. As redes convolucionais são utilizadas para aprenderem os filtros que resultem na segmentação desejada. 
 
-Uma mini U-Net foi treinada do zero, enquanto uma Resnet já treinada apenas teve atualização dos pesos sinápticos. 
+Assim, uma mini U-Net foi treinada do zero e seu desempenho foi avaliado para o dataset do Google. Por outro lado, uma Resnet 50 já treinada teve apenas um processo de fine-tunning com a base do Google para segmentar os painéis solares. A Resnet50 foi testada com as imagens do IGN também.
  
 ## Bases de Dados e Evolução  <br /> <sub> Databases and evolution </sub>
 <!---
@@ -60,7 +60,9 @@ Uma mini U-Net foi treinada do zero, enquanto uma Resnet já treinada apenas tev
  
 Base de Dados <br /><sub>Database</sub>| Endereço na Web <br /><sub>Link</sub> | Resumo descritivo <br /><sub>Descriptive Summary</sub>
 ----- | ----- | -----
-A crowdsourced dataset of aerial images with annotated solar photovoltaic  arrays and installation metadata | https://zenodo.org/record/7358126#.ZDVdg3bMK39 | - Installation metadata for more than 28000 installations </br> - Ground truth segmentation masks for 13000 installations, including 7000 with annotations for two different image providers. </br> - Installation metadata that matches the annotation for more than 8000 installations. </br> - Dataset applications include end-to-end PV registry construction, robust PV installations mapping, and analysis of crowdsourced datasets.
+Um conjunto de dados colaborativo de imagens aéreas com arranjos fotovoltaicos solares anotados e metadados de instalação</br><sub>A crowdsourced dataset of aerial images with annotated solar photovoltaic  arrays and installation metadata</sub> | https://zenodo.org/record/7358126#.ZDVdg3bMK39 | - Metadados de instalação para mais de 28.000 instalações </br> - Máscaras de segmentação para 13.000 instalações, incluindo 7.000 com anotações de dois provedores de imagem diferentes (Google e IGN) </br> - Metadados de instalação que correspondem à anotação para mais de 8.000 instalações </br> - As aplicações do conjunto de dados incluem a construção de registros de energia solar fotovoltaica completos, mapeamento robusto de instalações de energia solar e análise de conjuntos de dados colaborativos.<sub>- Installation metadata for more than 28000 installations </br> - Ground truth segmentation masks for 13000 installations, including 7000 with annotations for two different image providers (Google and IGN). </br> - Installation metadata that matches the annotation for more than 8000 installations. </br> - Dataset applications include end-to-end PV registry construction, robust PV installations mapping, and analysis of crowdsourced datasets.</sub>
+
+Information provided in the reference article of the dataset.
 
 ### A crowdsourced dataset of aerial images with annotated solar photovoltaic  arrays and installation metadata  
 <!---
@@ -70,16 +72,47 @@ A crowdsourced dataset of aerial images with annotated solar photovoltaic  array
 > * Inclua um sumário com estatísticas descritivas da(s) base(s) de estudo.
 > * Utilize tabelas e/ou gráficos que descrevam os aspectos principais da base que são relevantes para o projeto.
 -->
-GRÁFICOS E TABELAS -- JUAN CARLOS
+
+A base de dados contém imagens de satélite do Google e do IGN, bem como uma planilha de metadados. 
+
+Cada um dos provedores de imagens possui duas pastas denominadas 'img' e 'mask'. Na pasta 'img' há várias imagens de satélite, enquanto na pasta 'mask' há a segmentação realizada. Entretanto, há imagens sem painéis solares, e que não possuem máscara. 
+
+Exemplos de imagem e máscara GOOGLE:
+![Imagem satélite Google](./data/raw/google/img/GBJXZ623CKGXDH.png)
+![Imagem máscara Google](./data/raw/google/mask/GBJXZ623CKGXDH.png)
+
+Exemplos de imagem e máscara IGN: 
+![Imagem satélite IGN](./data/raw/ign/img/KDZUH41C9ZAKON.png)
+![Imagem máscara IGN](./data/raw/ign/mask/KDZUH41C9ZAKON.png)
+
+Além disso, há algumas imagens que apresentam erro:
+
+![Imagem com erro Google](./data/raw/google/img/LYUJB6EC9XBZKI.png)
+![Imagem com erro IGN](./data/raw/ign/img/BVSCV7297FJAON.png)
+
+
+|Provedor de Imagem </br><sub></sub>Image Provider|Imagens </br><sub>Images</sub>|Observações</br><sub>Notes</sub>|
+|------------------|-------|-----------|
+|Google|Imagens de satélite: 28825 </br>Máscaras: 13303</br>Imagens com erro: 177</br><sub>Images: 28825 </br>Masks: 13303</br>Error Images: 177</sub>|Imagem aberta com PIL tipo 'P'</br><sub>Sattelite Images opened with PIL, type 'P'</sub>|
+|IGN   |Imagens de satélite: 17334 </br>Máscaras: 7685</br>Imagens com erro: 95 </br><sub>Sattelite Images: 17334 </br>Masks: 7685</br>Error Images: 95 </sub>|Imagem aberta com PIL tipo 'RGBA'</br><sub> Images opened with PIL type 'RGBA'</sub>|
+
+Para utilização dos datasets para treino da rede convolucional, os conjuntos para treino, validação e teste foram divididos conforme imagens abaixo. Lembrando que nessa primeira etapa não estamos utilizando a base IGN.
+</br><sub>For the training of the convolutional network using the datasets, the sets for training, validation, and testing were divided as shown in the images below. It is important to note that in this initial stage, we are not using the IGN dataset.</sub>
+
+#### Google
+![Google Dataset Segmentation](./assets/google.pdf)
+
+#### IGN
+![IGN Dataset Segmentation](./assets/ign.pdf)
 
 # Ferramentas  <br /> <sub> Tools </sub>
 <!---
 > Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
 -->
-- TensorFlow 
+- TensorFlow
 - Sk Learn
 - Matplotlib
-- LucidChart 
+- LucidChart (Workflow)
 - ...
 
 # Workflow 
