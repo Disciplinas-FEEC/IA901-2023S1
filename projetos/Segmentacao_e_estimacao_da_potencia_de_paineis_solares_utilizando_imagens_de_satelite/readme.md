@@ -86,7 +86,7 @@ GRÁFICOS E TABELAS -- JUAN CARLOS
 > Você pode optar por usar um gerenciador de workflow (Sacred, Pachyderm, etc) e nesse caso use o gerenciador para gerar uma figura para você.
 > Lembre-se que o objetivo de desenhar o workflow é ajudar a quem quiser reproduzir seus experimentos. 
 -->
- 
+![Workflow](./assets/workflow.svg)
 # Experimentos e Resultados preliminares  <br /> <sub> Experiments and Preliminary Results </sub>
 <!---
 > Descreva de forma sucinta e organizada os experimentos realizados
