@@ -43,27 +43,24 @@ O câncer de pele é uma das formas mais comuns de câncer em todo o mundo, e a 
 
 # Metodologia
 
-1. Pré-processamento de dados:
-* Normalização da imagem: aplicaremos técnicas de normalização para garantir que todas as imagens tenham uma escala e um intervalo de valores consistentes;
-* Data augmentation: estudos que avaliam técnicas de aumentação de dados com foco em lesões de pele foram considerados. O conjunto de técnicas envolvem recortes aleatórios na imagem, rotação aleatoria em até 90 graus, cisalhamento, escalar imagens para criar novas formas de lesões, espelhamento e mudança de Matiz (Hue). 
+*1. Pré-processamento de dados:*
+* Normalização da imagem: aplicar técnicas de normalização para garantir que todas as imagens tenham uma escala e um intervalo de valores consistentes;
+* Data augmentation: estudos que avaliam técnicas de aumentação de dados com foco em lesões de pele foram considerados. O conjunto de técnicas envolvem recortes aleatórios na imagem, rotação aleatoria em até 90 graus, cisalhamento, escalar imagens para criar novas formas de lesões, espelhamento e mudança de matiz (Hue). O data augmentation é aplicado com o objetivo de aumentar a diversidade dos dados de treinamento, permitindo que o modelo aprenda a generalizar melhor e a lidar com diferentes variações nos dados de entrada.
 
-Essas técnicas de aumento de dados são aplicadas com o objetivo de aumentar a diversidade dos dados de treinamento, permitindo que o modelo aprenda a generalizar melhor e a lidar com diferentes variações nos dados de entrada.
+*2. Extração de recursos:*
 
-2. Extração de recursos:
+* Extração de recursos baseada em aprendizado profundo: utilização de redes neurais convolucionais (CNNs) pré-treinadas, como ResNet, para extrair recursos de alto nível de imagens.
 
-* Extração de recursos baseada em aprendizado profundo: usaremos redes neurais convolucionais (CNNs) pré-treinadas, como ResNet, para extrair recursos de alto nível de imagens.
+*3. Avaliação e validação:*
 
-3. Avaliação e validação:
+- Divisão de dados: organizar o conjunto de dados em bancos de treinamento, validação e teste para avaliar e validar o desempenho do modelo. 
+- Métricas de avaliação: precisão, sensibilidade, acurácia e área sob a curva ROC (AUC) para avaliar a qualidade do discriminador e comparar os resultados obtidos, além da taxa de falsos negativos.
 
-- Divisão de dados: separaremos nosso conjunto de dados em conjuntos de treinamento, validação e teste para avaliar e validar o desempenho do modelo.
+*5. Melhoria e refinamento:*
 
-- Métricas de avaliação: usaremos métricas como precisão, recall, acurácia e área sob a curva ROC (AUC) para avaliar a qualidade de nossas classificações e comparar os resultados obtidos, além da taxa de falsos negativos.
+- Análise de erros: investigar os casos em que nosso modelo cometeu erros e analisaremos as causas subjacentes para identificar possíveis melhorias.
 
-5. Melhoria e refinamento:
-
-- Análise de erros: investigaremos os casos em que nosso modelo cometeu erros e analisaremos as causas subjacentes para identificar possíveis melhorias.
-
-- Ajuste e refinamento do modelo: Faremos iterações adicionais para ajustar e refinar nosso modelo com base nos resultados obtidos na etapa de avaliação e validação.
+- Ajuste e refinamento do modelo: explorar técnicas relevantes na literatura como esembles, segmentação da lesão na imagem, além de iterações adicionais para ajustar e refinar o modelo com base nos resultados obtidos na etapa validação.
 
 ## Bases de Dados e Evolução
 
@@ -71,7 +68,7 @@ Base de Dados | Endereço na Web | Resumo descritivo
 ----- | ----- | -----
 SIIM-ISIC Melanoma Classification | https://www.kaggle.com/competitions/siim-isic-melanoma-classification/data |  O conjunto possui imagens de lesões de pele, tanto de melanomas benignos quanto malignos.
 
-A base possui 88251 imagens do tipo dicom, jpg e tfrecords, totalizando 116.16 GB de tamanho e anotações de identificador exclusivo da imagem, identificador único do paciente, sexo, idade aproximada do paciente no momento da imagem, localização do site com imagem, informações de diagnóstico detalhadas e indicador de malignidade da lesão. Para este projeto, serão utilizadas apenas as imagens jpg, totalizando 33007 arquivos.
+A base possui 88251 imagens do tipo dicom, jpg e tfrecords, totalizando 116.16 GB de tamanho com anotações de identificador exclusivo da imagem, identificador único do paciente, sexo, idade aproximada do paciente no momento da imagem, localização do site com imagem, informações de diagnóstico detalhadas e indicador de malignidade da lesão. Para este projeto, serão utilizadas apenas as imagens jpg, totalizando 33007 arquivos.
 
 Não houve necessidade de reanotação dos dados para o conjunto proposto. No entanto, a base possui 2056 pacientes distintos, onde muitos se repetem por possuir mais de uma lesão de pele. Ainda, é importante ressaltar que, para a separação dos conjuntos de treino e validação, garantiu-se que pacientes repetidos tivessem todas as suas imagens em apenas um dos conjuntos. Dessa forma, não há possibilidade de que a rede treinada confunda a classificação de lesões malignas ou benignas por reconhecer o padrão de pele do paciente nas fotos.
 
@@ -87,37 +84,25 @@ Estatísticas quantitativas | Mínimo | Máximo | Média
 Idade | 0 | 90 | 55
 
 # Ferramentas
-Utilizaremos neste projeto o Google Colab inicialmente para treinamento das redes com GPUs. Algumas bibliotecas utilizadas são:
-Keras, pela facilidade de manuseio dos algoritmos de aprendizado de máquina e processamento de imagens
-
-OS, para movimentação dos arquivos
-
-Numpy, para realização de cálculos diversos
-
-Matplotlib, utilizada para plotar gráficos variados
-
-Tensorflow, para utilização de modelos de aprendizado de máquina
-
-Draw.IO, para confecção do Workflow
+O projeto será realizado com o auxilio do Google Colab para treinamento das redes com GPUs. Ainda, bibliotecas como:
+Keras e Tensorflow, pela facilidade de manuseio dos algoritmos de aprendizado de máquina e processamento de imagens;
+Sklearn, para avaliar métricas de resultados dos classificadores;
+OS e Shutil, para movimentação dos arquivos entre diretórios;
+Numpy, para realização de cálculos diversos;
+Matplotlib, utilizada para plotar gráficos variados; e
+Draw.IO, para confecção do Workflow.
 
 # Workflow
-> Use uma ferramenta que permita desenhar o workflow e salvá-lo como uma imagem (Draw.io, por exemplo). Insira a imagem nessa seção.
-> Você pode optar por usar um gerenciador de workflow (Sacred, Pachyderm, etc) e nesse caso use o gerenciador para gerar uma figura para você.
-> Lembre-se que o objetivo de desenhar o workflow é ajudar a quem quiser reproduzir seus experimentos. 
-
 
 ![Test](/Figuras/Workflow_Melanoma.png "Workflow")
 
 # Experimentos e Resultados preliminares
-> Descreva de forma sucinta e organizada os experimentos realizados
-> Para cada experimento, apresente os principais resultados obtidos
-> Aponte os problemas encontrados nas soluções testadas até aqui
 
-Os experimentos foram realizados através de diferentes arquiteturas, tamanhos de batch e transformações de dados com augmentation. Ainda, devido a quantidade de imagens os primeiros testes foram realizados em uma amostra de dados menor, visando garantir que os primeiros testes iriam ocorrer corretamente ao longo de todo o fluxo de pré processamento, treinamento e validação dos resultados. Dessa forma, os experimentos basearam-se da seguinte forma:
+Os experimentos foram realizados através de diferentes arquiteturas, tamanhos de batch e transformações de data augmentation. Ainda, devido a quantidade de imagens, os primeiros testes foram realizados em uma amostra de dados menor, visando garantir que as primeiras aplicações iriam ocorrer corretamente ao longo de todo o fluxo de pré processamento, treinamento e validação dos resultados. Dessa forma, os experimentos basearam-se da seguinte forma:
 
 Experimento 1 - CNN com o Conjunto "Benigno" Diminuído<br>
 ----- 
-Descrição: Diminuímos o conjunto de dados de treinamento e validação benigno para 10% do tamanho total, para observar o comportamento em relação à acurácia e AUC. 
+Descrição: o conjunto foi aleatoriamente selecionado para 10% do tamanho total, para observar o comportamento em relação à acurácia e AUC. 
 Metodologia: As imagens foram aleatoriamente selecionadas para que o tamanho do conjunto de dados Benigno se tornasse 10% do tamanho original. As imagens foram então usadas para treinamento de uma rede convolucional de alta complexidade. 
 Resultados: Os resultados de acurácia foram bastante altos, porém ainda há o mesmo problema de todas as amostras da classe maligna ser classificada como benigna. 
 Problemas: O experimento não permitiu concluir que a diminuição do desbalanceamento conduzisse a um resultado favorável de classificação da classe com menores amostras.
