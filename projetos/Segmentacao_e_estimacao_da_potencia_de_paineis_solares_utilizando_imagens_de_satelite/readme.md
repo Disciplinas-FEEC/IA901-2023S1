@@ -99,23 +99,36 @@ Experimento <br /><sub>Experiment</sub>        | Resultados <br /><sub>Results</
 <!---
 > Liste as próximas etapas planejadas para conclusão do projeto, com uma estimativa de tempo para cada etapa
 -->
-- [x] Entrega 1 - formulário com informações gerais do projeto (Sérgio, Juan Carlos e Luiza)
+- [x] Entrega 1 - Formulário com informações gerais do projeto (Sérgio, Juan Carlos e Luiza)
 - [x] Entrega 2: 
-    - [x] Script para remoção de imagens com erro (Sérgio)
-    - [x] Script para treinamento/teste das redes convolucionais para segmentação (Juan Carlos)
+    - [x] Script 1: remoção de imagens com erro e separação dos conjuntos de treinamento, validação e teste(Sérgio)
+    - [x] Script 2: para treinamento/teste das redes convolucionais para segmentação (Juan Carlos)
     - [x] Organização preliminar GitHub (Luiza) 
 - [ ] Entrega 3: 
-    - [ ]Data-augmentation nas imagens de entrada para melhorar resultados 
-    - [ ] Melhorias dos hiperparâmetros da rede convolucional 
-    - [ ] Pós-processamento da segmentação realizada
-    - [ ] Treinamento e teste da rede neural para previsão da geração fotovoltaica
+    - [ ] Rede convolucional para segmentação
+        - [ ] Junção dos dois scripts da Entrega 2
+        - [ ] Data-augmentation nas imagens de entrada para melhoria de resultados 
+        - [ ] Otimização dos hiperparâmetros da rede convolucional (grid-search)
+        - [ ] Pós-processamento da segmentação realizada
+    - [ ] Treinamento e teste da rede neural para estimação da potência da geração fotovoltaica
         - [ ] Definição dos dados de entrada
         - [ ] Avaliação dos resultados
-    - [ ] Melhorias nos hiperparâmetros da rede neural 
-    - [ ] Avaliações quantitativas e qualitativas
+        - [ ] Melhorias nos hiperparâmetros da rede neural 
+    - [ ] Avaliações quantitativas (segmentação e estimação) e qualitativas (segmentação)
 - [ ] Finalização do projeto :tada:
 
 ## Referências (ATUALIZAR SE NECESSÁRIO)  <br /> <sub> References </sub>
 <!---
 > Seção obrigatória. Inclua aqui referências utilizadas no projeto.
 -->
+
+"Segmentation of Satellite Images of Solar Panels Using Fast Deep Learning Model" - https://www.ijrer.org/ijrer/index.php/ijrer/article/view/11607/pdf
+
+
+"Estimation of rooftop solar energy generation using Satellite Image Segmentation" - https://ieeexplore.ieee.org/document/8971578 
+
+"Panel Segmentation: A Python Package for Automated Solar Array Metadata Extraction Using Satellite Imagery" - https://ieeexplore.ieee.org/document/10008194 
+
+"SolarFinder: Automatic Detection of Solar Photovoltaic Arrays" - https://ieeexplore.ieee.org/abstract/document/9111006?casa_token=BRGGve63_NgAAAAA:hV2kmVbSGPzD9zfckkhISndDHbweEyD1FR4axwkAbxfs6EhkRfY2yR5Y0expG1xTn7-3nbiymck 
+
+"Multi-resolution dataset for photovoltaic panel segmentation from satellite and aerial imagery" - https://essd.copernicus.org/articles/13/5389/2021/ 
