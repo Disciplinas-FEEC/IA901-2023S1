@@ -86,6 +86,25 @@ Os resultados obtidos inicialmente podem ser visualizados nos gráficos abaixo:
 
 Notamos que a melhor acurácia obtida com a base de testes foi de cerca de **0.875**.
 
+## Rede Resnet com a base do Kaggle
+Seguindo essa fase do projeto, para fins de comparação, estamos realizando a classificação com a rede Resnet18, ao longo de 20 épocas.
+
+Os resultados são apresentados nos gráficos abaixo:
+
+**Perda na base de treinamento**
+![ResNet18 Train Loss](assets/Images/Kaggle_ResNet/train_loss.png)
+
+**Acurácia na base de treinamento**
+![ResNet18 Train Acc](assets/Images/Kaggle_ResNet/train_acc.png)
+
+**Perda na base de testes**
+![ResNet18 Test Loss](assets/Images/Kaggle_ResNet/test_loss.png)
+
+**Acurácia na base de testes**
+![ResNet Test Acc](assets/Images/Kaggle_ResNet/test_acc.png)
+
+O treinamento com a rede ResNet18 está em fase de testes, para garantirmos que os resultados obtidos não sofreram overfitting. Mas como primeiro resultado, temos que a acurácia obtida foi em torno de **0.97**
+
 # Próximos passos
 - Migração para o dataset do OASIS, criando um dataloader apropriado. (estimativa: 1 semana)
 - Executar o workflow definido pelo projeto na nova base, utilizando para classificação a rede InceptionV4 (estimativa: 2 semanas)
