@@ -105,7 +105,7 @@ Draw.IO, para confecção do Workflow
 
 Os experimentos foram realizados através de diferentes arquiteturas, tamanhos de batch e transformações de dados com augmentation. Ainda, devido a quantidade de imagens os primeiros testes foram realizados em uma amostra de dados menor, visando garantir que os primeiros testes iriam ocorrer corretamente ao longo de todo o fluxo de pré processamento, treinamento e validação dos resultados. Dessa forma, os experimentos basearam-se da seguinte forma:
 
-Experimento 1 - Diminuição da Quantidade de Imagens da Classe "Benigno"<br>
+Experimento 1 - CNN com o Conjunto "Benigno" Diminuído<br>
 ----- 
 Descrição: Diminuímos o conjunto de dados de treinamento e validação benigno para 10% do tamanho total, para observar o comportamento em relação à acurácia e AUC. 
 Metodologia: As imagens foram aleatoriamente selecionadas para que o tamanho do conjunto de dados Benigno se tornasse 10% do tamanho original. As imagens foram então usadas para treinamento de uma rede convolucional de alta complexidade. 
@@ -114,7 +114,7 @@ Problemas: O experimento não permitiu concluir que a diminuição do desbalance
 ![Test](/Figuras/exp3_resultados_treinamento.png "Curvas de Erro e AUC de Treinamento e Validação")
 ![Test](/Figuras/exp3_matriz.png "Matriz de Confusão")
 
-Experimento 2 - CNN com o conjunto completo
+Experimento 2 - CNN com o Conjunto Completo de Dados
 ----- 
 Descrição: Experimentos foram realizados com uma rede mais simples e manualmente construída a fim de verificar a métrica AUC no conjunto de dados de melanoma. Para efeitos de comparação, o mesmo conjunto de dados e exatamente a mesma divisão entre treinamento e validação foi utilizada. 24402 imagens foram usadas para treinamento, e 8608 imagens foram usadas para validação. Também a título de comparação, todas as imagens foram inseridas na rede convolucional com dimensões 224 x 224. <br>
 Metodologia: Uma rede neural de alta complexidade (muitas camadas convolucionais) foi treinada com as imagens do dataset por 20 épocas, semelhante ao treinamento efetuado com a Resnet50. <br>
