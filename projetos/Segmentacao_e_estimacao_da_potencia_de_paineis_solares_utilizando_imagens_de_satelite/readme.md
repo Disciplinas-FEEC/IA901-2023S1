@@ -37,9 +37,9 @@ Uma vez que a modernização dos sistemas elétricos de potência permite que se
 Dessa forma, pretende-se, neste projeto, segmentar painéis solares em imagens de satélite utilizando técnicas de análise de imagem e reconhecimento de padrões. Em seguida, pretende-se estimar a geração do sistema em questão, ustilizando redes neurais. 
 
 <sub> Modernizing electrical systems results from technological development, primarily driven by the pursuit of renewable energy sources. As a result, there has been a significant increase in the use of distributed energy resources, such as solar photovoltaic generation. Photovoltaic generation is the most widespread in residential areas worldwide due to its renewable nature and low acquisition cost compared to other renewable sources.
-\
+</br>
 Given that the modernization of power systems allows users to play an active role by injecting power into the system, energy distribution companies must monitor the adoption of these technologies for planning improvements and expansions. Photovoltaic generation is mainly installed on rooftops or in medium/large-scale solar farms. Since the sun is the energy source, satellite images can provide information on the locations of these photovoltaic panels.
-\
+</br>
 Therefore, this project aims to segment solar panels in satellite images using image analysis and pattern recognition techniques. Subsequently, the aim is to estimate the system's generation using neural networks.
 </sub>
  
@@ -58,7 +58,7 @@ A metodologia do projeto conta com o uso de um dataset anotado disponibilizado n
  
 Base de Dados <br /><sub>Database</sub>| Endereço na Web <br /><sub>Link</sub> | Resumo descritivo <br /><sub>Descriptive Summary</sub>
 ----- | ----- | -----
-A crowdsourced dataset of aerial images </br> with annotated solar photovoltaic </br> arrays and installation metadata | https://zenodo.org/record/7358126#.ZDVdg3bMK39 | * Installation metadata for more than 28000 installations </br> * Ground truth segmentation masks for 13000 installations, </br> including 7000 with annotations for two different image providers. </br> * Installation metadata that matches the annotation for more than 8000 installations. </br> Dataset applications include end-to-end PV registry construction, robust PV installations mapping, and analysis of crowdsourced datasets.
+A crowdsourced dataset of aerial images with annotated solar photovoltaic  arrays and installation metadata | https://zenodo.org/record/7358126#.ZDVdg3bMK39 | * Installation metadata for more than 28000 installations </br>* Ground truth segmentation masks for 13000 installations, including 7000 with annotations for two different image providers. </br>* Installation metadata that matches the annotation for more than 8000 installations. </br> * Dataset applications include end-to-end PV registry construction, robust PV installations mapping, and analysis of crowdsourced datasets.
 
 ### Título da Base 
 <!---
