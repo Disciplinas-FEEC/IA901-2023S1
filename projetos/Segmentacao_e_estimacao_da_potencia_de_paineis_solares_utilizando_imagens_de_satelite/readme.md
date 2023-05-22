@@ -112,7 +112,7 @@ Para utilização dos datasets para treino da rede convolucional, os conjuntos p
 > Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
 -->
 - TensorFlow
-- Sk Learn
+- Scikit-learn
 - Matplotlib
 - LucidChart (Workflow)
 - ...
