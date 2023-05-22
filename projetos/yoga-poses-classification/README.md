@@ -107,8 +107,12 @@ Para desenvolver a KNN, utilizou-se o módulo “sklearn.neighbors” da bibliot
 Por fim, para avaliar o desempenho da KNN e da CNN foram utilizadas as métricas de acurácia, acurácia balanceada, F1-score e matriz de confusão calculadas por meio de módulos da biblioteca “sklearn”.
 
 
-
 # Workflow
+
+A seguir, é mostrado o workflow do projeto.
+
+![plot_imgs_classe](./assets/Workflow.drawio.png)
+
 
 # Experimentos e Resultados preliminares
 
