@@ -9,7 +9,7 @@ O presente projeto foi originado no contexto das atividades da disciplina de pó
 |--|--|--|
 | Débora Simões  | 263621  | Doutorado em Engenharia Civil|
 | Lucas Ueda  | 156368  | Doutorado em Engenharia Elétrica|
-| Wesna de Araújo  | 225843  | Graduação em Engenharia Elétrica|
+| Wesna de Araujo  | 225843  | Graduação em Engenharia Elétrica|
 
 
 ## Descrição do Projeto
@@ -168,11 +168,20 @@ Na primeira parte do projeto buscou-se um melhor entendimento sobre o conjunto d
 
 Todas as técnicas aplicadas foram salvas em pastas intermediárias.
 
-Com o objetivo de fazer uma comparação entre as diferentes técnicas de processamento e os dados brutos (apenas com a seleção inicial) tentou-se fazer um primeiro treinamento com a rede YOLOv7 com os dados sem processamento utilizando a plataforma Google Collaboratory. Foram definidas como ponto de partida 10 épocas. No entanto, devido ao tamanho das imagens e da limitação de uso de GPU que o Google Collaboratory disponibiliza a rede foi treinada apenas até a época 4, não atingindo resultados satisfatórios.
+Com o objetivo de fazer uma comparação entre as diferentes técnicas de processamento e os dados brutos (apenas com a seleção inicial) fez-se um primeiro treinamento com a rede YOLOv7 com os dados sem processamento utilizando a plataforma Google Collaboratory. Foram definidas como ponto de partida 10 épocas considerando a demora do treinamento. Em seguida foram realizados treinamentos utilizando os dados pré processados em escala de cinza, com filtro de Sobel e por fim com o filtro de Prewitt. A tabela abaixo mostra os resultados preliminares de cada experimento.
+
+
+Processamento dos Dados | Precisão | Recall | mAP
+:-----: | :-----: | :-----: | :-----: |
+Dados brutos filtrados  |    0.32    |   0.211  | 0.0625
+Escala de Cinza |  0.526   |  0.0168 | 0.00558  |
+Filtro Sobel |     0.555    |  0.131  |  0.0341 |
+Filtro de Prewitt   |  0.277   | 0.073  | 0.0117
+
 
 Além disso, durante o processamento das imagens com o filtro Laplaciano perecebeu-se que este possívelmente não traria bons resultados pois não realçava de maneira adequada as imagens (os datalhes/contornos das imagens foram cobertos por uma camada cinza densa). Por isso, pensou-se em utilizar um outro filtro de aguçamento: o filtro de Prewitt.
 
-De maneira geral, os principais desafios enfrentados até o momento estão relacionados as limitações do uso da plataforma Google Collaboratory, ao tamanho das imagens o que implica na demora do treinamento por época e no rearranjo do conjunto de dados escolhido para se adequar a rede YOLOv7.
+De maneira geral, os principais desafios enfrentados até o momento estão relacionados as limitações do uso da plataforma Google Collaboratory, ao tamanho das imagens o que implica na demora do treinamento por época, no rearranjo do conjunto de dados escolhido para se adequar a rede YOLOv7 e a escolha de um pré processamento que melhore o desempenho da rede.
 
 
 # Próximos passos
