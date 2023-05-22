@@ -169,7 +169,7 @@ Na primeira parte do projeto buscou-se um melhor entendimento sobre o conjunto d
 - Filtro Laplaciano;
 - Filtro de Prewitt.
 
-Todas as técnicas aplicadas foram salvas em pastas intermediárias.
+Todas as técnicas aplicadas foram salvas em pastas intermediárias. Durante o processamento das imagens com o filtro Laplaciano perecebeu-se que este possívelmente não traria bons resultados pois não realçava de maneira adequada as imagens (os datalhes/contornos das imagens foram cobertos por uma camada cinza densa). Por isso, utilizou-se o filtro de Prewitt, que, *a priori*, não seria adotado.
 
 Com o objetivo de fazer uma comparação entre as diferentes técnicas de processamento e os dados brutos (apenas com a seleção inicial) fez-se um primeiro treinamento com a rede YOLOv7 com os dados sem processamento utilizando a plataforma Google Collaboratory. Foram definidas como ponto de partida 10 épocas considerando a demora do treinamento. Em seguida foram realizados treinamentos utilizando os dados pré processados em escala de cinza, com filtro de Sobel e por fim com o filtro de Prewitt. A tabela abaixo mostra os resultados preliminares de cada experimento.
 
@@ -182,10 +182,23 @@ Filtro Sobel |     0.555    |  0.131  |  0.0341 |
 Filtro de Prewitt   |  0.277   | 0.073  | 0.0117
 
 
-Além disso, durante o processamento das imagens com o filtro Laplaciano perecebeu-se que este possívelmente não traria bons resultados pois não realçava de maneira adequada as imagens (os datalhes/contornos das imagens foram cobertos por uma camada cinza densa). Por isso, pensou-se em utilizar um outro filtro de aguçamento: o filtro de Prewitt.
 
-De maneira geral, os principais desafios enfrentados até o momento estão relacionados as limitações do uso da plataforma Google Collaboratory, ao tamanho das imagens o que implica na demora do treinamento por época, no rearranjo do conjunto de dados escolhido para se adequar a rede YOLOv7 e a escolha de um pré processamento que melhore o desempenho da rede.
 
+
+Conforme pode-se ver na tabela anterior, as métricas obtidas adotando apenas 10 épocas de treinamento são ruins. Destaca-se que mais épocas não foram utilizadas em função da limitação de GPU ao usar a plataforma Google Colaboratory. 
+
+As figuras a seguir também apresentam resultados obtidos com os treinamentos realizados até o momento (10 épocas). Verifica-se que a classe com melhor desempenho é "walk" - que possui maior número de amostras. Assim, se após os próximos experimentos (treinamentos com 30 épocas, *a priori*), ainda houver baixo desempenho para as demais classes, será aplicado *Data augmentation*.
+
+**- Experimento 1: adoção dos dados brutos (imagens RGB):**
+
+**- Experimento 2: utilização de imagens em escala de cinza:**
+
+**- Experimento 3: imagens obtidas com o filtro de Sobel:**
+
+**- Experimento 4: imagens obtidas com o filtro de Prewitt:**
+
+ 
+De maneira geral, os principais desafios enfrentados até o momento estão relacionados às limitações do uso da plataforma Google Collaboratory; ao tamanho das imagens - o que implica na demora do treinamento por época; no rearranjo do conjunto de dados escolhido para se adequar a rede YOLOv7 e na escolha de um pré processamento que melhore o desempenho da rede.
 
 # Próximos passos
 
