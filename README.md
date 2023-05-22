@@ -25,7 +25,7 @@ Texto sin alinear
   <img src="Figuras/Tabela_confusao.png">
 </p>
 
-`![Confusao](/Figuras/Tabela_confusao.png "Descrição do Projeto")`
+%![Confusao](/Figuras/Tabela_confusao.png "Descrição do Projeto")
 
 **Taxa de falso negativo:** 
 
