@@ -30,13 +30,13 @@ Para a detecção de pessoas, observou-se que, no conjunto de dados de treinamen
 
 Como algumas classes correspondentes às poses humanas eram indefinidas (registradas como “id_” ou “block_”), os dados foram analisados e, considerando as classes com maior número de amostras, definiram-se quatro classes a serem adotadas no presente projeto:
 
-•	Walk: 6155 amostras;
+- Walk: 6155 amostras;
 
-•	Stand: 2551 amostras;
+- Stand: 2551 amostras;
 
-•	Sit: 424 amostras;
+- Sit: 424 amostras;
 
-•	Riding: 2487 amostras.
+- Riding: 2487 amostras.
 
 Filtrados os dados com base nas quatro classes estabelecidas, dividiu-se os dados de treino em Treino (80%) e Validação (20%). Os dados de teste, já disponíveis no dataset “NTUT 4K Drone Photo Dataset for Human Detection” e com 20920 amostras, também foi filtrado com base nas quatro classes. 
 
@@ -48,11 +48,11 @@ Para tanto, inicialmente, criou-se um arquivo (.txt) para cada uma das imagens, 
 
 Além do treinamento adotando os dados filtrados (imagens RGB), realizaram-se treinamentos com as imagens resultantes dos seguintes pré-processamentos, a fim de melhorar as métricas de avaliação do modelo:
 
-•	Pré-processamento 1: conversão das imagens RGB para imagens em níveis de cinza;
+- Pré-processamento 1: conversão das imagens RGB para imagens em níveis de cinza;
 
-•	Pré-processamento 2: filtragem no domínio espacial, adotando o filtro de Sobel (aplicou-se o gradiente obtido a partir das duas máscaras de Sobel - horizontal e vertical) (GONZALES; WOODS, 2009);
+- Pré-processamento 2: filtragem no domínio espacial, adotando o filtro de Sobel (aplicou-se o gradiente obtido a partir das duas máscaras de Sobel - horizontal e vertical) (GONZALES; WOODS, 2009);
 
-•	Pré-processamento 3: filtragem no domínio espacial, adotando o filtro de Prewitt (aplicou-se o gradiente obtido a partir das duas máscaras de Prewitt - horizontal e vertical) (GONZALES; WOODS, 2009).
+- Pré-processamento 3: filtragem no domínio espacial, adotando o filtro de Prewitt (aplicou-se o gradiente obtido a partir das duas máscaras de Prewitt - horizontal e vertical) (GONZALES; WOODS, 2009).
 
 Cabe ressaltar que um quarto pré-processamento também foi realizado  - filtragem no domínio espacial, adotando o filtro de Laplace (GONZALES; WOODS, 2009). Entretanto, em função das imagens resultantes dessa filtragem, optou-se por não utilizá-las para treinamento do modelo.
 
@@ -70,33 +70,13 @@ Assim, no total, quatro treinamentos foram realizados até o momento para o pres
 
 Para avaliar o modelo, foram adotadas as seguintes métricas:
 
-•	**Intersection Over Union (IoU)**:  avalia o grau de sobreposição entre a região de "Ground Truth" e "Prediction". É dada pela razão entre a área de sobreposição e a área combinada de previsão e dados de campo, e seus valores podem variar de 0 (nenhuma sobreposição) a 1 (sobreposição perfeita). Esse métrica é adotada, especificamente, para avaliar a detecção de pessoas, sendo, portanto, uma métrica auxiliar para avaliar a exatidão do modelo (KUKIL, 2022a); 
+- Matriz de Confusão;
 
-•	**Matriz de Confusão**;
+- Precisão: mede a proporção de positivos previstos que estão realmente corretos - Precisão = TP/(TP + FP). O valor varia de 0 a 1 (KUKIL, 2022b);
 
-•	**Precisão**: mede a proporção de positivos previstos que estão realmente corretos - Precisão = TP/(TP + FP). O valor varia de 0 a 1 (KUKIL, 2022b);
+- Recall: mede a proporção de positivos reais que foram previstos corretamente - Recall = TP / (TP + FN). Varia de 0 a 1 (KUKIL, 2022b); 
 
-•	**Recall**: mede a proporção de positivos reais que foram previstos corretamente - Recall = TP / (TP + FN). Varia de 0 a 1 (KUKIL, 2022b); 
-
-•	**Precisão média (AP)**: AP = 1/11*(Soma de 11 valores de precisão interpolados). Os valores de precisão são interpolados em 11 valores de chamada e a precisão interpolada é, de forma simplificada, o máximo valor de precisão à direita. AP é definida para cada uma das classes (KUKIL, 2022b);
-
-•	**Mean Average Precision (mAP)**: é a média das "Precisão média (AP)" calculadas para todas as classes - mAP = 1/n * soma(APs), onde n é o número de classes (KUKIL, 2022b).
-
-
-
-**RETIRAR DATA AUGMENTATION?**
-
-Objetivando balancear o número de amostras por classe, adotou-se **Data augmentation**. Considerando possíveis movimentos a serem realizados por um drone no momento da aquisição das imagens, foram testados três processos de aumentação dos dados objetivando melhorar as métricas de classificação – disponíveis em PyTorch (2023): 
-
-•	Espelhamento Horizontal (RandomHorizontalFlip);
-
-•	Espelhamento Vertical (RandomVerticalFlip);
-
-•	Rotação de 15° (RandomRotation).
-
-
-
-
+- Mean Average Precision (mAP): é a média das "Precisão média (AP)" calculadas para todas as classes - mAP = 1/n * soma(APs), onde n é o número de classes. A Precisão média (AP) é igual a soma dos valores de precisão interpolados em 11 valores de chamada, dividido por 11 (AP = 1/11 * Soma de 11 valores de precisão interpolados). AP é definida para cada uma das classes (KUKIL, 2022b).
 
 ## Bases de Dados e Evolução
 <!--
@@ -185,21 +165,24 @@ De maneira geral, os principais desafios enfrentados até o momento estão relac
 
 
 # Próximos passos
+
+Para as próximas etapas, pretende-se:
+
+- Treinar a rede com um maior número de épocas (a princípio, pretende-se adotar 30 épocas de treinamento), adotando tanto os dados brutos (imagens RGB) quanto as imagens resultantes dos pré-processamentos realizados, e realizar comparações;
+- Implementar a métrica Intersection Over Union (IoU) para validar a qualidade do reconhecimento de pessoas. Segundo Kukil (2022a), IoU avalia o grau de sobreposição entre a região de "Ground Truth" e "Prediction". É dada pela razão entre a área de sobreposição e a área combinada de previsão e dados de campo, e seus valores podem variar de 0 (nenhuma sobreposição) a 1 (sobreposição perfeita). Esse métrica é adotada, especificamente, para avaliar a detecção de pessoas, sendo, portanto, uma métrica auxiliar para avaliar a exatidão do modelo.
+- Caso o desempenho não seja satisfatório, aplicar *Data augmentation* em algumas classes (com menos dados) para balanceá-las e auxiliar na generalização da rede. Para tanto, considerando possíveis movimentos a serem realizados por um drone no momento da aquisição das imagens, serão testados três processos de aumentação dos dados, disponíveis em PyTorch (2023): Espelhamento Horizontal (RandomHorizontalFlip), Espelhamento Vertical (RandomVerticalFlip) e Rotação de 15° (RandomRotation);
+- Aplicar o melhor modelo obtido no treinamento para inferência no conjunto de teste e discutir os resultados finais obtidos.
+
+O cronograma a seguir apresenta o tempo estimado para cada etapa futura:
+
 <!--
-> Liste as próximas etapas planejadas para conclusão do projeto, com uma estimativa de tempo para cada etapa
+> Incluir a figura
+> <p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/Dados_selecionados_treino_teste_validacao.png" height="350">
+> </p>
 -->
 
-Para as próximas etapas pretende-se:
-
-- Salvar o treinamento da rede por etapas afim de contornar o problema da limitação do Google Collaboratory ou ainda procurar a disponibilidade de computadores com GPU para o treinamento da rede;
-- Treinar a rede com os dados brutos e processados para obter uma comparação;
-- Implementar a métrica IoU para validar a qualidade do reconhecimento de pessoas;
-- Caso o desempenho não seja satisfatório, aplicar *Data augmentation* em algumas classes (com menos dados) para balancea-las e auxiliar na generalização da rede.
-
-## Referências (ATUALIZAR SE NECESSÁRIO)
-<!--
-> Seção obrigatória. Inclua aqui referências utilizadas no projeto.
--->
+## Referências
 
 BRASIL. Departamento de Controle do Espaço Aéreo. Aeronaves Não Tripuladas e o Acesso ao Espaço Aéreo Brasileiro. ICA 100-40.  Ministério da Defesa, 2020. Disponível em: <https://publicacoes.decea.mil.br/publicacao/ica-100-40>. Acesso em 13 mai. 2023.
 
