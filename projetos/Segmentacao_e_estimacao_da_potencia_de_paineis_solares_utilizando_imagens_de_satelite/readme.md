@@ -51,6 +51,8 @@ Therefore, this project aims to segment solar panels in satellite images using i
 A metodologia do projeto adotada até agora (22 de maio de 2023) contou com o uso de um dataset anotado disponibilizado num artigo científico, e com redes convolucionais (U-Net, Resnet) para segmentação dos painéis solares. As redes convolucionais são utilizadas para aprenderem os filtros que resultem na segmentação desejada. 
 
 Assim, uma mini U-Net foi treinada do zero e seu desempenho foi avaliado para o dataset do Google. Por outro lado, uma Resnet 50 já treinada teve apenas um processo de fine-tunning com a base do Google para segmentar os painéis solares. A Resnet50 foi testada com as imagens do IGN também.
+
+<sub>The methodology of the project adopted so far (as of May 22, 2023) involved the use of an annotated dataset provided in a scientific article and convolutional networks (U-Net, Resnet) for solar panel segmentation. Convolutional networks are used to learn filters that result in the desired segmentation. </br>Thus, a mini U-Net was trained from scratch, and its performance was evaluated on the Google dataset. On the other hand, a pre-trained Resnet 50 underwent a fine-tuning process using the Google dataset to segment the solar panels. The Resnet50 was also tested with the IGN images.</sub>
  
 ## Bases de Dados e Evolução  <br /> <sub> Databases and evolution </sub>
 <!---
@@ -77,11 +79,11 @@ A base de dados contém imagens de satélite do Google e do IGN, bem como uma pl
 
 Cada um dos provedores de imagens possui duas pastas denominadas 'img' e 'mask'. Na pasta 'img' há várias imagens de satélite, enquanto na pasta 'mask' há a segmentação realizada. Entretanto, há imagens sem painéis solares, e que não possuem máscara. 
 
-Exemplos de imagem e máscara GOOGLE:
+Exemplos de imagem e máscara GOOGLE:</br>
 ![Imagem satélite Google](./data/raw/google/img/GBJXZ623CKGXDH.png)
 ![Imagem máscara Google](./data/raw/google/mask/GBJXZ623CKGXDH.png)
 
-Exemplos de imagem e máscara IGN: 
+Exemplos de imagem e máscara IGN:</br>
 ![Imagem satélite IGN](./data/raw/ign/img/KDZUH41C9ZAKON.png)
 ![Imagem máscara IGN](./data/raw/ign/mask/KDZUH41C9ZAKON.png)
 
@@ -100,10 +102,10 @@ Para utilização dos datasets para treino da rede convolucional, os conjuntos p
 </br><sub>For the training of the convolutional network using the datasets, the sets for training, validation, and testing were divided as shown in the images below. It is important to note that in this initial stage, we are not using the IGN dataset.</sub>
 
 #### Google
-![Google Dataset Segmentation](./assets/google.pdf)
+![Google Dataset Segmentation](./assets/google.png)
 
 #### IGN
-![IGN Dataset Segmentation](./assets/ign.pdf)
+![IGN Dataset Segmentation](./assets/ign.png)
 
 # Ferramentas  <br /> <sub> Tools </sub>
 <!---
