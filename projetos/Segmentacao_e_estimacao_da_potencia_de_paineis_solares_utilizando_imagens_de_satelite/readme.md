@@ -48,7 +48,9 @@ Therefore, this project aims to segment solar panels in satellite images using i
 > Proposta de metodologia incluindo especificação de quais técnicas pretende-se explorar. Espera-se que nesta entrega você já seja capaz de descrever de maneira mais específica (do que na Entrega 1) quais as técnicas a serem empregadas em cada etapa do projeto.
 -->
  
-A metodologia do projeto adotada até agora (22 de maio de 2023) contou com o uso de um dataset anotado disponibilizado num artigo científico, e com redes convolucionais (U-Net, Resnet) com fine-tunning para segmentação dos painéis solares. 
+A metodologia do projeto adotada até agora (22 de maio de 2023) contou com o uso de um dataset anotado disponibilizado num artigo científico, e com redes convolucionais (U-Net, Resnet) para segmentação dos painéis solares. 
+
+Uma mini U-Net foi treinada do zero, enquanto uma Resnet já treinada apenas teve atualização dos pesos sinápticos. 
  
 ## Bases de Dados e Evolução  <br /> <sub> Databases and evolution </sub>
 <!---
@@ -74,7 +76,7 @@ GRÁFICOS E TABELAS -- JUAN CARLOS
 <!---
 > Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
 -->
-- Tensor Flow 
+- TensorFlow 
 - Sk Learn
 - Matplotlib
 - LucidChart 
@@ -94,9 +96,9 @@ GRÁFICOS E TABELAS -- JUAN CARLOS
 > Aponte os problemas encontrados nas soluções testadas até aqui
 -->
 Experimento <br /><sub>Experiment</sub>        | Resultados <br /><sub>Results</sub>             |
-| -------------------------------------------- | ------------------------------------------------|
-| U-Net treinada do zero com imagens do Google |Params: 487 297  </br>Cross-entropy Binary Loss: 0.0135 </br>AVG DICE score: 0.7672 |
-| ResNet 50 fine-tunning com imagens do Google |Params: 20 676 545 </br>Cross-entropy Binary Loss: 0.0059 </br>AVG DICE score: 0.9330 </br>Teste na base IGN - DICE score: 0.5888 |
+| -------------------------------------------- | ------------------------------------------------| 
+| U-Net treinada do zero com imagens do Google |Params: 487 297  </br>Cross-entropy Binary Loss: Train - 0.0135 / Val - 0.016 </br> AVG DICE Score Test: 0.7672 |
+| ResNet 50 fine-tunning com imagens do Google |Params: 20 676 545 </br>Cross-entropy Binary Loss: Train - 0.0078 / Val - 0.0092 </br>AVG DICE Score Test: 0.9330 </br> Base IGN - AVG DICE Score: 0.5888 |
 
 
 # Próximos passos  <br /> <sub> Next steps </sub>
