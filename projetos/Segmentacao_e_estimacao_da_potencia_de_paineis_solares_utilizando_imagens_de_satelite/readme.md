@@ -34,7 +34,7 @@ A modernização dos sistemas elétricos é decorrente do desenvolvimento tecnol
  
 Uma vez que a modernização dos sistemas elétricos de potência permite que seus usuários tenham agora um papel ativo, injetando potência no sistema, é de extrema importância para as empresas distribuidoras de energia acompanharem a adoção destas tecnologias, para o planejamento de melhorias e expansão. A geração fotovoltaica é, em sua maioria, instalada no telhados de casas ou com médias/grandes usinas. Sendo o sol a fonte de energia, imagens de satélite permitem saber onde estão estes painéis fotovoltaicos.
  
-Dessa forma, pretende-se, neste projeto, segmentar painéis solares em imagens de satélite utilizando técnicas de análise de imagem e reconhecimento de padrões. Em seguida, pretende-se estimar a geração do sistema em questão, ustilizando redes neurais. 
+Dessa forma, pretende-se, neste projeto, segmentar painéis solares em imagens de satélite utilizando técnicas de análise de imagem e reconhecimento de padrões. Em seguida, pretende-se estimar a geração do sistema em questão, utilizando redes neurais. 
 
 <sub> Modernizing electrical systems results from technological development, primarily driven by the pursuit of renewable energy sources. As a result, there has been a significant increase in the use of distributed energy resources, such as solar photovoltaic generation. Photovoltaic generation is the most widespread in residential areas worldwide due to its renewable nature and low acquisition cost compared to other renewable sources.
 </br>
@@ -51,6 +51,8 @@ Therefore, this project aims to segment solar panels in satellite images using i
 A metodologia do projeto adotada até agora (22 de maio de 2023) contou com o uso de um dataset anotado disponibilizado num artigo científico, e com redes convolucionais (U-Net, Resnet) para segmentação dos painéis solares. As redes convolucionais são utilizadas para aprenderem os filtros que resultem na segmentação desejada. 
 
 Assim, uma mini U-Net foi treinada do zero e seu desempenho foi avaliado para o dataset do Google. Por outro lado, uma Resnet 50 já treinada teve apenas um processo de fine-tunning com a base do Google para segmentar os painéis solares. A Resnet50 foi testada com as imagens do IGN também.
+
+<sub>The methodology of the project adopted so far (as of May 22, 2023) involved the use of an annotated dataset provided in a scientific article and convolutional networks (U-Net, Resnet) for solar panel segmentation. Convolutional networks are used to learn filters that result in the desired segmentation. </br>Thus, a mini U-Net was trained from scratch, and its performance was evaluated on the Google dataset. On the other hand, a pre-trained Resnet 50 underwent a fine-tuning process using the Google dataset to segment the solar panels. The Resnet50 was also tested with the IGN images.</sub>
  
 ## Bases de Dados e Evolução  <br /> <sub> Databases and evolution </sub>
 <!---
@@ -60,9 +62,10 @@ Assim, uma mini U-Net foi treinada do zero e seu desempenho foi avaliado para o 
  
 Base de Dados <br /><sub>Database</sub>| Endereço na Web <br /><sub>Link</sub> | Resumo descritivo <br /><sub>Descriptive Summary</sub>
 ----- | ----- | -----
-Um conjunto de dados colaborativo de imagens aéreas com arranjos fotovoltaicos solares anotados e metadados de instalação</br><sub>A crowdsourced dataset of aerial images with annotated solar photovoltaic  arrays and installation metadata</sub> | https://zenodo.org/record/7358126#.ZDVdg3bMK39 | - Metadados de instalação para mais de 28.000 instalações </br> - Máscaras de segmentação para 13.000 instalações, incluindo 7.000 com anotações de dois provedores de imagem diferentes (Google e IGN) </br> - Metadados de instalação que correspondem à anotação para mais de 8.000 instalações </br> - As aplicações do conjunto de dados incluem a construção de registros de energia solar fotovoltaica completos, mapeamento robusto de instalações de energia solar e análise de conjuntos de dados colaborativos.<sub>- Installation metadata for more than 28000 installations </br> - Ground truth segmentation masks for 13000 installations, including 7000 with annotations for two different image providers (Google and IGN). </br> - Installation metadata that matches the annotation for more than 8000 installations. </br> - Dataset applications include end-to-end PV registry construction, robust PV installations mapping, and analysis of crowdsourced datasets.</sub>
+Um conjunto de dados colaborativo de imagens aéreas com arranjos fotovoltaicos solares anotados e metadados de instalação</br><sub>A crowdsourced dataset of aerial images with annotated solar photovoltaic  arrays and installation metadata</sub> | https://zenodo.org/record/7358126#.ZDVdg3bMK39 | - Metadados de instalação para mais de 28.000 instalações </br> - Máscaras de segmentação para 13.000 instalações, incluindo 7.000 com anotações de dois provedores de imagem diferentes (Google e IGN) </br> - Metadados de instalação que correspondem à anotação para mais de 8.000 instalações </br> - As aplicações do conjunto de dados incluem a construção de registros de energia solar fotovoltaica completos, mapeamento robusto de instalações de energia solar e análise de conjuntos de dados colaborativos.</br><sub>- Installation metadata for more than 28000 installations </br> - Ground truth segmentation masks for 13000 installations, including 7000 with annotations for two different image providers (Google and IGN). </br> - Installation metadata that matches the annotation for more than 8000 installations. </br> - Dataset applications include end-to-end PV registry construction, robust PV installations mapping, and analysis of crowdsourced datasets.</sub>
 
-Information provided in the reference article of the dataset.
+Informações fornecidas pelo artigo de referência da base de dados </br>
+<sub>Information provided in the reference article of the dataset.</sub>
 
 ### A crowdsourced dataset of aerial images with annotated solar photovoltaic  arrays and installation metadata  
 <!---
@@ -73,15 +76,14 @@ Information provided in the reference article of the dataset.
 > * Utilize tabelas e/ou gráficos que descrevam os aspectos principais da base que são relevantes para o projeto.
 -->
 
-A base de dados contém imagens de satélite do Google e do IGN, bem como uma planilha de metadados. 
+A base de dados contém imagens de satélite do Google e do IGN, bem como uma planilha de metadados. Cada um dos provedores de imagens possui duas pastas denominadas 'img' e 'mask'. Na pasta 'img' há várias imagens de satélite, enquanto na pasta 'mask' há a segmentação realizada. Entretanto, há imagens sem painéis solares, e que não possuem máscara. 
+</br> <sub>The database contains satellite images from both Google and IGN, as well as a metadata spreadsheet. Each of the image providers has two folders named 'img' and 'mask'. The 'img' folder contains several satellite images, while the 'mask' folder contains the corresponding segmentations. However, there are images without solar panels that do not have a mask. </sub>
 
-Cada um dos provedores de imagens possui duas pastas denominadas 'img' e 'mask'. Na pasta 'img' há várias imagens de satélite, enquanto na pasta 'mask' há a segmentação realizada. Entretanto, há imagens sem painéis solares, e que não possuem máscara. 
-
-Exemplos de imagem e máscara GOOGLE:
+Exemplos de imagem e máscara GOOGLE:</br>
 ![Imagem satélite Google](./data/raw/google/img/GBJXZ623CKGXDH.png)
 ![Imagem máscara Google](./data/raw/google/mask/GBJXZ623CKGXDH.png)
 
-Exemplos de imagem e máscara IGN: 
+Exemplos de imagem e máscara IGN:</br>
 ![Imagem satélite IGN](./data/raw/ign/img/KDZUH41C9ZAKON.png)
 ![Imagem máscara IGN](./data/raw/ign/mask/KDZUH41C9ZAKON.png)
 
@@ -100,10 +102,10 @@ Para utilização dos datasets para treino da rede convolucional, os conjuntos p
 </br><sub>For the training of the convolutional network using the datasets, the sets for training, validation, and testing were divided as shown in the images below. It is important to note that in this initial stage, we are not using the IGN dataset.</sub>
 
 #### Google
-![Google Dataset Segmentation](./assets/google.pdf)
+![Google Dataset Segmentation](./assets/google.png)
 
 #### IGN
-![IGN Dataset Segmentation](./assets/ign.pdf)
+![IGN Dataset Segmentation](./assets/ign.png)
 
 # Ferramentas  <br /> <sub> Tools </sub>
 <!---
