@@ -60,7 +60,7 @@ Base de Dados <br /><sub>Database</sub>| Endereço na Web <br /><sub>Link</sub> 
 ----- | ----- | -----
 A crowdsourced dataset of aerial images with annotated solar photovoltaic  arrays and installation metadata | https://zenodo.org/record/7358126#.ZDVdg3bMK39 | * Installation metadata for more than 28000 installations </br>* Ground truth segmentation masks for 13000 installations, including 7000 with annotations for two different image providers. </br>* Installation metadata that matches the annotation for more than 8000 installations. </br> * Dataset applications include end-to-end PV registry construction, robust PV installations mapping, and analysis of crowdsourced datasets.
 
-### Título da Base 
+### A crowdsourced dataset of aerial images with annotated solar photovoltaic  arrays and installation metadata  
 <!---
 > Faça uma descrição sobre o que concluiu sobre esta base. Sugere-se que respondam perguntas ou forneçam informações indicadas a seguir:
 > * Qual o formato dessa base, tamanho, tipo de anotação?
@@ -68,7 +68,8 @@ A crowdsourced dataset of aerial images with annotated solar photovoltaic  array
 > * Inclua um sumário com estatísticas descritivas da(s) base(s) de estudo.
 > * Utilize tabelas e/ou gráficos que descrevam os aspectos principais da base que são relevantes para o projeto.
 -->
- 
+GRÁFICOS E TABELAS -- JUAN CARLOS
+
 # Ferramentas  <br /> <sub> Tools </sub>
 <!---
 > Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
@@ -87,10 +88,24 @@ A crowdsourced dataset of aerial images with annotated solar photovoltaic  array
 > Para cada experimento, apresente os principais resultados obtidos
 > Aponte os problemas encontrados nas soluções testadas até aqui
 -->
+Experimento <br /><sub>Experiment</sub>        | Resultados <br /><sub>Results</sub>             |
+| -------------------------------------------- | ------------------------------------------------|
+| U-Net treinada do zero com imagens do Google | Binary Loss: </br> DICE score: </br> xxx: xxxx  |
+| U-Net fine-tunning                           | Binary Loss: </br> DICE score: </br> xxx: xxxx  |
+| xxxxxxxxxxxxxxxxxx                           | Binary Loss: </br> DICE score: </br> xxx: xxxx  |
+| xxxxxxxxxxxxxxxxxx                           | Binary Loss: </br> DICE score: </br> xxx: xxxx  |
+
 # Próximos passos  <br /> <sub> Next steps </sub>
 <!---
 > Liste as próximas etapas planejadas para conclusão do projeto, com uma estimativa de tempo para cada etapa
 -->
+- [x] Entrega 1 - formulário com informações gerais do projeto
+- [x] Entrega 2 - Testes preliminares e organização GitHub
+- [ ] Correção de erros, melhorias hiperparâmetros da rede convolucional --> Melhorar resultados usando a base IGN como teste
+- [ ] Rede neural para previsão da geração fotovoltaica
+- [ ] Avaliação qualitativa da segmentação
+- [ ] Finalização do projeto :tada:
+
 ## Referências (ATUALIZAR SE NECESSÁRIO)  <br /> <sub> References </sub>
 <!---
 > Seção obrigatória. Inclua aqui referências utilizadas no projeto.
