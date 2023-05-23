@@ -3,5 +3,5 @@ As pastas presentes neste diretório representam a divisão do dataset nos conju
 e teste `test`.
 
 Em cada uma destas pastas exite o seguinte conjunto de sub-pastas:
-- **0**: Contém o conjunto de dados cuja classificação da presença de câncer é positiva
-- **1**: Contém o conjunto de dados cuja classifica
+- **0**: Contém o conjunto de dados cuja classificação da presença de câncer é negativa
+- **1**: Contém o conjunto de dados cuja classificação da presença de câncer é positiva
