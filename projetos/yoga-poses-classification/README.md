@@ -143,6 +143,11 @@ Com relação a detecção da borda, entre os diversos métodos disponíveis, o 
 
 Comparando as duas vertentes analisadas para a extração de características, optou-se pelo uso do código da cadeia com uma vizinhança de 8. Entretanto, verificou-se que, devido à presença de bordas de outros objetos na imagem, ele acabou representando apenas uma pequena parte das pessoas nas imagens. É importante ressaltar que para a detecção do código da cadeia, foi usado uma transformada morfológica de abertura para a limpeza da imagem e extração do gradiente, para a alimentação do código da cadeia.
 
+A figura a seguir mostra as bordas de uma imagem de teste após processamento, com o resultado do código da cadeia abaixo.
+
+![plot_workflow](./assets/result.png)
+
+
 Em seguida, a KNN foi implementada para receber os vetores que representam as imagens do código da cadeia, porém essa etapa foi postergada para melhorar a fase de processamento de dados.
 
 Em paralelo, foi realizado o treinamento de uma rede neural convolucional (CNN) do tipo MobileNet V2, pré-treinada. Para o processamento das imagens, foi realizado apenas um redimensionamento para o tamanho (128,128) e aplicada uma etapa de normalização. Isso foi feito com o objetivo de padronizar os dados de entrada e melhorar o aprendizado da rede.
