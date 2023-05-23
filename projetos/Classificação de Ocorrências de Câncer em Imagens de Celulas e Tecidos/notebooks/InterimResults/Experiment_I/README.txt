@@ -1,0 +1,1 @@
+Experimento em que usaremos as imagens de todos os tecidos para o treinamento menos o Breast, que será usado para os testes. \n O modelo consiste na EfficientNet_B0 com Transfer Learning. \n Também são usadas as técnicas de Data Augmentation. 
