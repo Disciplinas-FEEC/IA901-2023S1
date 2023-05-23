@@ -168,7 +168,10 @@ Todo o projeto tem sido desenvolvido, em linguagem Python, no formato de Noteboo
 </p>
 
 # Experimentos e Resultados preliminares
-##Análise com Deep Learning:
+
+Nesta seção, apresentamos os resultados preliminares desta primeira entrega. 
+
+## Análise com Deep Learning:
 
 ### Baseline vs Experimento 1: 
 A Figura 5 apresenta a ROC Curve comparando o experimento Baseline (treinamento/validação/teste com todos os tecidos) com o experimento 1 (treinamento/validação com todos os tecidos, exceto ‘Breast’ que foi usado apenas para os testes). No cenário Baseline, o modelo de Deep Learning apresentou um desempenho elevado (AUC=0.97), indicando que mesmo sem qualquer tipo de pré-processamento, foi possível identificar a existência de células neoplásicas na maior parte das imagens de teste. 
