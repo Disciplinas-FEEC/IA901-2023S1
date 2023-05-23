@@ -97,3 +97,9 @@ Alguns exemplos podem ser vistos abaixo, assim como a distribuição das imagens
 
 ## Referências (ATUALIZAR SE NECESSÁRIO)
 > Seção obrigatória. Inclua aqui referências utilizadas no projeto.
+
+[1]: G., Jevgenij et. al,  “PanNuke Dataset Extension, Insights and Baselines”, 2020. (URL)
+
+[2]: Defining Cancer. National Cancer Institute
+
+[3]: Bhuiyan MR, Abdullah J. Detection on Cell Cancer Using the Deep Transfer Learning and Histogram Based Image Focus Quality Assessment. Sensors (Basel). 2022 Sep 16;22(18):7007. doi: 10.3390/s22187007. PMID: 36146356; PMCID: PMC9504738. (URL)
