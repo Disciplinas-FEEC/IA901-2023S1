@@ -162,31 +162,73 @@ Para a organização e visualização dos dados do dataset, foram utilizadas as 
 Todo o projeto tem sido desenvolvido, em linguagem Python, no formato de Notebooks do Google Colaboratory - com uso de GPUs/CPUs. Adicionalmente, todos os arquivos (raw, intermediários e finais) têm sido salvos na plataforma Google Drive - sendo, eventualmente, repassados para o Github. 
 
 # Workflow
-> Use uma ferramenta que permita desenhar o workflow e salvá-lo como uma imagem (Draw.io, por exemplo). Insira a imagem nessa seção.
-> Você pode optar por usar um gerenciador de workflow (Sacred, Pachyderm, etc) e nesse caso use o gerenciador para gerar uma figura para você.
-> Lembre-se que o objetivo de desenhar o workflow é ajudar a quem quiser reproduzir seus experimentos.
 
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/workflow.png" height="350">
 </p>
 
 # Experimentos e Resultados preliminares
-> Descreva de forma sucinta e organizada os experimentos realizados
-> Para cada experimento, apresente os principais resultados obtidos
-> Aponte os problemas encontrados nas soluções testadas até aqui
+##Análise com Deep Learning:
+
+### Baseline vs Experimento 1: 
+	A Figura 5 apresenta a ROC Curve comparando o experimento Baseline (treinamento/validação/teste com todos os tecidos) com o experimento 1 (treinamento/validação com todos os tecidos, exceto ‘Breast’ que foi usado apenas para os testes). No cenário Baseline, o modelo de Deep Learning apresentou um desempenho elevado (AUC=0.97), indicando que mesmo sem qualquer tipo de pré-processamento, foi possível identificar a existência de células neoplásicas na maior parte das imagens de teste. 
+Já no experimento 1, a EfficientNet_B0 apresentou uma queda de performance em comparação com o cenário baseline (AUC=0.917). Mesmo assim, esta ainda é uma performance razoavelmente alta - o que é um indício de que um modelo de Deep Learning é capaz de generalizar e identificar padrões em imagens não vistas durante o treinamento. 
 
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/ROC_GeneralAnalysis.png" height="350">
 </p>
+Fig. 5. ROC Curve comparando o modelo de Deep Learning no cenário baseline (treino e teste com todos os tecidos) com o experimento 1 (treino com todos os tecidos menos ‘Breast’, que é usado para o teste). 
+
+A Figura 6 mostra os gráficos de True Positive Rate e False Positive Rate em função do Decision Threshold. Em geral, para todo o intervalo de Decision Threshold, tanto o caso Baseline quanto no experimento 1, as curvas de False Positive Rate são praticamente iguais. A grande diferença entre os modelos é, portanto, no True Positive Rate - que é consideravelmente maior no cenário Baseline.
+
+A Tabela 1 sintetiza algumas métricas de desempenho, para os dois estudos, considerando também o valor de Decision Threshold que maximiza o Índice de Youden. É possível ver que, em geral, os valores obtidos de acurácia e precisão também são elevados (>87%). 
 
 <p align="middle">
   <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/TPR_GeneralAnalysis.png" height="300">
   <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/FPR_GeneralAnalysis.png" height="300">
 </p>
+Fig. 6. True Positive Rate e False Positive Rate em função do Decision Threshold para os dois estudos.  
+Tab. 1. Síntese das principais métricas de performance para os estudos: Baseline e experimento 1. 
 
+|Estudos|AUC|TPR*|FPR*|Precision*|Accuracy*|D. Threshold*|
+|---|---|---|---|---|---|---|
+|Baseline|0\.970|0\.92|0\.05|0\.95|0\.94|0\.43|
+|Experimento 1|0\.917|0\.84|0\.09|0\.9|0\.87|0\.01|
+
+*Métricas calculadas com base no valor ótimo (máximo) do Índice de Youden. 
+
+### Análise por tecido com modelo Baseline
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/ROC_TissueAnalysis.png" height="350">
 </p>
+Fig. 7. ROC Curve comparando a performance do modelo baseline para diferentes tecidos. Apenas aquelas com as três maiores (Stomach, Lung, Prostate) e três menores (Uterus, HeadNeck, Bile-duct) performances estão representadas. 
+
+Tab. 2. Síntese das principais métricas de performance para o estudo Baseline considerando os diferentes tecidos. 
+
+|N\. amostras|Types|AUC|TPR*|FPR*|Precision*|Accuracy*|D. Threshold*|
+|---|---|---|---|---|---|---|---|
+|29|Stomach|1\.0|1\.0|0\.0|1\.0|0\.97|0\.74|
+|36|Lung|1\.0|1\.0|0\.0|1\.0|0\.97|0\.22|
+|35|Prostate|1\.0|1\.0|0\.0|1\.0|0\.83|1\.0|
+|58|Cervix|0\.997|0\.95|0\.0|1\.0|0\.95|0\.95|
+|87|Adrenal\_gland|0\.988|0\.98|0\.0|1\.0|0\.98|0\.08|
+|84|Esophagus|0\.984|0\.94|0\.06|0\.94|0\.93|0\.56|
+|26|Kidney|0\.981|0\.88|0\.0|1\.0|0\.92|0\.98|
+|29|Bladder|0\.98|1\.0|0\.12|0\.89|0\.9|0\.33|
+|39|Testis|0\.976|0\.95|0\.0|1\.0|0\.95|0\.99|
+|470|Breast|0\.974|0\.91|0\.04|0\.96|0\.93|0\.63|
+|29|Ovarian|0\.966|0\.94|0\.0|1\.0|0\.93|0\.7|
+|37|Skin|0\.962|0\.95|0\.12|0\.89|0\.89|0\.56|
+|39|Pancreatic|0\.959|0\.92|0\.0|1\.0|0\.95|0\.57|
+|45|Thyroid|0\.936|0\.9|0\.03|0\.97|0\.91|1\.0|
+|288|Colon|0\.932|0\.86|0\.01|0\.99|0\.96|0\.93|
+|44|Liver|0\.928|0\.83|0\.0|1\.0|0\.91|0\.86|
+|37|Uterus|0\.923|0\.85|0\.0|1\.0|0\.86|0\.98|
+|76|HeadNeck|0\.922|0\.83|0\.05|0\.94|0\.89|0\.72|
+|84|Bile-duct|0\.918|0\.88|0\.15|0\.85|0\.87|0\.43|
+
+
+#### Exemplo de imagens classificadas incorretamente pelo modelo
 
 
 
