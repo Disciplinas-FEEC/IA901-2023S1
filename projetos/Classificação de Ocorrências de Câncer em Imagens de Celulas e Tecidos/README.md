@@ -44,6 +44,19 @@ Alguns exemplos podem ser vistos abaixo, assim como a distribuição das imagens
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/exemplos dataset.png" height="350">
 </p>
 
+<p align="left">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/freq_tecido.png" height="350">
+</p>
+
+<p align="left">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/distribuicao_mascaras.png" height="350">
+</p>
+
+<p align="left">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/freq_tumor.png" height="350">
+</p>
+
+
 # Ferramentas
 > Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
 
@@ -52,10 +65,32 @@ Alguns exemplos podem ser vistos abaixo, assim como a distribuição das imagens
 > Você pode optar por usar um gerenciador de workflow (Sacred, Pachyderm, etc) e nesse caso use o gerenciador para gerar uma figura para você.
 > Lembre-se que o objetivo de desenhar o workflow é ajudar a quem quiser reproduzir seus experimentos.
 
+<p align="left">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Workflow Projeto IA901.pdf" height="350">
+</p>
+
 # Experimentos e Resultados preliminares
 > Descreva de forma sucinta e organizada os experimentos realizados
 > Para cada experimento, apresente os principais resultados obtidos
 > Aponte os problemas encontrados nas soluções testadas até aqui
+
+<p align="left">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/ROC_GeneralAnalysis.png" height="350">
+</p>
+
+<p align="left">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/TPR_GeneralAnalysis.png" height="150">
+</p>
+
+<p align="roght">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/FPR_GeneralAnalysis.png" height="150">
+</p>
+
+<p align="left">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/ROC_TissueAnalysis.png" height="350">
+</p>
+
+
 
 # Próximos passos
 > Liste as próximas etapas planejadas para conclusão do projeto, com uma estimativa de tempo para cada etapa
