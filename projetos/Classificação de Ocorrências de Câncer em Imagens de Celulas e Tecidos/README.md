@@ -230,7 +230,9 @@ Tab. 2. Síntese das principais métricas de performance para o estudo Baseline 
 
 #### Exemplo de imagens classificadas incorretamente pelo modelo
 
-
+<p align="center">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/DL_WrongPredictions.png" height="350">
+</p>
 
 
 # Próximos passos
