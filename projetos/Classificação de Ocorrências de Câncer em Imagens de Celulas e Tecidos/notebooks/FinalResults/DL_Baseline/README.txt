@@ -1,0 +1,1 @@
+Aplicação de DL para classificação de imagens com células neoplásicas. O modelo final deste experimento deverá servir como baseline para os demais. O treinamento será feito sobre todos os tipos de tecido e buscaremos os melhores resultados junto aos dados de validação com e sem transfer learning. 
