@@ -106,8 +106,11 @@ O treinamento com a rede ResNet18 está em fase de testes, para garantirmos que 
 
 # Próximos passos
 Treinar e avaliar outras redes neurais (ResNet, InceptionV4) no dataset do kaggle. (1 semana)
+
 Expandir nossa análise para o dataset do OASIS, desenvolvendo uma pipeline apropriada para a ingestão deste formato de dados. (1 semana)
+
 Executar o workflow definido pelo projeto na nova base de dados. (1 semana)
+
 Analisar e apresentar os resultados obtidos com as nova rede e dataset, comparando com os resultados iniciais da base do Kaggle (1 semana)
 
 
