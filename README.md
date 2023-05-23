@@ -98,7 +98,7 @@ Draw.IO, para confecção do Workflow.
 
 # Experimentos e Resultados preliminares
 
-Os experimentos foram realizados através de diferentes arquiteturas, tamanhos de batch e transformações de data augmentation. Ainda, devido a quantidade de imagens, os primeiros testes foram realizados em uma amostra de dados menor, visando garantir que as primeiras aplicações iriam ocorrer corretamente ao longo de todo o fluxo de pré processamento, treinamento e validação dos resultados. Dessa forma, os experimentos basearam-se da seguinte forma:
+Os experimentos foram realizados através de diferentes arquiteturas, tamanhos de batch e transformações de data augmentation. Ainda, devido a quantidade de imagens, os primeiros testes foram realizados em uma amostra de dados menor, visando garantir que as primeiras aplicações iriam ocorrer corretamente ao longo de todo o fluxo de pré processamento, treinamento e validação dos resultados. Dessa forma, os experimentos baseados em batch tamanho 36 e treinamentos de 20 épocas basearam-se da seguinte forma:
 
 Experimento 1 - CNN com o Conjunto "benigno" Diminuído<br>
 ----- 
