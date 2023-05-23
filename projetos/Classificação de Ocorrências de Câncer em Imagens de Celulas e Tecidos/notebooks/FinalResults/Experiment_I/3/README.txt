@@ -1,1 +1,0 @@
-Uso da EfficientNet_b0 com transfer learning e data augmentation (Flips, erases e pad).)
