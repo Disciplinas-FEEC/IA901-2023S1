@@ -118,17 +118,9 @@ Conclui-se então que para o propósito inicial do projeto, que é a classifica�
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/ROC_GeneralAnalysis.png" height="350">
 </p>
 
-Solarized dark             |  Solarized Ocean
-:-------------------------:|:-------------------------:
-<img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/TPR_GeneralAnalysis.png" height="200">  |  <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/FPR_GeneralAnalysis.png" height="200">
-
-
-<p align="left">
-    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/TPR_GeneralAnalysis.png" height="200">
-</p>
-
-<p align="right">
-    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/FPR_GeneralAnalysis.png" height="200">
+<p align="center">
+    :-------------------------:|:-------------------------:
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/TPR_GeneralAnalysis.png" height="200">  |  <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/FPR_GeneralAnalysis.png" height="200">
 </p>
 
 <p align="center">
