@@ -89,7 +89,96 @@ Neptune.ai | https://neptune.ai/ | Experiment tracker and model registry
 
 # Workflow
 
+![IA901a-Workflow drawio](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/354f3745-6e06-4f47-adb3-de26f6c0ee7d)
+
 # Experimentos e Resultados preliminares
+
+# AlexNet
+
+AlexNet - Train Acc
+
+![train_epoch_acc (8)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/7a8689ce-fd86-442b-9059-67a9e56ca238)
+
+AlexNet - Val Acc
+![val_epoch_acc (4)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/3f415c99-481c-41a2-a979-840c948f553b)
+
+AlexNet - Train Loss
+![train_epoch_loss (6)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/a3ff8571-3215-43b3-a870-1a92e6299955)
+
+AlexNet - Val Loss
+![val_epoch_loss (4)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/5ffcbf6a-21b4-4967-83da-4ef4e58f5eca)
+
+
+# VGG19
+VGG19 - Train Acc
+![train_epoch_acc (13)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/39bd2410-0627-47c2-9e87-acfa9c43315a)
+
+VGG19 - Val Acc
+![val_epoch_acc (9)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/c575ddc6-fd23-4029-8eac-df7939b27e72)
+
+VGG19 - Train Loss
+![train_epoch_loss (11)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/2b4a7e3e-1489-4860-9e43-6654ac1a222e)
+
+VGG19 - Val Loss
+![val_epoch_loss (9)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/6c9db832-2be8-4320-be81-5f13a66c3d71)
+
+# Efficientnet
+
+Efficientnet - Train Acc
+![train_epoch_acc (9)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/5556959c-526b-47ed-848d-7f72eb0e1d3d)
+
+Efficientnet - Val Acc
+![val_epoch_acc (5)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/17296764-886c-4b90-a611-ccbc4bc92e29)
+
+Efficientnet - Train Loss
+![train_epoch_loss (7)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/aa1d47e9-d016-426e-be60-ba3c9202b947)
+
+Efficientnet - Val Loss
+![val_epoch_loss (5)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/d975e0ea-17b0-480d-bbf7-10181e13fa20)
+
+# Efficient_V2
+
+Efficient_V2 - Train Acc
+![train_epoch_acc (10)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/22b45dbc-66a3-4d82-a0fc-cbc65e1d7c28)
+
+Efficient_V2 - Val Acc
+![val_epoch_acc (6)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/e02322de-6249-4612-be37-df5281a982a0)
+
+Efficient_V2 - Train Loss
+![train_epoch_loss (8)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/3aa5a632-66d3-4477-88e5-81366f90c45e)
+
+Efficient_V2 - Val Loss
+![val_epoch_loss (6)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/a3089f94-6611-4273-aa1e-2667861e2d83)
+
+
+# Googlenet
+
+Googlenet - Train Acc
+![train_epoch_acc (11)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/6c1982a5-d4ac-4467-9551-8efbf09b4032)
+
+Googlenet - Val Acc
+![val_epoch_acc (7)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/72c79211-6b04-49ee-a50f-43c0f7a26c52)
+
+Googlenet - Train Loss
+![train_epoch_loss (9)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/b0cf3537-5f0f-49d1-9fae-a406a9fdfe1b)
+
+Googlenet - Val Loss
+![val_epoch_loss (7)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/a96ff112-1daf-4377-82b0-223eae2339b1)
+
+# Resnet18
+
+Resnet18 - Train Acc
+![train_epoch_acc (12)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/b077d046-95fe-4e4b-bddf-1e204bb94fb1)
+
+Resnet18 - Val Acc
+![val_epoch_acc (8)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/ff9ce621-a1c9-4d0c-a7f1-79cac711ee61)
+
+Resnet18 - Train Loss
+![train_epoch_loss (10)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/5d5d46a8-438e-4381-9473-87e1c9bd8f60)
+
+Resnet18 - Val Loss
+![val_epoch_loss (8)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/096c10eb-e3b6-4bf4-8e4e-c87bcea0c32e)
+
 
 # Próximos passos
 
