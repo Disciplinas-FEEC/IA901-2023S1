@@ -164,7 +164,7 @@ Todo o projeto tem sido desenvolvido, em linguagem Python, no formato de Noteboo
 # Workflow
 
 <p align="center">
-    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/workflow.png" height="350">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/workflow_2.png" height="350">
 </p>
 
 # Experimentos e Resultados preliminares
