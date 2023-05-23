@@ -126,7 +126,7 @@ MUDAR MUDAR MUDAR
 -->
 
 | Experiment       | Results          | Notes |
-| -------------------------------------------- | -------------------------| 
+| -------------------------------------------- | -------------------------| ----------|
 | U-Net trained from scratch with Google Imagery | Params: 487 297  </br>Cross-entropy Binary Loss: Train - 0.0135 / Val - 0.016 </br> AVG DICE Score Test: 0.7672 | In this experiment, the evaluation with google imagery showed a low dice score, and because of that we decided to use a bigger convolutional neural network (cnn), like Resnet50, and see if there was improvement in the metrics|
 | Resnet50 + mini U-Net fine-tunned with Google Imagery |Params: 20 676 545 </br>Cross-entropy Binary Loss: Train - 0.0078 / Val - 0.0092 </br>AVG DICE Score Test: 0.9330 </br> Base IGN - AVG DICE Score: 0.5888 | There was improvement with the metrics, however the Resnet50 was trained with google Imagery, and when tested with IGN imagery presented an low average DICE Score. In that sense, we decided to focus only with google imagery, for training and testing |
 
