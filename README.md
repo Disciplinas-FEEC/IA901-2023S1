@@ -23,7 +23,7 @@ O objetivo do projeto é desenvolver um sistema para classificação de lesões 
 </p>
 
 <p align="center">
-  <img width="300" height="450" src="Figuras/Tabela_confusao.png">
+  <img width="300" height="250" src="Figuras/Tabela_confusao.png">
 </p>
 
 **Taxa de falso negativo:** 
