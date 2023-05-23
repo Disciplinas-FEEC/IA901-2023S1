@@ -115,6 +115,10 @@ Os resultados de acurácia são significativamente bons, porém ainda há o mesm
   <img src="assets/exp3_matriz.png">
 </p>
 
+**Taxa de falso negativo:** 
+
+$$\frac{FN}{FN+VN}=\frac{118}{118+0}=1$$
+
 Experimento 2 - CNN com o Conjunto Completo de Dados
 ----- 
 Com a mesma rede implementada no exemplo anteior, foi realizado o treinamento conjunto de dados completo, considerando exatamente a mesma divisão entre treinamento e validação. Nesse cenário, 24402 imagens foram utilizadas no treinamento da rede e 8608 imagens foram usadas para validação. Também a título de comparação, todas as imagens foram inseridas na rede convolucional com dimensões 224 x 224 e com a aplicação das mesmas técnicas de data augmentation.
@@ -129,6 +133,10 @@ Os resultados do experimento anterior persistiram e um dos principais problemas 
   <img src="assets/exp2_matriz.png">
 </p>
 
+**Taxa de falso negativo:** 
+
+$$\frac{FN}{FN+VN}=\frac{147}{147+0}=1$$
+
 Experimento 3 - Resnet50 para o Conjunto Completo de Dados
 ----- 
 Ao considerar que o principal objetivo é minimizar a taxa de falsos negativos, aplicou-se uma arquitetura mais complexa no conjunto, previamente treinada em imagens. A ResNet50 é uma arquitetura de rede neural convolucional (CNN) proposta em 2015 e ainda muito utilizada no contexto de imagens. Ela é conhecida por sua capacidade de treinar redes muito profundas com maior eficiência, superando o desafio de degradação do desempenho que ocorre ao aumentar a profundidade da rede. Ainda, a rede foi pré-treinada em um grande conjunto de dados chamado ImageNet, que contém mais de um milhão de imagens rotuladas em 1000 classes diferentes. Dessa forma, utilizar essa arquitetura permite aproveitar os recursos de alto nível aprendidos durante o treinamento para extrair características relevantes das imagens e aplicá-las a novas tarefas, como detecção de objetos, segmentação de imagens e muito mais. 
@@ -141,6 +149,10 @@ Embora de grande complexidade, os resultados apresentados a seguir demonstram a 
 <p align="center">
   <img src="https://github.com/robsoncolares/IA901-2023S1/assets/63214041/99d42a06-f75c-4c8e-a16b-12bb838aa38d">
 </p>
+
+**Taxa de falso negativo:** 
+
+$$\frac{FN}{FN+VN}=\frac{141}{141+6}=0.96$$
 
 # Próximos passos
 Estudos recentes avaliam a utilização de arquiteturas de redes neurais com essemble para garantir resultados superiores na classificação de lesões de pele. Dado isso, as sugestões de próximos passos são: 
