@@ -93,7 +93,7 @@ Neptune.ai | https://neptune.ai/ | Experiment tracker and model registry
 
 # Experimentos e Resultados preliminares
 
-# AlexNet
+## AlexNet
 
 AlexNet - Train Acc
 
@@ -109,7 +109,7 @@ AlexNet - Val Loss
 ![val_epoch_loss (4)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/5ffcbf6a-21b4-4967-83da-4ef4e58f5eca)
 
 
-# VGG19
+## VGG19
 VGG19 - Train Acc
 ![train_epoch_acc (13)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/39bd2410-0627-47c2-9e87-acfa9c43315a)
 
@@ -122,7 +122,7 @@ VGG19 - Train Loss
 VGG19 - Val Loss
 ![val_epoch_loss (9)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/6c9db832-2be8-4320-be81-5f13a66c3d71)
 
-# Efficientnet
+## Efficientnet
 
 Efficientnet - Train Acc
 ![train_epoch_acc (9)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/5556959c-526b-47ed-848d-7f72eb0e1d3d)
@@ -136,7 +136,7 @@ Efficientnet - Train Loss
 Efficientnet - Val Loss
 ![val_epoch_loss (5)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/d975e0ea-17b0-480d-bbf7-10181e13fa20)
 
-# Efficient_V2
+## Efficient_V2
 
 Efficient_V2 - Train Acc
 ![train_epoch_acc (10)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/22b45dbc-66a3-4d82-a0fc-cbc65e1d7c28)
@@ -151,7 +151,7 @@ Efficient_V2 - Val Loss
 ![val_epoch_loss (6)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/a3089f94-6611-4273-aa1e-2667861e2d83)
 
 
-# Googlenet
+## Googlenet
 
 Googlenet - Train Acc
 ![train_epoch_acc (11)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/6c1982a5-d4ac-4467-9551-8efbf09b4032)
@@ -165,7 +165,7 @@ Googlenet - Train Loss
 Googlenet - Val Loss
 ![val_epoch_loss (7)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/a96ff112-1daf-4377-82b0-223eae2339b1)
 
-# Resnet18
+## Resnet18
 
 Resnet18 - Train Acc
 ![train_epoch_acc (12)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/b077d046-95fe-4e4b-bddf-1e204bb94fb1)
