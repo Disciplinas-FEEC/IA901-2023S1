@@ -234,7 +234,7 @@ Tab. 2. Síntese das principais métricas de performance para o estudo Baseline 
 #### Exemplo de imagens classificadas incorretamente pelo modelo
 
 <p align="center">
-    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/DL_WrongPredictions.png" height="350">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/DL_WrongPredictions.png" height="550">
 </p>
 
 ## Problemas encontrados até aqui:
@@ -279,6 +279,8 @@ Com base nos resultados obtidos, os próximos passos imediatos seriam:
 5.3 Adaptar os códigos para salvar mais resultados intermediários e garantir a reprodutibilidade e fácil entendimento pelos usuários; (curto prazo)
 
 5.4 Implementar ferramentas para o arquivamento dos experimentos (por ex. NeptuneAI) (médio prazo)
+
+5.5 Documentar as versões e pré-requisitos das bibliotecas e programas utilizados. (curto prazo)
 
 Dado que teremos 1 mês até a entrega final, estamos considerando que:
 
