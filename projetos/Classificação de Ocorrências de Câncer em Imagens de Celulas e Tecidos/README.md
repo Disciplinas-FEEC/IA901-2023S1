@@ -50,20 +50,24 @@ Alguns exemplos podem ser vistos abaixo, assim como a distribuição das imagens
 </p>
 
 <p align="center">
-Figura 1: Algumas imagens do dataset que representam as segmentações dos núcleos celulares, onde cada cor se refere a um tipo de máscara.
+    Figura 1: Algumas imagens do dataset que representam as segmentações dos núcleos celulares, onde cada cor se refere a um tipo de máscara.
 </p>
 
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/freq_tecido.png" height="350">
 </p>
 
-Figura 2: Distribuição das imagens do dataset por tipo de tecido.
+<p align="center">
+    Figura 2: Distribuição das imagens do dataset por tipo de tecido.
+</p>
 
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/distribuicao_mascaras.png" height="350">
 </p>
 
-Figura 3: Distribuição dos tipos de máscaras no dataset por tipo de tecido. O número à direita representa a quantidade de núcleos celulares segmentados para aquele tipo de máscara [1].
+<p align="center">
+    Figura 3: Distribuição dos tipos de máscaras no dataset por tipo de tecido. O número à direita representa a quantidade de núcleos celulares segmentados para aquele tipo de máscara [1].
+</p>
 
 Atualmente, o dataset 'PanNuke' está disponível em três partes - todas com a mesma estrutura/formato de organização das imagens. Os links para os datasets utilizados no projeto assim como um resumo das suas principais informações podem ser vistas na tabela abaixo: 
 
@@ -87,7 +91,9 @@ Além das próprias imagens, este código possui com output uma tabela, em que c
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/freq_tumor.png" height="350">
 </p>
 
-Figura 4: Distribuição da presença de células neoplásicas (tumores) no conjunto de imagens de tecidos.
+<p align="center">
+    Figura 4: Distribuição da presença de células neoplásicas (tumores) no conjunto de imagens de tecidos.
+</p>
 
 Conclui-se então que para o propósito inicial do projeto, que é a classificação de tecidos com ou sem a presença de células neoplásicas, as quais são tumores, tem-se um dataset equilibrado (entre tecidos com e sem tumor) e totalmente anotado para tal propósito.
 
@@ -111,6 +117,11 @@ Conclui-se então que para o propósito inicial do projeto, que é a classifica�
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/ROC_GeneralAnalysis.png" height="350">
 </p>
+
+Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:
+<img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/TPR_GeneralAnalysis.png" height="200">  |  <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/FPR_GeneralAnalysis.png" height="200">
+
 
 <p align="left">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/TPR_GeneralAnalysis.png" height="200">
