@@ -77,7 +77,7 @@ Base de Dados | Endereço na Web | Resumo descritivo
 ----- | ----- | -----
 Silhouettes of human posture | [Kaggle](https://www.kaggle.com/datasets/deepshah16/silhouettes-of-human-posture) | Imagens segmentadas ,em preto e branco, de silhuetas humanas nas posições de sentado, levantado, deitado e inclinado.
 MPII Human Pose Dataset | [MPII](http://human-pose.mpi-inf.mpg.de/#download) | Imagens não tratadas de poses humanas tiradas de vídeos, com diferentes tipos de atividades sendo exercidas.
-Common Objects in Context | [COCO - 2017](https://cocodataset.org/#download) | 
+Common Objects in Context | [COCO - 2017](https://cocodataset.org/#download) | Imagens de pessoas ocultas em diferentes poses, com marcações do tipo bounding-box, mask e modelo articulado.
 
 ### Silhouettes of human posture
 
@@ -90,6 +90,12 @@ Dataset com imagens de silhuetas humanas em 4 posições (Inclenado, sentado, le
 ![MPII](http://human-pose.mpi-inf.mpg.de/images/random_activities.png)
 
 Dataset com imagens de poses humanas exercendo 410 atividades diferentes, em .jpg, no tamanho total de 25000 imagens. O dataset conta com anotação em label em arquivo .mat, porém, além do fato de que não será selecionado todo, ele passará por um processo de reanotação para atender aos labels do dataset citado anteriormente para ser inserido numa rede treinada, sendo aplicado como um fine tuning. A quantidade  de imagens a serem selecionadas serão de 200 e serão disponibilizadas nesse repositório.
+
+### COCO
+
+![COCO](https://github.com/liruilong940607/OCHumanApi/raw/master/figures/dataset.jpg)
+
+Este dataset é focado em seres humanos com partes do corpo ocultas, anotadas com bound-box, pose humana, modelo articulado e máscara. Composto por  13360 diferentes posições humanas em 5081 imagens. Este dataset será utilizado para treinar a rede de segmentação, responsável por gerar silhuetas humanas a partir das imagens reais.
 
 # Ferramentas
 
@@ -106,6 +112,8 @@ Neptune.ai | https://neptune.ai/ | Experiment tracker and model registry
 ![IA901a-Workflow drawio](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/354f3745-6e06-4f47-adb3-de26f6c0ee7d)
 
 # Experimentos e Resultados preliminares
+
+Como informado anteriormente, foram selecionadas 6 redes conhecidas para serem treinadas e determinar qual ferramenta seria ideal para a classificação das imagens de silhuetas. Apesar da Alexnet possuir melhores resultados, ela foi a rede que foi mais treinada durante nossos experimentos, devido ao fato de que ela era a primeira a ser treinada e no meio do processo o notebook atingia seu limite de memória, acarretando na falta de treino das redes seguintes. Devido a esse fato, ficou claro que há uma necessidade de focar somente em uma rede, e dar preferência a redes mais leves como as convolucionais, para evitar problemas de processamento futuros.
 
 ## AlexNet
 
@@ -196,8 +204,15 @@ Resnet18 - Val Loss
 
 # Próximos passos
 
+As etapas seguintes são:
+
+- Definir uma rede a ser utilizada para a classificação de silhuetas e refinar atributos [learning rate, épocas etc] (até 26/05)
+- Separação de imagens reais do dataset MPII e aplicação na rede treinada como fine tunning (até 09/06)
+- Aplicação do segundo método no dataset COCO para comparar com a rede treinada por fine tunning (até 20/06)
+- Refinamento e documentação (até 23/06)
+
 ## Referências
 
-https://github.com/liruilong940607/OCHumanApi
+OCHuman(Occluded Human) Dataset Api https://github.com/liruilong940607/OCHumanApi
 
 ONU, População Mundial deve chegar a 9,7 bilhões de pessoas em 2050. 2019. Disponível em: <https://brasil.un.org/pt-br/83427-populacao-mundial-deve-chegar-97-bilhoes-de-pessoas-em-2050-diz-relatorio-da-onu>. Acesso em: 22 mai. 2023
