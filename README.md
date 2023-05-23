@@ -112,6 +112,13 @@ Os resultados de acurácia são significativamente bons, porém ainda há o mesm
 ![Test](/Figuras/exp3_resultados_treinamento.png "Curvas de Erro e AUC de Treinamento e Validação")
 ![Test](/Figuras/exp3_matriz.png "Matriz de Confusão")
 
+<p align="center">
+  <img src="Figuras/exp3_resultados_treinamento.png">
+</p>
+<p align="center">
+  <img src="Figuras/exp3_matriz.png">
+</p>
+
 Experimento 2 - CNN com o Conjunto Completo de Dados
 ----- 
 Com a mesma rede implementada no exemplo anteior, foi realizado o treinamento conjunto de dados completo, considerando exatamente a mesma divisão entre treinamento e validação. Nesse cenário, 24402 imagens foram utilizadas no treinamento da rede e 8608 imagens foram usadas para validação. Também a título de comparação, todas as imagens foram inseridas na rede convolucional com dimensões 224 x 224 e com a aplicação das mesmas técnicas de data augmentation.
@@ -120,6 +127,13 @@ Os resultados do experimento anterior persistiram e um dos principais problemas 
 
 ![Test](/Figuras/exp2_resultados_treinamento.png "Curvas de Erro e AUC de Treinamento e Validação")
 ![Test](/Figuras/exp2_matriz.png "Matriz de Confusão")
+
+<p align="center">
+  <img src="Figuras/exp2_resultados_treinamento.png">
+</p>
+<p align="center">
+  <img src="Figuras/exp2_matriz.png">
+</p>
 
 Experimento 3 - Resnet50 para o Conjunto Completo de Dados
 ----- 
@@ -130,6 +144,13 @@ Embora de grande complexidade, os resultados apresentados a seguir demonstram a 
 ![image](https://github.com/robsoncolares/IA901-2023S1/assets/63214041/8cdb2241-a9e1-485a-9161-f54120efb308)
 
 ![image](https://github.com/robsoncolares/IA901-2023S1/assets/63214041/99d42a06-f75c-4c8e-a16b-12bb838aa38d)
+
+<p align="center">
+  <img src="Figuras/exp3_resultados_treinamento.png](https://github.com/robsoncolares/IA901-2023S1/assets/63214041/8cdb2241-a9e1-485a-9161-f54120efb308">
+</p>
+<p align="center">
+  <img src="[Figuras/exp3_matriz.png](https://github.com/robsoncolares/IA901-2023S1/assets/63214041/99d42a06-f75c-4c8e-a16b-12bb838aa38d)">
+</p>
 
 # Próximos passos
 Estudos recentes avaliam a utilização de arquiteturas de redes neurais com essemble para garantir resultados superiores na classificação de lesões de pele. Dado isso, as sugestões de próximos passos são: 
