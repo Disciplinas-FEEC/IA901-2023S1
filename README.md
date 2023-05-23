@@ -19,7 +19,7 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 O objetivo do projeto é desenvolver um sistema para classificação de lesões de pele entre malignas e benignas com o uso de arquiteturas de redes neurais convolucionais. O sistema visa fornecer uma ferramenta precisa e eficiente para ajudar na detecção precoce de tumores malignos, contribuindo para o diagnóstico médico e reduzindo a taxa de falsos negativo (ou seja, classificar como benigno lesões que na verdade são malignas). Adicionalmente, garantir que o classificador tenha a sensibilidade (recall) alta também é de extrema importância para o projeto, dado que o tratamento precoce pode ser mais benéfico ao paciente do que não diagnosticá-lo e o tratamento ser tardio. 
 
 <p align="center">
-  <img src="Figuras/Tabela_confusao.png">
+  <img src="assets/Tabela_confusao.png">
 </p>
 
 **Taxa de falso negativo:** 
@@ -95,7 +95,7 @@ Draw.IO, para confecção do Workflow.
 # Workflow
 
 <p align="center">
-  <img src="Figuras/Workflow_Melanoma.png">
+  <img src="assets/Workflow_Melanoma.png">
 </p>
 
 # Experimentos e Resultados preliminares
@@ -109,10 +109,10 @@ Para a primeira etapa do projeto, 10% do conjunto de imagens benignas foram alea
 Os resultados de acurácia são significativamente bons, porém ainda há o mesmo problema de todas as amostras da classe maligna ser classificada como benigna. 
 
 <p align="center">
-  <img src="Figuras/exp3_resultados_treinamento.png">
+  <img src="assets/exp3_resultados_treinamento.png">
 </p>
 <p align="center">
-  <img src="Figuras/exp3_matriz.png">
+  <img src="assets/exp3_matriz.png">
 </p>
 
 Experimento 2 - CNN com o Conjunto Completo de Dados
@@ -123,10 +123,10 @@ Os resultados do experimento anterior persistiram e um dos principais problemas 
 
 
 <p align="center">
-  <img src="Figuras/exp2_resultados_treinamento.png">
+  <img src="assets/exp2_resultados_treinamento.png">
 </p>
 <p align="center">
-  <img src="Figuras/exp2_matriz.png">
+  <img src="assets/exp2_matriz.png">
 </p>
 
 Experimento 3 - Resnet50 para o Conjunto Completo de Dados
