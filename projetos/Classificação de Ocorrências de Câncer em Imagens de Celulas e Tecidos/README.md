@@ -141,9 +141,25 @@ Portanto, a pergunta a ser respondida neste experimento foi: será que o modelo 
 ##### Treinamento dos modelos
 `<Em construção>`
 
+## Passo 4: Análise de desempenho
+
+As técnicas de classificação podem fornecer a probabilidade P de uma observação pertencer a uma determinada classe. Pelo fato desta saída probabilística P ser contínua e restrita ao intervalo [0, 1], a classificação em si ocorre ao se determinar um parâmetro livre conhecido como Decision Threshold, que representa um valor de corte sobre as probabilidades. Considerando um cenário com duas classes, uma observação é classificada como positiva se P ≥Decision Threshold - caso contrário, ela é rotulada como sendo negativa. Cada valor de Decision Threshold produz uma matriz de confusão diferente, modificando também as suas métricas de desempenho. Mesmo assim, ainda é possível avaliar a performance geral de classificadores binários recorrendo a um método conhecido como ROC Curve, que não depende da escolha de qualquer limiar sobre as probabilidades. Resumidamente: A ROC Curve correlaciona os valores de True Positive Rate (TPR) e False Positive Rate (FPR) para todos os valores possíveis de Decision Threshold [Ref].Uma quantidade que sintetiza as informações das ROC Curves é a Area Under the Curve (AUC), que varia no intervalo $[0, 1]$.
+Mesmo recorrendo às ROC Curves para fazer avaliações gerais dos modelos é fato que, na prática, a qualidade das classificações depende fortemente do valor escolhido para o Decision Threshold. Algumas análises adotam o seu valor padrão de $0.5$. No entanto, o ideal é que a escolha deste limiar leve em consideração as demandas e particularidades de cada estudo. Em situações em que os erros de classificação possuem um custo alto, pode ser mais adequado trabalhar com valores mais elevados de Decision Threshold. Por outro lado, se os erros de classificação forem menos importantes do que identificar a classe positiva, pode ser mais interessante recorrer a Decision Thresholds menores. De todo modo, existem algumas figuras de mérito que podem ser empregadas para otimizar esta escolha, como o Youden's Index, que mede a diferença entre as Taxas de Verdadeiro e Falso Positivo:
+
+$$\textrm{Youden's Index} = TPR - FPR $$
+
+Neste caso, o Decision Threshold escolhido deve ser aquele que maximiza a relação acima, por representar o valor de corte em que a quantidade de acertos do classificador é máxima com relação aos seus erros. 
+
+Portanto, todas estas métricas (TPR, FPR e AUC) serão usadas em nossas análises. Adicionalmente, usaremos outras métricas de classificação conhecidas, tais como: 
+Acurácia: porcentagem de observações classificadas corretamente 
+Precisão: porcentagem de observações classificadas como positivas que são realmente positivas. 
+
+Para o cálculo delas, consideramos o valor de Decision Threshold que maximiza o Índice de Youden. 
 
 # Ferramentas
-> Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
+
+	Para a organização e visualização dos dados do dataset, foram utilizadas as bibliotecas Pandas, Numpy e Matplotlib. Para a confecção do workflow do projeto, o grupo utilizou a ferramenta de desenho de workflows Draw.io. Para a execução do projeto em si, isto é, as classificações da imagens, irão ser utilizadas as bibliotecas PyTorch, para a parte de Deep Learning, e o SciKit-Learn para a parte de algoritmos tradicionais de machine learning voltados à classificação.
+	Todo o projeto tem sido desenvolvido, em linguagem Python, no formato de Notebooks do Google Colaboratory - com uso de GPUs/CPUs. Adicionalmente, todos os arquivos (raw, intermediários e finais) têm sido salvos na plataforma Google Drive - sendo, eventualmente, repassados para o Github. 
 
 # Workflow
 > Use uma ferramenta que permita desenhar o workflow e salvá-lo como uma imagem (Draw.io, por exemplo). Insira a imagem nessa seção.
