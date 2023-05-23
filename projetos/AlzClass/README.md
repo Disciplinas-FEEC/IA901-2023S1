@@ -100,7 +100,7 @@ Os resultados são apresentados nos gráficos abaixo:
 ![ResNet18 Test Loss](assets/Images/Kaggle_ResNet/test_loss.png)
 
 **Acurácia na base de testes**
-![ResNet Test Acc](assets/Images/Kaggle_ResNet/test_acc.png)
+![ResNet18 Test Acc](assets/Images/Kaggle_ResNet/test_acc.png)
 
 O treinamento com a rede ResNet18 está em fase de testes, para garantirmos que os resultados obtidos não sofreram overfitting. Mas como primeiro resultado, temos que a acurácia obtida foi em torno de **0.97**
 
