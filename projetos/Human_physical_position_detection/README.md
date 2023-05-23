@@ -109,7 +109,7 @@ Neptune.ai | https://neptune.ai/ | Experiment tracker and model registry
 
 # Workflow
 
-![IA901a-Workflow](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/d1312303-9a9b-4435-a4fa-4d2601c2a292)
+![IA901a-Workflow (1)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/6fbfd82e-0c68-4588-b4fe-1b4cf35f606a)
 
 
 # Experimentos e Resultados preliminares
