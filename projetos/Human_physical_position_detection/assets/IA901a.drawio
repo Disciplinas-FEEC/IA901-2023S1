@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-05-23T11:10:37.928Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="nQppUN4kQQ-_Y8qCMNup" version="21.3.0" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2023-05-23T12:42:24.592Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="yEVYo3JOIBwKEjQEOY7V" version="21.3.0" type="github" pages="2">
   <diagram id="-KC26STIBj3t9MYH2vu2" name="Workflow">
-    <mxGraphModel dx="3180" dy="1870" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2171" dy="916" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -37,7 +37,7 @@
         <mxCell id="8u5Newi8nys6xHAhAptd-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="IXbX5ewmI5MATIdYdqmd-3" target="IXbX5ewmI5MATIdYdqmd-1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="IXbX5ewmI5MATIdYdqmd-3" value="DataSetLoader" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=7;" vertex="1" parent="1">
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-3" value="&lt;br&gt;DataSetLoader" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=7;" vertex="1" parent="1">
           <mxGeometry x="870" y="259" width="60" height="50" as="geometry" />
         </mxCell>
         <mxCell id="8u5Newi8nys6xHAhAptd-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="IXbX5ewmI5MATIdYdqmd-5" target="IXbX5ewmI5MATIdYdqmd-21">
@@ -180,7 +180,7 @@
         <mxCell id="8u5Newi8nys6xHAhAptd-43" value="Loop de Validação das redes treinadas" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=7;" vertex="1" parent="1">
           <mxGeometry x="1129.9966666666664" y="263" width="69.66666666666666" height="42" as="geometry" />
         </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-48" value="Modelos Treinados" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=7;" vertex="1" parent="1">
+        <mxCell id="8u5Newi8nys6xHAhAptd-48" value="&lt;br&gt;Modelos Treinados" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=7;" vertex="1" parent="1">
           <mxGeometry x="1250" y="255" width="60" height="50" as="geometry" />
         </mxCell>
         <mxCell id="8u5Newi8nys6xHAhAptd-49" value="Modelo Treinado" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=7;" vertex="1" parent="1">
@@ -224,38 +224,11 @@
         <mxCell id="8u5Newi8nys6xHAhAptd-67" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1537" y="360" width="588" height="203" as="geometry" />
         </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-68" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="8u5Newi8nys6xHAhAptd-69" target="8u5Newi8nys6xHAhAptd-71">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-69" value="Selecionar o melhor modelo no Neptune e realizar o download" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=7;" vertex="1" parent="1">
-          <mxGeometry x="1555" y="440.5" width="151.33" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-70" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="8u5Newi8nys6xHAhAptd-71" target="8u5Newi8nys6xHAhAptd-75">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-71" value="Treinamento Fine-Tunning" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=7;" vertex="1" parent="1">
-          <mxGeometry x="1725" y="440.5" width="70" height="42" as="geometry" />
-        </mxCell>
         <mxCell id="8u5Newi8nys6xHAhAptd-72" value="Building..." style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1548" y="376.5" width="540" height="40" as="geometry" />
         </mxCell>
         <mxCell id="8u5Newi8nys6xHAhAptd-73" value="&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(31, 35, 40); font-family: -apple-system, &amp;quot;system-ui&amp;quot;, &amp;quot;Segoe UI&amp;quot;, &amp;quot;Noto Sans&amp;quot;, Helvetica, Arial, sans-serif, &amp;quot;Apple Color Emoji&amp;quot;, &amp;quot;Segoe UI Emoji&amp;quot;; font-weight: var(--base-text-weight-semibold, 600);&quot;&gt;Segunda Abordagem&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1535" y="330" width="145" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-74" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="8u5Newi8nys6xHAhAptd-75" target="8u5Newi8nys6xHAhAptd-77">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-75" value="Utilizar Neptune para comparativo entre os treinamentos" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=7;" vertex="1" parent="1">
-          <mxGeometry x="1809" y="440.5" width="100" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=30;entryPerimeter=0;" edge="1" parent="1" source="8u5Newi8nys6xHAhAptd-77" target="8u5Newi8nys6xHAhAptd-78">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-77" value="Utilizar Neptune para comparativo entre os treinamentos" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=7;" vertex="1" parent="1">
-          <mxGeometry x="1925" y="440.5" width="100" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-78" value="Modelo Treinado" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=7;" vertex="1" parent="1">
-          <mxGeometry x="2055" y="432.5" width="60" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
