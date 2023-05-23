@@ -81,7 +81,7 @@ Common Objects in Context | [COCO - 2017](https://cocodataset.org/#download) |
 
 ### Silhouettes of human posture
 
-![SoHP](https://storage.googleapis.com/kaggle-datasets-images/826597/1412784/dd340c374512b7f4e11935a025c44059/dataset-cover.jpg?t=2020-08-11-20-03-43)
+![dataset-cover](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/fef0ab0f-ca7b-4238-8ea9-917942ad7423)
 
 Dataset com imagens de silhuetas humanas em 4 posições (Inclenado, sentado, levantado, deitado) em .jpg, no tamanho total de 4800 imagens, sendo 1200 imagens para cada posição, alocadas em pastas separadas de acordo com a classificação da imagem. As imagens já estão segmentadas e prontas para inserir à rede para treinamento, não sendo necessário qualquer tipo de tratamento a priori. A divisão do conjunto para aplicação em rede será de 60% das imagens para treino, 20% para validação e 20% para teste, sendo as imagens selecionadas através de um script de aleatóriedade. O dataset original e o dataset separado estão contidos nesse repositório.
 
