@@ -128,12 +128,11 @@ Embora de grande complexidade, os resultados apresentados a seguir demonstram a 
 ![image](https://github.com/robsoncolares/IA901-2023S1/assets/63214041/99d42a06-f75c-4c8e-a16b-12bb838aa38d)
 
 # Próximos passos
-Estudos recentes avaliam a utilização de arquiteturas de redes neurais com essemble para garantir resultados superiores na classificação de lesões de pele. Dado isso, os próximos passos serão: 
+Estudos recentes avaliam a utilização de arquiteturas de redes neurais com essemble para garantir resultados superiores na classificação de lesões de pele. Dado isso, as sugestões de próximos passos são: 
 
-- Construção do ensemble: Criar um ensemble combinando as previsões das redes DenseNet e EfficientNet com o modelo ResNet50. Isso pode ser feito por votação majoritária ou média das probabilidades de classe preditas pelos modelos.
-- Validação do ensemble: Avaliar o desempenho do ensemble usando o conjunto de validação. Calculando métricas de avaliação e comparando com os resultados obtidos pela ResNet50 individualmente para avaliar se de fato o ensemble melhora a precisão e o desempenho geral do modelo.
-- Testar outras técnicas de data augmentation e tamanhos de batch
-- Teste e avaliação final: Após ajustar o ensemble e obter resultados satisfatórios na validação, testar o modelo final usando o conjunto de teste separado.
+- Desenvolvimento e validação de um esemble: criar um ensemble combinando previsões de redes com o modelo ResNet50 e avaliar o desempenho do ensemble usando o conjunto de validação. 
+- Testar outras técnicas de data augmentation, como segmentação do tumor nas imagens e avaliar diferentes tamanhos de batch
+- Teste e avaliação final: aplicar a melhor arquitetura avaliada no conjunto de validação nos dados de teste e reportar se os resultados foram significativos, principalmente para a taxa de falsos positivos.
 
 ## Referências 
 1. Data Augmentation for Skin Lesion Analysis, CoRR 2018, Fábio Perez, Cristina Vasconcelos, Sandra Avila, Eduardo Valle
