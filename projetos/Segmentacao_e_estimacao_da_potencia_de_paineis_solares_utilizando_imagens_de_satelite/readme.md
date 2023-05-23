@@ -18,7 +18,7 @@ Group:
 | Sérgio Augusto de Almeida Christoforo  | 249522          | M.Sc. Student of Electrical Engineering (Energy)|
 
 
-## Descrição do Projeto  <br /> <sub> Project Description </sub>
+## Project Description 
 <!---
 > Descrição do objetivo principal do projeto, incluindo contexto gerador, motivação.
 > Qual problema vocês pretendem solucionar?
@@ -32,7 +32,7 @@ Given that the modernization of power systems allows users to play an active rol
 Therefore, this project aims to segment solar panels in satellite images using image analysis and pattern recognition techniques. Subsequently, the aim is to estimate the system's generation using neural networks.
 
  
-# Metodologia  <br /> <sub> Methodology </sub>
+# Methodology 
 <!---
 > Proposta de metodologia incluindo especificação de quais técnicas pretende-se explorar. Espera-se que nesta entrega você já seja capaz de descrever de maneira mais específica (do que na Entrega 1) quais as técnicas a serem empregadas em cada etapa do projeto.
 -->
@@ -41,7 +41,7 @@ The methodology of the project adopted so far (as of May 22, 2023) involved the 
 
 Thus, a mini U-Net was trained from scratch, and its performance was evaluated on the Google dataset. On the other hand, a pre-trained Resnet 50 underwent a fine-tuning process using the Google dataset to segment the solar panels. The Resnet50 was also tested with the IGN images.
  
-## Bases de Dados e Evolução  <br /> <sub> Databases and evolution </sub>
+##  Databases and evolution
 <!---
 > Elencar bases de dados utilizadas no projeto.
 > Para cada base, coloque uma mini-tabela no modelo a seguir e depois detalhamento sobre como ela foi analisada/usada, conforme exemplo a seguir.
@@ -62,14 +62,12 @@ Information provided in the reference article of the dataset.
 > * Utilize tabelas e/ou gráficos que descrevam os aspectos principais da base que são relevantes para o projeto.
 -->
 
-A base de dados contém imagens de satélite do Google e do IGN, bem como uma planilha de metadados. Cada um dos provedores de imagens possui duas pastas denominadas 'img' e 'mask'. Na pasta 'img' há várias imagens de satélite, enquanto na pasta 'mask' há a segmentação realizada. Entretanto, há imagens sem painéis solares, e que não possuem máscara. 
-
-</br> <sub>The database contains satellite images from both Google and IGN, as well as a metadata spreadsheet. Each of the image providers has two folders named 'img' and 'mask'. The 'img' folder contains several satellite images, while the 'mask' folder contains the corresponding segmentations. However, there are images without solar panels that do not have a mask. </sub>
+The database contains satellite images from both Google and IGN, as well as a metadata spreadsheet. Each of the image providers has two folders named 'img' and 'mask'. The 'img' folder contains several satellite images, while the 'mask' folder contains the corresponding segmentations. However, there are images without solar panels that do not have a mask. 
 
 | Exemplos | Image | Mask | Error |
 | -------- |-------|------| ----- | 
 |Google  | ![Imagem satélite Google](./data/raw/google/img/GBJXZ623CKGXDH.png) | ![Imagem máscara Google](./data/raw/google/mask/GBJXZ623CKGXDH.png)| ![Imagem com erro Google](./data/raw/google/img/LYUJB6EC9XBZKI.png)|
-|IGN| | ![Imagem satélite IGN](./data/raw/ign/img/KDZUH41C9ZAKON.png) | ![Imagem máscara IGN](./data/raw/ign/mask/KDZUH41C9ZAKON.png) |![Imagem com erro IGN](./data/raw/ign/img/BVSCV7297FJAON.png)
+|IGN     | ![Imagem satélite IGN](./data/raw/ign/img/KDZUH41C9ZAKON.png)       | ![Imagem máscara IGN](./data/raw/ign/mask/KDZUH41C9ZAKON.png) |![Imagem com erro IGN](./data/raw/ign/img/BVSCV7297FJAON.png) |
 
 Besides that, there is a metadata csv file containing information about the PV arrays, inversor power, pannel type, etc. 
 
