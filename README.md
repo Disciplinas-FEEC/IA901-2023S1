@@ -94,7 +94,7 @@ Draw.IO, para confecção do Workflow.
 
 # Workflow
 
-![Test](/Figuras/Workflow_Melanoma.png "Workflow")
+`![Test](/Figuras/Workflow_Melanoma.png "Workflow")`
 
 <p align="center">
   <img src="Figuras/Workflow_Melanoma.png">
