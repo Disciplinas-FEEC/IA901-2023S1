@@ -15,7 +15,12 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 
 ## Descrição do Projeto
 
-O objetivo desse projeto é tratar fotos de pessoas em diferentes posições (Em pé, sentado, deitado), visando construir um modelo articulado da estrutura humana. Por conseguinte, esses dados serão inseridos em uma rede neural que irá avaliar a posição do indíviduo. Realizar segmentação das pessoas nas imagens e a diferenciação entre em pé e deitado.
+A robótica tem se demonstrado uma tecnologia muito presente e útil com o passar dos anos, motivando estudos e projetos ao redor do mundo. Dentre suas aplicações, os ambientes domésticos não estão excluídos desta área de pesquisa, trazendo assim propostas de modelos robóticos cada vez mais sofisticados e modernos para o cotidiano das casas contemporâneas da atualidade. A partir da inclusão de robôs de serviço no ambiente familiar, tendo como exemplo os dispositivos de limpeza inteligentes (robôs aspiradores *smart*), outros aparelhos, porém com o propósito de exercer uma função assistiva, apareceram na intuição de  auxiliar pessoas que requerem assistência para suas tarefas e atividades diárias, como idosos e pessoas com deficiência.
+
+A proposta de uma linha de robôs assistivos tem sido bem recente e pode ser considerada uma área ainda inovadora no ramo das pesquisas e projetos a depender da sua aplicação. Segundo dados da ONU de 2019, em 2050 a população mundial será de 9,7 bilhões de pessoas, e 16% da população terá idade superior a 65 anos, sendo que em 2019, esse percentual era de 9%. A partir dessa informação é possível ter uma noção de quantos indivíduos passarão a demandar de atenção e cuidados para com o seu dia a dia. 
+
+Devido aos fatos citados, o projeto propõe oferecer um sistema de detecção de posição física humana, com o objetivo de tratar fotos de pessoas em diferentes posições (Em pé, sentado, deitado), a partir de processos de segmentação. Por conseguinte, esses dados serão inseridos em uma rede neural que irá avaliar e classificar a posição do indivíduo. Esse procedimento de classificação visa oferecer a robôs assistivos uma capacidade de reconhecimento da condição em que a pessoa a quem ele auxilia se encontra, a ponto de poder tomar decisões que podem identificar possíveis emergências.
+
 
 # Metodologia
 
