@@ -261,20 +261,31 @@ Com base nos resultados obtidos, os próximos passos imediatos seriam:
 3. Fazer fine-tuning do modelo de Deep Learning para aumentar a performance de classificação do tecido ‘Breast’ (experimento 1); (médio prazo)
 
 4. Em geral, o modelo de Deep Learning apresentou uma alta performance em classificar as imagens no nosso problema - mesmo considerando o caso em que excluímos um dos tipos de tecido. Por isso, estudaremos algumas possíveis extensões para o projeto (médio/longo prazo):
+
 4.1 Contagem do número de células neoplásicas em cada imagem - tarefa de regressão;
+
 4.2 Uso de técnicas de interpretação das redes neurais treinadas;
+
 4.3 Analisar a necessidade de balancear o dataset para o número de cada tipo de tecido;
+
 4.4 Analisar a possibilidade de classificação entre tumores benignos e malignos;
 
 5. Aspectos técnicos a serem trabalhados:
+
 5.1 Adicionar salvaguardas nos códigos para evitar que imagens corrompidas sejam usadas; (curto prazo)
+
 5.2 Criar algum critério de exclusão para imagens com baixa qualidade; (curto prazo)
+
 5.3 Adaptar os códigos para salvar mais resultados intermediários e garantir a reprodutibilidade e fácil entendimento pelos usuários; (curto prazo)
+
 5.4 Implementar ferramentas para o arquivamento dos experimentos (por ex. NeptuneAI) (médio prazo)
 
 Dado que teremos 1 mês até a entrega final, estamos considerando que:
+
 Curto prazo: 1-2 semanas
+
 Médio prazo: 2-3 semanas
+
 Longo prazo: 3-4 semanas
 
 ## Referências 
