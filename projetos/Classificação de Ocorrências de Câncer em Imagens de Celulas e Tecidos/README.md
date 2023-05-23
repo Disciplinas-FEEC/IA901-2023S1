@@ -18,10 +18,15 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 ## Descrição do Projeto
 
 O câncer é um dos acometimentos mais letais e prevalentes na população mundial, sendo um termo comum que engloba mais de 100 doenças que ocorrem em diferentes órgãos do corpo humano (próstata, pulmão, boca, pele, cólon e etc). A principal característica do câncer é o crescimento desenfreado de células anormais, que eventualmente podem formar tumores e se espalhar para outros órgãos gerando complicações, processo conhecido como metástase [2].
+
 A principal causa para o surgimento desta doença é a mutação de células comuns, que são alterações na estrutura do DNA contido no núcleo. Existem diversos fatores de risco que podem propiciar a ocorrência destas mutações, como o consumo de substâncias tóxicas ou exposição a fontes de radiação, por exemplo - contudo, este é um fenômeno que também pode ter causas internas, podendo ocorrer em indivíduos por fatores hereditários e imunológicos. 
+
 Todos os anos, milhares de pessoas são acometidas pelo câncer no Brasil e no mundo, e muitas vidas ainda são perdidas. Uma das formas mais eficazes de tratamento (que pode envolver práticas de radioterapia ou quimioterapia) consiste no diagnóstico precoce, momento ao qual a doença ainda está nos primeiros estágios de desenvolvimento e não gerou complicações para o paciente. Nesta fase, maiores são as chances de sucesso no tratamento e de sobrevivência a longo prazo. O diagnóstico precoce pode ocorrer não apenas por exames de rotina, mas também com abordagens que envolvam procedimentos de biópsia, em que partes do tecido na região acometida pelo câncer são analisadas em microscopia.  É nesse cenário que a capacidade de desenvolver algoritmos capazes de analisar imagens de células em lâminas de tecidos e identificar células cancerígenas se torna extremamente valiosa.
+
 As lâminas de tecidos contêm informações visuais sobre as células e suas características morfológicas. No entanto, a análise manual dessas imagens requer um tempo significativo e está sujeita a variações e erros humanos. Ao desenvolver algoritmos de análise de imagens, é possível automatizar e agilizar o processo de detecção de células cancerígenas, melhorando a tomada de decisão dos médicos e levando a práticas mais personalizadas no tratamento de cada paciente [3].
+
 Perante o exposto, este projeto consiste em aplicar técnicas de aprendizado de máquina para classificar imagens de lâminas de tecidos de diferentes órgãos. Serão feitas duas classificações: a primeira irá separar as imagens com presença ou não de tumor no tecido a partir da análise de células neoplásicas, que podem estar presentes (indicação de tumor) ou não; a segunda classificação é do tipo de tecido representado pela imagem da lâmina de microscopia entre dezenove classes distintas. Para o primeiro tipo de classificação, serão utilizadas máscaras com a segmentação das células neoplásicas, as quais extraímos a classe binária da imagem (0: não possui célula neoplásica, 1: possui célula neoplásica).
+
 Finalmente, como objetivo secundário do projeto, buscaremos comparar a performance de classificação de duas abordagens. A primeira consiste no uso de um modelo de Deep Learning, o qual fará a extração de atributos automaticamente e, posteriormente, a classificação das imagens; enquanto a segunda envolve extração manual de atributos e a classificação das imagens com algoritmos tradicionais de Machine Learning. 
 
 # Metodologia
@@ -40,19 +45,21 @@ O dataset 'PanNuke' consiste em 7901 imagens RGB com dimensões (256, 256, 3) de
 6: Background. 
 
 Alguns exemplos podem ser vistos abaixo, assim como a distribuição das imagens.
-<p align="left">
+<p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/exemplos dataset.png" height="350">
 </p>
 
+<p align="center">
 Figura 1: Algumas imagens do dataset que representam as segmentações dos núcleos celulares, onde cada cor se refere a um tipo de máscara.
+</p>
 
-<p align="left">
+<p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/freq_tecido.png" height="350">
 </p>
 
 Figura 2: Distribuição das imagens do dataset por tipo de tecido.
 
-<p align="left">
+<p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/distribuicao_mascaras.png" height="350">
 </p>
 
@@ -69,12 +76,14 @@ Cancer Instance Segmentation and Classification 3 | https://www.kaggle.com/datas
 ## Passo 1: Extração de dados
 
 Para facilitar o uso das imagens (e permitir que elas fossem carregadas na memória RAM/GPU dos sistemas operacionais utilizados), desenvolvemos um algoritmo que faz uma cópia local das três partes do dataset 'PanNuke', extraindo e salvando cada imagem, de dentro dos arquivos .npy, no formato .png. Cada imagem foi salva com um número em seu nome, que serve como um identificador ('Image_*.png'). 
+
 Este mesmo código também faz a leitura da máscara de cada imagem, mais especificamente da banda '0', que corresponde a segmentação de células neoplásicas. Disto, segue que a variável-classe (presença ou não de células neoplásicas) é construída a partir do cálculo do desvio-padrão (STD) desta banda. Se STD=0, a imagem de tecido correspondente é classificada como sem células neoplásicas (classe '0', negativa), caso contrário (STD>0), consideramos que a imagem possui células neoplásicas. 
+
 Além das próprias imagens, este código possui com output uma tabela, em que cada linha representa uma imagem. Nela, ainda existem três colunas que representam: ID das imagens, Tipo de tecido e classe (presença ou não de célula neoplásica). 
 
  Abaixo vemos a distribuição dos tecidos que possuem ou não células neoplásicas:
 
-<p align="left">
+<p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/freq_tumor.png" height="350">
 </p>
 
@@ -90,7 +99,7 @@ Conclui-se então que para o propósito inicial do projeto, que é a classifica�
 > Você pode optar por usar um gerenciador de workflow (Sacred, Pachyderm, etc) e nesse caso use o gerenciador para gerar uma figura para você.
 > Lembre-se que o objetivo de desenhar o workflow é ajudar a quem quiser reproduzir seus experimentos.
 
-<p align="left">
+<p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/workflow.png" height="350">
 </p>
 
@@ -99,7 +108,7 @@ Conclui-se então que para o propósito inicial do projeto, que é a classifica�
 > Para cada experimento, apresente os principais resultados obtidos
 > Aponte os problemas encontrados nas soluções testadas até aqui
 
-<p align="left">
+<p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/ROC_GeneralAnalysis.png" height="350">
 </p>
 
@@ -107,11 +116,11 @@ Conclui-se então que para o propósito inicial do projeto, que é a classifica�
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/TPR_GeneralAnalysis.png" height="200">
 </p>
 
-<p align="roght">
+<p align="right">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/FPR_GeneralAnalysis.png" height="200">
 </p>
 
-<p align="left">
+<p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/ROC_TissueAnalysis.png" height="350">
 </p>
 
