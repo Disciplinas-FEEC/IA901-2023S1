@@ -1,5 +1,5 @@
-# `<Identificação de Ocorrências de Tumor em Imagens de Células e Tecidos
-# `<Identification of Tumor Occurrences in Cell and Tissue Images`
+# Identificação de Ocorrências de Tumor em Imagens de Células e Tecidos
+# Identification of Tumor Occurrences in Cell and Tissue Images
 
 
 ## Apresentação
@@ -7,7 +7,7 @@
 O presente projeto foi originado no contexto das atividades da disciplina de pós-graduação *IA901 - Processamento de Imagens e Reconhecimento de Padrões*,
 oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dra. Leticia Rittner, do Departamento de Engenharia de Computação e Automação (DCA) da Faculdade de Engenharia Elétrica e de Computação (FEEC).
 
-> Incluir nome RA e foco de especialização de cada membro do grupo. Os projetos devem ser desenvolvidos em trios.
+
 > |Nome  | RA | Curso|
 > |--|--|--|
 > | Eduardo Parducci  | 170272  | Graduação em Eng. de Computação|
@@ -99,9 +99,47 @@ Conclui-se então que para o propósito inicial do projeto, que é a classifica�
 
 ## Passo 2: Divisão de treino, teste e validação
 
-	Como o projeto envolve treinar algoritmos de aprendizado de máquina, foi necessário dividir o conjunto de imagens em grupos de treino, validação e teste. Portanto, foi desenvolvido um algoritmo que acessa o diretório das imagens ‘.png’ e cria cópias destas imagens (sem repetições) em três novos diretórios: ‘/train’, ‘/val’ e ‘/test’. Todos possuem subdiretórios que representam as classes: ‘/0’ e ‘/1’. Escolhemos esta organização para tirar o máximo de proveito do método DataLoader() da biblioteca PyTorch, que foi usada para os experimentos com Deep Learning. 
+Como o projeto envolve treinar algoritmos de aprendizado de máquina, foi necessário dividir o conjunto de imagens em grupos de treino, validação e teste. Portanto, foi desenvolvido um algoritmo que acessa o diretório das imagens ‘.png’ e cria cópias destas imagens (sem repetições) em três novos diretórios: ‘/train’, ‘/val’ e ‘/test’. Todos possuem subdiretórios que representam as classes: ‘/0’ e ‘/1’. Escolhemos esta organização para tirar o máximo de proveito do método DataLoader() da biblioteca PyTorch, que foi usada para os experimentos com Deep Learning. 
     
-	A partição escolhida para os conjuntos foi de 70% treino, 20% teste e 10% validação. Além disso, mantivemos, em cada conjunto, a mesma proporção de tipos de tecido encontradas no dataset original (por exemplo, se no conjunto original de imagens tivéssemos 30% delas sendo do pulmão; nos conjuntos de treino, teste e validação teremos a mesma proporção). 
+A partição escolhida para os conjuntos foi de 70% treino, 20% teste e 10% validação. Além disso, mantivemos, em cada conjunto, a mesma proporção de tipos de tecido encontradas no dataset original (por exemplo, se no conjunto original de imagens tivéssemos 30% delas sendo do pulmão; nos conjuntos de treino, teste e validação teremos a mesma proporção). 
+
+## Passo 3: Experimentos
+	
+Nesta etapa, utilizamos os conjuntos de treino, teste e validação para fazer as análises com técnicas de Deep Learning e Machine Learning (via extração de atributos). Uma descrição sucinta destas abordagens pode ser vista abaixo. 
+
+#### Análise com Deep Learning
+
+Para as análises de Deep Learning recorremos, em um primeiro momento, a uma abordagem envolvendo o método de Transfer Learning. A arquitetura escolhida foi a EfficientNet_B0, que foi carregada e treinada via PyTorch. O método DataLoader foi empregado para carregar na memória as imagens processadas dos diretórios e aplicar as transformações necessárias. 
+
+Alguns sub experimentos, testando diferentes configurações de hiperparâmetros, foram feitos visando um ajuste ótimo da rede neural. Ao fim deste processo, fixamos para todos os treinamentos os seguintes hiperparâmetros:
+
+
+- Learning Rate: 0.0001
+- Optmizer: ADAM
+- N Epochs: 20 
+
+
+E uma semente aleatória igual à 42 foi utilizada para garantir reprodutibilidade. Em todos os casos, usamos Data Augmentation, com métodos de Random Crop, Flips horizontais e verticais, Pad e Random Erasing. 
+
+Dois experimentos principais foram realizados neste estudo. A sua descrição detalhada pode ser vista a seguir:
+
+##### Baseline
+
+Neste experimento, utilizamos todos os tecidos nas etapas de treinamento, validação e testes. O objetivo foi verificar a performance do modelo de Deep Learning no cenário mais básico possível, em termos de dataset. 
+ Adicionalmente, neste experimento, verificamos o quanto o modelo treinado acertava na tarefa de classificação considerando os diferentes tipos de tecido - a pergunta a ser respondida era: será que algum tecido é mais desafiador para o modelo classificar?
+
+##### Experimento I:
+	
+Neste experimento, treinamos o modelo de Deep Learning com as imagens de todos os tecidos, menos o tecido ‘Breast’, que foi separado para ser utilizado apenas na fase de testes. Esta escolha se deu pelo fato do tecido ‘Breast’ ser o mais populoso do dataset (>2000 imagens). 
+Portanto, a pergunta a ser respondida neste experimento foi: será que o modelo de Deep Learning é capaz de generalizar e aprender a reconhecer células neoplásicas em um tipo de tecido não visto durante o treinamento? 
+
+#### Análise com técnicas tradicionais
+
+##### Extração de atributos
+`<Em construção>`
+
+##### Treinamento dos modelos
+`<Em construção>`
 
 
 # Ferramentas
@@ -133,6 +171,7 @@ Conclui-se então que para o propósito inicial do projeto, que é a classifica�
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/ROC_TissueAnalysis.png" height="350">
 </p>
+
 
 
 
