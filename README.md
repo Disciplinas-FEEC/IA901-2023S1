@@ -94,8 +94,6 @@ Draw.IO, para confecção do Workflow.
 
 # Workflow
 
-`![Test](/Figuras/Workflow_Melanoma.png "Workflow")`
-
 <p align="center">
   <img src="Figuras/Workflow_Melanoma.png">
 </p>
@@ -109,8 +107,6 @@ Experimento 1 - CNN com o Conjunto "Benigno" Diminuído<br>
 Para a primeira etapa do projeto, 10% do conjunto de imagens benignas foram aleatoriamente selecionadas, visando facilitar os primeiros treinamentos e garantir o fluxo do que estava sendo desenvolvido e aplicado. Com o conjunto selecionado e fixado através de uma semente, foi realizada a padronização das imagens, pois o processo garante a normalização das intensidades, reduzir vieses e melhorar a estabilidade numérica do processo de treinamento. Ainda, o data augmentation aplicado consiste em testar diferentes faixas de deslocamento horizontal e vertical, distorções de cisalhamento aleatórias nas imagens, zoom aleatório e ajustes de brilho e matiz. Por fim, uma rede desenvolvida do zero foi criada, consistindo em camadas convolucionais, normalização por batch, pooling global de média para extrair características da imagem e uma camada densa final para realizar a classificação das imagens. 
 
 Os resultados de acurácia são significativamente bons, porém ainda há o mesmo problema de todas as amostras da classe maligna ser classificada como benigna. 
-![Test](/Figuras/exp3_resultados_treinamento.png "Curvas de Erro e AUC de Treinamento e Validação")
-![Test](/Figuras/exp3_matriz.png "Matriz de Confusão")
 
 <p align="center">
   <img src="Figuras/exp3_resultados_treinamento.png">
@@ -125,8 +121,6 @@ Com a mesma rede implementada no exemplo anteior, foi realizado o treinamento co
 
 Os resultados do experimento anterior persistiram e um dos principais problemas foi o tempo despendido para treinamento da rede neural convolucional. Ainda, obsera-se que a diminuição do desbalanceamento não conduz a um resultado favorável de classificação da classe com menores amostras.
 
-![Test](/Figuras/exp2_resultados_treinamento.png "Curvas de Erro e AUC de Treinamento e Validação")
-![Test](/Figuras/exp2_matriz.png "Matriz de Confusão")
 
 <p align="center">
   <img src="Figuras/exp2_resultados_treinamento.png">
@@ -140,10 +134,6 @@ Experimento 3 - Resnet50 para o Conjunto Completo de Dados
 Ao considerar que o principal objetivo é minimizar a taxa de falsos negativos, aplicou-se uma arquitetura mais complexa no conjunto, previamente treinada em imagens. A ResNet50 é uma arquitetura de rede neural convolucional (CNN) proposta em 2015 e ainda muito utilizada no contexto de imagens. Ela é conhecida por sua capacidade de treinar redes muito profundas com maior eficiência, superando o desafio de degradação do desempenho que ocorre ao aumentar a profundidade da rede. Ainda, a rede foi pré-treinada em um grande conjunto de dados chamado ImageNet, que contém mais de um milhão de imagens rotuladas em 1000 classes diferentes. Dessa forma, utilizar essa arquitetura permite aproveitar os recursos de alto nível aprendidos durante o treinamento para extrair características relevantes das imagens e aplicá-las a novas tarefas, como detecção de objetos, segmentação de imagens e muito mais. 
 
 Embora de grande complexidade, os resultados apresentados a seguir demonstram a dificuldade de discriminar as lesões de pele entre malignas e benignas. Os ganhos foram de apenas 6 acertos na classe de predizer corretamente lesões malignas e, consequentemente, a taxa de falsos negativos (predizer como begnigno, quando na verdade é maligno) foi de 96%.
-
-![image](https://github.com/robsoncolares/IA901-2023S1/assets/63214041/8cdb2241-a9e1-485a-9161-f54120efb308)
-
-![image](https://github.com/robsoncolares/IA901-2023S1/assets/63214041/99d42a06-f75c-4c8e-a16b-12bb838aa38d)
 
 <p align="center">
   <img src="https://github.com/robsoncolares/IA901-2023S1/assets/63214041/8cdb2241-a9e1-485a-9161-f54120efb308">
