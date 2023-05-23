@@ -66,7 +66,7 @@ Alguns exemplos podem ser vistos abaixo, assim como a distribuição das imagens
 > Lembre-se que o objetivo de desenhar o workflow é ajudar a quem quiser reproduzir seus experimentos.
 
 <p align="left">
-    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Workflow Projeto IA901.pdf" height="350">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/workflow.png" height="350">
 </p>
 
 # Experimentos e Resultados preliminares
@@ -79,11 +79,11 @@ Alguns exemplos podem ser vistos abaixo, assim como a distribuição das imagens
 </p>
 
 <p align="left">
-    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/TPR_GeneralAnalysis.png" height="150">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/TPR_GeneralAnalysis.png" height="200">
 </p>
 
 <p align="roght">
-    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/FPR_GeneralAnalysis.png" height="150">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/FPR_GeneralAnalysis.png" height="200">
 </p>
 
 <p align="left">
