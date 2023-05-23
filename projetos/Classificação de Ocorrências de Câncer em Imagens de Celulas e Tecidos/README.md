@@ -97,6 +97,13 @@ Além das próprias imagens, este código possui com output uma tabela, em que c
 
 Conclui-se então que para o propósito inicial do projeto, que é a classificação de tecidos com ou sem a presença de células neoplásicas, as quais são tumores, tem-se um dataset equilibrado (entre tecidos com e sem tumor) e totalmente anotado para tal propósito.
 
+## Passo 2: Divisão de treino, teste e validação
+
+	Como o projeto envolve treinar algoritmos de aprendizado de máquina, foi necessário dividir o conjunto de imagens em grupos de treino, validação e teste. Portanto, foi desenvolvido um algoritmo que acessa o diretório das imagens ‘.png’ e cria cópias destas imagens (sem repetições) em três novos diretórios: ‘/train’, ‘/val’ e ‘/test’. Todos possuem subdiretórios que representam as classes: ‘/0’ e ‘/1’. Escolhemos esta organização para tirar o máximo de proveito do método DataLoader() da biblioteca PyTorch, que foi usada para os experimentos com Deep Learning. 
+    
+	A partição escolhida para os conjuntos foi de 70% treino, 20% teste e 10% validação. Além disso, mantivemos, em cada conjunto, a mesma proporção de tipos de tecido encontradas no dataset original (por exemplo, se no conjunto original de imagens tivéssemos 30% delas sendo do pulmão; nos conjuntos de treino, teste e validação teremos a mesma proporção). 
+
+
 # Ferramentas
 > Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
 
