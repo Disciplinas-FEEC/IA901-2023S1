@@ -29,7 +29,7 @@ Os métodos adotados para a elaboração desse projeto foram baseados nas ativid
 
 Neste trabalho pretendemos comparar duas maneiras de abordar o problema. Primeiramente, através do dataset composto por silhueta de pessoas, treina-se diversas redes de classificação de imagem, tomando como base as melhores. Então, visto que estas imagens possuem carência de informações, um fine-tunning será realizado com um dataset menor com mais informações. Uma segunda via é explorar redes neurais que realizam segmentação de pessoas, para então criar a imagem já em silhueta, o que entrará direto na rede primeiramente treinada.
 
-# Preparação do dataset
+## Preparação do dataset
 
 O dataset de silhuetas é composto por 4800 imagens e 4 labels. Cada label possui 1200 imagens e eles estão a primeiro momento separados apenas pelos labels, que são:
 
@@ -81,7 +81,7 @@ Common Objects in Context | [COCO - 2017](https://cocodataset.org/#download) | I
 
 ### Silhouettes of human posture
 
-![SoHP](https://storage.googleapis.com/kaggle-datasets-images/826597/1412784/dd340c374512b7f4e11935a025c44059/dataset-cover.jpg?t=2020-08-11-20-03-43)
+![dataset-cover](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/fef0ab0f-ca7b-4238-8ea9-917942ad7423)
 
 Dataset com imagens de silhuetas humanas em 4 posições (Inclenado, sentado, levantado, deitado) em .jpg, no tamanho total de 4800 imagens, sendo 1200 imagens para cada posição, alocadas em pastas separadas de acordo com a classificação da imagem. As imagens já estão segmentadas e prontas para inserir à rede para treinamento, não sendo necessário qualquer tipo de tratamento a priori. A divisão do conjunto para aplicação em rede será de 60% das imagens para treino, 20% para validação e 20% para teste, sendo as imagens selecionadas através de um script de aleatóriedade. O dataset original e o dataset separado estão contidos nesse repositório.
 
@@ -109,7 +109,8 @@ Neptune.ai | https://neptune.ai/ | Experiment tracker and model registry
 
 # Workflow
 
-![IA901a-Workflow drawio](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/354f3745-6e06-4f47-adb3-de26f6c0ee7d)
+![IA901a-Workflow](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/d1312303-9a9b-4435-a4fa-4d2601c2a292)
+
 
 # Experimentos e Resultados preliminares
 
