@@ -1,0 +1,1 @@
+Este é o primeiro run e consiste em treinar uma EfficientNet_b0 com Transfer Learning. 

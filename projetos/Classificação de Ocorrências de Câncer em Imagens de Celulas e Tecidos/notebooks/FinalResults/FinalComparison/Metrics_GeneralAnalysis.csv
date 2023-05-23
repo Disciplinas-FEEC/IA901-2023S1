@@ -1,0 +1,3 @@
+Estudo,AUC,TPR,FPR,Precision,Accuracy,BestThreshold
+DL_Baseline,0.97,0.92,0.05,0.95,0.94,0.43
+Experiment_I,0.917,0.84,0.09,0.9,0.87,0.01
