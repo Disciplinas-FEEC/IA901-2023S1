@@ -41,7 +41,7 @@ O dataset 'PanNuke' consiste em 7901 imagens RGB com dimensões (256, 256, 3) de
 
 Alguns exemplos podem ser vistos abaixo, assim como a distribuição das imagens.
 <p align="left">
-    <img src="projetos/Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/exemplos dataset.png" height="350">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/exemplos dataset.png" height="350">
 </p>
 
 # Ferramentas
