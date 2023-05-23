@@ -44,18 +44,45 @@ Alguns exemplos podem ser vistos abaixo, assim como a distribuição das imagens
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/exemplos dataset.png" height="350">
 </p>
 
+Figura 1: Algumas imagens do dataset que representam as segmentações dos núcleos celulares, onde cada cor se refere a um tipo de máscara.
+
 <p align="left">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/freq_tecido.png" height="350">
 </p>
+
+Figura 2: Distribuição das imagens do dataset por tipo de tecido.
 
 <p align="left">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/distribuicao_mascaras.png" height="350">
 </p>
 
+Figura 3: Distribuição dos tipos de máscaras no dataset por tipo de tecido. O número à direita representa a quantidade de núcleos celulares segmentados para aquele tipo de máscara [1].
+
+Atualmente, o dataset 'PanNuke' está disponível em três partes - todas com a mesma estrutura/formato de organização das imagens. Os links para os datasets utilizados no projeto assim como um resumo das suas principais informações podem ser vistas na tabela abaixo: 
+
+Base de Dados | Endereço na Web | Resumo descritivo
+----- | ----- | -----
+Cancer Instance Segmentation and Classification 1 | https://www.kaggle.com/datasets/andrewmvd/cancer-inst-segmentation-and-classification  | Primeira parte do dataset 'PanNuke'. Contém 2523 imagens de tecidos e as respectivas máscaras de segmentação. Os rótulos de cada tipo de tecido também estão disponíveis.  
+
+Cancer Instance Segmentation and Classification 2 | https://www.kaggle.com/datasets/andrewmvd/cancer-instance-segmentation-and-classification-2 | Segunda parte do dataset, contendo 2656 imagens de tecidos e as respectivas máscaras de segmentação. Os rótulos de cada tipo de tecido também estão disponíveis.  
+
+Cancer Instance Segmentation and Classification 3 | https://www.kaggle.com/datasets/andrewmvd/cancer-instance-segmentation-and-classification-3 | Segunda parte do dataset, contendo 2722 imagens de tecidos e as respectivas máscaras de segmentação. Os rótulos de cada tipo de tecido também estão disponíveis. 
+
+## Passo 1: Extração de dados
+
+Para facilitar o uso das imagens (e permitir que elas fossem carregadas na memória RAM/GPU dos sistemas operacionais utilizados), desenvolvemos um algoritmo que faz uma cópia local das três partes do dataset 'PanNuke', extraindo e salvando cada imagem, de dentro dos arquivos .npy, no formato .png. Cada imagem foi salva com um número em seu nome, que serve como um identificador ('Image_*.png'). 
+Este mesmo código também faz a leitura da máscara de cada imagem, mais especificamente da banda '0', que corresponde a segmentação de células neoplásicas. Disto, segue que a variável-classe (presença ou não de células neoplásicas) é construída a partir do cálculo do desvio-padrão (STD) desta banda. Se STD=0, a imagem de tecido correspondente é classificada como sem células neoplásicas (classe '0', negativa), caso contrário (STD>0), consideramos que a imagem possui células neoplásicas. 
+Além das próprias imagens, este código possui com output uma tabela, em que cada linha representa uma imagem. Nela, ainda existem três colunas que representam: ID das imagens, Tipo de tecido e classe (presença ou não de célula neoplásica). 
+
+ Abaixo vemos a distribuição dos tecidos que possuem ou não células neoplásicas:
+
 <p align="left">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/freq_tumor.png" height="350">
 </p>
 
+Figura 4: Distribuição da presença de células neoplásicas (tumores) no conjunto de imagens de tecidos.
+
+Conclui-se então que para o propósito inicial do projeto, que é a classificação de tecidos com ou sem a presença de células neoplásicas, as quais são tumores, tem-se um dataset equilibrado (entre tecidos com e sem tumor) e totalmente anotado para tal propósito.
 
 # Ferramentas
 > Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
