@@ -201,6 +201,9 @@ Tab. 1. Síntese das principais métricas de performance para os estudos: Baseli
 *Métricas calculadas com base no valor ótimo (máximo) do Índice de Youden. 
 
 ### Análise por tecido com modelo Baseline
+
+A Figura 7 mostra a performance do modelo baseline para diferentes tecidos. Apenas aquelas com as três maiores (Stomach, Lung, Prostate) e três menores (Uterus, HeadNeck, Bile-duct) performances estão representadas. Para as maiores performances, temos AUCs=1 - indicando uma classificação perfeita dos tecidos. Nos piores casos, temos AUC~0.92, que é uma performance considerada razoável para um classificador. A Tabela 2 mostra o resultado para todos os tecidos e outras métricas de desempenho.Por fim, na próxima subseção, exibimos alguns exemplos de imagens cuja a rede neural errou a classificação - porém, não conseguimos detectar padrões que fizeram ela errar as classificações.
+
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/ROC_TissueAnalysis.png" height="350">
 </p>
@@ -292,8 +295,8 @@ Longo prazo: 3-4 semanas
 
 ## Referências 
 
-[1]: G., Jevgenij et. al,  “PanNuke Dataset Extension, Insights and Baselines”, 2020. (URL)
+[1]: G., Jevgenij et. al,  “PanNuke Dataset Extension, Insights and Baselines”, 2020. 
 
 [2]: Defining Cancer. National Cancer Institute
 
-[3]: Bhuiyan MR, Abdullah J. Detection on Cell Cancer Using the Deep Transfer Learning and Histogram Based Image Focus Quality Assessment. Sensors (Basel). 2022 Sep 16;22(18):7007. doi: 10.3390/s22187007. PMID: 36146356; PMCID: PMC9504738. (URL)
+[3]: Bhuiyan MR, Abdullah J. Detection on Cell Cancer Using the Deep Transfer Learning and Histogram Based Image Focus Quality Assessment. Sensors (Basel). 2022 Sep 16;22(18):7007. doi: 10.3390/s22187007. PMID: 36146356; PMCID: PMC9504738. 
