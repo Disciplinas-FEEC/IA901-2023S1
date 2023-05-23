@@ -118,9 +118,11 @@ Por fim, para avaliar o desempenho da KNN e da CNN foram utilizadas as métricas
 
 # Workflow
 
-O Workflow é um documento que faz todo o mapeamento de como executar todos os códigos desenvolvidos durante o projeto. Seu desenho foi feito na ferramenta Draw.io e está acessível para visualização como .PMG.
+O Workflow é um documento que faz todo o mapeamento de como executar todos os códigos desenvolvidos durante o projeto. Ele foi feito na ferramenta Draw.io e está acessível para visualização no formato .png.
 
-O diagrama presente no Workflow, inicia-se com as Fotos Cruas que representa o conjunto de fotos de domínio público, essas imagens passam então por uma etapa de Pré-processamento.pynb, a qual é responsável por identificar e remover contaminações entre os dados de treinamento e teste, assim como filtrar o formato de imagem que será usada.  O resultado deste processo é representado como Banco de dados no diagrama, e nele estão contidas as imagens que serão efetivamente usadas durante o projeto. o código Processamento.pynb e CNN.pynb fazem uso diferentes deste banco de dados, o primeiro executa vários métodos e técnicas de processamento de imagem para retirar o código da cadeia .txt das imagens do dataset, o que é mandado posteriormente para o codigo KNN.pynb que extrai as informações de classes. O segundo treina uma rede convolucional e gera o arquivo Coeficientes treinados.pn que será usado no código CNN_test.pynb para gerar os resultados das classes. 
+O diagrama presente no Workflow inicia-se com as "Fotos Cruas" (pasta data/raw) que representa o conjunto de fotos de domínio público. Essas imagens são a entrada do código "Pré-processamento.pynb", responsável por identificar e remover contaminações entre os dados de treinamento e teste, assim como filtrar o formato de imagem que será usada.  
+
+O resultado deste processo é representado como "Banco de dados"(pasta data/interim) no diagrama, e nele estão contidas as imagens que serão efetivamente usadas durante o projeto. Os códigos "Processamento.pynb" e "CNN.pynb" fazem usos diferentes deste banco de dados. O primeiro executa vários métodos e técnicas de processamento de imagem para obter o "código da cadeia.txt" das imagens do dataset, o que é enviado posteriormente para o código "KNN.pynb" que extrai as informações de classes. O segundo treina uma rede convolucional e gera o arquivo "Coeficientes treinados.pn" que será usado no código "CNN_test.pynb" para gerar os resultados das classes. 
 
 A seguir, é mostrado o workflow do projeto.
 
