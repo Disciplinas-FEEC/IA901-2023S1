@@ -158,8 +158,8 @@ Para o cálculo delas, consideramos o valor de Decision Threshold que maximiza o
 
 # Ferramentas
 
-	Para a organização e visualização dos dados do dataset, foram utilizadas as bibliotecas Pandas, Numpy e Matplotlib. Para a confecção do workflow do projeto, o grupo utilizou a ferramenta de desenho de workflows Draw.io. Para a execução do projeto em si, isto é, as classificações da imagens, irão ser utilizadas as bibliotecas PyTorch, para a parte de Deep Learning, e o SciKit-Learn para a parte de algoritmos tradicionais de machine learning voltados à classificação.
-	Todo o projeto tem sido desenvolvido, em linguagem Python, no formato de Notebooks do Google Colaboratory - com uso de GPUs/CPUs. Adicionalmente, todos os arquivos (raw, intermediários e finais) têm sido salvos na plataforma Google Drive - sendo, eventualmente, repassados para o Github. 
+Para a organização e visualização dos dados do dataset, foram utilizadas as bibliotecas Pandas, Numpy e Matplotlib. Para a confecção do workflow do projeto, o grupo utilizou a ferramenta de desenho de workflows Draw.io. Para a execução do projeto em si, isto é, as classificações da imagens, irão ser utilizadas as bibliotecas PyTorch, para a parte de Deep Learning, e o SciKit-Learn para a parte de algoritmos tradicionais de machine learning voltados à classificação.
+Todo o projeto tem sido desenvolvido, em linguagem Python, no formato de Notebooks do Google Colaboratory - com uso de GPUs/CPUs. Adicionalmente, todos os arquivos (raw, intermediários e finais) têm sido salvos na plataforma Google Drive - sendo, eventualmente, repassados para o Github. 
 
 # Workflow
 > Use uma ferramenta que permita desenhar o workflow e salvá-lo como uma imagem (Draw.io, por exemplo). Insira a imagem nessa seção.
