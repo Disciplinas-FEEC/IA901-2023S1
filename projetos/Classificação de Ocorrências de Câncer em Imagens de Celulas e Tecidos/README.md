@@ -234,12 +234,47 @@ Tab. 2. Síntese das principais métricas de performance para o estudo Baseline 
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/DL_WrongPredictions.png" height="350">
 </p>
 
+## Problemas encontrados até aqui:
+Aparentemente, algumas imagens não são totalmente informativas - isto é, estão em baixíssima qualidade ou correspondem a imagens das lâminas sem informações dos tecidos. Por exemplo, as duas imagens abaixo deveriam ser do cólon: 
+
+<p align="middle">
+  <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Problem1.png" height="300">
+  <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Problem2.png" height="300">
+</p>
+
+1. Algumas imagens do dataset estão corrompidas e percebemos isto apenas na hora de treinar/testar os modelos. Excluímos elas manualmente dos diretórios para que não fossem usadas nas análises. Porém, por uma questão de reprodutibilidade, pretendemos incluir algumas salvaguardas nos códigos para automatizar a exclusão de imagens corrompidas. 
+
+2. Ainda não foi possível realizar uma quantidade exaustiva de testes com os modelos de Deep Learning para encontrar uma arquitetura que seja, certamente, ótima. Estamos utilizando a GPU do Google Colab, que impõe limitações em seu uso. 
+
 
 # Próximos passos
-> Liste as próximas etapas planejadas para conclusão do projeto, com uma estimativa de tempo para cada etapa
 
-## Referências (ATUALIZAR SE NECESSÁRIO)
-> Seção obrigatória. Inclua aqui referências utilizadas no projeto.
+Com base nos resultados obtidos, os próximos passos imediatos seriam:
+
+1. Realizar extração de atributos e testar modelos tradicionais de Machine Learning na classificação de imagens; (médio/longo prazo)
+
+2. Aprimorar o modelo baseline testando outras arquiteturas (com ou sem Transfer Learning) ou métodos de data augmentation ; (curto prazo)
+
+3. Fazer fine-tuning do modelo de Deep Learning para aumentar a performance de classificação do tecido ‘Breast’ (experimento 1); (médio prazo)
+
+4. Em geral, o modelo de Deep Learning apresentou uma alta performance em classificar as imagens no nosso problema - mesmo considerando o caso em que excluímos um dos tipos de tecido. Por isso, estudaremos algumas possíveis extensões para o projeto (médio/longo prazo):
+4.1 Contagem do número de células neoplásicas em cada imagem - tarefa de regressão;
+4.2 Uso de técnicas de interpretação das redes neurais treinadas;
+4.3 Analisar a necessidade de balancear o dataset para o número de cada tipo de tecido;
+4.4 Analisar a possibilidade de classificação entre tumores benignos e malignos;
+
+5. Aspectos técnicos a serem trabalhados:
+5.1 Adicionar salvaguardas nos códigos para evitar que imagens corrompidas sejam usadas; (curto prazo)
+5.2 Criar algum critério de exclusão para imagens com baixa qualidade; (curto prazo)
+5.3 Adaptar os códigos para salvar mais resultados intermediários e garantir a reprodutibilidade e fácil entendimento pelos usuários; (curto prazo)
+5.4 Implementar ferramentas para o arquivamento dos experimentos (por ex. NeptuneAI) (médio prazo)
+
+Dado que teremos 1 mês até a entrega final, estamos considerando que:
+Curto prazo: 1-2 semanas
+Médio prazo: 2-3 semanas
+Longo prazo: 3-4 semanas
+
+## Referências 
 
 [1]: G., Jevgenij et. al,  “PanNuke Dataset Extension, Insights and Baselines”, 2020. (URL)
 
