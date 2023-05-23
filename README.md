@@ -96,6 +96,10 @@ Draw.IO, para confecção do Workflow.
 
 ![Test](/Figuras/Workflow_Melanoma.png "Workflow")
 
+<p align="center">
+  <img src="Figuras/Workflow_Melanoma.png">
+</p>
+
 # Experimentos e Resultados preliminares
 
 Os experimentos foram realizados através de diferentes arquiteturas, tamanhos de batch e transformações de data augmentation. Ainda, devido à quantidade de imagens, os primeiros testes foram realizados em um conjunto diminuído de dados, visando garantir que as primeiras aplicações iriam ocorrer corretamente ao longo de todo o fluxo de pré processamento, treinamento e validação dos resultados. Dessa forma, os experimentos baseados em batch tamanho 32, otimizadores Adam e SGD (*stochastic gradient descent*) e treinamentos de 20 épocas basearam-se da seguinte forma:
