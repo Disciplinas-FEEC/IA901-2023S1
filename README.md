@@ -146,10 +146,10 @@ Embora de grande complexidade, os resultados apresentados a seguir demonstram a 
 ![image](https://github.com/robsoncolares/IA901-2023S1/assets/63214041/99d42a06-f75c-4c8e-a16b-12bb838aa38d)
 
 <p align="center">
-  <img src="Figuras/exp3_resultados_treinamento.png](https://github.com/robsoncolares/IA901-2023S1/assets/63214041/8cdb2241-a9e1-485a-9161-f54120efb308">
+  <img src="https://github.com/robsoncolares/IA901-2023S1/assets/63214041/8cdb2241-a9e1-485a-9161-f54120efb308">
 </p>
 <p align="center">
-  <img src="[Figuras/exp3_matriz.png](https://github.com/robsoncolares/IA901-2023S1/assets/63214041/99d42a06-f75c-4c8e-a16b-12bb838aa38d)">
+  <img src="https://github.com/robsoncolares/IA901-2023S1/assets/63214041/99d42a06-f75c-4c8e-a16b-12bb838aa38d">
 </p>
 
 # Próximos passos
