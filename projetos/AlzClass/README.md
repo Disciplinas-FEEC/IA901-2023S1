@@ -105,9 +105,11 @@ Os resultados são apresentados nos gráficos abaixo:
 O treinamento com a rede ResNet18 está em fase de testes, para garantirmos que os resultados obtidos não sofreram overfitting. Mas como primeiro resultado, temos que a acurácia obtida foi em torno de **0.97**
 
 # Próximos passos
-- Migração para o dataset do OASIS, criando um dataloader apropriado. (estimativa: 1 semana)
-- Executar o workflow definido pelo projeto na nova base, utilizando para classificação a rede InceptionV4 (estimativa: 2 semanas)
-- Analisar e apresentar os resultados obtidos com a nova rede, comparando com os resultados iniciais da base do Kaggle (estimativa: 1 semana)
+Treinar e avaliar outras redes neurais (ResNet, InceptionV4) no dataset do kaggle. (1 semana)
+Expandir nossa análise para o dataset do OASIS, desenvolvendo uma pipeline apropriada para a ingestão deste formato de dados. (1 semana)
+Executar o workflow definido pelo projeto na nova base de dados. (1 semana)
+Analisar e apresentar os resultados obtidos com as nova rede e dataset, comparando com os resultados iniciais da base do Kaggle (1 semana)
+
 
 ## Referências (ATUALIZAR SE NECESSÁRIO)
 > Seção obrigatória. Inclua aqui referências utilizadas no projeto.
