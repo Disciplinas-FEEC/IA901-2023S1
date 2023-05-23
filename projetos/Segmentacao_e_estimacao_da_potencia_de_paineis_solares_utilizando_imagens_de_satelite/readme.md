@@ -93,7 +93,7 @@ MUDAR MUDAR MUDAR
 -->
 ![IGN Dataset Segmentation](./assets/ign.png)
 
-# Ferramentas  <br /> <sub> Tools </sub>
+# Tools
 <!---
 > Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
 -->
@@ -133,7 +133,7 @@ MUDAR MUDAR MUDAR
 The results using Resnet50 to test the segmentation of IGN imagery made us realize that some metrics regarding masks with more than one pannel should be monitored. 
 
 
-# Próximos passos  <br /> <sub> Next steps </sub>
+# Next steps 
 <!---
 > Liste as próximas etapas planejadas para conclusão do projeto, com uma estimativa de tempo para cada etapa
 -->
