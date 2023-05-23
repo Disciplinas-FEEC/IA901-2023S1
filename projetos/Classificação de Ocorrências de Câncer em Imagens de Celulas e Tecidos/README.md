@@ -171,7 +171,7 @@ Todo o projeto tem sido desenvolvido, em linguagem Python, no formato de Noteboo
 ##Análise com Deep Learning:
 
 ### Baseline vs Experimento 1: 
-	A Figura 5 apresenta a ROC Curve comparando o experimento Baseline (treinamento/validação/teste com todos os tecidos) com o experimento 1 (treinamento/validação com todos os tecidos, exceto ‘Breast’ que foi usado apenas para os testes). No cenário Baseline, o modelo de Deep Learning apresentou um desempenho elevado (AUC=0.97), indicando que mesmo sem qualquer tipo de pré-processamento, foi possível identificar a existência de células neoplásicas na maior parte das imagens de teste. 
+A Figura 5 apresenta a ROC Curve comparando o experimento Baseline (treinamento/validação/teste com todos os tecidos) com o experimento 1 (treinamento/validação com todos os tecidos, exceto ‘Breast’ que foi usado apenas para os testes). No cenário Baseline, o modelo de Deep Learning apresentou um desempenho elevado (AUC=0.97), indicando que mesmo sem qualquer tipo de pré-processamento, foi possível identificar a existência de células neoplásicas na maior parte das imagens de teste. 
 Já no experimento 1, a EfficientNet_B0 apresentou uma queda de performance em comparação com o cenário baseline (AUC=0.917). Mesmo assim, esta ainda é uma performance razoavelmente alta - o que é um indício de que um modelo de Deep Learning é capaz de generalizar e identificar padrões em imagens não vistas durante o treinamento. 
 
 <p align="center">
