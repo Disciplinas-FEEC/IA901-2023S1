@@ -35,11 +35,17 @@ A última etapa concentra-se no desenvolvimento de uma CNN (*Convolutional Neura
 
 Nesta etapa, utilizou-se métodos de processamento de imagens para distinguir as pessoas do restante da imagem, separando-as do plano de fundo. Isso é essencial para isolar as regiões de interesse e facilitar a análise. Uma vez que as pessoas foram detectadas, aplicou-se métodos de extração de características para capturar informações relevantes que possibilitem a classificação das poses que cada pessoa está realizando. Foram abordadas 2 vertentes: extração das posições das articulações através de um esqueleto e o resultante do código da cadeia de Freeman.
 
+O esqueleto de uma imagem é uma forma afinada da mesma, a fim de obter uma representação mais simples da forma de um objeto que facilite a extração de algumas características. A partir da imagem dos esqueletos, os pontos finais e ramificados de cada imagem podem ser extraidos para serem usados como entrada de uma rede como a KNN.
 
 ![plot_skeleton](./assets/esqueleto.png)
 
-![plot_freeman](./assets/freeman.png)
 
+Já o código da cadeia representa a borda de um objeto a partir da posição relativa entre os pixels vizinhos da borda ao invés da coordenada absoluta dos pixels. O código retorna uma sequência formada pelas direções entre cada pixel e o seu consecutivo, até que toda a borda seja analisada. Pode-se ter vizinhança-4 ou vizinhaça-8, conforme mostrado abaixo.
+
+![plot_freeman](./assets/chain_code.png)
+
+
+![plot_freeman_example](./assets/chain_code_example.png)
 
 
 A fim de facilitar o desenvolvimento desta fase, ela foi subdivididas em cinco etapas principais: Remoção de ruídos das imagens, transformações para realce, segmentação, detecção de bordas e extração de características.
@@ -131,10 +137,10 @@ Em paralelo, foi realizado o treinamento de uma rede neural convolucional (CNN) 
 
 Durante os experimentos, diversos hiperparâmetros foram variados, incluindo o otimizador, a taxa de aprendizagem, o número de épocas e o tamanho do lote (*batch size*). Após análise das curvas de acurácia e de *loss*, os hiperparâmetros foram ajustados da seguinte forma: 
 
-* tamanho do lote: 32;
-* otimizador: Adam;
-* taxa de aprendizagem: 0.000015;
-* número de épocas: 40. 
+* Tamanho do lote: 32;
+* Otimizador: Adam;
+* Taxa de aprendizagem: 0.000015;
+* Número de épocas: 40. 
 
 O tamanho do lote foi escolhido de modo que o custo computacional fosse reduzido, mas que fosse evitado o overfitting. Em relação aos otimizadores, observou-se que o Adam convergiu mais rápido para o mínimo global devido aos recursos adaptativos. A taxa de aprendizagem escolhida foi de 0.000015, considerada baixa, para evitar oscilações bruscas no treinamento que atrapalham a convergência do processo de aprendizado. Por estar associada ao otimizador Adam, essa taxa de aprendizado baixa não ocasionou lentidão do treinamento. Dessa forma, em apenas 40 épocas já foi alcançada uma acurácia de validação de 94% e *loss* de 22%, conforme observado nas figuras abaixo. 
 
