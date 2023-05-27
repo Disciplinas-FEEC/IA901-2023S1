@@ -16,12 +16,22 @@ O presente projeto foi originado no contexto das atividades da disciplina de pó
 Muitos desafios na área de imagem médica exigem como pré-processamento a segmentação do cérebro, por exemplo, a realização de registro e segmentação de estruturas cerebrais. Logo, o objetivo deste projeto é desenvolver um método de segmentação do cérebro usando técnicas de deep learning (CNNs) e estudar técnicas de pré-processamento dos dados para averiguar quais são viáveis para a melhoria do modelo. Já existem trabalhos que realizam a extração do cérebro, por exemplo, (Lucena et. al. 2018). Esta questão vem sendo bastante estudada.
 
 # Metodologia
+## Arquitetura U-Net
+DESCREVER ARQUITETURA UNET
 
-## Versão 3D da U-Net
+## Pré-Processamento de dados
+### nnU-Net 
+Os dados foram executados no framework nnU-Net apenas para obtermos sugestões de pré-processamento dos dodos e parâmetros da rede. Para a execusão dos dados na nnU-Net, foi necessário organizar os dados da forma que esta exige. A implementação usada para organização no conjunto de dados usados neste trabalho pode ser encontrado no notebook xxxxx, para mais informações acesse o tutorial do framework. 
 
-### Implementação básica para treinamento de uma arquitetura U-Net 3D
+Ao executarmos os dados na nnU-Unet, esta forneceu um problema nos dados, pois este framework não aceita labels que não sejam numéros inteiros. Isso foi importante para sabermos que as segmentações dos dados não estavam binarizadas. Isso foi corrigido para execução da nnU-Net usando o código presente também no notebook xxxx.
 
-Implementação com quatro camadas de pooling e uma camada de Bottleneck, seguida por quatro camadas de upsampling. Mais detalhes em unet_sem_preproc.ipynb.
+Após a execução da nnU-Net, foram obtidos uma lista de pré-processamento para o treinamento deste dados 3D e 2D. A partir dessas listas, consideramos os seguintes pré-processamentos para o treinamento das duas versões da arquitetura U-Net (2D e 3D).
+
+#### Definição de pré-processamento da U-Net 2D
+COLOCAR AQUI O QUE FOR DEFINIDO A PARTIR DA NNUNET.
+
+#### Definição de pré-processamento da U-Net 3D
+patch_size = [128, 128, 128], do_rotation = True: angle_x = (-0.5235987755982988, 0.5235987755982988), angle_y = (-0.5235987755982988, 0.5235987755982988), angle_z = (-0.5235987755982988, 0.5235987755982988), GaussianNoiseTransform( p_per_sample = 0.1, data_key = 'data', noise_variance = (0, 0.1), p_per_channel = 1, per_channel = False ); GaussianBlurTransform( p_per_sample = 0.2, different_sigma_per_channel = True, p_per_channel = 0.5, data_key = 'data', blur_sigma = (0.5, 1.0), different_sigma_per_axis = False, p_isotropic = 0 ); ContrastAugmentationTransform( p_per_sample = 0.15, data_key = 'data', contrast_range = (0.75, 1.25), preserve_range = True, per_channel = True, p_per_channel = 1 ); GammaTransform( p_per_sample = 0.1, retain_stats = True, per_channel = True, data_key = 'data', gamma_range = (0.7, 1.5), invert_image = True ); 'batch_size': 2; 'spacing': [1.0, 0.9999008178710938, 1.0],
 
 ### Versão 3D da U-Net modificada
 
