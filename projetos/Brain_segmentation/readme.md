@@ -13,11 +13,23 @@ O presente projeto foi originado no contexto das atividades da disciplina de pó
 
 ## Descrição do Projeto
 
-Muitos desafios na área de imagem médica exigem como pré-processamento a segmentação do cérebro, por exemplo, a realização de registro e segmentação de estruturas cerebrais. Logo, o objetivo deste projeto é desenvolver um método de segmentação do cérebro usando técnicas de deep learning (CNNs) e estudar técnicas de pré-processamento dos dados para averiguar quais são viáveis para a melhoria do modelo. Já existem trabalhos que realizam a extração do cérebro, por exemplo, (Lucena et. al. 2018). Esta questão vem sendo bastante estudada.
+Muitos desafios na área de imagem médica exigem como pré-processamento a segmentação do cérebro, por exemplo, a realização de registro e segmentação de estruturas cerebrais. Muitas propostas tem surgindo para solucionar este problema, o que já tem boas propostas na literatura, por exemplo, o trabalho por [LUCENA, Oeslle et al.](https://ieeexplore.ieee.org/abstract/document/8363766?casa_token=Y9VwrDbJQJ8AAAAA:7MsKQIPK9IAl2PD8zla2eRkO2jNtqUilIMtqGjEBGlRb_P9SNNJkXwgJR91otfmY_wGeJSfhGJg). 
+
+Tem surgido propostas na literatura mostrando que ao aplicar técnicas de pré-processamento e aumento de dados pode ser mais vantajoso do que apenas usar técnicas de última geração. Por exemplo, a implementação do framework [nnU-Net](https://www.nature.com/articles/s41592-020-01008-z), que busca o melhor pré-processamento de um conjunto de dados e hiperparâmetros da rede para este conjunto de dados, automaticamente. O objetivo deste framework é usar a arquitetura de uma CNN simples [U-Net](https://link.springer.com/chapter/10.1007/978-3-319-24574-4_28) para buscar de maneira autônoma o melhor modelo de segmentação de objetos de acordo com as características dos dados. Logo, este framework foi executado com o objetivo de adquirir os pré-processamentos dos conjuntos de dados usados neste trabalho e usar como ponto de partida para o treinamento 3D deste projeto.
+
+Logo, o objetivo deste projeto é usar partes de um conjunto de dados de segmentação do cérebro para executar um experimento na nnU-Net e obter suas sugestões de pŕe-processamento de dados e parâmetros da rede para estudá-los e definir os mais intuitivéis e factíveis, para em seguida, desenvolver um método de segmentação do cérebro usando uma versão da arquitetura U-Net. Este estudo incluí averiguar quais dos pré-processamentos dos dados são viáveis para a melhoria de um modelo de segmentação do cérebro.
 
 # Metodologia
 ## Arquitetura U-Net
-DESCREVER ARQUITETURA UNET
+Este trabalho utilizará a arquitetura [U-Net](https://link.springer.com/chapter/10.1007/978-3-319-24574-4_28), uma rede neural convolucional bastante utilizada para segmentação de imagens médicas. Utilizaremos as versões 2D e 3D da [U-Net modificada](https://link.springer.com/chapter/10.1007/978-3-030-72084-1_38), conforme implementado por Carmo et al. (2020). 
+
+![U-Net modificada: a resolução espacial é reduzida pela segunda convolução de cada nível do codificador; os blocos
+verde se referem as características filtradas pela operação de self attention; cada nível do codificador e decodificador (blocos de duas convoluções) possui
+conexão residual realizando a conexão da entrada da primeira convolução à saída da segunda convolução (seta em laranja).](/home/joany/IA901-2023S1/projetos/Brain_segmentation/assets/Unet-IA901A.png)
+
+Mudaças da U-Net modificada para a original incluí: a utilização de convoluções stride para a redução da resolução espacial em vez de operações de agregação; adição de [conexão residual](https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html) propagando a entrada à saída de cada nível do codificador (utilizando soma e uma convolução com kernel de 1 × 1 (seta laranja) realizando adaptação de canal e resolução espacial e adição de uma operação [self attention](http://proceedings.mlr.press/v102/gorriz19a.html) para filtrar as características produzidas em cada nível do codificador.
+
+Modificações entre as versões 2D e 3D inclui: o número de canais de entrada para a versão 3D é reduzido devido ao aumento da dimensionalidade da variante 3D, uma vez que cada volume é considerado um canal, enquanto para a versão 2D cada fatia de um volume é considerado um canal; utilização de normalização de instância para a versão 3D, comumente usada em redes convolucionais 3D com batch pequeno e a normalização em lote para a versão 2D, pois o tamanho do batch é consideravelmente maior e costuma funcionar bem neste caso quando utiliza convoluções 2D.
 
 ## Pré-Processamento de dados
 ### nnU-Net 
@@ -27,15 +39,17 @@ Ao executarmos os dados na nnU-Unet, esta forneceu um problema nos dados, pois e
 
 Após a execução da nnU-Net, foram obtidos uma lista de pré-processamento para o treinamento deste dados 3D e 2D. A partir dessas listas, consideramos os seguintes pré-processamentos para o treinamento das duas versões da arquitetura U-Net (2D e 3D).
 
+### Definição de Pré-processamentos
+Após a realização do treinamento da nnU-Net, obtivemos os pré-processamentos sugeridos para este framework de ambas as versões (2D e 3D). Ao avlaiar esses pré-processamentos, optamos por utilizar os seguites pré-processamentos para a realização de experimentos neste trabalho: rotação: angle_x = (-0.5235987755982988, 0.5235987755982988), ângulo_y = (-0.5235987755982988, 0.5235987755982988), ângulo_z = (-0.5235987755982988, 0.5235987755982988); GaussianNoiseTransform(p_per_sample = 0.1, data_key = 'data', noise_variance = (0, 0.1), p_per_channel = 1, per_channel = False ); GaussianBlurTransform( p_per_sample = 0.2, different_sigma_per_channel = True, p_per_channel = 0.5, data_key = 'data', blur_sigma = (0.5, 1.0), different_sigma_per_axis = False, p_isotropic = 0 ); ContrastAugmentationTransform( p_per_sample = 0.15, data_key = 'data', contrast_range = (0.75, 1.25), preserve_range = True, per_channel = True, p_per_channel = 1 ); GammaTransform( p_per_sample = 0.1, retain_stats = True, per_channel = True, data_key = 'data', gamma_range = (0.7, 1.5), invert_image = True ); 'spacing': [1.0, 0.9999008178710938, 1.0].
+
 #### Definição de pré-processamento da U-Net 2D
 COLOCAR AQUI O QUE FOR DEFINIDO A PARTIR DA NNUNET.
 
-#### Definição de pré-processamento da U-Net 3D
-patch_size = [128, 128, 128], do_rotation = True: angle_x = (-0.5235987755982988, 0.5235987755982988), angle_y = (-0.5235987755982988, 0.5235987755982988), angle_z = (-0.5235987755982988, 0.5235987755982988), GaussianNoiseTransform( p_per_sample = 0.1, data_key = 'data', noise_variance = (0, 0.1), p_per_channel = 1, per_channel = False ); GaussianBlurTransform( p_per_sample = 0.2, different_sigma_per_channel = True, p_per_channel = 0.5, data_key = 'data', blur_sigma = (0.5, 1.0), different_sigma_per_axis = False, p_isotropic = 0 ); ContrastAugmentationTransform( p_per_sample = 0.15, data_key = 'data', contrast_range = (0.75, 1.25), preserve_range = True, per_channel = True, p_per_channel = 1 ); GammaTransform( p_per_sample = 0.1, retain_stats = True, per_channel = True, data_key = 'data', gamma_range = (0.7, 1.5), invert_image = True ); 'batch_size': 2; 'spacing': [1.0, 0.9999008178710938, 1.0],
+### Treinamento da arquiterura 3D
+O treinamento do modelo 3D foi realizado ao utilizar o volume de entrada para obter patches 3D que serçao usados como canal de entrada da U-Net 3D. A rede realiza o treinamento e retorna como saída a segmentação do cérebro.  
 
-### Versão 3D da U-Net modificada
+Dedicir onde incluir isso: 'batch_size': 2;  patch_size = [128, 128, 128]
 
-A versão 3D da U-Net modificada por Carmo et. al (2021) será utilizada para treinamento 3D da base de dados deste trabalho. Para inicializar este estudo, foi executado um treinamento do framework nnU-Net, que busca o melhor pré-processamento de um conjunto de dados, hiperparâmetros da rede e pré-processamento de dados, objetivando o melhor modelo baseado na arquitetura U-Net para obter a segmentação de objetos, automaticamente. Logo, este framework foi executado com o objetivo de adquirir os pré-processamentos dos conjuntos de dados usados neste trabalho e usar como ponto de partida para o treinamento 3D deste projeto. O framework realiza o pré-processamento dos dados usando o comando "nnUNetv2_plan_and_preprocess -d DATASET_ID --verify_dataset_integrity" e para treinamento o comando "nnUNetv2_train DATASET_NAME_OR_ID UNET_CONFIGURATION FOLD --val --npz". Como o objetivo da execução da nnU-Net é apenas obter algumas ideias de pré-processamento deste dataset, não iremos detalhar este framework aqui, para mais informações, consulte (https://github.com/MIC-DKFZ/nnUNet/tree/master).
 
 ## Bases de Dados e Evolução
 
@@ -60,6 +74,8 @@ Dentre as ferramentas utilizadas estão: nibabel, matplotlib, simpleITK, ITKSnap
 > Fazer na próxima etapa.
 
 # Experimentos e Resultados preliminares
+## nnU-Net
+O framework realiza o pré-processamento dos dados usando o comando "nnUNetv2_plan_and_preprocess -d DATASET_ID --verify_dataset_integrity" e para treinamento o comando "nnUNetv2_train DATASET_NAME_OR_ID UNET_CONFIGURATION FOLD --val --npz". Como o objetivo da execução da nnU-Net é apenas obter algumas ideias de pré-processamento deste dataset, não iremos detalhar este framework aqui, para mais informações, consulte o tutorial da [nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/master).
 
 > * Os dados foram organizados em pastas para cada sujeito. Em seguida eles foram separados em trainamento (80%), validação (10%) e teste (10%). O primeiro experimento foi feito sem pré-processamento dos dados.
 
