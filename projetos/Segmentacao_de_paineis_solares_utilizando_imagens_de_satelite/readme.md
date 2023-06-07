@@ -86,13 +86,8 @@ For the training of the convolutional network using the datasets, the sets for t
 <!---
 MUDAR MUDAR MUDAR
 -->
-![Google Dataset Segmentation](./assets/google.png)
+![Google Dataset Segmentation](./assets/splits.png)
 
-#### IGN
-<!---
-MUDAR MUDAR MUDAR
--->
-![IGN Dataset Segmentation](./assets/ign.png)
 
 # Tools
 <!---
