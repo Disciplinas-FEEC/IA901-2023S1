@@ -145,18 +145,23 @@ The results using Resnet50 to test the segmentation of IGN imagery made us reali
     - [x] Preliminary GitHub organization </sub>
 - [ ] Delivery 3:
     - [ ] Convolutional network for segmentation
-        - [ ] Integration of the two scripts from Delivery 2
+        - [x] Integration of the two scripts from Delivery 2
         - [ ] Data augmentation on input images for improved results
+        - [ ] Aditional notebook for data augmentation visualization
+        - [ ] Aditional notebook for statistical info about the database
         - [ ] Optimization of convolutional network hyperparameters (grid search)
-        - [ ] Pós-processamento da segmentação realizada      
-    - [ ] Training and testing of the neural network for photovoltaic generation power estimation
-        - [ ] Definition of input data
-        - [ ] Evaluation of results
-        - [ ] Optimization of neural network hyperparameters
-    - [ ] Quantitative evaluations (segmentation and estimation) and qualitative evaluations (segmentation)
+        - [ ] Post processing on segmentation
+    - [ ] Quantitative (segmentation and estimation) and qualitative evaluations (segmentation)
     - [ ] Git update (readme, workflow, notebooks)
 - [ ] Project finished </sub> :tada: 
 
+## Future Work!
+
+- [ ] Training and testing of the neural network for photovoltaic generation power estimation
+    - [ ] Definition of input data
+    - [ ] Evaluation of results
+    - [ ] Optimization of neural network hyperparameters
+        
 ## References
 <!---
 > Seção obrigatória. Inclua aqui referências utilizadas no projeto.
