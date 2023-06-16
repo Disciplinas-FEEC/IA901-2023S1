@@ -62,7 +62,7 @@ def get_transform(string):
                                                                  interpolation=transforms.InterpolationMode.NEAREST), 
                                                transforms.RandomAffine(5)])       
     elif string == "RandomCrop":
-        return ReturnPatch(None, (80, 80, 80), fullrandom=True)
+        return ReturnPatch(None, (125, 125, 125), fullrandom=True)
     elif string == "FocusedCrop_0333":
         return ReturnPatch(0.333, (96, 64, 96))
     else:
