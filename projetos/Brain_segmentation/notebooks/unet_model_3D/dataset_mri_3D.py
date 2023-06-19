@@ -45,7 +45,7 @@ class DatasetMRI(Dataset):
 
         dirname = os.path.basename(self.folder)
 
-        if dirname in ["dataset_no_preprocessing", "Dataset_HCManualCCexp", "Dataset_HCexpCC"]:
+        if dirname in ["dataset_no_preprocessing", "dataset_voxels_interpolation", "Dataset_HCexpCC"]:
             image = npz["data"][:]
             image = image.astype(np.float32)
             seg_image = npz["mask"].astype(np.float32)
