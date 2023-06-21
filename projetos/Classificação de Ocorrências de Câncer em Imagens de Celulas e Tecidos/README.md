@@ -19,18 +19,16 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 
 O câncer é um dos acometimentos mais letais e prevalentes na população mundial, sendo um termo comum que engloba mais de 100 doenças que ocorrem em diferentes órgãos do corpo humano (próstata, pulmão, boca, pele, cólon e etc). A principal característica do câncer é o crescimento desenfreado de células anormais, que eventualmente podem formar tumores e se espalhar para outros órgãos gerando complicações, processo conhecido como metástase [2].
 
-A principal causa para o surgimento desta doença é a mutação de células comuns, que são alterações na estrutura do DNA contido no núcleo. Existem diversos fatores de risco que podem propiciar a ocorrência destas mutações, como o consumo de substâncias tóxicas ou exposição a fontes de radiação, por exemplo - contudo, este é um fenômeno que também pode ter causas internas, podendo ocorrer em indivíduos por fatores hereditários e imunológicos. 
+A principal causa para o surgimento dessa doença é a mutação de células comuns, que são alterações na estrutura do DNA contido no núcleo. Existem diversos fatores de risco que podem propiciar a ocorrência destas mutações, como, por exemplo, o consumo de substâncias tóxicas ou exposição a fontes de radiação. Contudo, esse é um fenômeno que também pode ter causas internas, podendo ocorrer em indivíduos por fatores hereditários ou imunológicos. 
 
 Todos os anos, milhares de pessoas são acometidas pelo câncer no Brasil e no mundo, e muitas vidas ainda são perdidas. Uma das formas mais eficazes de tratamento (que pode envolver práticas de radioterapia ou quimioterapia) consiste no diagnóstico precoce, momento ao qual a doença ainda está nos primeiros estágios de desenvolvimento e não gerou complicações para o paciente. Nesta fase, maiores são as chances de sucesso no tratamento e de sobrevivência a longo prazo. O diagnóstico precoce pode ocorrer não apenas por exames de rotina, mas também com abordagens que envolvam procedimentos de biópsia, em que partes do tecido na região acometida pelo câncer são analisadas em microscopia.  É nesse cenário que a capacidade de desenvolver algoritmos capazes de analisar imagens de células em lâminas de tecidos e identificar células cancerígenas se torna extremamente valiosa.
 
-As lâminas de tecidos contêm informações visuais sobre as células e suas características morfológicas. No entanto, a análise manual dessas imagens requer um tempo significativo e está sujeita a variações e erros humanos. Ao desenvolver algoritmos de análise de imagens, é possível automatizar e agilizar o processo de detecção de células cancerígenas, melhorando a tomada de decisão dos médicos e levando a práticas mais personalizadas no tratamento de cada paciente [3].
+As lâminas de tecidos contêm informações visuais sobre as células e suas características morfológicas. No entanto, a análise manual dessas imagens requer um tempo significativo e está sujeita a variações e a erros humanos. Ao desenvolver algoritmos de análise de imagens, é possível automatizar e agilizar o processo de detecção de células cancerígenas, melhorando a tomada de decisão dos médicos e levando a práticas mais personalizadas no tratamento de cada paciente [3].
 
-Perante o exposto, este projeto consiste em aplicar técnicas de aprendizado de máquina para classificar imagens de lâminas de tecidos de diferentes órgãos. Serão feitas duas classificações: a primeira irá separar as imagens com presença ou não de tumor no tecido a partir da análise de células neoplásicas, que podem estar presentes (indicação de tumor) ou não; a segunda classificação é do tipo de tecido representado pela imagem da lâmina de microscopia entre dezenove classes distintas. Para o primeiro tipo de classificação, serão utilizadas máscaras com a segmentação das células neoplásicas, as quais extraímos a classe binária da imagem (0: não possui célula neoplásica, 1: possui célula neoplásica).
-
-Finalmente, como objetivo secundário do projeto, buscaremos comparar a performance de classificação de duas abordagens. A primeira consiste no uso de um modelo de Deep Learning, o qual fará a extração de atributos automaticamente e, posteriormente, a classificação das imagens; enquanto a segunda envolve extração manual de atributos e a classificação das imagens com algoritmos tradicionais de Machine Learning. 
+Perante o exposto, este projeto consiste em aplicar técnicas de aprendizado de máquina para classificar imagens de lâminas de tecidos de diferentes órgãos. Serão feitas duas classificações: a primeira irá separar as imagens com presença ou não de tumor no tecido a partir da análise de células neoplásicas, que podem estar presentes (indicação de tumor) ou não. A segunda classificação é do tipo de tecido representado pela imagem da lâmina de microscopia entre dezenove classes distintas. Para o primeiro tipo de classificação, serão utilizadas máscaras com a segmentação das células neoplásicas, as quais extraímos a classe binária da imagem (0: não possui célula neoplásica, 1: possui célula neoplásica).
 
 # Metodologia
-Para o desenvolvimento do projeto, utilizamos o dataset 'PanNuke', disponibilizado no site Kaggle. Mais informações sobre as imagens podem ser vistas a seguir.
+Para o desenvolvimento do projeto, utilizamos o dataset 'PanNuke', disponibilizado no site Kaggle. A escolha do dataset se deu pelo fato deste ser atualmente o maior e mais diverso dataset para segmentação de núcleos celulares e classificação. Além disso, ele foi anotado de maneira semi-automática, com a supervisão de profissionais da área para o controle de qualidade. Mais informações sobre as imagens podem ser vistas a seguir.
 
 ## Bases de Dados e Evolução
 
@@ -81,11 +79,11 @@ Cancer Instance Segmentation and Classification 3 | https://www.kaggle.com/datas
 
 Para facilitar o uso das imagens (e permitir que elas fossem carregadas na memória RAM/GPU dos sistemas operacionais utilizados), desenvolvemos um algoritmo que faz uma cópia local das três partes do dataset 'PanNuke', extraindo e salvando cada imagem, de dentro dos arquivos .npy, no formato .png. Cada imagem foi salva com um número em seu nome, que serve como um identificador ( `Image_*.png`). 
 
-Este mesmo código também faz a leitura da máscara de cada imagem, mais especificamente da banda '0', que corresponde a segmentação de células neoplásicas. Disto, segue que a variável-classe (presença ou não de células neoplásicas) é construída a partir do cálculo do desvio-padrão (STD) desta banda. Se STD=0, a imagem de tecido correspondente é classificada como sem células neoplásicas (classe '0', negativa), caso contrário (STD>0), consideramos que a imagem possui células neoplásicas. 
+Este mesmo código também faz a leitura da máscara de cada imagem, mais especificamente da banda '0', que corresponde a segmentação de células neoplásicas, visando a classificação. Assim, segue que a variável-classe (presença ou não de células neoplásicas) é construída a partir do cálculo do desvio-padrão (STD) dessa banda. Se STD=0, a imagem de tecido correspondente é classificada como sem células neoplásicas (classe '0', negativa), caso contrário (STD>0), consideramos que a imagem possui células neoplásicas. 
 
-Além das próprias imagens, este código possui com output uma tabela, em que cada linha representa uma imagem. Nela, ainda existem três colunas que representam: ID das imagens, Tipo de tecido e classe (presença ou não de célula neoplásica). 
+Além das próprias imagens, este código possui como output uma tabela, em que cada linha representa uma imagem. Nela, ainda existem três colunas que representam ID das imagens, Tipo de tecido e Classe (presença ou não de célula neoplásica). 
 
- Abaixo vemos a distribuição dos tecidos que possuem ou não células neoplásicas:
+Abaixo vemos a distribuição dos tecidos que possuem ou não células neoplásicas:
 
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/freq_tumor.png" height="350">
@@ -99,17 +97,17 @@ Conclui-se então que para o propósito inicial do projeto, que é a classifica�
 
 ## Passo 2: Divisão de treino, teste e validação
 
-Como o projeto envolve treinar algoritmos de aprendizado de máquina, foi necessário dividir o conjunto de imagens em grupos de treino, validação e teste. Portanto, foi desenvolvido um algoritmo que acessa o diretório das imagens ‘.png’ e cria cópias destas imagens (sem repetições) em três novos diretórios: ‘/train’, ‘/val’ e ‘/test’. Todos possuem subdiretórios que representam as classes: ‘/0’ e ‘/1’. Escolhemos esta organização para tirar o máximo de proveito do método DataLoader() da biblioteca PyTorch, que foi usada para os experimentos com Deep Learning. 
+Como o projeto envolve treinar algoritmos de aprendizado de máquina, foi necessário dividir o conjunto de imagens em grupos de treino, validação e teste. Portanto, foi desenvolvido um algoritmo que acessa o diretório das imagens ‘.png’ e cria cópias destas imagens (sem repetições) em três novos diretórios: ‘/train’, ‘/val’ e ‘/test’. Todos possuem subdiretórios que representam as classes: ‘/0’ e ‘/1’. Escolhemos essa organização para tirar o máximo de proveito do método DataLoader() da biblioteca PyTorch, que foi usada para os experimentos com Deep Learning. 
     
 A partição escolhida para os conjuntos foi de 70% treino, 20% teste e 10% validação. Além disso, mantivemos, em cada conjunto, a mesma proporção de tipos de tecido encontradas no dataset original (por exemplo, se no conjunto original de imagens tivéssemos 30% delas sendo do pulmão; nos conjuntos de treino, teste e validação teremos a mesma proporção). 
 
 ## Passo 3: Experimentos
 	
-Nesta etapa, utilizamos os conjuntos de treino, teste e validação para fazer as análises com técnicas de Deep Learning e Machine Learning (via extração de atributos). Uma descrição sucinta destas abordagens pode ser vista abaixo. 
+Nesta etapa, utilizamos os conjuntos de treino, teste e validação para fazer as análises com técnicas de Deep Learning. Uma descrição sucinta destas abordagens pode ser vista abaixo. 
 
 #### Análise com Deep Learning
 
-Para as análises de Deep Learning recorremos, em um primeiro momento, a uma abordagem envolvendo o método de Transfer Learning. A arquitetura escolhida foi a EfficientNet_B0, que foi carregada e treinada via PyTorch. O método DataLoader foi empregado para carregar na memória as imagens processadas dos diretórios e aplicar as transformações necessárias. 
+Para as análises de Deep Learning recorremos, em um primeiro momento, a uma abordagem envolvendo o método de Transfer Learning. A arquitetura escolhida foi a EfficientNet_B0, a qual obteve um melhor desempenho dentre as outras arquiteturas testadas. O método DataLoader foi empregado para carregar na memória as imagens processadas dos diretórios e aplicar as transformações necessárias. 
 
 Alguns sub experimentos, testando diferentes configurações de hiperparâmetros, foram feitos visando um ajuste ótimo da rede neural. Ao fim deste processo, fixamos para todos os treinamentos os seguintes hiperparâmetros:
 
@@ -119,36 +117,32 @@ Alguns sub experimentos, testando diferentes configurações de hiperparâmetros
 - N Epochs: 20 
 
 
-E uma semente aleatória igual à 42 foi utilizada para garantir reprodutibilidade. Em todos os casos, usamos Data Augmentation, com métodos de Random Crop, Flips horizontais e verticais, Pad e Random Erasing. 
+E uma semente aleatória igual à 42 foi utilizada para garantir reprodutibilidade. Em todos os casos, usamos data augmentation, com métodos de Random Crop, Flips horizontais e verticais, Pad e Random Erasing. 
 
-Dois experimentos principais foram realizados neste estudo. A sua descrição detalhada pode ser vista a seguir:
+(#######)Dois experimentos principais foram realizados neste estudo. A sua descrição detalhada pode ser vista a seguir:
 
 ##### Baseline
 
 Neste experimento, utilizamos todos os tecidos nas etapas de treinamento, validação e testes. O objetivo foi verificar a performance do modelo de Deep Learning no cenário mais básico possível, em termos de dataset. 
- Adicionalmente, neste experimento, verificamos o quanto o modelo treinado acertava na tarefa de classificação considerando os diferentes tipos de tecido - a pergunta a ser respondida era: será que algum tecido é mais desafiador para o modelo classificar?
+Adicionalmente, neste experimento, verificamos o quanto o modelo treinado acertava na tarefa de classificação considerando os diferentes tipos de tecido. A pergunta a ser respondida era: será que algum tecido é mais desafiador para o modelo classificar?
 
 ##### Experimento I:
 	
 Neste experimento, treinamos o modelo de Deep Learning com as imagens de todos os tecidos, menos o tecido ‘Breast’, que foi separado para ser utilizado apenas na fase de testes. Esta escolha se deu pelo fato do tecido ‘Breast’ ser o mais populoso do dataset (>2000 imagens). 
-Portanto, a pergunta a ser respondida neste experimento foi: será que o modelo de Deep Learning é capaz de generalizar e aprender a reconhecer células neoplásicas em um tipo de tecido não visto durante o treinamento? 
+Portanto, a pergunta a ser respondida neste experimento foi: o modelo de Deep Learning é capaz de generalizar e aprender a reconhecer células neoplásicas em um tipo de tecido não visto durante o treinamento? 
 
-#### Análise com técnicas tradicionais
+##### Experimento II:
 
-##### Extração de atributos
-`<Em construção>`
-
-##### Treinamento dos modelos
-`<Em construção>`
+Neste experimento, treinamos o modelo somente com as imagens do tecido ‘Breast’, enquanto os demais tecidos foram utilizados como conjunto teste. Pelo mesmo motivo do experimento anterior, a escolha do tecido ‘Breast’ se deu por ser aquele mais populoso do dataset. Assim, a pergunta a ser respondida neste experimento foi: o modelo de Deep Learning é capaz de aprender e generalizar a presença de células neoplásicas no restante dos tecidos sendo que foi treinado somente com um deles?
 
 ## Passo 4: Análise de desempenho
 
 As técnicas de classificação podem fornecer a probabilidade P de uma observação pertencer a uma determinada classe. Pelo fato desta saída probabilística P ser contínua e restrita ao intervalo [0, 1], a classificação em si ocorre ao se determinar um parâmetro livre conhecido como Decision Threshold, que representa um valor de corte sobre as probabilidades. Considerando um cenário com duas classes, uma observação é classificada como positiva se P ≥Decision Threshold - caso contrário, ela é rotulada como sendo negativa. Cada valor de Decision Threshold produz uma matriz de confusão diferente, modificando também as suas métricas de desempenho. Mesmo assim, ainda é possível avaliar a performance geral de classificadores binários recorrendo a um método conhecido como ROC Curve, que não depende da escolha de qualquer limiar sobre as probabilidades. Resumidamente: A ROC Curve correlaciona os valores de True Positive Rate (TPR) e False Positive Rate (FPR) para todos os valores possíveis de Decision Threshold [Ref].Uma quantidade que sintetiza as informações das ROC Curves é a Area Under the Curve (AUC), que varia no intervalo $[0, 1]$.
-Mesmo recorrendo às ROC Curves para fazer avaliações gerais dos modelos é fato que, na prática, a qualidade das classificações depende fortemente do valor escolhido para o Decision Threshold. Algumas análises adotam o seu valor padrão de $0.5$. No entanto, o ideal é que a escolha deste limiar leve em consideração as demandas e particularidades de cada estudo. Em situações em que os erros de classificação possuem um custo alto, pode ser mais adequado trabalhar com valores mais elevados de Decision Threshold. Por outro lado, se os erros de classificação forem menos importantes do que identificar a classe positiva, pode ser mais interessante recorrer a Decision Thresholds menores. De todo modo, existem algumas figuras de mérito que podem ser empregadas para otimizar esta escolha, como o Youden's Index, que mede a diferença entre as Taxas de Verdadeiro e Falso Positivo:
+Mesmo recorrendo às ROC Curves para fazer avaliações gerais dos modelos, é fato que, na prática, a qualidade das classificações depende fortemente do valor escolhido para o Decision Threshold. Algumas análises adotam o seu valor padrão de $0.5$. No entanto, o ideal é que a escolha desse limiar leve em consideração as demandas e particularidades de cada estudo. Em situações em que os erros de classificação possuem um custo alto, pode ser mais adequado trabalhar com valores mais elevados de Decision Threshold. Por outro lado, se os erros de classificação forem menos importantes do que identificar a classe positiva, pode ser mais interessante recorrer a Decision Thresholds menores. De todo modo, existem algumas figuras de mérito que podem ser empregadas para otimizar essa escolha, como o Youden's Index, que mede a diferença entre as Taxas de Verdadeiro e Falso Positivo:
 
 $$\textrm{Youden's Index} = TPR - FPR $$
 
-Neste caso, o Decision Threshold escolhido deve ser aquele que maximiza a relação acima, por representar o valor de corte em que a quantidade de acertos do classificador é máxima com relação aos seus erros. 
+Nesse caso, o Decision Threshold escolhido deve ser aquele que maximiza a relação acima, por representar o valor de corte em que a quantidade de acertos do classificador é máxima com relação aos seus erros. 
 
 Portanto, todas estas métricas (TPR, FPR e AUC) serão usadas em nossas análises. Adicionalmente, usaremos outras métricas de classificação conhecidas, tais como: 
 Acurácia: porcentagem de observações classificadas corretamente 
