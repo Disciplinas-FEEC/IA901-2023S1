@@ -97,6 +97,7 @@ MUDAR MUDAR MUDAR
 - **Scikit-learn**: to divide the sets for testing, validation and training
 - **Matplotlib**: to plot graphs containing statistical information about the dataset
 - **LucidChart**: to draw the workflow of the project
+- **Library**: description 
 - ...
 
 # Workflow 
