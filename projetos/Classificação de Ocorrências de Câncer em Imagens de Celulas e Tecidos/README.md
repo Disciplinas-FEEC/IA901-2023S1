@@ -59,11 +59,6 @@ Alguns exemplos podem ser vistos abaixo, assim como a distribuição das imagens
     Figura 2: Distribuição das imagens do dataset por tipo de tecido.
 </p>
 
-<p align="center">
-    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/distribuicao_mascaras.png" height="350">
-</p>
-
-
 Atualmente, o dataset 'PanNuke' está disponível em três partes - todas com a mesma estrutura/formato de organização das imagens. Os links para os datasets utilizados no projeto assim como um resumo das suas principais informações podem ser vistas na tabela abaixo: 
 
 Base de Dados | Endereço na Web | Resumo descritivo
