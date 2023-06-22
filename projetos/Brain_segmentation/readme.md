@@ -37,9 +37,7 @@ Detatalhes importantes sobre os conjuntos de dados e sua organização:
 ### Arquitetura U-Net
 Este trabalho utilizou a arquitetura [U-Net](https://link.springer.com/chapter/10.1007/978-3-319-24574-4_28), uma rede neural convolucional bastante utilizada para segmentação de imagens médicas. Utilizamos as versões 2D e 3D da [U-Net modificada](https://link.springer.com/chapter/10.1007/978-3-030-72084-1_38), conforme implementado por Carmo et al. (2020). 
 
-![U-Net modificada: a resolução espacial é reduzida pela segunda convolução de cada nível do codificador; os blocos
-verde se referem as características filtradas pela operação de self attention; cada nível do codificador e decodificador (blocos de duas convoluções) possui
-conexão residual realizando a conexão da entrada da primeira convolução à saída da segunda convolução (seta em laranja).](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/debug.json)
+![U-Net modificada: a resolução espacial é reduzida pela segunda convolução de cada nível do codificador; os blocos verde se referem as características filtradas pela operação de self attention; cada nível do codificador e decodificador (blocos de duas convoluções) possui conexão residual realizando a conexão da entrada da primeira convolução à saída da segunda convolução (seta em laranja).](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/Unet-IA901A.png)
 
 Mudaças da U-Net modificada em relação a original inclui: a utilização de convoluções stride para a redução da resolução espacial em vez de operações de agregação; adição de [conexão residual](https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html) propagando a entrada à saída de cada nível do codificador (utilizando soma e uma convolução com kernel de 1 × 1 (seta laranja) realizando adaptação de canal e resolução espacial e adição de uma operação [self attention](http://proceedings.mlr.press/v102/gorriz19a.html) para filtrar as características produzidas em cada nível do codificador.
 
@@ -56,25 +54,36 @@ Após a execução da nnU-Net, foi obtido uma [lista de pré-processamento](http
 #### Definição de Pré-processamentos
 * [Redimensionamento de voxel](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/pre-processing/voxel_interpolation.ipynb) (spacing): redimensionamento de voxel é interpolar o voxel para mudar seu tamanho, o que influencia diretamente na resolução da imagem. Isso modifica significativamente os dados chegando a introduzir ruído a partir da interpolação. No entando, além de ter sido sugerido pelo framewark, este trabalho usa 4 conjunto de dados diferentes e para manter os voxels de todos os dados padronizados foi feito a interpolação de voxel, mantendo todos os volumes de treinamento e validação isométricos com tamanho de voxel igual a 1. Observe que a sujestão da nnU-Net foi de [1.0, 0.9999008178710938, 1.0], mas foi usado [1.0, 1.0, 1.0] para deixar os dados isométricos. A tabela abaixo resume o tamanho de voxel e resolução dados de cada conjunto de dados antes e após a interpolação de voxel.
 
-|Aquisição| N   | Tam. Vox. original (𝑚𝑚^3) | Tam. Vox. Iso (𝑚𝑚^3) | resolução original | resolução c/ Interpolação de Voxel |
-|---------|-----|---------------------------|-----------------------|--------------------|-----------------------|
-| CC359   | 359 | 1 x 1 x 1                 | 1 x 1 x 1             | 171 x 256 x 256    | 171 x 256 x 256 |
-| LBPA40  | 40  | 0.8594 x 1.5 x 0.8594     | 1 x 1 x 1             | 256 x 124 x 256    | 220 x 186 x 120 |
-| NFBS    | 125 | 1 x 1 x 0.9999            | 1 x 1 x 1             |  256 x 256 x 192   | 256 x 256 x 192 |
-| IBSR    | 18  | 0.9375 x 0.9375 x 1.5     | 1 x 1 x 1             |  256 x 256 x 128   | - |
+|Aquisição| Tam. Vox. original (𝑚𝑚^3) | Tam. Vox. Iso (𝑚𝑚^3) | resolução original | resolução c/ Interpolação de Voxel |
+|---------|---------------------------|-----------------------|--------------------|-----------------------|
+| CC359   | 1 x 1 x 1                 | 1 x 1 x 1             | 171 x 256 x 256    | 171 x 256 x 256 |
+| LBPA40  | 0.8594 x 1.5 x 0.8594     | 1 x 1 x 1             | 256 x 124 x 256    | 220 x 186 x 120 |
+| NFBS    | 1 x 1 x 0.9999            | 1 x 1 x 1             |  256 x 256 x 192   | 256 x 256 x 192 |
+| IBSR    | 0.9375 x 0.9375 x 1.5     | 1 x 1 x 1             |  256 x 256 x 128   | - |
 
 * [Normalização](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/pre-processing/data_normalization.ipynb): a normalização sugerida pelo framework foi a Z-Score Normalization 'ZScoreNormalization'. Essa é uma técnica utilizada para transformar os valores de uma variável para que tenham média zero e desvio padrão igual a 1. Bastante utilizada quando se tem variáveis que têm escalas diferente, deixando as variáveis em uma escala compatível ou comparável. Em MRIs, para a realização dessa normalização a imagem é subtraída de sua média e essa operação é dividida pelo desvio padrão da imagem: 
 
-$$ X{_nor} =  (X - \mu) / (\sigma$)$$
+$$ X_{nor} =  (X - \mu) / (\sigma$)$$
 
-Onde X é a matriz (volume); $\mu$ é a média da matriz ($ mean(X) $); e $\sigma$ é o desvio padrão da matriz ($ std(X)$). Essa normalização resulta em média igual a 0 e desvio padrão igual a 1.
+Onde X é a matriz (volume); $\mu$ é a média da matriz ($mean(X)$); e $\sigma$ é o desvio padrão da matriz ($std(X)$). Essa normalização resulta em média igual a 0 e desvio padrão igual a 1.
 
 * [Conversão para o npz](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/pre-processing/get_data_npz.ipynb): Para facilitar a treinamento e diminuir o custo computacional durante o treinamento, os dados foram convertidos de NIfTI para npz. Uma vez os dados corretos e alinhados com a máscara é mais vantajoso computacionalmente converter para um formato mais leve. Neste caso, o npz não armazena a informação do cabeçalho da imagem e isso diminui o custo computacional e tempo de execução ao carregar os dados durante o treinamento. Para cada experimento (3D) os dados foram salvos em npz (imagem e máscara no mesmo arquivo). Por exemplo, após a realização do pré-processamento de normalização, os dados eram salvos em npz.
 
-### Treinamento da arquiterura 3D
-O treinamento do modelo 3D foi realizado ao utilizar o volume de entrada para obter patches 3D que serao usados como canal de entrada da U-Net 3D. A rede realiza o treinamento e retorna como saída a segmentação do cérebro.  
+### Utilização e divisão dos conjuntos de dados 
+Para o treinamento das versões arquitetura (2D e 3D), os conjuntos de dados LBPA40, CC359 e NFBS foram usados simultaneamente durante o treinamento do modelo em todos os experimentos. Os dados foram então dividos (incluidos esses 3 conjuntos de dados) em treinamento (392 sujeitos: 87 do NFBS, 277 do CC359 e 28 do LBPA40) e validação (103 sujeitos: 25 do NFBS, 70 do CC359 e 8 do LBPA40). A avaliação do modelo foi feita no conjunto de teste final (xx sujeitos) (VERIFICAR SE ISSO VAI SE MANTER PARA O 2D)
 
-> Dedicir onde incluir isso: 'batch_size': 2;  patch_size = [128, 128, 128]
+### Treinamento da arquiterura 2D
+
+### Treinamento da arquiterura 3D
+O treinamento do modelo 3D foi realizado ao utilizar o volume de entrada para obter patch 3D que foi usado como canal de entrada da U-Net 3D. A rede realiza o treinamento e retorna como saída a segmentação do cérebro.  
+
+![Workflow 3D: treinamento da U-Net 3D usando patch obtido aleatoriamente do volume de entrada (I) e predição usando patches 3D no volume de entrada (II).](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/Workflow_3D.png)
+
+#### Treinamento e Avaliação do Modelo 3D
+
+Por ser uma arquitetura totalmente convolucional, o tamanho da imagem para o treinamento da U-Net não precisa ser o mesmo da avaliação. Sendo assim, o treinamento do modelo 3D foi feito usando patch 3D de tamanho 102 × 102 × 102 nos canais de entrada (Fig x). Para cada volume (amostra) é escolhido um patch de forma aleatória, como é apenas um de cada imagem, isso introduz variabilidade a cada amostra passada para a rede, mas não é necessariamente um aumento de dados. 
+
+Com o modelo treinado, a segmentação volumétrica do cérebro de uma nova amostra foi feita ao passar uma imagem completa para o modelo (Fig. x-II). Para isso, foi usado um método de inferência de janela deslizante, inspirado na implementação da [nnU-Net](https://www.nature.com/articles/s41592-020-01008-z) e usando uma implementação do [Monai](https://link.springer.com/chapter/10.1007/978-3-031-12053-4_58). Esse método reconstrói a segmentação completa do volume de entrada usando patches com ponderação gaussiana para predições e uma janela 3D de 10%.
 
 # Ferramentas
 
@@ -84,8 +93,8 @@ Dentre as ferramentas utilizadas estão: nibabel, matplotlib, simpleITK, ITKSnap
 
 > Fazer na próxima etapa.
 
-# Experimentos e Resultados preliminares
-## nnU-Net
+## Experimentos e Resultados preliminares
+### nnU-Net
 O framework realiza o pré-processamento dos dados usando o comando "nnUNetv2_plan_and_preprocess -d DATASET_ID --verify_dataset_integrity" e para treinamento o comando "nnUNetv2_train DATASET_NAME_OR_ID UNET_CONFIGURATION FOLD --val --npz". Como o objetivo da execução da nnU-Net é apenas obter algumas ideias de pré-processamento deste dataset, não iremos detalhar este framework aqui, para mais informações, consulte o tutorial da [nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/master).
 
 > * Os dados foram organizados em pastas para cada sujeito. Em seguida eles foram separados em trainamento (80%), validação (10%) e teste (10%). O primeiro experimento foi feito sem pré-processamento dos dados.
@@ -93,6 +102,9 @@ O framework realiza o pré-processamento dos dados usando o comando "nnUNetv2_pl
 > * O experimento do treinamento realizado está descrito no arquivo unet_sem_preproc.ipynb.
 
 > * Após o treinamento da nn-Unet, obtiveram-se os seguintes resultados e pré-processamentos sugeridos pelo framework.
+
+### Avaliação da U-Net 3D
+> O treinamento do modelo inclui o uso de [Dice Loss](https://link.springer.com/chapter/10.1007/978-3-319-67558-9_28) como função de perda e [otimizador Adam](https://arxiv.org/abs/1412.6980). O tamanho do batch foi o mesmo sugerido pelo framework nnU-Net, 2. O tamanho de patch não foi o mesmo sugerido pala nnU-Net, isso porque não havia GPU que coubesse o tamanho de patch sugerido, logo foi necessário diminuir o tamanho de patch para (102 x 102 x102)
 
 # Próximos passos
 
