@@ -44,17 +44,21 @@ O câncer de pele é uma das formas mais comuns de câncer em todo o mundo, e a 
 # Metodologia
 
 *1. Pré-processamento de dados:*
-* Normalização da imagem: aplicar técnicas de normalização para garantir que todas as imagens tenham uma escala e um intervalo de valores consistentes;
-* Data augmentation: estudos que avaliam técnicas de aumentação de dados com foco em lesões de pele foram considerados. O conjunto de técnicas envolvem recortes aleatórios na imagem, rotação aleatoria em até 90 graus, cisalhamento, escalar imagens para criar novas formas de lesões, espelhamento e mudança de matiz (hue). O data augmentation é aplicado com o objetivo de aumentar a diversidade dos dados de treinamento, permitindo que o modelo aprenda a generalizar melhor e a lidar com diferentes variações nos dados de entrada.
+As imagems foram normalizadas, ou seja, todos os pixels foram divididos por 255.0, para padronizar os valores em pixels entre o intervalo de 0 a 1. A normalização é importante para manter a escala de pixels consistentes e facilitar o treinamento de redes complexas. Ainda, a técnica de pré processamento reduz a influência de outliers e melhorar a capacidade do modelo de generalizar para novos exemplos. 
 
-*2. Extração de recursos:*
 
-* Extração de recursos baseada em aprendizado profundo: utilização de redes neurais convolucionais (CNNs) pré-treinadas, como ResNet, para extrair recursos de alto nível de imagens.
+*2. Data augmentation:*  
 
-*3. Avaliação e validação:*
+Para este tópico estudos que avaliam técnicas de aumentação de dados com foco em lesões de pele foram considerados. O conjunto de técnicas envolvem recortes aleatórios na imagem, rotação aleatoria em até 90 graus, cisalhamento, escalar imagens para criar novas formas de lesões, espelhamento e mudança de matiz (hue). Essas transformações foram consideradas para diminuir a influência de cor de pele e tamanho das lesões 
+para discriminação do modelo. Ainda, foi aplicado uma função que diminui a aparência de pelos na imagem, sem comprometer as lesões, garantindo que o modelo não associe essas características com as diferentes classes. 
 
+
+*4. Avaliação e validação:*
+
+Para viabilizar a possibilidade de avaliar o desempenho das redes treinadas o conjunto de dados foi divido entre treinamento e validação. A escolhe de não utilizar parte do conjunto como teste parte do princípio de que os dados já são extremamente desbalanceados, então informação da classe de malignos seria perdida para o treinamento. Entretanto, existem mais conjuntos públicos com imagens de lesões com o mesmo objetivo de classificar câncer de pele, portanto conjuntos externos são utilizados como teste. 
+
+Todo o treinamento foi realizado configurando a rede para maximizar métricas de sensibilidade e área sob a curva (AUC). Para avaliação pós treinamento, foi avaliado também metricas de precisão e a taxa de falsos negativos, além da matriz de confusão. 
 - Divisão de dados: organizar o conjunto de dados em bancos de treinamento, validação e teste para avaliar e validar o desempenho do modelo. 
-- Métricas de avaliação: precisão, sensibilidade, acurácia e área sob a curva ROC (AUC) para avaliar a qualidade do discriminador e comparar os resultados obtidos, além da taxa de falsos negativos.
 
 *4. Melhoria e refinamento:*
 
