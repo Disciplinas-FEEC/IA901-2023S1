@@ -63,9 +63,6 @@ Alguns exemplos podem ser vistos abaixo, assim como a distribuição das imagens
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/distribuicao_mascaras.png" height="350">
 </p>
 
-<p align="center">
-    Figura 3: Distribuição dos tipos de máscaras no dataset por tipo de tecido. O número à direita representa a quantidade de núcleos celulares segmentados para aquele tipo de máscara [1].
-</p>
 
 Atualmente, o dataset 'PanNuke' está disponível em três partes - todas com a mesma estrutura/formato de organização das imagens. Os links para os datasets utilizados no projeto assim como um resumo das suas principais informações podem ser vistas na tabela abaixo: 
 
@@ -105,9 +102,7 @@ A partição escolhida para os conjuntos foi de 70% treino, 20% teste e 10% vali
 	
 Nesta etapa, utilizamos os conjuntos de treino, teste e validação para fazer as análises com técnicas de Deep Learning. Uma descrição sucinta destas abordagens pode ser vista abaixo. 
 
-#### Análise com Deep Learning
-
-Para as análises de Deep Learning recorremos, em um primeiro momento, a uma abordagem envolvendo o método de Transfer Learning. A arquitetura escolhida foi a EfficientNet_B0, a qual obteve um melhor desempenho dentre as outras arquiteturas testadas. O método DataLoader foi empregado para carregar na memória as imagens processadas dos diretórios e aplicar as transformações necessárias. 
+Para tais análises recorremos, em um primeiro momento, a uma abordagem envolvendo o método de Transfer Learning. A arquitetura escolhida foi a EfficientNet_B0, a qual obteve um melhor desempenho dentre as outras arquiteturas testadas. O método DataLoader foi empregado para carregar na memória as imagens processadas dos diretórios e aplicar as transformações necessárias. 
 
 Alguns sub experimentos, testando diferentes configurações de hiperparâmetros, foram feitos visando um ajuste ótimo da rede neural. Ao fim deste processo, fixamos para todos os treinamentos os seguintes hiperparâmetros:
 
@@ -119,21 +114,37 @@ Alguns sub experimentos, testando diferentes configurações de hiperparâmetros
 
 E uma semente aleatória igual à 42 foi utilizada para garantir reprodutibilidade. Em todos os casos, usamos data augmentation, com métodos de Random Crop, Flips horizontais e verticais, Pad e Random Erasing. 
 
-(#######)Dois experimentos principais foram realizados neste estudo. A sua descrição detalhada pode ser vista a seguir:
+A seguir, todos os experimentos feitos, tanto para a classificação de tumores quanto a do tipo de tecido, são detalhados.
 
-##### Baseline
+#### Classificação de Tumores
+
+##### Experimento I (Baseline)
 
 Neste experimento, utilizamos todos os tecidos nas etapas de treinamento, validação e testes. O objetivo foi verificar a performance do modelo de Deep Learning no cenário mais básico possível, em termos de dataset. 
 Adicionalmente, neste experimento, verificamos o quanto o modelo treinado acertava na tarefa de classificação considerando os diferentes tipos de tecido. A pergunta a ser respondida era: será que algum tecido é mais desafiador para o modelo classificar?
 
-##### Experimento I:
+##### Experimento II
 	
 Neste experimento, treinamos o modelo de Deep Learning com as imagens de todos os tecidos, menos o tecido ‘Breast’, que foi separado para ser utilizado apenas na fase de testes. Esta escolha se deu pelo fato do tecido ‘Breast’ ser o mais populoso do dataset (>2000 imagens). 
 Portanto, a pergunta a ser respondida neste experimento foi: o modelo de Deep Learning é capaz de generalizar e aprender a reconhecer células neoplásicas em um tipo de tecido não visto durante o treinamento? 
 
-##### Experimento II:
+##### Experimento III
 
 Neste experimento, treinamos o modelo somente com as imagens do tecido ‘Breast’, enquanto os demais tecidos foram utilizados como conjunto teste. Pelo mesmo motivo do experimento anterior, a escolha do tecido ‘Breast’ se deu por ser aquele mais populoso do dataset. Assim, a pergunta a ser respondida neste experimento foi: o modelo de Deep Learning é capaz de aprender e generalizar a presença de células neoplásicas no restante dos tecidos sendo que foi treinado somente com um deles?
+
+#### Classificação de Tecidos
+
+#### Experimento I
+
+Treinamento para discriminar 'Breast' dos demais tecidos (One vs All)
+
+#### Experimento II
+
+Treinamento para discriminar 'Colon' dos demais tecidos (One vs All)
+
+#### Experimento III
+
+Treinamento para discriminar seis tecidos - Breast, Colon, Esophagus, HeadNeck, Adrenal_gland e Bile-duct (estratégia "All vs All")
 
 ## Passo 4: Análise de desempenho
 
@@ -289,7 +300,7 @@ Longo prazo: 3-4 semanas
 
 ## Referências 
 
-[1]: G., Jevgenij et. al,  “PanNuke Dataset Extension, Insights and Baselines”, 2020. 
+(######) [1]: G., Jevgenij et. al,  “PanNuke Dataset Extension, Insights and Baselines”, 2020. 
 
 [2]: Defining Cancer. National Cancer Institute
 
