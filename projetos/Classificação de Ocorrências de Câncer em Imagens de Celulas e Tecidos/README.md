@@ -1,5 +1,5 @@
-# Identificação de Ocorrências de Tumor em Imagens de Células e Tecidos
-# Identification of Tumor Occurrences in Cell and Tissue Images
+# Identificação de Ocorrências de Tumor em Imagens de Tecidos
+# Identification of Tumor Occurrences in Tissue Images
 
 
 ## Apresentação
@@ -28,7 +28,7 @@ As lâminas de tecidos contêm informações visuais sobre as células e suas ca
 Perante o exposto, este projeto consiste em aplicar técnicas de aprendizado de máquina para classificar imagens de lâminas de tecidos de diferentes órgãos. Serão feitas duas classificações: a primeira irá separar as imagens com presença ou não de tumor no tecido a partir da análise de células neoplásicas, que podem estar presentes (indicação de tumor) ou não. A segunda classificação é do tipo de tecido representado pela imagem da lâmina de microscopia entre dezenove classes distintas. Para o primeiro tipo de classificação, serão utilizadas máscaras com a segmentação das células neoplásicas, as quais extraímos a classe binária da imagem (0: não possui célula neoplásica, 1: possui célula neoplásica).
 
 # Metodologia
-Para o desenvolvimento do projeto, utilizamos o dataset 'PanNuke', disponibilizado no site Kaggle. A escolha do dataset se deu pelo fato deste ser atualmente o maior e mais diverso dataset para segmentação de núcleos celulares e classificação. Além disso, ele foi anotado de maneira semi-automática, com a supervisão de profissionais da área para o controle de qualidade. Mais informações sobre as imagens podem ser vistas a seguir.
+Para o desenvolvimento do projeto, utilizamos o dataset 'PanNuke', disponibilizado no site Kaggle. A escolha do dataset se deu pelo fato deste ser atualmente o maior e mais diverso dataset para segmentação de núcleos celulares e classificação, o qual foi feito a partir do NuClick. Além disso, ele foi anotado de maneira semi-automática, com a supervisão de profissionais da área para o controle de qualidade [1]. Mais informações sobre as imagens podem ser vistas a seguir.
 
 ## Bases de Dados e Evolução
 
@@ -295,7 +295,7 @@ Longo prazo: 3-4 semanas
 
 ## Referências 
 
-(######) [1]: G., Jevgenij et. al,  “PanNuke Dataset Extension, Insights and Baselines”, 2020. 
+[1]: G., Jevgenij et. al,  “PanNuke Dataset Extension, Insights and Baselines”, 2020. 
 
 [2]: Defining Cancer. National Cancer Institute
 
