@@ -26,6 +26,8 @@ Nesse contexto, o objetivo do presente projeto é detectar pessoas e reconhecer 
 
 Para desenvolvimento deste projeto, é adotada a base de dados “NTUT 4K Drone Photo Dataset for Human Detection”, descrita com mais detalhes na seção a seguir (“Bases de Dados e Evolução”).
 
+**1 - Organização dos dados** 
+
 Para a detecção de pessoas, observou-se que, no conjunto de dados de treinamento, há 2156 imagens de drone. Já que em uma mesma imagem pode haver mais de uma pessoa, considerando todos os registros (labels) correspondentes às poses humanas, tem-se 31805 amostras no conjunto de treinamento, sendo que cada amostra corresponde a uma pessoa detectada na imagem. Em cada um desses 31805 dados, são registrados: o nome da imagem em que a pessoa está sendo detectada, as coordenadas digitais que definem o bounding box, e o rótulo correspondente à pose em que a pessoa se encontra. 
 
 Como algumas classes correspondentes às poses humanas eram indefinidas (registradas como “id_” ou “block_”), os dados foram analisados e, considerando as classes com maior número de amostras, definiram-se quatro classes a serem adotadas no presente projeto:
@@ -38,35 +40,67 @@ Como algumas classes correspondentes às poses humanas eram indefinidas (registr
 
 - Riding: 2487 amostras.
 
-Filtrados os dados com base nas quatro classes estabelecidas, dividiu-se os dados de treino em Treino (80%) e Validação (20%). Os dados de teste, já disponíveis no dataset “NTUT 4K Drone Photo Dataset for Human Detection” e com 20920 amostras, também foi filtrado com base nas quatro classes. 
+Filtrados os dados com base nas quatro classes estabelecidas, dividiu-se os dados de treino em Treino (80%) e Validação (20%). Os dados de teste, já disponíveis no dataset “NTUT 4K Drone Photo Dataset for Human Detection” e com 20920 amostras, também foram filtrados com base nas quatro classes. 
 
 Dispondo, portanto, dos conjuntos de treino (1677 imagens), teste (1266 imagens) e validação (1006 imagens), definiram-se os arquivos (.txt) correspondentes aos labels das quatro classes, considerando as imagens que foram mantidas após a filtragem. Nos arquivos "label_train.txt", "label_val.txt" e "label_test.txt" são registrados: nome da imagem (image), coordenadas em pixels do bounding box (xmin, ymin, xmax, ymax) e o rótulo da classe (label).
 
-A partir desses dados, realizou-se o treinamento do modelo (arquitetura Yolov7). Tanto para a detecção das pessoas nas imagens de drone quanto  para a classificação de suas poses, adotou-se uma a arquitetura YOLOv7, que, segundo Wang, Bochkovskiy e Liao (2022), supera todos os detectores de objetos conhecidos em velocidade e precisão (tem menos parâmetros, menor custo computacional e alcança maior precisão). Para o presente projeto, adaptou-se o código da YOLOv7, disponível em <https://github.com/WongKinYiu/yolov7>.
+**2 - Pré-processamento dos dados**
 
-Para tanto, inicialmente, criou-se um arquivo (.txt) para cada uma das imagens, com as informações de "ids" das classes presentes naquela imagem ('walk': 0, 'riding': 1, 'stand': 2, 'sit': 3), as coordenadas do centro do "bouding box" normalizadas (x_center e y_center) e a largura (w) e altura(h) do "bounding box" normalizado. Para o treinamento, redimensinou-se as imagens para 640x640 pixels. Os hiperparâmetros definidos foram: tamanho dos mini batches (BATCH_SIZE = 16 imagens) e número de épocas (EPOCHS = 10).
+As imagens originais do dataset “NTUT 4K Drone Photo Dataset for Human Detection” são coloridas (RBG). A fim de reduzir o tempo computacional durante a etapa de treinamento do modelo, principalmente, converteram-se as imagens para níveis de cinza. 
 
-Além do treinamento adotando os dados filtrados (imagens RGB), realizaram-se treinamentos com as imagens resultantes dos seguintes pré-processamentos, a fim de melhorar as métricas de avaliação do modelo:
+Além disso, com o objetivo de melhorar as métricas de avaliação do modelo, considerando as imagens grayscale, adotou-se três filtragens no domínio espacial (filtro de Sobel, filtro de Prewitt e filtro de Laplace), que possibilitam a detecção de bordas. Ao adotar tais filtragens, esperou-se que as bordas referentes às pessoas presentes nas imagens fossem realçadas, o que poderia auxiliar o modelo. 
 
-- Pré-processamento 1: conversão das imagens RGB para imagens em níveis de cinza;
+Portanto, quatro pré-processamentos foram realizados no conjunto de dados originais, cada um adotado separadamente para treinamento do modelo:
 
-- Pré-processamento 2: filtragem no domínio espacial, adotando o filtro de Sobel (aplicou-se o gradiente obtido a partir das duas máscaras de Sobel - horizontal e vertical) (GONZALES; WOODS, 2009);
+  1) Conversão das imagens RGB para imagens em níveis de cinza;
 
-- Pré-processamento 3: filtragem no domínio espacial, adotando o filtro de Prewitt (aplicou-se o gradiente obtido a partir das duas máscaras de Prewitt - horizontal e vertical) (GONZALES; WOODS, 2009).
+  2) Filtragem no domínio espacial adotando o filtro de Sobel (aplicou-se o gradiente obtido a partir das duas máscaras de Sobel - horizontal e vertical) (GONZALES; WOODS, 2009);
 
-Cabe ressaltar que um quarto pré-processamento também foi realizado  - filtragem no domínio espacial, adotando o filtro de Laplace (GONZALES; WOODS, 2009). Entretanto, em função das imagens resultantes dessa filtragem, optou-se por não utilizá-las para treinamento do modelo.
+  3) Filtragem no domínio espacial adotando o filtro de Prewitt (aplicou-se o gradiente obtido a partir das duas máscaras de Prewitt - horizontal e vertical) (GONZALES; WOODS, 2009).
 
-Destaca-se, também, que para cada conjunto de imagens obtido após os pré-processamentos dos conjuntos de imagens de treino, teste e validação, copiou-se o arquivo (.txt) correspondente às labels, bem como os arquivos gerados para cada uma das imagens com as informações de "ids" das classes presentes naquela imagem ('walk': 0, 'riding': 1, 'stand': 2, 'sit': 3), coordenadas do centro do "bouding box" normalizadas (x_center e y_center) e a largura (w) e altura(h) do "bounding box" normalizado.
+  4) Filtragem no domínio espacial adotando o filtro de Laplace (GONZALES; WOODS, 2009).
 
-Assim, no total, quatro treinamentos foram realizados até o momento para o presente projeto:
+Cabe destacar que, em função das imagens resultantes da filtragem laplaciana, optou-se por não utilizá-las para treinamento do modelo.
 
-- Treinamento 1: adotando as imagens RBG;
+**3 - Treinamento do modelo**
 
-- Treinamento 2: adotando as imagens em nível de cinza;
+***3.1. Treinamentos iniciais***
 
-- Treinamento 3: adotando as imagens filtradas pelo Filtro de Sobel;
+Inicialmente, quatro conjunto de dados foram adotados para treinamento do modelo: imagens RGB (originais), imagens em níveis de cinza, imagens obtidas da filtragem de Sobel e imagens obtidas da filtragem de Prewitt.
 
-- Treinamento 4: adotando as imagens filtradas pelo Filtro de Prewitt.
+A partir desses dados, realizou-se o treinamento do modelo adotando a arquitetura Yolov7. Tanto para a detecção das pessoas nas imagens de drone quanto  para a classificação de suas poses, adotou-se uma a arquitetura YOLOv7, que, segundo Wang, Bochkovskiy e Liao (2022), supera todos os detectores de objetos conhecidos em velocidade e precisão (tem menos parâmetros, menor custo computacional e alcança maior precisão). No presente projeto, adaptou-se o código da YOLOv7, disponível em <https://github.com/WongKinYiu/yolov7>.
+
+Para o treinamento do modelo, inicialmente, criou-se um arquivo (.txt) para cada uma das imagens, com as informações de "ids" das classes presentes naquela imagem ('walk': 0, 'riding': 1, 'stand': 2, 'sit': 3), as coordenadas do centro do "bouding box" normalizadas (x_center e y_center) e a largura (w) e altura(h) do "bounding box" normalizado. Para cada conjunto de imagens obtido após os pré-processamentos dos conjuntos de imagens de treino, teste e validação, copiou-se o arquivo (.txt) correspondente às labels, bem como os arquivos gerados para cada uma das imagens (com as informações de: "ids", coordenadas do centro do "bounding box" normalizadas, e a largura e altura do "bounding box" normalizado).
+
+As imagens foram redimensionadas para 640x640 pixels durante o treinamento, de acordo com as especificações do modelo adotado. Os hiperparâmetros definidos foram: tamanho dos mini batches (BATCH_SIZE = 16 imagens) e número de épocas (EPOCHS = 30).
+
+***3.2. Balanceamento do número de amostras por classe***
+
+A partir dos resultados iniciais obtidos com os quatro treinamentos iniciais (adotando: imagens RBG, imagens em níveis de cinza, imagens filtradas com Filtro de Sobel e imagens oriundas da filtragem de Prewitt), observou-se, como uma das opções para melhoria das métricas avaliativas do modelo, o balancemanto do número de amostras por classe considerada.
+
+Até o momento, exitia um número muito maior de amostras para a classe "walk", do que para as demais. Assim, uma alternativa escolhida foi excluir do dataset de treino algumas imagens em que fossem detectadas somente pessoas em estado "walk". A figura a seguir, apresenta a quantidade de amostras antes para as classes antes e após o balanceamento realizado.
+
+ACRESCENTAR A FIGURA
+
+Como, nos treinamentos iniciais, o conjunto de imagens que apresentou melhores resultados foram as imagens em níveis de cinza, transformou-se as imagens selecionadas após o balanceamento dos dados em níveis de cinza e, adotando-as, realizou um novo treinamento.
+
+***3.3. Data Augmentation***
+
+Como o balanceamento dos dados (seção 3.2. Data Augmentation) não surtiu os resultados esperados, realizou-se uma aumentação nos dados de treino. Adotando o conjunto de imagens em níveis de cinza, foram aplicadas seis transformações para aumentação dos dados, considerando, para cada uma delas, um conjunto aleatório de 230 imagens pertencentes ao dataset de treino.
+
+As seguintes transformações foram adotadas para aumentação dos dados (PYTORCH, 2023):
+
+- ColorJitter: altera aleatoriamente o brilho, contraste, saturação e matiz de uma imagem;
+- RandomInvert: inverte aleatoriamente as cores da imagem fornecida;
+- RandomPosterize: reduz o número de bits para cada canal de cor (altera a resolução radiométrica da imagem). Nesse caso, alterou-se as imagens para 4 bits de resolução;
+- RandomSolarize: inverte todos os valores de pixel acima de um limite. Nesse caso, adotou-se o limite igual a 20 após testes realizados;
+- RandomAdjustSharpness: ajusta a nitidez da imagem aleatoriamente com uma determinada probabilidade.
+- RandomEqualize: equaliza o histograma da imagem fornecida.
+
+Assim, a cada transformação, 230 novas imagens foram adicionadas ao dataset de treino, para serem adotadas durante o treinamento dos dados. Os rótulos correspondentes a cada imagem também são salvos, considerando o nome da imagem após a transformação.
+
+Ressalta-se que adotou-se o conjunto de dados de treino correspondentes às imagens em nível de cinza, uma vez que as mesmas apresentaram métricas semelhantes às imagens RBG nos treinamentos realizados anteriormente, porém com tempo computacional reduzido (cerca de 3 vezes menor).
+
 
 Para avaliar o modelo, foram adotadas as seguintes métricas:
 
@@ -258,7 +292,7 @@ KUKIL. Intersection over Union (IoU) in Object Detection & Segmentation. 2022a. 
 
 KUKIL. Mean Average Precision (mAP) in Object Detection. 2022b. Disponível em: https://learnopencv.com/mean-average-precision-map-object-detection-model-evaluation-metric/. Acesso em: 16 maio 2023.
 
-PYTORCH. Transforming and augmenting images. Disponível em: <https://pytorch.org/vision/0.12/transforms.html>. Acesso em: 15 maio 2023.
+PYTORCH. Transforming and augmenting images. Disponível em: <https://pytorch.org/vision/0.12/transforms.html>. Acesso em: 22 jun. 2023.
 
 WANG, C.; BOCHKOVSKIY, A.; LIAO, H. M. YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors. arXiv preprint arXiv:2207.02696, 2022. Disponível em: 
 <https://doi.org/10.48550/arXiv.2207.02696>.
