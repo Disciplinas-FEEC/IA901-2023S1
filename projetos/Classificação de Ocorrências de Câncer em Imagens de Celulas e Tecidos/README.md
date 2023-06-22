@@ -172,11 +172,11 @@ Todo o projeto tem sido desenvolvido, em linguagem Python, no formato de Noteboo
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/workflow_2.png" height="350">
 </p>
 
-# Experimentos e Resultados preliminares
+# Resultados Finais
 
-Nesta seção, apresentamos os resultados preliminares desta primeira entrega. 
+Nesta seção, apresentamos os resultados finais do projeto, considerando todos os experimentos realizados. 
 
-## Análise com Deep Learning:
+## Classificação de Tumores
 
 ### Baseline vs Experimento 1: 
 A Figura 5 apresenta a ROC Curve comparando o experimento Baseline (treinamento/validação/teste com todos os tecidos) com o experimento 1 (treinamento/validação com todos os tecidos, exceto ‘Breast’ que foi usado apenas para os testes). No cenário Baseline, o modelo de Deep Learning apresentou um desempenho elevado (AUC=0.97), indicando que mesmo sem qualquer tipo de pré-processamento, foi possível identificar a existência de células neoplásicas na maior parte das imagens de teste. 
