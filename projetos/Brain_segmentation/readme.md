@@ -5,11 +5,11 @@
 
 O presente projeto foi originado no contexto das atividades da disciplina de pós-graduação *IA901 - Processamento de Imagens e Reconhecimento de Padrões*, oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dra. Leticia Rittner, do Departamento de Engenharia de Computação e Automação (DCA) da Faculdade de Engenharia Elétrica e de Computação (FEEC).
 
-> |Nome  | RA | Curso|
-> |--|--|--|
-> | Jimi Togni           | 226359   | Doutorado em Engenharia Elétrica |
-> | Joany Rodrigues      | 264440   | Mestrado em Engenharia Elétrica  |
-> | Victor Praxedes Rael | 240242   | Mestrado em Engenharia Elétrica  |
+|Nome  | RA | Curso|
+|--|--|--|
+| Jimi Togni           | 226359   | Doutorado em Engenharia Elétrica |
+| Joany Rodrigues      | 264440   | Mestrado em Engenharia Elétrica  |
+| Victor Praxedes Rael | 240242   | Mestrado em Engenharia Elétrica  |
 
 ## Descrição do Projeto
 
@@ -33,23 +33,29 @@ Modificações entre as versões 2D e 3D inclui: o número de canais de entrada 
 
 ## Pré-Processamento de dados
 ### nnU-Net 
-Os dados foram executados no framework nnU-Net apenas para obtermos sugestões de pré-processamento dos dodos e parâmetros da rede. Para a execusão dos dados na nnU-Net, foi necessário organizar os dados da forma que esta exige. A implementação usada para organização no conjunto de dados usados neste trabalho pode ser encontrado no notebook [organizar de dados para executar a nnUNet](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/data_organization/organizar_dados_nnUNet.ipynb), para mais informações acesse o tutorial do framework. 
+Os dados foram executados no framework nnU-Net apenas para obtermos sugestões de pré-processamento dos dodos e parâmetros da rede. Para a execusão dos dados na nnU-Net, foi necessário organizar os dados da forma que esta exige. A implementação usada para organização no conjunto de dados usados neste trabalho pode ser encontrado no notebook [organizar de dados para executar a nnU-Net](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/data_organization/organizar_dados_nnUNet.ipynb), para mais informações acesse o tutorial do framework. 
 
 Ao executarmos os dados na nnU-Unet, esta forneceu um problema nas segmentações anotadas, uma vez que as essas não era binárias (continham valores entre 0 e 1) e este framework não aceita labels que não sejam numéros inteiros. Isso foi importante para sabermos que as segmentações dos dados não estavam binarizadas. Isso foi corrigido para execução da nnU-Net usando o código presente também no notebook [organizar de dados para executar a nnUNet](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/data_organization/organizar_dados_nnUNet.ipynb).
 
 Após a execução da nnU-Net, foi obtido uma [lista de pré-processamento](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/debug.json) do treinamento 3D e 2D realizado pelo framework. A partir dessa lista, consideramos os seguintes pré-processamentos para o treinamento das duas versões da arquitetura U-Net (2D e 3D):
 
 #### Definição de Pré-processamentos
-* [Redimensionamento de voxel](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/pre-processing/voxel_interpolation.ipynb) (spacing): redimensionamento de voxel é interpolar o voxel para mudar seu tamanho, o que influencia diretamente na resolução da imagem. Isso modifica significativamente os dados chegando a introduzir ruído a partir da interpolação. No entando, além de ter sido sugerido pelo framewark, este trabalho usa 4 conjunto de dados diferentes e para manter os voxesls de todos os dados padronizados foi feito a interpolação de voxel, mantendo todos os volumes de treinamento e validação isométricos com tamanho de voxel igual a 1. Observe que a sujestão da nnU-Net foi de [1.0, 0.9999008178710938, 1.0], mas foi usado [1.0, 1.0, 1.0] para deixar os dados isométricos. A tabela abaixo resume o tamanho de voxel e resolução dodos dados de cada conjunto de dados após a interpolação de voxel.
+* [Redimensionamento de voxel](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/pre-processing/voxel_interpolation.ipynb) (spacing): redimensionamento de voxel é interpolar o voxel para mudar seu tamanho, o que influencia diretamente na resolução da imagem. Isso modifica significativamente os dados chegando a introduzir ruído a partir da interpolação. No entando, além de ter sido sugerido pelo framewark, este trabalho usa 4 conjunto de dados diferentes e para manter os voxels de todos os dados padronizados foi feito a interpolação de voxel, mantendo todos os volumes de treinamento e validação isométricos com tamanho de voxel igual a 1. Observe que a sujestão da nnU-Net foi de [1.0, 0.9999008178710938, 1.0], mas foi usado [1.0, 1.0, 1.0] para deixar os dados isométricos. A tabela abaixo resume o tamanho de voxel e resolução dados de cada conjunto de dados antes e após a interpolação de voxel.
 
-|Aquisição| N   | Tam. Vox. original (𝑚𝑚^3) | Tam. Vox. Iso (𝑚𝑚^3) | resolução original | resolução c/ Int. Vox. |
+|Aquisição| N   | Tam. Vox. original (𝑚𝑚^3) | Tam. Vox. Iso (𝑚𝑚^3) | resolução original | resolução c/ Interpolação de Voxel |
 |---------|-----|---------------------------|-----------------------|--------------------|-----------------------|
 | CC359   | 359 | 1 x 1 x 1                 | 1 x 1 x 1             | 171 x 256 x 256    | 171 x 256 x 256 |
 | LBPA40  | 40  | 0.8594 x 1.5 x 0.8594     | 1 x 1 x 1             | 256 x 124 x 256    | 220 x 186 x 120 |
 | NFBS    | 125 | 1 x 1 x 0.9999            | 1 x 1 x 1             |  256 x 256 x 192   | 256 x 256 x 192 |
 | IBSR    | 18  | 0.9375 x 0.9375 x 1.5     | 1 x 1 x 1             |  256 x 256 x 128   | - |
 
-* Normalização: a normalização sujerida pelo framework foi Z-Score Normalization 'ZScoreNormalization'. Essa é uma técnica utilizada para transformar os valores de uma variável para que tenham média zero e desvio padrão igual a 1. Bastante utilizada quando se tem variáveis que têm escalas diferente, deixando as variáveis em uma escala comparável ou comparável. 
+* [Normalização](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/pre-processing/data_normalization.ipynb): a normalização sugerida pelo framework foi a Z-Score Normalization 'ZScoreNormalization'. Essa é uma técnica utilizada para transformar os valores de uma variável para que tenham média zero e desvio padrão igual a 1. Bastante utilizada quando se tem variáveis que têm escalas diferente, deixando as variáveis em uma escala compatível ou comparável. Em MRIs, para a realização dessa normalização a imagem é subtraída de sua média e essa operação é dividida pelo desvio padrão da imagem: 
+
+$$ X{_nor} =  (X - \mu) / (\sigma$)$$
+
+Onde X é a matriz (volume); $\mu$ é a média da matriz ($ mean(X) $); e $\sigma$ é o desvio padrão da matriz ($ std(X)$). Essa normalização resulta em média igual a 0 e desvio padrão igual a 1.
+
+* Conversão para o npz: 
 
 ### Treinamento da arquiterura 3D
 O treinamento do modelo 3D foi realizado ao utilizar o volume de entrada para obter patches 3D que serao usados como canal de entrada da U-Net 3D. A rede realiza o treinamento e retorna como saída a segmentação do cérebro.  
@@ -60,8 +66,8 @@ O treinamento do modelo 3D foi realizado ao utilizar o volume de entrada para ob
 ## Bases de Dados e Evolução
 
 Base de Dados | Endereço na Web | Resumo descritivo
------ | ----- | -----
-LBPA40 | https://www.loni.usc.edu/research/atlas_downloads | este conjunto de dados é público e contém imagens dados de 40 sujeitos. Dentre outros arquivos, este conjunto de dados contém as imagens ponderadas em T1 e segmentações manuais do cérebro também em T1. Esse conjunto de dados foi fornecido por um membro do grupo MICLab. Os dados originais estão no formato mri.img.gz, porém os dados fornecidos para este estudo já se encontrava no formato nifti. A conversão de img.gz para nifti foi feita usando o software ITKSnap. Para a organização desses dados, foi feito a separação apenas dos arquivos que foram usados neste trabalho (imagens e segmentação); em seguidas renomeamos estes arquivos para brainmask_T1w (segmentação do cérebro) e brain_T1w (imagem do cérebro) e então realizamos a divisão deste dataset em treinamento (70%), validação (20%) e teste (10%). Detalhes para esta organização estão no notebook [organização dos dados LBPA40](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/data_organization/LBPA40_dataset_organization). 
+------------- | --------------- | -----------------
+LBPA40 | [link de acesso](https://www.loni.usc.edu/research/atlas_downloads) | este conjunto de dados é público e contém dados de 40 sujeitos. Dentre outros arquivos, este conjunto de dados contém as imagens ponderadas em T1 e segmentações manuais do cérebro também em T1. Esse conjunto de dados foi fornecido por um membro do grupo MICLab. Os dados originais estão no formato mri.img.gz, porém os dados fornecidos para este estudo já se encontrava no formato nifti. A conversão de img.gz para nifti foi feita usando o software [ITKSnap](http://www.itksnap.org/pmwiki/pmwiki.php?n=Documentation.TutorialSectionInstallation). Para a organização desses dados, foi feito a separação apenas dos arquivos que foram usados neste trabalho (imagens e segmentação do cérebro); em seguida renomeamos estes arquivos para brainmask_T1w (segmentação do cérebro) e brain_T1w (imagem do cérebro) e então realizamos a divisão deste dataset em treinamento (70%), validação (20%) e teste (10%). Detalhes para esta organização estão no notebook [organização dos dados LBPA40](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/data_organization/LBPA40_dataset_organization). 
 CC359 | https://portal.conp.ca/dataset?id=projects/calgary-campinas | conjunto de dados de ressonância magnética cerebral Calgary Campinas, composto por imagens de RM do cérebro ponderadas em T1 e máscaras de segmentação do cérebro.
 NFBS | http://preprocessed-connectomes-project.org/NFB_skullstripped/ | é um dataset com 125 ressonâncias magnéticas anatômicas ponderadas em T1 que tem anotações manuais do cérebro. Este conjunto de dados fornece 3 arquivos para cada sujeito: Structural T1-weighted anonymized image, Skull-stripped image, Brain mask.
 IBSR | https://www.nitrc.org/projects/ibsr | repositório de Segmentação Cerebral da Internet (IBSR) fornece anotações manuais, juntamente com dados de imagem cerebral por ressonância magnética em T1.
