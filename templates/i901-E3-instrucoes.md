@@ -10,7 +10,7 @@ A entrega final do projeto consiste em duas etapas:
 
 De maneira análoga à entrega E2, a atualização do repositório GitHub inclui:
 * Atualização do arquivo README.md do projeto incluindo as seções do template fornecido ([IA901-E3-template.md](https://github.com/Disciplinas-FEEC/ia901-2023S1/blob/main/templates/ia901-E3-template.md)).
-* Após a finalização da edição do conteúdo da segunda entrega, atribuição da tag de release **IA901_E3** no repositório de origem.
+* Após a finalização da edição do conteúdo da segunda entrega, atribuição da tag de release `IA901_E3` no repositório de origem.
 * **Pull request**  do projeto no  **branch  principal** até a data de entrega.
 
 (As entregas E1 e E2 serão avaliadas conjuntamente e valerão 2,0 pontos da nota final do projeto.)
