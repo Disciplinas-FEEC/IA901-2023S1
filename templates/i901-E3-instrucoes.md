@@ -9,7 +9,7 @@ A entrega final do projeto consiste em duas etapas:
 * Atualização do repositório GitHub já criado anteriormente. A versão final do repositório será avaliada, valendo 6,0 pontos da nota final do projeto.
 
 De maneira análoga à entrega E2, a atualização do repositório GitHub inclui:
-* Atualização do arquivo README.md do projeto incluindo as seções do template abaixo.
+* Atualização do arquivo README.md do projeto incluindo as seções do template fornecido ([IA901-E3tmplate.md](../ia901-E3-template.md).
 * Após a finalização da edição do conteúdo da segunda entrega, atribuição da tag de release **2023.1_IA901_E3** no repositório de origem.
 * **Pull request**  do projeto no  **branch  principal** até a data de entrega.
 
