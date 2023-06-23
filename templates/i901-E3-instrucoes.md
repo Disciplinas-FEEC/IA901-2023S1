@@ -18,7 +18,7 @@ De maneira análoga à entrega E2, a atualização do repositório GitHub inclui
 ## Datas Importantes
 
 * 27/06 (11:59) - Data limite para pull request do repositório do projeto (será considerada a última versão até essa data e horário).
-* 27/06 (14:00) - Apresentação de grupos 
+* 27/06 (14:00) - Apresentação de grupos - 10 minutos por grupo
 * 28/06 (14:00) - Entrega da avaliação por pares (vide outras informações abaixo).
 
 Presença obrigatória de todos os membros do grupo na data de apresentação. 
@@ -34,7 +34,8 @@ Diretrizes para apresentação (sugestões de tópicos):
 * Conclusões / Lições aprendidas
 * Trabalhos futuros
 
-Considerem no máximo 1 slide por minuto. Portanto, um apresentação de 10 minutos não deve ter mais de 10 slides.
+DICA: Considerem no máximo 1 slide por minuto. Portanto, um apresentação de 10 minutos não deve ter mais de 10 slides.
+
 ## Avaliação
 
 A avaliação do projeto final será realizada não apenas pelos professores da disciplina, mas também passará por etapa de avaliação por pares. Instruções serão fornecidas posteriormente no ambiente Classroom da Disciplina.
