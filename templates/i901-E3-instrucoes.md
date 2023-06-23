@@ -9,7 +9,7 @@ A entrega final do projeto consiste em duas etapas:
 * Atualização do repositório GitHub já criado anteriormente. A versão final do repositório será avaliada, valendo 6,0 pontos da nota final do projeto.
 
 De maneira análoga à entrega E2, a atualização do repositório GitHub inclui:
-* Atualização do arquivo README.md do projeto incluindo as seções do template fornecido ([IA901-E3tmplate.md](../ia901-E3-template.md).
+* Atualização do arquivo README.md do projeto incluindo as seções do template fornecido ([IA901-E3-template.md](https://github.com/Disciplinas-FEEC/ia901-2023S1/blob/main/templates/ia901-E3-template.md)).
 * Após a finalização da edição do conteúdo da segunda entrega, atribuição da tag de release **2023.1_IA901_E3** no repositório de origem.
 * **Pull request**  do projeto no  **branch  principal** até a data de entrega.
 
@@ -28,9 +28,6 @@ Presença obrigatória de todos os membros do grupo na data de apresentação.
 Diretrizes para apresentação (sugestões de tópicos):
 * Deve recapitular, de maneira sintética, objetivo inicial do projeto
 * Abordagem adotada
-* Dificuldades enfrentadas
-* Deve relatar possíveis mudanças de percurso
-* Referenciais teóricos adotados
 * Principais ferramentas utilizadas (incluir informações úteis para que outros possam utilizá-las)
 * Resultados obtidos
 * Discussão dos resultados
@@ -65,7 +62,7 @@ Note que nem todos os diretórios ou arquivos serão necessários para todos os 
 
 ## `README.md`
 
-Para a entrega E2, o README.md do repositório deve ser formatado [segundo o modelo disponibilizado neste link](https://github.com/Disciplinas-FEEC/ia901-2023S1/blob/main/templates/ia901-E2-template.md).
+Para a entrega E3, o README.md do repositório deve ser formatado [segundo o modelo disponibilizado neste link](https://github.com/Disciplinas-FEEC/ia901-2023S1/blob/main/templates/ia901-E3-template.md).
 
 Caso não tenha experiência com edição em Markdown, vide referência: [Mastering Markdown](https://guides.github.com/features/mastering-markdown/).
 Existem também múltiplas ferramentas para edição de Markdown como, por exemplo, [StackEdit](https://stackedit.io/).
@@ -91,7 +88,5 @@ Se for código em linguagem de programação, tente organizá-lo de forma que se
 Qualquer mídia usada no seu projeto: vídeo, ilustrações, arquivos PDF etc.
 
 Note que nem todos os diretórios ou arquivos serão necessários para todos os projetos. Foque em seguir o padrão para os diretórios que forem necessários. Não crie diretórios que não serão utilizados.
-
-Seu repositório deverá obrigatoriamente conter o arquivo README.md, arquivo de documentação Markdown, que deverá conter a descrição do projeto conforme o template fornecido (ia901-E3-template.md).
 
 
