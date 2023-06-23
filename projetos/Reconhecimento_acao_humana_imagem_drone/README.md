@@ -72,9 +72,13 @@ As imagens foram redimensionadas para 640x640 pixels durante o treinamento, de a
 
 A partir dos resultados obtidos com os quatro treinamentos iniciais (adotando: 1 - imagens RBG; 2 - imagens em níveis de cinza; 3 - imagens filtradas com Filtro de Sobel; e 4 - imagens oriundas da filtragem de Prewitt), observou-se, como uma das opções para melhoria das métricas avaliativas do modelo, o balanceamento do número de amostras por classe considerada.
 
-Até o momento, exitia um número muito maior de amostras para a classe "walk", do que para as demais. Assim, uma alternativa escolhida foi excluir do dataset de treino algumas imagens em que fossem detectadas somente pessoas em estado "walk". A figura a seguir, apresenta a quantidade de amostras para as classes antes e após o balanceamento realizado.
+Até o momento, exitia um número muito maior de amostras para a classe "walk", do que para as demais. Assim, uma alternativa escolhida foi excluir do dataset de treino algumas imagens em que fossem detectadas somente pessoas em estado "walk". 
 
-ACRESCENTAR A FIGURA
+A figura a seguir, apresenta a quantidade de amostras para as classes antes e após o balanceamento realizado.
+
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/Dados_selecionados_treino_teste_validacao.png" height="350">
+</p>
 
 Como, nos treinamentos iniciais, o conjunto de imagens que apresentou melhores resultados foram as imagens em níveis de cinza, transformou-se as imagens selecionadas após o balanceamento dos dados em níveis de cinza e, adotando-as, realizou um novo treinamento.
 
@@ -106,6 +110,7 @@ Para avaliar o modelo, foram adotadas as seguintes métricas:
 - Recall: mede a proporção de positivos reais que foram previstos corretamente - Recall = TP / (TP + FN). Varia de 0 a 1 (KUKIL, 2022b); 
 
 - Mean Average Precision (mAP): é a média das "Precisão média (AP)"* calculadas para todas as classes - mAP = 1/n * soma(APs), onde n é o número de classes (KUKIL, 2022b).
+
 
 * *Precisão média (AP)*: a área sob a curva de rechamada de precisão, sendo igual a soma dos valores de precisão interpolados em 11 valores de chamada, dividido por 11 (AP = 1/11 * Soma de 11 valores de precisão interpolados). AP é definida para cada uma das classes (KUKIL, 2022b). Nesse projeto, adotou-se mAP@.5 e mAP@.5:.95 para avaliação dos resultados:
 
