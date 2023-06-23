@@ -37,7 +37,7 @@ Detatalhes importantes sobre os conjuntos de dados e sua organização:
 ### Arquitetura U-Net
 Este trabalho utilizou a arquitetura [U-Net](https://link.springer.com/chapter/10.1007/978-3-319-24574-4_28), uma rede neural convolucional bastante utilizada para segmentação de imagens médicas. Utilizamos as versões 2D e 3D da [U-Net modificada](https://link.springer.com/chapter/10.1007/978-3-030-72084-1_38), conforme implementado por Carmo et al. (2020). 
 
-![U-Net modificada: a resolução espacial é reduzida pela segunda convolução de cada nível do codificador; os blocos verde se referem as características filtradas pela operação de self attention; cada nível do codificador e decodificador (blocos de duas convoluções) possui conexão residual realizando a conexão da entrada da primeira convolução à saída da segunda convolução (seta em laranja).](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/Unet-IA901A.png)
+![U-Net modificada](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/Unet-IA901A.png)*U-Net modificada: a resolução espacial é reduzida pela segunda convolução de cada nível do codificador; os blocos verde se referem as características filtradas pela operação de self attention; cada nível do codificador e decodificador (blocos de duas convoluções) possui conexão residual realizando a conexão da entrada da primeira convolução à saída da segunda convolução (seta em laranja)*
 
 Mudaças da U-Net modificada em relação a original inclui: a utilização de convoluções stride para a redução da resolução espacial em vez de operações de agregação; adição de [conexão residual](https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html) propagando a entrada à saída de cada nível do codificador (utilizando soma e uma convolução com kernel de 1 × 1 (seta laranja) realizando adaptação de canal e resolução espacial e adição de uma operação [self attention](http://proceedings.mlr.press/v102/gorriz19a.html) para filtrar as características produzidas em cada nível do codificador.
 
@@ -63,7 +63,7 @@ Após a execução da nnU-Net, foi obtido uma [lista de pré-processamento](http
 
 * [Normalização](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/pre-processing/data_normalization.ipynb): a normalização sugerida pelo framework foi a Z-Score Normalization 'ZScoreNormalization'. Essa é uma técnica utilizada para transformar os valores de uma variável para que tenham média zero e desvio padrão igual a 1. Bastante utilizada quando se tem variáveis que têm escalas diferente, deixando as variáveis em uma escala compatível ou comparável. Em MRIs, para a realização dessa normalização a imagem é subtraída de sua média e essa operação é dividida pelo desvio padrão da imagem: 
 
-$$ X_{nor} =  (X - \mu) / (\sigma$)$$
+$$ X_{nor} =  (X - \mu) / (\sigma)$$
 
 Onde X é a matriz (volume); $\mu$ é a média da matriz ($mean(X)$); e $\sigma$ é o desvio padrão da matriz ($std(X)$). Essa normalização resulta em média igual a 0 e desvio padrão igual a 1.
 
@@ -72,12 +72,30 @@ Onde X é a matriz (volume); $\mu$ é a média da matriz ($mean(X)$); e $\sigma$
 ### Utilização e divisão dos conjuntos de dados 
 Para o treinamento das versões arquitetura (2D e 3D), os conjuntos de dados LBPA40, CC359 e NFBS foram usados simultaneamente durante o treinamento do modelo em todos os experimentos. Os dados foram então dividos (incluidos esses 3 conjuntos de dados) em treinamento (392 sujeitos: 87 do NFBS, 277 do CC359 e 28 do LBPA40) e validação (103 sujeitos: 25 do NFBS, 70 do CC359 e 8 do LBPA40). A avaliação do modelo foi feita no conjunto de teste final (xx sujeitos) (VERIFICAR SE ISSO VAI SE MANTER PARA O 2D)
 
+### Métricas de Avaliação
+As métricas de avaliação utilizadas foram:
+* [Coeficiente Dice (ou DSC, do inglês Dice Similarity Coefficient)](https://www.jstor.org/stable/1932409?casa_token=RFaYUTaEtkUAAAAA%3ANV4GvJGgLFTE922Oa9Paw7Jar5HM07VQYC3_IQf86hbOuUQv2mAjpYDzCBZ_X4BFo7azcJ_uu3mk0tTeY-qi3HufoQaE2t_0SMEPbDAhcHjs-9TBLz3D): bastante utilizada para avaliação de segmentações (DICE, 1945), compara duas segmentações diferentes, fornecendo a semelhança entre elas e. Esta é dada por:
+$$ Dice =  2VP / FP + FN + 2VP$$
+
+* [Similaridade de volume (SV)](https://ieeexplore.ieee.org/abstract/document/7053955): complementar ao Dice, mede a similaridade de volume entre duas segmentações (distância volumétrica). Indica a diferença absoluta de volume dividida pela soma dos volumes comparados, definida por:
+
+$$ SV = 1 - \frac{\left| FN - FP \right|}{2VP + FP + FN}$$
+
+$VP$ são valores classificados corretamente como positivos, $FP$ são valores classificados erroneamente como positivos e $FN$ são valores classificados erroneamente como negativos.
+
+* Distância média de Hausdorff (AVD, do inglês average Haousdorff distance): utilizadas como medidas de dissimilaridade, calcula a distância média euclidiana entre os contornos calculados sobre todos os pontos, definida por:
+
+$$ AVD = max(max_{s\in{S}}\left| d_s \right| . max_{r\in{R}}\left| d_r \right|)$$
+
+$d$ é a distância média controlada pela métrica $AVD$, $AVD$ é a segmentação de referência (padrão-ouro), $S$ é a segmentação obtida pelo método, $r$ e $s$ são os pontos contidos nos contornos de $R$ e $S$, respectivamente, e $d_s$ e $d_r$ são as distâncias médias entre os pontos $s$ e $r$ aos pontos de contorno de $R$ e $S$ mais próximos.
+
 ### Treinamento da arquiterura 2D
 
 ### Treinamento da arquiterura 3D
 O treinamento do modelo 3D foi realizado ao utilizar o volume de entrada para obter patch 3D que foi usado como canal de entrada da U-Net 3D. A rede realiza o treinamento e retorna como saída a segmentação do cérebro.  
 
-![Workflow 3D: treinamento da U-Net 3D usando patch obtido aleatoriamente do volume de entrada (I) e predição usando patches 3D no volume de entrada (II).](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/Workflow_3D.png)
+![Workflow 3D](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/Workflow_3D.png)
+*Workflow 3D: treinamento da U-Net 3D usando patch obtido aleatoriamente do volume de entrada (I) e predição usando patches 3D no volume de entrada (II).*
 
 #### Treinamento e Avaliação do Modelo 3D
 
@@ -85,23 +103,36 @@ Por ser uma arquitetura totalmente convolucional, o tamanho da imagem para o tre
 
 Com o modelo treinado, a segmentação volumétrica do cérebro de uma nova amostra foi feita ao passar uma imagem completa para o modelo (Fig. x-II). Para isso, foi usado um método de inferência de janela deslizante, inspirado na implementação da [nnU-Net](https://www.nature.com/articles/s41592-020-01008-z) e usando uma implementação do [Monai](https://link.springer.com/chapter/10.1007/978-3-031-12053-4_58). Esse método reconstrói a segmentação completa do volume de entrada usando patches com ponderação gaussiana para predições e uma janela 3D de 10%.
 
-# Ferramentas
+### Ferramentas
 
-Dentre as ferramentas utilizadas estão: nibabel, matplotlib, simpleITK, ITKSnap e framework nn-Unet.
+As principais ferramentas utilizadas para o pré-processamento dos dados e treinamento do modelo foram:
+* [NiBabel](https://nipy.org/nibabel/): Uma biblioteca para vizualização e pré-processamento de dados no formato nífiti. Neste trabalho esta biblioteca foi usada principalmente para leitura das imagens, uma vez que permite acessar informações do cabeçalho das imagens, como matriz affine (as vezes necessária para salvar corretamente resultados de um pré-processamenta). Também permite obter as imagens no fromato de uma matriz ou numpy para realização dos pré-processamentos.
+
+* [Matplotlib](https://matplotlib.org/stable/index.html): bastante útil para vizualização dos resultados qualitativos, permitindo se necessária a inspeção de cada passo realizado.
+
+* [simpleITK](https://simpleitk.org/doxygen/v2_1/html/): é uma biblioteca com funcionalidade semelhante à nibabel. Esta biblioteca tem sido recorrentemente utilizada por pesquisadores na área da imagem médica, uma vez que permite e simplifica algumas manipulações desses dados, por exemplo, quando o pré-processamento exige a modificação da matriz affine. Garantir resultados coerentes com a biblioteca nibabel quando se deseja modificar a affine dos dados é relativamente mais complexo do que usar a simpleITK. Neste trabalho, ela foi usada para realizar o pré-processamento de [interpolação de voxel](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/pre-processing/voxel_interpolation.ipynb).   
+
+* [ITKSnap](http://www.itksnap.org/pmwiki/pmwiki.php?n=Documentation.TutorialSectionInstallation): é uma ferramenta utilizada para inspeção e visualização de dados volumétricos ou 2D em imagens médicas. Ela foi utiliza para este fim neste trabalho. 
+
+* [nnU-net](https://www.nature.com/articles/s41592-020-01008-z): é um framework que realiza automaticamente préprocessamento de dados e trainamento de modelos de segmentação de imagens. Além disso, fornece os pré-processamentos que melhor se adequa a conjuntos de dados especificos, assim como parâmetros da arquitetura. Neste trabalho, ele foi usado para obter sugestões do pré-processamento de dados e hiperparâmetros da rede, que alguns foram escolhidos para serem usados como ponto de partida neste trabalho.
+
+* [PyTorch Lightning](https://lightning.ai/docs/pytorch/stable/): é um framework relativamente leve para treinamento de modelos de aprendizado profundo, que oferece uma abstração de alto nível sobre o PyTorch. Ele simplifica e organiza o código, facilitando a criação, o treinamento e o teste de modelos de aprendizado profundo de forma mais estruturada. Além disso, tem fácil conexão com o Neptune.
+
+* [Neptune](https://neptune.ai/): é uma plataforma de colaboração para experimentos de aprendizado de máquina. Ele oferece recursos avançados para rastrear, visualizar e compartilhar experimentos, bem como para monitorar e otimizar modelos de aprendizado de máquina. Com uma interface intuitiva e simples, permite acompanhar todas as etapas de um projeto, desde a coleta de dados até a implantação do modelo. Neste trabalho, foi utilizado apenas para monitoramento do modelo 3D.
+
+* Além dessas ferramentas, outras foram usadas para monipulação dos dados, como: [NumPy](https://numpy.org/doc/). (COLOCAR OUTRAS FERRAMENTAS). 
 
 # Workflow
 
 > Fazer na próxima etapa.
 
-## Experimentos e Resultados preliminares
+## Experimentos e Resultados
 ### nnU-Net
-O framework realiza o pré-processamento dos dados usando o comando "nnUNetv2_plan_and_preprocess -d DATASET_ID --verify_dataset_integrity" e para treinamento o comando "nnUNetv2_train DATASET_NAME_OR_ID UNET_CONFIGURATION FOLD --val --npz". Como o objetivo da execução da nnU-Net é apenas obter algumas ideias de pré-processamento deste dataset, não iremos detalhar este framework aqui, para mais informações, consulte o tutorial da [nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/master).
+O framework realiza o pré-processamento dos dados usando o comando "nnUNetv2_plan_and_preprocess -d DATASET_ID --verify_dataset_integrity" e para treinamento o comando "nnUNetv2_train DATASET_NAME_OR_ID UNET_CONFIGURATION FOLD --val --npz". Como o objetivo da execução da nnU-Net é apenas obter algumas ideias de pré-processamento deste dataset, este não será detalhado aqui, para mais informações, consulte o tutorial da [nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/master).
 
 > * Os dados foram organizados em pastas para cada sujeito. Em seguida eles foram separados em trainamento (80%), validação (10%) e teste (10%). O primeiro experimento foi feito sem pré-processamento dos dados.
 
-> * O experimento do treinamento realizado está descrito no arquivo unet_sem_preproc.ipynb.
-
-> * Após o treinamento da nn-Unet, obtiveram-se os seguintes resultados e pré-processamentos sugeridos pelo framework.
+Apenas o modelo 3D da nnU-Net foi executado e o resultado obtido por este foi um valor de Dice médio de 0,9898.
 
 ### Avaliação da U-Net 3D
 > O treinamento do modelo inclui o uso de [Dice Loss](https://link.springer.com/chapter/10.1007/978-3-319-67558-9_28) como função de perda e [otimizador Adam](https://arxiv.org/abs/1412.6980). O tamanho do batch foi o mesmo sugerido pelo framework nnU-Net, 2. O tamanho de patch não foi o mesmo sugerido pala nnU-Net, isso porque não havia GPU que coubesse o tamanho de patch sugerido, logo foi necessário diminuir o tamanho de patch para (102 x 102 x102)
