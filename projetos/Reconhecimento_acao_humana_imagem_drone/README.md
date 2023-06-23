@@ -77,7 +77,7 @@ Até o momento, exitia um número muito maior de amostras para a classe "walk", 
 A figura a seguir, apresenta a quantidade de amostras para as classes antes e após o balanceamento realizado.
 
 <p align="left">
-    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/Dados_selecionados_treino_teste_validacao.png" height="350">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/Dados_balanceados.png" height="350">
 </p>
 
 Como, nos treinamentos iniciais, o conjunto de imagens que apresentou melhores resultados foram as imagens em níveis de cinza, transformou-se as imagens selecionadas após o balanceamento dos dados em níveis de cinza e, adotando-as, realizou um novo treinamento.
