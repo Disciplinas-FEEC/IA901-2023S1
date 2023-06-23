@@ -66,7 +66,7 @@ A partir desses dados, realizou-se o treinamento do modelo adotando a arquitetur
 
 Para o treinamento do modelo, inicialmente, criou-se um arquivo (.txt) para cada uma das imagens, com as informações de "ids" das classes presentes naquela imagem ('walk': 0, 'riding': 1, 'stand': 2, 'sit': 3), as coordenadas do centro do "bouding box" normalizadas (x_center e y_center) e a largura (w) e altura(h) do "bounding box" normalizado. Para cada conjunto de imagens obtido após os pré-processamentos dos conjuntos de imagens de treino, teste e validação, copiou-se o arquivo (.txt) correspondente às labels, bem como os arquivos gerados para cada uma das imagens (com as informações de: "ids", coordenadas do centro do "bounding box" normalizadas, e a largura e altura do "bounding box" normalizado).
 
-As imagens foram redimensionadas para 640x640 pixels durante o treinamento, de acordo com as especificações do modelo adotado. Os hiperparâmetros definidos foram: tamanho dos mini batches (BATCH_SIZE = 16 imagens) e número de épocas (EPOCHS = 30).
+As imagens foram redimensionadas para 640x640 pixels durante o treinamento, de acordo com as especificações do modelo adotado. Os hiperparâmetros definidos foram: tamanho dos mini batches (BATCH_SIZE = 16 imagens) e número de épocas (inicialmente, adotou-se 10 épocas e, em seguida, 30 épocas).
 
 ***3.2. Balanceamento do número de amostras por classe***
 
@@ -112,10 +112,7 @@ Para avaliar o modelo, foram adotadas as seguintes métricas:
 - Mean Average Precision (mAP): é a média das "Precisão média (AP)" calculadas para todas as classes - mAP = 1/n * soma(APs), onde n é o número de classes (KUKIL, 2022b).
 
 
-A *Precisão média (AP)* é definida como a área sob a curva de rechamada de precisão, sendo igual a soma dos valores de precisão interpolados em 11 valores de chamada, dividido por 11 (AP = 1/11 * Soma de 11 valores de precisão interpolados). AP é definida para cada uma das classes (KUKIL, 2022b). Nesse projeto, adotou-se mAP@.5 e mAP@.5:.95 para avaliação dos resultados:
-
-- mAP@.5: os verdadeiros positivos são definidos considerando o limite IoU** de 0.5 (50%).
-- mAP@.5:.95: os verdadeiros positivos são definidos considerando o limite IoU** de 0.95 (95%).
+A *Precisão média (AP)* é definida como a área sob a curva de rechamada de precisão, sendo igual a soma dos valores de precisão interpolados em 11 valores de chamada, dividido por 11 (AP = 1/11 * Soma de 11 valores de precisão interpolados). AP é definida para cada uma das classes (KUKIL, 2022b). Nesse projeto, adotou-se mAP@.5 para avaliação dos resultados, o que significa que os verdadeiros positivos são definidos considerando o limite IoU** de 0.5 (50%).
 
 ** *Intersection over Union (IoU)*: métrica que quantifica o grau de sobreposição entre duas regiões. Essa métrica avalia a exatidão de uma previsão e seu valor varia de 0 a 1. Com a ajuda do valor limite IoU, define-se se uma previsão é Verdadeiro Positivo, Falso Positivo ou Falso Negativo (KAKIL, 2022a). Como exemplo, se o limite IoU é de 0.5, a previsão é considerada Verdadeiro Positivo se houver 50% ou mais de sobreposição entre o bounding box predito pelo modelo e o bouding box correto (*Ground Truth*).
 
@@ -129,7 +126,7 @@ Base de Dados | Endereço na Web | Resumo descritivo
 ----- | :-----: | -----
 NTUT 4K Drone Photo Dataset for Human Detection | [Link](https://www.kaggle.com/datasets/kuantinglai/ntut-4k-drone-photo-dataset-for-human-detection) | <!--Breve resumo (duas ou três linhas) sobre a base.--> Esse banco de dados é formado por imagens de alta resolução extraídas de vídeos gravados por drones em Taiwan. Para cada imagem, estão disponíveis as coordenadas digitais que definem o *bounding box* em torno de uma pessoa detectada, bem como o rótulo que identifica a pose do indivíduo detectado.
 ---
-A base de dados NTUT 4K Drone Photo Dataset for Human Detection, como comentado anteriormente, é formada por 4095 imagens de drone coletadas em Taiwan com dimensões 3840 x 2160 pixels, sendo as imagens organizadas em pastas de acordo com o cenário, altura de voo e orientação da câmera. Dessa quantidade, 2156 imagens (53% do conjunto de dados) foram separadas para treino emquanto que 1939 (47% do conjunto de dados) foram destinados para teste. Como em cada imagem pode haver mais de uma pessoa realizando ações distintas o conjunto de treino passa a ter ao todo 31805 amostras, ao passo que o conjunto de teste tem 20920 amostras. Além disso, todas as imagens estão em formato jpg.
+A base de dados NTUT 4K Drone Photo Dataset for Human Detection, como comentado anteriormente, é formada por 4095 imagens de drone coletadas em Taiwan com dimensões 3840 x 2160 pixels, sendo as imagens organizadas em pastas de acordo com o cenário, altura de voo e orientação da câmera. Dessa quantidade, 2156 imagens (53% do conjunto de dados) foram separadas para treino enquanto que 1939 (47% do conjunto de dados) foram destinados para teste. Como em cada imagem pode haver mais de uma pessoa realizando ações distintas o conjunto de treino passa a ter ao todo 31805 amostras, ao passo que o conjunto de teste tem 20920 amostras. Além disso, todas as imagens estão em formato jpg.
 
 Como forma de rotulação, cada pasta vem acompanhada de um arquivo csv que informa para cada amostra as coordenadas do centro do *bounding box* em torno de uma pessoa detectada, isto é, (Xmin, Ymin, Xmax e Ymax) e ainda traz a informação sobre a pose da pessoa detectada (walk, push, stand, etc).
 
@@ -156,7 +153,7 @@ O histograma abaixo ilustra a distribuição de dados do conjunto de treino, tes
     <img src="../Reconhecimento_acao_humana_imagem_drone/assets/Dados_selecionados_treino_teste_validacao.png" height="350">
 </p>
 
-Ademais é importante destacar que as classes walk, stand, sit e riding foram remapeadas com valores númericos para se adequar ao algoritimo da rede YOLOv7. A tabela abaixo mostra a nova identificação.
+Ademais é importante destacar que as classes walk, stand, sit e riding foram remapeadas com valores númericos para se adequar ao algoritmo da rede YOLOv7. A tabela abaixo mostra a nova identificação.
 
 Classe Original | Classe YOLOv7
 :-----: | :-----: | 
@@ -178,7 +175,7 @@ Por fim, os valores do *bounding box* foram normalizados para atender também as
 
 Ferramentas adotadas no desenvolvimento do projeto:
 
-- Google Colab, ou "Colaboratory": permitiu escrever e executar Python no navegador, além de contar com acesso a GPUs sem custo financeiro, que foram adotadas para o treinamento do modelo. Acesso ao Google Colab: <https://colab.research.google.com/#scrollTo=5fCEDCU_qrC0> (versão do Google Colab utilizada: atualizada em 05/05/2023);
+- Google Colab, ou "Colaboratory": permitiu escrever e executar Python no navegador, além de contar com acesso a GPUs sem custo financeiro, que foram adotadas para o treinamento do modelo. Acesso ao Google Colab: <https://colab.research.google.com/#scrollTo=5fCEDCU_qrC0> (versão do Google Colab utilizada: atualizada em 02/06/2023);
 - Google Drive: tanto os dados brutos (dataset "NTUT 4K Drone Photo Dataset for Human Detection") quanto os dados filtrados e aqueles resultados dos pré-processados foram armazenados no Google Drive. Os notebooks desenvolvidos no Google Colab também encontram-se salvos no Google Drive (acesso ao Google Drive: <https://drive.google.com/drive/my-drive>);
 - Github: um repositório no Github (<https://github.com/>) foi criado e contém todos os arquivos do projeto, histórico de revisão e discussões dos colaboradores (Versão do Github adotada: atualizada em 08/2022).
 
@@ -197,72 +194,95 @@ Quanto às bibliotecas adotadas no projeto, todas se encontram definidas no arqu
 
 O workflow dos nossos procedimentos é apresentado na figura acima. Inicialmente os dados são baixados da plataforma Kaggle e colocados em uma pasta do GoogleDrive compartilhada entre os membros do projeto. A partir disso, um notebook [Dados.ipynb](../Reconhecimento_acao_humana_imagem_drone/notebooks/Dados.ipynb) é rodado para uma seleção e filtragem prévia dos dados, retirando-se imagens com rótulos diferentes de ['walk','stand','sit','riding'], separando o dataset nos conjuntos de treino, validação e teste. Isto tudo engloba o bloco "Data Wrangling I". Em seguida, opcionalmente, um [pre processamento](../Reconhecimento_acao_humana_imagem_drone/notebooks/Pre_processing.ipynb) é rodado nas imagens (transformações de cor, aplicação de filtros, etc). Está etapa é chamada de "Data Pre-Processing", e é opcional pois é possível rodar com os dados crus. Por fim, a etapa de "Data Wrangling II" é rodada ("[Creating labels from folders.ipynb](../Reconhecimento_acao_humana_imagem_drone/notebooks/Creating_labels_from_folders.ipynb)") para formatar os dados de acordo com a pipeline da Yolov7, isto é, formatação das labels por imagem e organização das pastas. Por fim, podemos rodar o [training_template.ipynb](../Reconhecimento_acao_humana_imagem_drone/notebooks/Template_tutorial.ipynb) para treinar o modelo e [inference.ipynb](../Reconhecimento_acao_humana_imagem_drone/notebooks/Inference_notebook.ipynb) para a avaliação dos resultados.
 
-# Experimentos e Resultados preliminares
+# Experimentos e Resultados
 
-Na primeira parte do projeto buscou-se um melhor entendimento sobre o conjunto de dados utilizado bem como da rede YOLOv7 que será usada tanto no reconhecimento de pessoas em imagens de drone quanto na classificação de suas ações. Assim, inicialmente foi feita uma seleção de imagens para garantir que todas estivessem devidamente rotuladas (com labels conhecidas) e que de fato estivessem presentes tanto na pasta de imagens original quanto no csv original (algumas imagens apareciam no csv mas não estavam presentes nas pastas de imagem). Dessa forma, depois de dividir as imagens em três grupos (treino, teste e validação) foi feita uma etapa de processamento afim de futuramente avaliar o desempenho da rede. Com isso, foram aplicadas 4 técnicas de processamento:
+**1 - Resultados dos treinamentos do modelo**
 
-- Escala em Cinza;
-- Filtro de Sobel;
-- Filtro Laplaciano;
-- Filtro de Prewitt.
+***1.1. Treinamentos com 10 épocas***
 
-Todas as técnicas aplicadas foram salvas em pastas intermediárias. Durante o processamento das imagens com o filtro Laplaciano perecebeu-se que este possívelmente não traria bons resultados pois não realçava de maneira adequada as imagens (os datalhes/contornos das imagens foram cobertos por uma camada cinza densa). Por isso, utilizou-se o filtro de Prewitt, que, *a priori*, não seria adotado.
+Primeiramente, quatro treinamentos foram realizados adotando como dados: imagens RGB, imagens em nível de cinza, imagens resultantes da filtragem com Filtro de Sobel e imagens resultantes do Filtro de Prewitt. 
 
-Com o objetivo de fazer uma comparação entre as diferentes técnicas de processamento e os dados brutos (apenas com a seleção inicial) fez-se um primeiro treinamento com a rede YOLOv7 com os dados sem processamento utilizando a plataforma Google Collaboratory. Foram definidas como ponto de partida 10 épocas considerando a demora do treinamento. Em seguida foram realizados treinamentos utilizando os dados pré processados em escala de cinza, com filtro de Sobel e por fim com o filtro de Prewitt. A tabela abaixo mostra os resultados preliminares de cada experimento.
+A tabela a seguir apresenta os resultados de precisão, recall e mAP@0.5 obtidos para esses treinamentos do modelo Yolov7.
 
-
-Processamento dos Dados | Precisão | Recall | mAP
+Processamento dos Dados | Precisão | Recall | mAP@0.5
 :-----: | :-----: | :-----: | :-----: |
 Dados brutos filtrados  |    0.32    |   0.211  | 0.0625
 Escala de Cinza |  0.526   |  0.0168 | 0.00558  |
 Filtro Sobel |     0.555    |  0.131  |  0.0341 |
 Filtro de Prewitt   |  0.277   | 0.073  | 0.0117
 
-Conforme pode-se ver na tabela anterior, as métricas obtidas adotando apenas 10 épocas de treinamento são ruins. Destaca-se que mais épocas não foram utilizadas em função da limitação de GPU ao usar a plataforma Google Colaboratory. 
+Conforme pode-se ver na tabela anterior, as métricas obtidas adotando apenas 10 épocas de treinamento são ruins. As figuras a seguir também apresentam a precisão e recall de cada treinamento, demonstrando a baixa precisão do modelo treinado com apenas 10 épocas.  
 
-As figuras a seguir também apresentam resultados obtidos com os treinamentos realizados até o momento (10 épocas).
-
-**- Experimento 1 - adoção dos dados brutos (imagens RGB):**
-
+*Resultados do treinamento com imagens RGB - 10 épocas*
 <p align="left">
     <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_rbg.png" height="350">
 </p>
 
-<p align="left">
-    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/results_rgb.png" height="350">
-</p>
-
-**- Experimento 2 - utilização de imagens em escala de cinza:**
-
+*Resultados do treinamento com imagens em nível de cinza - 10 épocas*
 <p align="left">
     <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_nc.png" height="350">
 </p>
 
-<p align="left">
-    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/results_nc.png" height="350">
-</p>
-
-**- Experimento 3 - imagens obtidas com o filtro de Sobel:**
-
+*Resultados do treinamento com imagens resultantes do filtro de Sobel - 10 épocas*
 <p align="left">
     <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_sobel.png" height="350">
 </p>
 
-<p align="left">
-    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/results_sobel.png" height="350">
-</p>
-
-**- Experimento 4 - imagens obtidas com o filtro de Prewitt:**
-
+*Resultados do treinamento com imagens resultantes do filtro de Prewitt - 10 épocas*
 <p align="left">
     <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_prewitt.png" height="350">
 </p>
 
-<p align="left">
-    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/results_prewitt.png" height="350">
-</p>
+Verifica-se que a classe com melhor desempenho é "walk" - que possui maior número de amostras. Mesmo para essa classe, verifica-se baixa precisão.
 
-Verifica-se que a classe com melhor desempenho é "walk" - que possui maior número de amostras. Assim, se após os próximos experimentos (treinamentos com 30 épocas, *a priori*), ainda houver baixo desempenho para as demais classes, será aplicado *Data augmentation*.
+
+***1.2. Treinamentos com 30 épocas***
+
+Como os treinamentos com 10 épocas apresentaram resultados insatisfatórios para as métricas avaliativas, retreinou-se o modelo com 30 época, adotando os mesmos dados dos treinamentos anteriores (imagens RGB, imagens em nível de cinza, imagens resultantes da filtragem com Filtro de Sobel e imagens resultantes do Filtro de Prewitt). 
+
+A tabela a seguir apresenta os resultados de precisão, recall e mAP@0.5 obtidos para esses treinamentos com 30 épocas.
+
+Processamento dos Dados | Precisão | Recall | mAP@0.5  
+:-----: | :-----: | :-----: | :-----: |
+Dados brutos filtrados  |    0.52    |   0.308  | 0.261
+Escala de Cinza |  0.564   |  0.307 | 0.289  |
+Filtro Sobel |   0.      |  0.  |  0. |  0.
+Filtro de Prewitt   |  0.391   | 0.172  | 0.0848
+
+Os resultados dos treinamentos com 30 épocas foram melhores que os anteriores, especialmente ao adotar os dados brutos (imagens RGB) e as imagens em nível de cinza. Porém, observa-se que as métricas (precisão, recall e mAP@0.5) ainda requerem melhorias.
+
+
+***1.3. Treinamento após o balanceamento dos dados***
+
+Como descrito na metodologia do projeto, a fim de obter um melhor modelo, realizou-se um treinamento excluindo-se parte das imagens em que somente a classe 'walk' fosse encontrada. Como os melhores resultados, até o momento, referiam-se ao treinamento com 30 épocas adotando as imagens em níveis de cinza, converteu-se as imagens em nível de cinza após o balanceamento dos dados e executou-se um novo treinamento com 30 épocas. A seguir, apresenta-se os resultados obtidos.
+
+Processamento dos Dados | Precisão | Recall | mAP@0.5
+:-----: | :-----: | :-----: | :-----: |
+Escala de cinza (dados filtrados)  |    0.564    |   0.307  | 0.289
+Escala de cinza (dados balanceados) |  0.448   |  0.238 | 0.153  |
+
+Observa-se que o balanceamento dos dados piorou os resultados. Portanto, para os próximos treinamentos passou-se a utilizar novamente os dados filtrados (considerando o conjunto completo de dados, sem a exclusão de imagens).
+
+
+***1.4. Treinamento após a aumentação dos dados***
+
+Adotando todas as imagens (dados filtrados) em nível de cinza, realizou-se a aumentação dos dados adotando as seis transformações citadas anteriormente. Adotando o conjunto de dados aumentado (dados filtrados + imagens obtidas a partir das técnicas de *data augmentation*), realizou-se um novo treinamento, com 30 épocas. Os resultados são apresentados a seguir.
+
+Processamento dos Dados | Precisão | Recall | mAP@0.5
+:-----: | :-----: | :-----: | :-----: |
+Escala de cinza (dados filtrados)  |    0.564    |   0.307  | 0.289
+Escala de cinza (dados aumentados) |     |   |   |
+***COMPLETAR APÓS FINALIZAR O TREINAMENTO***
+
+
+**2 - Inferência**
+
+ESCREVER.
+
+
+
+
+
 
 De maneira geral, os principais desafios enfrentados até o momento estão relacionados às limitações do uso da plataforma Google Collaboratory; ao tamanho das imagens - o que implica na demora do treinamento por época; no rearranjo do conjunto de dados escolhido para se adequar a rede YOLOv7 e na escolha de um pré processamento que melhore o desempenho da rede.
 
@@ -272,7 +292,7 @@ Apesar dos resultados insatisfatórios obtidos nessa versão preliminar, é poss
     <img src="../Reconhecimento_acao_humana_imagem_drone/assets/Result_1.png" height="450">
 </p>
 
-# Próximos passos
+# Próximos passos - ACREDITO QUE IREMOS RETIRAR
 
 Para as próximas etapas, pretende-se:
 
