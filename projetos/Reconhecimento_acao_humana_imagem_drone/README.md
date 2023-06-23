@@ -105,11 +105,14 @@ Para avaliar o modelo, foram adotadas as seguintes métricas:
 
 - Recall: mede a proporção de positivos reais que foram previstos corretamente - Recall = TP / (TP + FN). Varia de 0 a 1 (KUKIL, 2022b); 
 
-- Mean Average Precision (mAP): é a média das "Precisão média (AP)" calculadas para todas as classes - mAP = 1/n * soma(APs), onde n é o número de classes (KUKIL, 2022b).
+- Mean Average Precision (mAP): é a média das "Precisão média (AP)"* calculadas para todas as classes - mAP = 1/n * soma(APs), onde n é o número de classes (KUKIL, 2022b).
 
-A Precisão média (AP) é a área sob a curva de rechamada de precisão. é igual a soma dos valores de precisão interpolados em 11 valores de chamada, dividido por 11 (AP = 1/11 * Soma de 11 valores de precisão interpolados). AP é definida para cada uma das classes (KUKIL, 2022b). 
+* *Precisão média (AP)*: a área sob a curva de rechamada de precisão, sendo igual a soma dos valores de precisão interpolados em 11 valores de chamada, dividido por 11 (AP = 1/11 * Soma de 11 valores de precisão interpolados). AP é definida para cada uma das classes (KUKIL, 2022b). Nesse projeto, adotou-se mAP@.5 e mAP@.5:.95 para avaliação dos resultados:
 
-**Completar com as métricas**
+- mAP@.5: os verdadeiros positivos são definidos considerando o limite IoU** de 0.5 (50%).
+- mAP@.5:.95: os verdadeiros positivos são definidos considerando o limite IoU** de 0.95 (95%).
+
+** *Intersection over Union (IoU)*: métrica que quantifica o grau de sobreposição entre duas regiões. Essa métrica avalia a exatidão de uma previsão e seu valor varia de 0 a 1. Com a ajuda do valor limite IoU, define-se se uma previsão é Verdadeiro Positivo, Falso Positivo ou Falso Negativo (KAKIL, 2022a). Como exemplo, se o limite IoU é de 0.5, a previsão é considerada Verdadeiro Positivo se houver 50% ou mais de sobreposição entre o bounding box predito pelo modelo e o bouding box correto (*Ground Truth*).
 
 ## Bases de Dados e Evolução
 <!--
