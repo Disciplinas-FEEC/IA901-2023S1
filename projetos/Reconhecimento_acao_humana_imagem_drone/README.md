@@ -33,11 +33,8 @@ Para a detecção de pessoas, observou-se que, no conjunto de dados de treinamen
 Como algumas classes correspondentes às poses humanas eram indefinidas (registradas como “id_” ou “block_”), os dados foram analisados e, considerando as classes com maior número de amostras, definiram-se quatro classes a serem adotadas no presente projeto:
 
 - Walk: 6155 amostras;
-
 - Stand: 2551 amostras;
-
 - Sit: 424 amostras;
-
 - Riding: 2487 amostras.
 
 Filtrados os dados com base nas quatro classes estabelecidas, dividiu-se os dados de treino em Treino (80%) e Validação (20%). Os dados de teste, já disponíveis no dataset “NTUT 4K Drone Photo Dataset for Human Detection” e com 20920 amostras, também foram filtrados com base nas quatro classes. 
@@ -53,14 +50,11 @@ Além disso, com o objetivo de melhorar as métricas de avaliação do modelo, c
 Portanto, quatro pré-processamentos foram realizados no conjunto de dados originais, cada um adotado separadamente para treinamento do modelo:
 
   1) Conversão das imagens RGB para imagens em níveis de cinza;
-
   2) Filtragem no domínio espacial adotando o filtro de Sobel (aplicou-se o gradiente obtido a partir das duas máscaras de Sobel - horizontal e vertical) (GONZALES; WOODS, 2009);
-
   3) Filtragem no domínio espacial adotando o filtro de Prewitt (aplicou-se o gradiente obtido a partir das duas máscaras de Prewitt - horizontal e vertical) (GONZALES; WOODS, 2009).
-
   4) Filtragem no domínio espacial adotando o filtro de Laplace (GONZALES; WOODS, 2009).
 
-Cabe destacar que, em função das imagens resultantes da filtragem laplaciana, optou-se por não utilizá-las para treinamento do modelo.
+Cabe destacar que, em função do resultado obtido após a filtragem laplaciana, optou-se por não utilizá-las para treinamento do modelo.
 
 **3 - Treinamento do modelo**
 
@@ -68,7 +62,7 @@ Cabe destacar que, em função das imagens resultantes da filtragem laplaciana, 
 
 Inicialmente, quatro conjunto de dados foram adotados para treinamento do modelo: imagens RGB (originais), imagens em níveis de cinza, imagens obtidas da filtragem de Sobel e imagens obtidas da filtragem de Prewitt.
 
-A partir desses dados, realizou-se o treinamento do modelo adotando a arquitetura Yolov7. Tanto para a detecção das pessoas nas imagens de drone quanto  para a classificação de suas poses, adotou-se uma a arquitetura YOLOv7, que, segundo Wang, Bochkovskiy e Liao (2022), supera todos os detectores de objetos conhecidos em velocidade e precisão (tem menos parâmetros, menor custo computacional e alcança maior precisão). No presente projeto, adaptou-se o código da YOLOv7, disponível em <https://github.com/WongKinYiu/yolov7>.
+A partir desses dados, realizou-se o treinamento do modelo adotando a arquitetura Yolov7. Tanto para a detecção das pessoas nas imagens de drone quanto  para a classificação de suas poses, adotou-se a arquitetura YOLOv7, que, segundo Wang, Bochkovskiy e Liao (2022), supera todos os detectores de objetos conhecidos em velocidade e precisão (tem menos parâmetros, menor custo computacional e alcança maior precisão). No presente projeto, adaptou-se o código da YOLOv7, disponível em <https://github.com/WongKinYiu/yolov7>.
 
 Para o treinamento do modelo, inicialmente, criou-se um arquivo (.txt) para cada uma das imagens, com as informações de "ids" das classes presentes naquela imagem ('walk': 0, 'riding': 1, 'stand': 2, 'sit': 3), as coordenadas do centro do "bouding box" normalizadas (x_center e y_center) e a largura (w) e altura(h) do "bounding box" normalizado. Para cada conjunto de imagens obtido após os pré-processamentos dos conjuntos de imagens de treino, teste e validação, copiou-se o arquivo (.txt) correspondente às labels, bem como os arquivos gerados para cada uma das imagens (com as informações de: "ids", coordenadas do centro do "bounding box" normalizadas, e a largura e altura do "bounding box" normalizado).
 
@@ -76,9 +70,9 @@ As imagens foram redimensionadas para 640x640 pixels durante o treinamento, de a
 
 ***3.2. Balanceamento do número de amostras por classe***
 
-A partir dos resultados iniciais obtidos com os quatro treinamentos iniciais (adotando: imagens RBG, imagens em níveis de cinza, imagens filtradas com Filtro de Sobel e imagens oriundas da filtragem de Prewitt), observou-se, como uma das opções para melhoria das métricas avaliativas do modelo, o balancemanto do número de amostras por classe considerada.
+A partir dos resultados obtidos com os quatro treinamentos iniciais (adotando: 1 - imagens RBG; 2 - imagens em níveis de cinza; 3 - imagens filtradas com Filtro de Sobel; e 4 - imagens oriundas da filtragem de Prewitt), observou-se, como uma das opções para melhoria das métricas avaliativas do modelo, o balanceamento do número de amostras por classe considerada.
 
-Até o momento, exitia um número muito maior de amostras para a classe "walk", do que para as demais. Assim, uma alternativa escolhida foi excluir do dataset de treino algumas imagens em que fossem detectadas somente pessoas em estado "walk". A figura a seguir, apresenta a quantidade de amostras antes para as classes antes e após o balanceamento realizado.
+Até o momento, exitia um número muito maior de amostras para a classe "walk", do que para as demais. Assim, uma alternativa escolhida foi excluir do dataset de treino algumas imagens em que fossem detectadas somente pessoas em estado "walk". A figura a seguir, apresenta a quantidade de amostras para as classes antes e após o balanceamento realizado.
 
 ACRESCENTAR A FIGURA
 
@@ -86,31 +80,36 @@ Como, nos treinamentos iniciais, o conjunto de imagens que apresentou melhores r
 
 ***3.3. Data Augmentation***
 
-Como o balanceamento dos dados (seção 3.2. Data Augmentation) não surtiu os resultados esperados, realizou-se uma aumentação nos dados de treino. Adotando o conjunto de imagens em níveis de cinza, foram aplicadas seis transformações para aumentação dos dados, considerando, para cada uma delas, um conjunto aleatório de 230 imagens pertencentes ao dataset de treino.
+Como o balanceamento dos dados (seção 3.2) não surtiu os resultados esperados, realizou-se uma aumentação nos dados de treino. Adotando o conjunto de imagens em níveis de cinza, foram aplicadas seis transformações para aumentação dos dados, considerando, para cada uma delas, um conjunto aleatório de 230 imagens pertencentes ao dataset de treino.
 
 As seguintes transformações foram adotadas para aumentação dos dados (PYTORCH, 2023):
 
-- ColorJitter: altera aleatoriamente o brilho, contraste, saturação e matiz de uma imagem;
+- ColorJitter: altera aleatoriamente o brilho, contraste, saturação e matiz de uma imagem. Nesse caso, modificou-se brilho e matiz (brightness=0.9, hue=0.5);
 - RandomInvert: inverte aleatoriamente as cores da imagem fornecida;
 - RandomPosterize: reduz o número de bits para cada canal de cor (altera a resolução radiométrica da imagem). Nesse caso, alterou-se as imagens para 4 bits de resolução;
 - RandomSolarize: inverte todos os valores de pixel acima de um limite. Nesse caso, adotou-se o limite igual a 20 após testes realizados;
 - RandomAdjustSharpness: ajusta a nitidez da imagem aleatoriamente com uma determinada probabilidade.
 - RandomEqualize: equaliza o histograma da imagem fornecida.
 
-Assim, a cada transformação, 230 novas imagens foram adicionadas ao dataset de treino, para serem adotadas durante o treinamento dos dados. Os rótulos correspondentes a cada imagem também são salvos, considerando o nome da imagem após a transformação.
+Outras três transformações foram testadas para aumentação de dados, porém não foram adotadas para aumentação dos dados porque rotacionam, escalonavam e/ou translavam a imagem e, desse modo, comprometeriam os labels da imagem, os quais dependem das coordenadas do bounding box (x_min, x_max, y_min, y_max). 
 
-Ressalta-se que adotou-se o conjunto de dados de treino correspondentes às imagens em nível de cinza, uma vez que as mesmas apresentaram métricas semelhantes às imagens RBG nos treinamentos realizados anteriormente, porém com tempo computacional reduzido (cerca de 3 vezes menor).
+Assim, a cada transformação, 230 novas imagens foram adicionadas ao dataset de treino, para serem adotadas durante o treinamento dos dados. Os rótulos correspondentes a cada imagem também foram salvos (com as mesmas informações dos labels das imagens originais, mas modificando o nome da imagem de acordo com a transformação aplicada).
 
+Ressalta-se que realizou-se a aumentação dos dados somente para o conjunto de dados de treino correspondentes às imagens em nível de cinza, uma vez que as mesmas apresentaram métricas semelhantes às imagens RBG nos treinamentos realizados inicialmente, porém com tempo computacional reduzido (cerca de 3 vezes menor).
+
+***3.4. Métricas avaliativas***
 
 Para avaliar o modelo, foram adotadas as seguintes métricas:
-
-- Matriz de Confusão;
 
 - Precisão: mede a proporção de positivos previstos que estão realmente corretos - Precisão = TP/(TP + FP). O valor varia de 0 a 1 (KUKIL, 2022b);
 
 - Recall: mede a proporção de positivos reais que foram previstos corretamente - Recall = TP / (TP + FN). Varia de 0 a 1 (KUKIL, 2022b); 
 
-- Mean Average Precision (mAP): é a média das "Precisão média (AP)" calculadas para todas as classes - mAP = 1/n * soma(APs), onde n é o número de classes. A Precisão média (AP) é igual a soma dos valores de precisão interpolados em 11 valores de chamada, dividido por 11 (AP = 1/11 * Soma de 11 valores de precisão interpolados). AP é definida para cada uma das classes (KUKIL, 2022b).
+- Mean Average Precision (mAP): é a média das "Precisão média (AP)" calculadas para todas as classes - mAP = 1/n * soma(APs), onde n é o número de classes (KUKIL, 2022b).
+
+A Precisão média (AP) é a área sob a curva de rechamada de precisão. é igual a soma dos valores de precisão interpolados em 11 valores de chamada, dividido por 11 (AP = 1/11 * Soma de 11 valores de precisão interpolados). AP é definida para cada uma das classes (KUKIL, 2022b). 
+
+**Completar com as métricas**
 
 ## Bases de Dados e Evolução
 <!--
