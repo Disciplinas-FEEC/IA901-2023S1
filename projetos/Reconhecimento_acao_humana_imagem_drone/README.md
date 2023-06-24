@@ -246,7 +246,7 @@ Processamento dos Dados | Precisão | Recall | mAP@0.5
 :-----: | :-----: | :-----: | :-----: |
 Dados brutos filtrados  |    0.52    |   0.308  | 0.261
 Escala de Cinza |  0.564   |  0.307 | 0.289  |
-Filtro Sobel |   0.      |  0.  |  0. |  0.
+Filtro Sobel |   0.399      |  0.0824  |  0.0459 |  0.0131
 Filtro de Prewitt   |  0.391   | 0.172  | 0.0848
 
 Os resultados dos treinamentos com 30 épocas foram melhores que os anteriores, especialmente ao adotar os dados brutos (imagens RGB) e as imagens em nível de cinza. Porém, observa-se que as métricas (precisão, recall e mAP@0.5) ainda requerem melhorias.
@@ -271,8 +271,7 @@ Adotando todas as imagens (dados filtrados) em nível de cinza, realizou-se a au
 Processamento dos Dados | Precisão | Recall | mAP@0.5
 :-----: | :-----: | :-----: | :-----: |
 Escala de cinza (dados filtrados)  |    0.564    |   0.307  | 0.289
-Escala de cinza (dados aumentados) |     |   |   |
-***COMPLETAR APÓS FINALIZAR O TREINAMENTO***
+Escala de cinza (dados aumentados) |  0.545   | 0.471  | 0.555  |
 
 
 **2 - Inferência**
