@@ -31,13 +31,13 @@ IBSR | [link de acesso](https://www.nitrc.org/projects/ibsr) | este conjunto de 
 Detatalhes importantes sobre os conjuntos de dados e sua organização:
 * Todos os conjuntos de dados originais estão no formato NIfTI.
 * A organização dos dados foi feita separadamente para cada conjunto de dados. Isso porque os conjuntos de dados eram muito diferentes e nos perdemos ao tentar implementar um único código para organizar e separar em treinamento validação e teste automaticamente. Além disso, alguns passos simples foram feitos manualmente como, criar pastas para cada conjunto de dados ou separar os dados com anotações manuais do conjunto de dados CC359.
-* Para o treinamento da nn-Unet não foram usados todos os conjuntos de dados, pois ainda estávamos muito perdidos nessa organização, foram usados apenas xx sujeitos. Ainda, foi preciso organizar os dados da maneira que o framework exige, consulte o [tutorial da nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/master). Em seguida, as anotações foram binarizadas usando limiarização de 0.5, uma vez que os dados adquiridos estavam com as máscaras de tipo float (entre 0 e 1) nas bordas e este framework não permite máscaras com labels que não contêm valores inteiros. A implementação para isso está no notebook [organizar de dados para executar a nnU-Net](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/data_organization/organizar_dados_nnUNet.ipynb).
+* Para o treinamento da nn-Unet não foram usados todos os conjuntos de dados, apenas alguns dados do CC359, LBPA40 e NFBS, pois ainda estávamos muito perdidos nessa organização. A quantidade de dados usados incluído os três conjuntos foi de 240 sujeitos e a divisão do conjunto de dados em treinamento e validação é feito automaticamente pelo framework. 29 sujeitos desses 3 conjuntos de dados foram reservados para teste final do experimento do framework. Ainda, foi preciso organizar os dados da maneira que o framework exige, consulte o [tutorial da nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/master). Em seguida, as anotações foram binarizadas usando limiarização de 0.5, uma vez que os dados adquiridos estavam com as máscaras de tipo float (entre 0 e 1) nas bordas e este framework não permite máscaras com labels que não contêm valores inteiros. A implementação para isso está no notebook [organizar de dados para executar a nnU-Net](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/data_organization/organizar_dados_nnUNet.ipynb).
 
 ## Metodologia
 ### Arquitetura U-Net
 Este trabalho utilizou a arquitetura [U-Net](https://link.springer.com/chapter/10.1007/978-3-319-24574-4_28), uma rede neural convolucional bastante utilizada para segmentação de imagens médicas. Utilizamos as versões 2D e 3D da [U-Net modificada](https://link.springer.com/chapter/10.1007/978-3-030-72084-1_38), conforme implementado por Carmo et al. (2020). 
 
-![U-Net modificada](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/Unet-IA901A.png)*U-Net modificada: a resolução espacial é reduzida pela segunda convolução de cada nível do codificador; os blocos verde se referem as características filtradas pela operação de self attention; cada nível do codificador e decodificador (blocos de duas convoluções) possui conexão residual realizando a conexão da entrada da primeira convolução à saída da segunda convolução (seta em laranja)*
+![U-Net modificada](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/Unet-IA901A.png)*Figura 01 - U-Net modificada: a resolução espacial é reduzida pela segunda convolução de cada nível do codificador; os blocos verde se referem as características filtradas pela operação de self attention; cada nível do codificador e decodificador (blocos de duas convoluções) possui conexão residual realizando a conexão da entrada da primeira convolução à saída da segunda convolução (seta em laranja)*
 
 Mudaças da U-Net modificada em relação a original inclui: a utilização de convoluções stride para a redução da resolução espacial em vez de operações de agregação; adição de [conexão residual](https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html) propagando a entrada à saída de cada nível do codificador (utilizando soma e uma convolução com kernel de 1 × 1 (seta laranja) realizando adaptação de canal e resolução espacial e adição de uma operação [self attention](http://proceedings.mlr.press/v102/gorriz19a.html) para filtrar as características produzidas em cada nível do codificador.
 
@@ -65,7 +65,7 @@ Após a execução da nnU-Net, foi obtido uma [lista de pré-processamento](http
 
 $$ X_{nor} =  (X - \mu) / (\sigma)$$
 
-Onde X é a matriz (volume); $\mu$ é a média da matriz ($mean(X)$); e $\sigma$ é o desvio padrão da matriz ($std(X)$). Essa normalização resulta em média igual a 0 e desvio padrão igual a 1.
+Onde X é a matriz (volume); $\mu$ é a média da matriz; e $\sigma$ é o desvio padrão da matriz. Essa normalização resulta em média igual a 0 e desvio padrão igual a 1.
 
 * [Conversão para o npz](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/pre-processing/get_data_npz.ipynb): Para facilitar a treinamento e diminuir o custo computacional durante o treinamento, os dados foram convertidos de NIfTI para npz. Uma vez os dados corretos e alinhados com a máscara é mais vantajoso computacionalmente converter para um formato mais leve. Neste caso, o npz não armazena a informação do cabeçalho da imagem e isso diminui o custo computacional e tempo de execução ao carregar os dados durante o treinamento. Para cada experimento (3D) os dados foram salvos em npz (imagem e máscara no mesmo arquivo). Por exemplo, após a realização do pré-processamento de normalização, os dados eram salvos em npz.
 
@@ -75,6 +75,7 @@ Para o treinamento das versões arquitetura (2D e 3D), os conjuntos de dados LBP
 ### Métricas de Avaliação
 As métricas de avaliação utilizadas foram:
 * [Coeficiente Dice (ou DSC, do inglês Dice Similarity Coefficient)](https://www.jstor.org/stable/1932409?casa_token=RFaYUTaEtkUAAAAA%3ANV4GvJGgLFTE922Oa9Paw7Jar5HM07VQYC3_IQf86hbOuUQv2mAjpYDzCBZ_X4BFo7azcJ_uu3mk0tTeY-qi3HufoQaE2t_0SMEPbDAhcHjs-9TBLz3D): bastante utilizada para avaliação de segmentações (DICE, 1945), compara duas segmentações diferentes, fornecendo a semelhança entre elas e. Esta é dada por:
+
 $$ Dice =  2VP / FP + FN + 2VP$$
 
 * [Similaridade de volume (SV)](https://ieeexplore.ieee.org/abstract/document/7053955): complementar ao Dice, mede a similaridade de volume entre duas segmentações (distância volumétrica). Indica a diferença absoluta de volume dividida pela soma dos volumes comparados, definida por:
@@ -95,7 +96,7 @@ $d$ é a distância média controlada pela métrica $AVD$, $AVD$ é a segmentaç
 O treinamento do modelo 3D foi realizado ao utilizar o volume de entrada para obter patch 3D que foi usado como canal de entrada da U-Net 3D. A rede realiza o treinamento e retorna como saída a segmentação do cérebro.  
 
 ![Workflow 3D](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/Workflow_3D.png)
-*Workflow 3D: treinamento da U-Net 3D usando patch obtido aleatoriamente do volume de entrada (I) e predição usando patches 3D no volume de entrada (II).*
+*Figura 02 - Workflow 3D: treinamento da U-Net 3D usando patch obtido aleatoriamente do volume de entrada (I) e predição usando patches 3D no volume de entrada (II).*
 
 #### Treinamento e Avaliação do Modelo 3D
 
@@ -130,9 +131,9 @@ As principais ferramentas utilizadas para o pré-processamento dos dados e trein
 ### nnU-Net
 O framework realiza o pré-processamento dos dados usando o comando "nnUNetv2_plan_and_preprocess -d DATASET_ID --verify_dataset_integrity" e para treinamento o comando "nnUNetv2_train DATASET_NAME_OR_ID UNET_CONFIGURATION FOLD --val --npz". Como o objetivo da execução da nnU-Net é apenas obter algumas ideias de pré-processamento deste dataset, este não será detalhado aqui, para mais informações, consulte o tutorial da [nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/master).
 
-> * Os dados foram organizados em pastas para cada sujeito. Em seguida eles foram separados em trainamento (80%), validação (10%) e teste (10%). O primeiro experimento foi feito sem pré-processamento dos dados.
+Apenas o modelo 3D da nnU-Net foi executado e o resultado obtido por este foi um valor de Dice médio de 0,9898. Detalhes sobre este resultados pode ser encontrado no [arquivo summary](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/summary.json) e [gráfico](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/progress.png) fornecidos pelo framework. 
 
-Apenas o modelo 3D da nnU-Net foi executado e o resultado obtido por este foi um valor de Dice médio de 0,9898.
+### Avaliação da U-Net 2D
 
 ### Avaliação da U-Net 3D
 > O treinamento do modelo inclui o uso de [Dice Loss](https://link.springer.com/chapter/10.1007/978-3-319-67558-9_28) como função de perda e [otimizador Adam](https://arxiv.org/abs/1412.6980). O tamanho do batch foi o mesmo sugerido pelo framework nnU-Net, 2. O tamanho de patch não foi o mesmo sugerido pala nnU-Net, isso porque não havia GPU que coubesse o tamanho de patch sugerido, logo foi necessário diminuir o tamanho de patch para (102 x 102 x102)
