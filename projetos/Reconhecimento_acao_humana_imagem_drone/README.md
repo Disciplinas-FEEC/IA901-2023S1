@@ -182,7 +182,7 @@ Ferramentas adotadas no desenvolvimento do projeto:
 
 Em relação as bibliotecas usadas destacam-se, em especial, as bibliotecas utilizadas para a manipulação dos dados. Assim, tem-se:
 
-- **OpenCV**: que auxíliou na visualização das imagens;
+- **OpenCV**: que auxiliou na visualização das imagens;
 - **matplotlib.pyplot**: usada para plotar gráficos, com o intuito de verificar a distribuição de labels;
 - **pandas**: utilizada para manipular dataframes;
 - **numpy**: utilizada para operações matemáticas e calculos envolvendo arrays provenientes dos dataframes;
