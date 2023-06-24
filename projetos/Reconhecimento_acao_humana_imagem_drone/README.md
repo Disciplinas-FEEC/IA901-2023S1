@@ -194,7 +194,7 @@ Quanto às bibliotecas adotadas no projeto, todas se encontram definidas no arqu
 
 O workflow dos nossos procedimentos é apresentado na figura acima. Inicialmente os dados são baixados da plataforma Kaggle e colocados em uma pasta do GoogleDrive compartilhada entre os membros do projeto. A partir disso, um notebook [Dados.ipynb](../Reconhecimento_acao_humana_imagem_drone/notebooks/Dados.ipynb) é rodado para uma seleção e filtragem prévia dos dados, retirando-se imagens com rótulos diferentes de ['walk','stand','sit','riding'], separando o dataset nos conjuntos de treino, validação e teste. Isto tudo engloba o bloco "Data Wrangling I". Em seguida, opcionalmente, um [pre processamento](../Reconhecimento_acao_humana_imagem_drone/notebooks/Pre_processing.ipynb) é rodado nas imagens (transformações de cor, aplicação de filtros, etc). Está etapa é chamada de "Data Pre-Processing", e é opcional pois é possível rodar com os dados crus. Por fim, a etapa de "Data Wrangling II" é rodada ("[Creating labels from folders.ipynb](../Reconhecimento_acao_humana_imagem_drone/notebooks/Creating_labels_from_folders.ipynb)") para formatar os dados de acordo com a pipeline da Yolov7, isto é, formatação das labels por imagem e organização das pastas. Por fim, podemos rodar o [training_template.ipynb](../Reconhecimento_acao_humana_imagem_drone/notebooks/Template_tutorial.ipynb) para treinar o modelo e [inference.ipynb](../Reconhecimento_acao_humana_imagem_drone/notebooks/Inference_notebook.ipynb) para a avaliação dos resultados.
 
-# Experimentos e Resultados
+# Experimentos, Resultados e Discussão
 
 **1 - Resultados dos treinamentos do modelo**
 
@@ -292,7 +292,13 @@ Apesar dos resultados insatisfatórios obtidos nessa versão preliminar, é poss
     <img src="../Reconhecimento_acao_humana_imagem_drone/assets/Result_1.png" height="450">
 </p>
 
-# Próximos passos - ACREDITO QUE IREMOS RETIRAR
+
+# Conclusão
+
+ESCREVER
+
+
+# Trabalhos futuros
 
 Para as próximas etapas, pretende-se:
 
