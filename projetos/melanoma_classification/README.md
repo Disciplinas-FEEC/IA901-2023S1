@@ -160,6 +160,8 @@ Embora de grande complexidade, os resultados apresentados a seguir demonstram a 
 
 $$\frac{FN}{FN+VN}=\frac{141}{141+6}=0.96$$
 
+Experimento 4 - 
+-----
 # Próximos passos
 Estudos recentes avaliam a utilização de arquiteturas de redes neurais com essemble para garantir resultados superiores na classificação de lesões de pele. Dado isso, as sugestões de próximos passos são: 
 
