@@ -294,8 +294,11 @@ Processamento dos Dados | Precisão | Recall | mAP@0.5
 Escala de cinza (dados filtrados)  |    0.564    |   0.307  | 0.289
 Escala de cinza (dados aumentados) |  0.545   | 0.471  | 0.555  |
 
+**2 - Resultados obtidos para o conjunto de Teste**
 
-**2 - Inferência**
+ESCREVER.
+
+**3 - Inferência: uso do modelo em caso real**
 
 ESCREVER.
 
