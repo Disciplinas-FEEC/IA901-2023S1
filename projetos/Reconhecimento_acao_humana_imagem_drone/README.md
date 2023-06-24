@@ -238,7 +238,7 @@ Verifica-se que a classe com melhor desempenho é "walk" - que possui maior núm
 
 ***1.2. Treinamentos com 30 épocas***
 
-Como os treinamentos com 10 épocas apresentaram resultados insatisfatórios para as métricas avaliativas, retreinou-se o modelo com 30 época, adotando os mesmos dados dos treinamentos anteriores (imagens RGB, imagens em nível de cinza, imagens resultantes da filtragem com Filtro de Sobel e imagens resultantes do Filtro de Prewitt). 
+Como os treinamentos com 10 épocas apresentaram resultados insatisfatórios para as métricas avaliativas, retreinou-se o modelo com 30 épocas, adotando os mesmos dados dos treinamentos anteriores (imagens RGB, imagens em nível de cinza, imagens resultantes da filtragem com Filtro de Sobel e imagens resultantes do Filtro de Prewitt). 
 
 A tabela a seguir apresenta os resultados de precisão, recall e mAP@0.5 obtidos para esses treinamentos com 30 épocas.
 
@@ -246,11 +246,32 @@ Processamento dos Dados | Precisão | Recall | mAP@0.5
 :-----: | :-----: | :-----: | :-----: |
 Dados brutos filtrados  |    0.52    |   0.308  | 0.261
 Escala de Cinza |  0.564   |  0.307 | 0.289  |
-Filtro Sobel |   0.399      |  0.0824  |  0.0459 |  0.0131
+Filtro Sobel |   0.399      |  0.0824  |  0.0459 | 
 Filtro de Prewitt   |  0.391   | 0.172  | 0.0848
 
-Os resultados dos treinamentos com 30 épocas foram melhores que os anteriores, especialmente ao adotar os dados brutos (imagens RGB) e as imagens em nível de cinza. Porém, observa-se que as métricas (precisão, recall e mAP@0.5) ainda requerem melhorias.
+Os resultados dos treinamentos com 30 épocas foram melhores que os anteriores, com exceção dos treinamento adotando as imagens obtidas com o Filtro de Sobel. Especialmente ao adotar os dados brutos (imagens RGB) e as imagens em nível de cinza, observa-se melhoria no modelo. Considerando que mAP@0.5 leva em consideração a precisão e o recall em seu cálculo, o treinamento adotando as imagens em escala de cinza se mostrou o melhor.
 
+As figuras a seguir apresentam as curvas definidas a partir dos valores de precisão e recall para todas as classes, considerando 30 épocas de treinamento.
+
+*Resultados do treinamento com imagens RGB - 30 épocas*
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_rbg.png" height="350">
+</p>
+
+*Resultados do treinamento com imagens em nível de cinza - 30 épocas*
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_nc.png" height="350">
+</p>
+
+*Resultados do treinamento com imagens resultantes do filtro de Sobel - 30 épocas*
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_sobel.png" height="350">
+</p>
+
+*Resultados do treinamento com imagens resultantes do filtro de Prewitt - 30 épocas*
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_prewitt.png" height="350">
+</p>
 
 ***1.3. Treinamento após o balanceamento dos dados***
 
