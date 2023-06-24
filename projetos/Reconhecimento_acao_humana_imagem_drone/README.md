@@ -173,8 +173,6 @@ Por fim, os valores do *bounding box* foram normalizados para atender também as
 
 # Ferramentas
 
-# Ferramentas
-
 Ferramentas adotadas no desenvolvimento do projeto:
 
 - **Google Colab**, ou "Colaboratory": permitiu escrever e executar Python no navegador, além de contar com acesso a GPUs sem custo financeiro, que foram adotadas para o treinamento do modelo. Acesso ao [Google Colab](https://colab.research.google.com/#scrollTo=5fCEDCU_qrC0) (versão do Google Colab utilizada: atualizada em 24/06/2023);
