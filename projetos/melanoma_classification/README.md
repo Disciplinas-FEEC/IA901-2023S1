@@ -68,6 +68,18 @@ Todo o treinamento foi realizado configurando a rede para maximizar métricas de
 
 - Ajuste e refinamento do modelo: explorar técnicas relevantes na literatura como esembles, segmentação da lesão na imagem, além de iterações adicionais para ajustar e refinar o modelo com base nos resultados obtidos na etapa validação.
 
+*Comentários sobre o Diagnóstico de Melanoma*
+
+A maioria dos melanomas surge como tumores superficiais que estão confinados à epiderme, onde podem permanecer por vários anos. Nessa fase, conhecida como fase de crescimento horizontal, o melanoma é, na maioria dos casos, curável apenas com cirurgia. Os melanomas que infiltram a derme são considerados em uma fase de crescimento "vertical" e têm potencial metastático. A probabilidade de metástase com melanoma invasivo de crescimento vertical pode ser prevista pela medição da espessura do tumor (profundidade de Breslow), em milímetros, da camada de células granulares da epiderme até a célula maligna mais profunda na derme. Os melanomas são majoritariamente classificados em quatro grupos:
+
+Disseminação superficial: Subtipo comum, tumores finos e curáveis, diversas cores, pode surgir em várias partes do corpo.
+
+Nodular: Segundo mais comum, aparência uniforme, dificuldade de detecção precoce, espessura maior que 2 mm.
+
+Lentigo maligna: Comum em áreas com danos solares crônicos, gradual aumento, cores mais escuras, mais frequente em idosos.
+
+Acral lentiginoso: Menos comum, prevalente em pele escura, áreas palmares, plantares e subungueais, cor variada, pode se assemelhar a doenças benignas.
+
 ## Bases de Dados e Evolução
 
 Base de Dados | Endereço na Web | Resumo descritivo
