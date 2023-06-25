@@ -57,8 +57,10 @@ A avaliação de lesões de pele é realizada levando em conta características 
 
 Dessa forma, estudos que avaliam técnicas de aumentação de dados com foco em lesões de pele foram considerados e foram utilizadas técnicas como cisalhamento, escalonamento de imagens para criar novas formas de lesões, espelhamento e mudança de matiz (hue). Essas transformações foram consideradas para diminuir a influência da cor da pele e do tamanho das lesões na discriminação do modelo. Além disso, foi aplicada uma função que diminui a aparência de pelos na imagem, sem comprometer as lesões, garantindo que o modelo não associe essas características com as diferentes classes. Nas próximas seções serão definidos quais transformações apresentaram os melhores resultados. Abaixo estão algumas transformações que foram consideradas para augmentation:
 
-![lesions](https://github.com/suellendsena/IA901-2023S1/assets/63214041/0fbadfd7-5b75-4e9e-bf0b-df9029d1122d)
+*Ben Graham* 
+![ben_graham](https://github.com/suellendsena/IA901-2023S1/assets/63214041/607de482-688e-4c30-a260-6d3c8eec01b7)
 
+*Hair remove*
 ![hair_remove](https://github.com/suellendsena/IA901-2023S1/assets/63214041/c046ee89-dd22-4b51-b6eb-dbd1d685a5e3)
 
 
