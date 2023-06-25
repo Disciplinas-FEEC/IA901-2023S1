@@ -186,18 +186,26 @@ Em vista da baixa performance de arquiteturas com CNN simples, passou-se à expl
   <img src="assets/rede.JPG">
 </p>
 
-Um conjunto de dados com a classe benigna subamostrada em aproximadamente 14 vezes (2396 imagens. Resultando em um conjunto de dados de treinamento com 2396) imagens benignas e 426 malignas.
-Um conjunto de dados com a classe benigna subamostrada em 14 vezes e maligna superamostrada afim de igualar a quantidade de imagens da classe benigna, totalizando 2396 imagens em ambos os conjuntos de dados.
+A primeira configuração foi testada com 32, 32, 256, 256 e 512 filtros nas camadas convolucionais, e a segunda configuração foi testada com 64, 64, 128, 128, 256 filtros, respectivamente. O conjunto de dados da classe benigna foi subamostrada 14 vezes ou 2396 imagens, resultando em um conjunto de dados de treinamento com 2396 imagens benignas e 426 malignas (como no caso anterior).
 
-Os resultados de acurácia são significativamente bons, porém ainda há o mesmo problema de todas as amostras da classe maligna ser classificada como benigna. 
+Os resultados de acurácia são significativamente bons, porém ainda há o mesmo problema de todas as amostras da classe maligna ser classificada como benigna. Não colocamos o percentual, já que 
 
+Rede 1 - 32, 32, 256, 256 e 512 filtros 
 <p align="center">
-  <img src="assets/exp3_resultados_treinamento.png">
+  <img src="assets/rede1_acc.png">
 </p>
 <p align="center">
-  <img src="assets/exp3_matriz.png">
+  <img src="assets/rede1_mc.png">
 </p>
 
+Rede 2 - 64, 64, 128, 128, 256 filtros
+
+<p align="center">
+  <img src="assets/rede2_acc.png">
+</p>
+<p align="center">
+  <img src="assets/rede2_mc.png">
+</p>
 **Taxa de falso negativo:** 
 
 $$\frac{FN}{FN+VN}=\frac{118}{118+0}=1$$
