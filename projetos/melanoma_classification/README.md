@@ -174,19 +174,13 @@ Os resultados de acurácia são significativamente bons, porém ainda há o mesm
 
 Rede 1 - 32, 32, 256, 256 e 512 filtros 
 <p align="center">
-  <img src="assets/rede1_acc.png">
-</p>
-<p align="center">
-  <img src="assets/rede1_mc.png">
+  <img src="assets/rede1.png">
 </p>
 
 Rede 2 - 64, 64, 128, 128, 256 filtros
 
 <p align="center">
-  <img src="assets/rede2_acc.png">
-</p>
-<p align="center">
-  <img src="assets/rede2_mc.png">
+  <img src="assets/rede2.png">
 </p>
 
 **Taxa de falso negativo:** 
