@@ -129,6 +129,13 @@ MUDAR MUDAR MUDAR
 
 The results using Resnet50 to test the segmentation of IGN imagery made us realize that some metrics regarding masks with more than one pannel should be monitored. 
 
+# Data Augmentation
+Random rotation and flip: 
+Random zoom:
+Random brightness, contrast, and saturation adjustments
+![masked_sample](./assets/data_augmentation_sample1.svg)
+![unmasked_sample](./assets/data_augmentation_sample2.svg)
+
 # Final results
 ![masked_sample](./assets/best_model_sample0.svg)
 ![unmasked_sample](./assets/best_model_sample1.svg)
