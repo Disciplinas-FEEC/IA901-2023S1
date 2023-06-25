@@ -63,7 +63,7 @@ Dessa forma, estudos que avaliam técnicas de aumentação de dados com foco em 
 
 *Hair remove*
 
-![hair_remove](https://github.com/suellendsena/IA901-2023S1/assets/63214041/c046ee89-dd22-4b51-b6eb-dbd1d685a5e3)
+![hair_remove](https://github.com/suellendsena/IA901-2023S1/assets/63214041/fe794d91-f908-4f6f-8efa-cac46a9f610a)
 
 
 *3. Avaliação e validação:*
