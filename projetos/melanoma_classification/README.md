@@ -45,7 +45,7 @@ O câncer de pele é uma das formas mais comuns de câncer em todo o mundo, e a 
 
 *1. Pré-processamento de dados:*
 
-As imagems foram normalizadas, ou seja, todos os pixels foram divididos por 255.0, para padronizar os valores em pixels entre o intervalo de 0 a 1. A normalização é importante para manter a escala de pixels consistentes e facilitar o treinamento de redes complexas. Ainda, a técnica de pré processamento reduz a influência de outliers e melhorar a capacidade do modelo de generalizar para novos exemplos. 
+As imagens foram normalizadas, ou seja, todos os pixels foram divididos por 255.0, para padronizar os valores em pixels entre o intervalo de 0 a 1. A normalização é importante para manter a escala de pixels consistentes e facilitar o treinamento de redes complexas. Ainda, a técnica de pré processamento reduz a influência de outliers e melhorar a capacidade do modelo de generalizar para novos exemplos. 
 
 
 *2. Data augmentation:*  
