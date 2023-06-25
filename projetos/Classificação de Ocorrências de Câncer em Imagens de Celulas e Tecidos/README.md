@@ -113,6 +113,8 @@ A seguir, todos os experimentos feitos, tanto para a classificação de tumores 
 
 #### Classificação de Tumores
 
+No primeiro tipo de classificação realizado no projeto, o de tumores, são utilizadas as máscaras disponibilizadas no dataset, que rotulam, dentre outros canais, a presença de tecido neoplásico, isto é, um tumor. Então, ao associar tal imagem a uma das duas classes retiradas dessa máscara (com tumor ou sem tumor), pode-se então treinar o algoritmo de DL para classificar imagens não vistas no treinamento. Mesmo que a máquina não utilize dos mesmos critérios que um ser humano utilizaria para determinar tal presença ou não, como citado em [4], ela será capaz de aprender a identificar certos padrões e utilizá-los, então, para cumprir seu objetivo.
+
 ##### Experimento I (Baseline)
 
 Neste experimento, utilizamos todos os tecidos nas etapas de treinamento, validação e testes. O objetivo foi verificar a performance do modelo de Deep Learning no cenário mais básico possível, em termos de dataset. 
@@ -128,6 +130,8 @@ Portanto, a pergunta a ser respondida neste experimento foi: o modelo de Deep Le
 Neste experimento, treinamos o modelo somente com as imagens do tecido ‘Breast’, enquanto os demais tecidos foram utilizados como conjunto teste. Pelo mesmo motivo do experimento anterior, a escolha do tecido ‘Breast’ se deu por ser aquele mais populoso do dataset. Assim, a pergunta a ser respondida neste experimento foi: o modelo de Deep Learning é capaz de aprender e generalizar a presença de células neoplásicas no restante dos tecidos sendo que foi treinado somente com um deles?
 
 #### Classificação de Tecidos
+
+Para o segundo tipo de classificação do projeto, o de tipos de tecidos, assim como no primeiro, fez-se o treinamento com as imagens rotuladas do dataset com base no seu tipo. Enquanto nós, humanos, somos capazes de diferenciar tipos de tecido com base em algumas características de seu estrutura, como discutido em [5], a máquina, assim como no caso dos tumores, irá aprender a identificar tais padrões para, assim, conseguir predizer o tipo daquele tecido.
 
 #### Experimento I
 
@@ -299,4 +303,9 @@ Longo prazo: 3-4 semanas
 
 [2]: Defining Cancer. National Cancer Institute
 
-[3]: Bhuiyan MR, Abdullah J. Detection on Cell Cancer Using the Deep Transfer Learning and Histogram Based Image Focus Quality Assessment. Sensors (Basel). 2022 Sep 16;22(18):7007. doi: 10.3390/s22187007. PMID: 36146356; PMCID: PMC9504738. 
+[3]: Bhuiyan MR, Abdullah J. Detection on Cell Cancer Using the Deep Transfer Learning and Histogram Based Image Focus Quality Assessment. Sensors (Basel). 2022 
+Sep 16;22(18):7007. doi: 10.3390/s22187007. PMID: 36146356; PMCID: PMC9504738.
+
+[4]: Jaber, N. "Can Artificial Intelligence Help See Cancer in New, and Better, Ways?" (cancer.gov/news-events/cancer-currents-blog/2022/artificial-intelligence-cancer-imaging). March 22, 2022.
+
+[5]: Rachel. "Classification and Types of Epithelial Tissues" (rsscience.com/epithelium-classification-and-types/)
