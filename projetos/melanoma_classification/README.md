@@ -150,7 +150,7 @@ $$\frac{FN}{FN+VN}=\frac{141}{141+6}=0.96$$
 
 Para etapa intermiediária do projeto, o grupo optou por continuar com os testes com CNNs aumentando-se a complexidade gradativamente e observando o comportamento. Os testes foram feitos também no Google Colab e localmente, quando da indisponibilidade de recursos. Devido às limitações de recursos e ao rápido esgotamento dos mesmos, e também à grande quantidade de experimentos, o grupo optou pela compra de unidades de computação a fim de acessar GPUs mais potentes como a A100, V100 e T4, por mais tempo. Aqui são relatados os experimentos mais importantes apenas. 
 
-Experimento 4 - CNN de Complexidade Média e Técnicas de Oversampling e Downsampling
+Experimento 3 - CNN de Complexidade Média e Técnicas de Oversampling e Downsampling
 ----- 
 
 Em vista da baixa performance de arquiteturas com CNN simples, passou-se à exploração de arquiteturas mais complexas porém com número de parâmetros ainda inferior às arquiteturas Estado da Arte, a fim de acelerar o processo de treinamento e testar técnicas de pré-processamento. Os modelos foram treinados por 100 épocas. A fim de obter mais informações acerca dos impactos do processamento e evitar maior variabilidade do modelo, o grupo optou por fixar o número de camadas nos testes intermediários e limitar a quantidade de filtros. A arquitetura utilizada é apresentada abaixo, consistindo de entrada, cinco camadas convolucionais (todas com batch normalization) e duas camadas totalmente conectadas para classificação. A técnica de dropout é aplicada para regularização. 
@@ -181,9 +181,9 @@ Rede 2 - 64, 64, 128, 128, 256 filtros
 
 $$\frac{FN}{FN+VN}=\frac{118}{118+0}=1$$
 
-Experimento 5 - EfficientNet 
+Experimento 4 - EfficientNet 
 ----- 
-Experimento 6 - MobileNetV2
+Experimento 5 - MobileNetV2
 ----- 
 
 Também conhecida como uma arquitetura desenvolvida para aplicaçoes de visão computacional em dispositivos com recursos computacionais limitados, a MobilNet foi projetada com o objetivo de alcançar um equilíbrio entre a precsão do modelo e a eficiência computacional. Para tanto, seu diferencial são camadas de convolução profunda separrável em vez de convoluções padrão, considerando duas etapas: a primeira é uam convolução em que cada filtro opera em um canal de entrada, e a sgunda etapa é uma convolução ponto a ponto, onde um filtro linear é aplicado a cada para de características separadamente. . Isso permite uma redução significativa no número de parâmetros e operações em comparação com as convoluções padrão, tornando a MobileNet mais leve e rápida.
