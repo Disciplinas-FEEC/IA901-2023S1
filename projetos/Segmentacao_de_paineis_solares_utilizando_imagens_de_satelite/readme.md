@@ -129,6 +129,9 @@ MUDAR MUDAR MUDAR
 
 The results using Resnet50 to test the segmentation of IGN imagery made us realize that some metrics regarding masks with more than one pannel should be monitored. 
 
+# Final results
+![masked_sample](./assets/best_model_sample0.svg)
+![unmasked_sample](./assets/best_model_sample1.svg)
 
 # Next steps 
 <!---
