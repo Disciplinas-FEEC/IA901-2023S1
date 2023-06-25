@@ -211,17 +211,15 @@ Rede 2 - 64, 64, 128, 128, 256 filtros
 $$\frac{FN}{FN+VN}=\frac{118}{118+0}=1$$
 
 Experimento 5 - EfficientNet 
-
-Experimento 6 - MobileNet
+----- 
+Experimento 6 - MobileNetV2
 ----- 
 
 Também conhecida como uma arquitetura desenvolvida para aplicaçoes de visão computacional em dispositivos com recursos computacionais limitados, a MobilNet foi projetada com o objetivo de alcançar um equilíbrio entre a precsão do modelo e a eficiência computacional. Para tanto, seu diferencial são camadas de convolução profunda separrável em vez de convoluções padrão, considerando duas etapas: a primeira é uam convolução em que cada filtro opera em um canal de entrada, e a sgunda etapa é uma convolução ponto a ponto, onde um filtro linear é aplicado a cada para de características separadamente. . Isso permite uma redução significativa no número de parâmetros e operações em comparação com as convoluções padrão, tornando a MobileNet mais leve e rápida.
 
-Foram considerados treinamentos com batch tamanho 32 e 64, além do peso das classes, diferentes técnicas de augmentation e aplicação de downsampling e oversampling da classe minoritária. 
+Foram considerados treinamentos com batch tamanho 32 e 64, além do peso das classes, diferentes técnicas de augmentation e aplicação de downsampling e oversampling da classe minoritária. O melhor resultado encontrado foi a partir da seguintes definiçõs:
 
-O melhor resultado encontrado foi a partir da seguintes definiçõs:
-
-1.  **Data agumentation**:
+ **Data agumentation**:
 
 - *width_shift_range* e *height_shift_range*: desloca horizontalmente e verticalmente, respectivamente, por uma fração da largura ou altura da imagem original, auxiliando o modelo a aprender a reconhecer objetos em diferentes posições.
 
