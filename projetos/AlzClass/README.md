@@ -66,12 +66,15 @@ Os pacientes são todos destros e incluem homens e mulheres. 72 dos indivíduos 
 # Ferramentas
 
 - Google colaboratory (Google colab) -> https://colab.research.google.com/?hl=pt_BR
+
 Ferramenta utilizada para desenvolvimento dos códigos presentes no projeto. É um ambiente de nuvem hospedado pelo próprio Google, no qual é possível, no mesmo arquivo, ter um código fonte, normalmente escrito em python, e textos descritos, com explicações, imagens, resultados, etc. Esse ambiente também é colaborativo, possibilitando o compartilhamento dos arquivos entre as pessoas. Ele permite que qualquer pessoa com acesso a uma conta Google (gmail) possa criar um arquivo e começar a modificar o mesmo. Essa ferramenta tem sido muito utilizada para pesquisas e projetos de aprendizado de máquina, como também tem sido uma alternativa para aqueles que não desejam ter/rodar/desenvolver esses projetos em suas máquinas locais.
 
 - Nibabel - NeuroImaging in python -> https://nipy.org/nibabel/ 
+
 É um software aberto usado para a manipulação inicial das bases das imagens dos datasets obtidos. Normalmente, ao trabalharmos com imagens, obtemos as mesmas em formatos conhecidos: JPG, PNG. Porém, nos datasets escolhidos para esse projeto, as imagens chegam a nós no formato: nii, por isso a necessidade de usar uma interface específica para isso. Dessa forma, utilizamos essa interface para termos um primeiro acesso às imagens e conseguirmos trabalhar e analisar as mesmas. Para termos uma primeira visualização das imagens, nos baseamos no seguinte link: https://nipy.org/nibabel/nibabel_images.html disponibilizado pelo site da própria interface.
 
 - Pytorch -> https://pytorch.org/ 
+
 Biblioteca usada para o desenvolvimento dos códigos para processamento das imagens, modelo de treinamento e métricas de avaliação. O Pytorch é uma biblioteca Python de código aberto para aprendizado de máquina, implementada em 2016 e sido usada desde então. É uma biblioteca mais fácil de aprender e ajuda em toda a acessibilidade necessária para as redes neurais profundas, seus cálculos e operações. Os cálculos são cálculos de tensores e ela também possibilita a aceleração de GPU. Para ser usado, ele precisa ser instalado na máquina (ou importado para o google colab) e de uma interface para que se possa desenvolver a programação. É necessária também uma base de dados para ser carregada, um modelo de machine learning, um treinamento desse modelo e a avaliação dos resultados
 Para importar o Pytorch e ter um primeiro contato:
 https://www.leaky.ai/buildyourfirstneuralnetwork
@@ -79,34 +82,40 @@ https://colab.research.google.com/github/phlippe/uvadlc_notebooks/blob/master/do
 https://pytorch.org/tutorials/beginner/basics/quickstart_tutorial.html
 
 - TensorFlow -> https://www.tensorflow.org/ 
-Bblioteca usada para o desenvolvimento dos códigos para processamento das imagens, modelos de treinamento e métricas de avaliação. O Tensorflow é uma biblioteca de código aberto criada para aprendizado de máquina, sendo hoje uma das principais ferramentas de machine learning e deep learning. Para ser usado, ele precisa ser instalado na máquina (ou importado para o google colab) e de uma interface para que se possa desenvolver a programação. É necessária também uma base de dados para ser carregada, um modelo de machine learning, um treinamento desse modelo e a avaliação dos resultados
+
+Biblioteca usada para o desenvolvimento dos códigos para processamento das imagens, modelos de treinamento e métricas de avaliação. O Tensorflow é uma biblioteca de código aberto criada para aprendizado de máquina, sendo hoje uma das principais ferramentas de machine learning e deep learning. Para ser usado, ele precisa ser instalado na máquina (ou importado para o google colab) e de uma interface para que se possa desenvolver a programação. É necessária também uma base de dados para ser carregada, um modelo de machine learning, um treinamento desse modelo e a avaliação dos resultados
 Para importar o tensorflow para o google colab e ter um primeiro contato: https://www.tensorflow.org/tutorials/quickstart/beginner?hl=pt-br
 https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/quickstart/beginner.ipynb
 
 - Keras -> https://keras.io e https://www.tensorflow.org/guide/keras?hl=pt-br
+
 Biblioteca de código aberto de alto nível utilizada para deep learning, para criação de redes neurais e desenvolvida com base no Tensorflow. Para ser usado, ele precisa ser instalado na máquina (ou importado para o google colab) e de uma interface para que se possa desenvolver a programação. É necessária também uma base de dados para ser carregada, um modelo de machine learning, um treinamento desse modelo e a avaliação dos resultados.
 Para importar o keras e ter um primeiro contato:
 https://didatica.tech/o-que-e-keras-para-que-serve/
 https://www.tensorflow.org/tutorials/keras/classification?hl=pt-br
 
 - Scikit-learn - https://scikit-learn.org/stable/ 
+
 Biblioteca em python para aplicação de machine learning, utilizada para manipulação das amostras de imagens e métricas de análise.
 Para importar e ter um primeiro contato:
 https://scikit-learn.org/stable/getting_started.html
 https://www.tutorialspoint.com/scikit_learn/scikit_learn_quick_guide.htm
 
 - Visual Code Studio - https://code.visualstudio.com/
+
 Ferramenta utilizada para desenvolvimento de código e testes feitos nas máquinas locais dos integrantes do grupo. É um editor de código de código aberto simples e com diversas funcionalidades desenvolvido pela Microsoft.
 Tutorial para download e primeiro contato com as funcionalidades:
 https://www.devmedia.com.br/introducao-ao-visual-studio-code/34418
 
 - Python - https://www.python.org/
+
 Linguagem de programação de alto nível utilizada para desenvolvimento de códigos utilizados em diversas áreas. Tem uma sintaxe relativamente simples, é de fácil compreensão e hoje em dia é uma das linguagens de programação mais populares nas áreas de tecnologia.
 Tutoriais para um primeiro contato:
 https://blog.betrybe.com/python/
 https://www.devmedia.com.br/guia/python/37024
 
 - Google drive -
+
 Serviço de armazenamento na nuvem do Google. Qualquer pessoa que possui um gmail tem acesso ao google drive e pode utilizar de suas funcionalidades
 
 
