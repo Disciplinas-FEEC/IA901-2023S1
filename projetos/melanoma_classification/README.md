@@ -68,18 +68,6 @@ Todo o treinamento foi realizado configurando a rede para maximizar métricas de
 
 - Ajuste e refinamento do modelo: explorar técnicas relevantes na literatura como esembles, segmentação da lesão na imagem, além de iterações adicionais para ajustar e refinar o modelo com base nos resultados obtidos na etapa validação.
 
-*Comentários sobre o Diagnóstico de Melanoma*
-
-A maioria dos melanomas surge como tumores superficiais que estão confinados à epiderme, onde podem permanecer por vários anos. Nessa fase, conhecida como fase de crescimento horizontal, o melanoma é, na maioria dos casos, curável apenas com cirurgia. Os melanomas que infiltram a derme são considerados em uma fase de crescimento "vertical" e têm potencial metastático. A probabilidade de metástase com melanoma invasivo de crescimento vertical pode ser prevista pela medição da espessura do tumor (profundidade de Breslow), em milímetros, da camada de células granulares da epiderme até a célula maligna mais profunda na derme. Os melanomas são majoritariamente classificados em quatro grupos (resumido a partir do UpToDate, base de dados médicos - Melanoma: Clinical features and diagnosis):
-
-Disseminação superficial: Subtipo comum, tumores finos e curáveis, diversas cores, pode surgir em várias partes do corpo. Representam 70% dos melanomas. São geralmente diagnosticados como tumores de espessura fina (< 1mm). Pode ocorrer em qualquer local anatômico com prevalência aumentada nas costas de homens e mulheres e extremidades inferiores das mulheres. O melanoma de disseminação superficial geralmente se apresenta como uma mácula variavelmente pigmentada ou placa fina com uma borda irregular, variando de alguns milímetros a vários centímetros de diâmetro. As lesões podem ter várias tonalidades de marrom, vermelho, azul, preto, cinza e branco. 
-
-Nodular: Segundo mais comum, aparência uniforme, dificuldade de detecção precoce, espessura maior que 2 mm. Eles podem parecer pápulas ou nódulos pigmentados, pedunculados ou polipoides, mas frequentemente se apresentam com cor uniforme ou matiz amelânico/rosado, bordas simétricas e diâmetro relativamente pequeno, dificultando a detecção precoce. Embora a maioria dos melanomas de disseminação superficial e melanomas de lentigo maligna sejam diagnosticados com espessura inferior a 1 mm, a maioria dos melanomas nodulares têm espessura superior a 2 mm no momento do diagnóstico. Da mesma forma, mais de 50% dos melanomas com espessura superior a 2 mm são do subtipo nodular.
-
-Lentigo maligna: Comum em áreas com danos solares crônicos, gradual aumento, cores mais escuras, mais frequente em idosos. Começa como uma mácula marrom ou castanha. A lesão gradualmente aumenta ao longo de anos e pode desenvolver áreas de pigmentação mais escuras, assimetria de cor e áreas elevadas que indicam crescimento vertical.
-
-Acral lentiginoso: Menos comum, prevalente em pele escura, áreas palmares, plantares e subungueais, cor variada, pode se assemelhar a doenças benignas. É o tipo mais comum de melanoma em indivíduos de pele mais escura. Os melanomas acral lentiginosos aparecem inicialmente como máculas ou manchas marrom-escuro a preto-azulado irregularmente pigmentadas, com áreas elevadas, ulceração, sangramento e/ou maior diâmetro geralmente indicando invasão mais profunda na derme.
-
 
 ## Bases de Dados e Evolução
 
