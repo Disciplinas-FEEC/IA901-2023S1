@@ -117,11 +117,11 @@ Draw.IO, para confecção do Workflow.
   <img src="assets/Workflow_Melanoma.png">
 </p>
 
-# Experimentos e Resultados Preliminares
+# Experimentos 
 
 Os experimentos foram realizados através de diferentes arquiteturas, tamanhos de batch e transformações de data augmentation. Ainda, devido à quantidade de imagens, os primeiros testes foram realizados em um conjunto diminuído de dados, visando garantir que as primeiras aplicações iriam ocorrer corretamente ao longo de todo o fluxo de pré processamento, treinamento e validação dos resultados. Dessa forma, os experimentos baseados em batch tamanho 32, otimizadores Adam e SGD (*stochastic gradient descent*) e treinamentos de 20 épocas basearam-se da seguinte forma:
 
-Experimento 1 - CNN com downsampling<br>
+Experimento 1 - CNN simples com downsampling e conjunto completo <br>
 ----- 
 Para a primeira etapa do projeto, 10% do conjunto de imagens benignas foram aleatoriamente selecionadas, visando facilitar os primeiros treinamentos e garantir o fluxo do que estava sendo desenvolvido e aplicado. Com o conjunto selecionado e fixado através de uma semente, foi realizada a padronização das imagens, pois o processo garante a normalização das intensidades, reduzir vieses e melhorar a estabilidade numérica do processo de treinamento. Ainda, o data augmentation aplicado consiste em testar diferentes faixas de deslocamento horizontal e vertical, distorções de cisalhamento aleatórias nas imagens, zoom aleatório e ajustes de brilho e matiz. Por fim, uma rede desenvolvida do zero foi criada, consistindo em camadas convolucionais, normalização por batch, pooling global de média para extrair características da imagem e uma camada densa final para realizar a classificação das imagens. 
 
@@ -133,19 +133,12 @@ Os resultados de acurácia são significativos, porém ainda há o mesmo problem
 
 $$\frac{FN}{FN+VN}=\frac{118}{118+0}=1$$
 
-Experimento 2 - CNN com o Conjunto Completo de Dados
------ 
+
 Com a mesma rede implementada no exemplo anteior, foi realizado o treinamento conjunto de dados completo, considerando exatamente a mesma divisão entre treinamento e validação. Nesse cenário, 24402 imagens foram utilizadas no treinamento da rede e 8608 imagens foram usadas para validação. Também a título de comparação, todas as imagens foram inseridas na rede convolucional com dimensões 224 x 224 e com a aplicação das mesmas técnicas de data augmentation.
 
 Os resultados do experimento anterior persistiram e um dos principais problemas foi o tempo despendido para treinamento da rede neural convolucional. Ainda, obsera-se que a diminuição do desbalanceamento não conduz a um resultado favorável de classificação da classe com menores amostras.
 
-
-<p align="center">
-  <img src="assets/exp2_resultados_treinamento.png">
-</p>
-<p align="center">
-  <img src="assets/exp2_matriz.png">
-</p>
+![cnn1_complete_data](https://github.com/suellendsena/IA901-2023S1/assets/63214041/48608ef9-1960-4156-bcd8-62007a746e32)
 
 **Taxa de falso negativo:** 
 
