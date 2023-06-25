@@ -77,29 +77,29 @@ Ferramenta utilizada para desenvolvimento dos códigos presentes no projeto. É 
 
 Biblioteca usada para o desenvolvimento dos códigos para processamento das imagens, modelo de treinamento e métricas de avaliação. O Pytorch é uma biblioteca Python de código aberto para aprendizado de máquina, implementada em 2016 e sido usada desde então. É uma biblioteca mais fácil de aprender e ajuda em toda a acessibilidade necessária para as redes neurais profundas, seus cálculos e operações. Os cálculos são cálculos de tensores e ela também possibilita a aceleração de GPU. Para ser usado, ele precisa ser instalado na máquina (ou importado para o google colab) e de uma interface para que se possa desenvolver a programação. É necessária também uma base de dados para ser carregada, um modelo de machine learning, um treinamento desse modelo e a avaliação dos resultados.
 Para importar o Pytorch e ter um primeiro contato:
-https://www.leaky.ai/buildyourfirstneuralnetwork
-https://colab.research.google.com/github/phlippe/uvadlc_notebooks/blob/master/docs/tutorial_notebooks/tutorial2/Introduction_to_PyTorch.ipynb
+https://www.leaky.ai/buildyourfirstneuralnetwork, 
+https://colab.research.google.com/github/phlippe/uvadlc_notebooks/blob/master/docs/tutorial_notebooks/tutorial2/Introduction_to_PyTorch.ipynb, 
 https://pytorch.org/tutorials/beginner/basics/quickstart_tutorial.html
 
 - TensorFlow -> https://www.tensorflow.org/ 
 
 Biblioteca usada para o desenvolvimento dos códigos para processamento das imagens, modelos de treinamento e métricas de avaliação. O Tensorflow é uma biblioteca de código aberto criada para aprendizado de máquina, sendo hoje uma das principais ferramentas de machine learning e deep learning. Para ser usado, ele precisa ser instalado na máquina (ou importado para o google colab) e de uma interface para que se possa desenvolver a programação. É necessária também uma base de dados para ser carregada, um modelo de machine learning, um treinamento desse modelo e a avaliação dos resultados.
 Para importar o tensorflow para o google colab e ter um primeiro contato: 
-https://www.tensorflow.org/tutorials/quickstart/beginner?hl=pt-br
+https://www.tensorflow.org/tutorials/quickstart/beginner?hl=pt-br, 
 https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/quickstart/beginner.ipynb
 
 - Keras -> https://keras.io e https://www.tensorflow.org/guide/keras?hl=pt-br
 
 Biblioteca de código aberto de alto nível utilizada para deep learning, para criação de redes neurais e desenvolvida com base no Tensorflow. Para ser usado, ele precisa ser instalado na máquina (ou importado para o google colab) e de uma interface para que se possa desenvolver a programação. É necessária também uma base de dados para ser carregada, um modelo de machine learning, um treinamento desse modelo e a avaliação dos resultados.
 Para importar o keras e ter um primeiro contato:
-https://didatica.tech/o-que-e-keras-para-que-serve/
+https://didatica.tech/o-que-e-keras-para-que-serve/, 
 https://www.tensorflow.org/tutorials/keras/classification?hl=pt-br
 
 - Scikit-learn - https://scikit-learn.org/stable/ 
 
 Biblioteca em python para aplicação de machine learning, utilizada para manipulação das amostras de imagens e métricas de análise.
 Para importar e ter um primeiro contato:
-https://scikit-learn.org/stable/getting_started.html
+https://scikit-learn.org/stable/getting_started.html, 
 https://www.tutorialspoint.com/scikit_learn/scikit_learn_quick_guide.htm
 
 - Visual Code Studio - https://code.visualstudio.com/
@@ -112,7 +112,7 @@ https://www.devmedia.com.br/introducao-ao-visual-studio-code/34418
 
 Linguagem de programação de alto nível utilizada para desenvolvimento de códigos utilizados em diversas áreas. Tem uma sintaxe relativamente simples, é de fácil compreensão e hoje em dia é uma das linguagens de programação mais populares nas áreas de tecnologia.
 Tutoriais para um primeiro contato:
-https://blog.betrybe.com/python/
+https://blog.betrybe.com/python/, 
 https://www.devmedia.com.br/guia/python/37024
 
 - Google drive -
