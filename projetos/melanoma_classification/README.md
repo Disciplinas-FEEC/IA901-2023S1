@@ -117,7 +117,7 @@ Draw.IO, para confecção do Workflow.
   <img src="assets/Workflow_Melanoma.png">
 </p>
 
-# Experimentos e Resultados preliminares
+# Experimentos e Resultados Preliminares
 
 Os experimentos foram realizados através de diferentes arquiteturas, tamanhos de batch e transformações de data augmentation. Ainda, devido à quantidade de imagens, os primeiros testes foram realizados em um conjunto diminuído de dados, visando garantir que as primeiras aplicações iriam ocorrer corretamente ao longo de todo o fluxo de pré processamento, treinamento e validação dos resultados. Dessa forma, os experimentos baseados em batch tamanho 32, otimizadores Adam e SGD (*stochastic gradient descent*) e treinamentos de 20 épocas basearam-se da seguinte forma:
 
@@ -173,7 +173,34 @@ Embora de grande complexidade, os resultados apresentados a seguir demonstram a 
 
 $$\frac{FN}{FN+VN}=\frac{141}{141+6}=0.96$$
 
-Experimento 4 - 
+# Experimentos e Resultados Intermediários
+
+Na etapa intermiediária do projeto, o grupo optou por continuar com os testes com CNNs aumentando-se a complexidade gradativamente e observando o comportamento. Os testes foram feitos também no Google Colab e localmente, quando da indisponibilidade de recursos. Devido às limitações de recursos e ao rápido esgotamento dos mesmos, e também à grande quantidade de experimentos, o grupo optou pela compra de unidades de computação a fim de acessar GPUs mais potentes como a A100, V100 e T4, por mais tempo. Aqui são relatados os experimentos mais importantes apenas. 
+
+Experimento 4 - CNN de Complexidade Média e Técnicas de Oversampling e Downsampling
+----- 
+
+Em vista da baixa performance de arquiteturas com CNN simples, passou-se à exploração de arquiteturas mais complexas porém com número de parâmetros ainda inferior às arquiteturas Estado da Arte, a fim de acelerar o processo de treinamento e testar técnicas de pré-processamento. Os modelos foram treinados por 100 épocas. A fim de obter mais informações acerca dos impactos do processamento e evitar maior variabilidade do modelo, o grupo optou por fixar o número de camadas nos testes intermediários e limitar a quantidade de filtros. A arquitetura utilizada é apresentada abaixo, consistindo de entrada, cinco camadas convolucionais (todas com batch normalization) e duas camadas totalmente conectadas para classificação. A técnica de dropout é aplicada para regularização. 
+
+<p align="center">
+  <img src="assets/rede.JPG">
+</p>
+
+Um conjunto de dados com a classe benigna subamostrada em aproximadamente 14 vezes (2396 imagens. Resultando em um conjunto de dados de treinamento com 2396) imagens benignas e 426 malignas.
+Um conjunto de dados com a classe benigna subamostrada em 14 vezes e maligna superamostrada afim de igualar a quantidade de imagens da classe benigna, totalizando 2396 imagens em ambos os conjuntos de dados.
+
+Os resultados de acurácia são significativamente bons, porém ainda há o mesmo problema de todas as amostras da classe maligna ser classificada como benigna. 
+
+<p align="center">
+  <img src="assets/exp3_resultados_treinamento.png">
+</p>
+<p align="center">
+  <img src="assets/exp3_matriz.png">
+</p>
+
+**Taxa de falso negativo:** 
+
+$$\frac{FN}{FN+VN}=\frac{118}{118+0}=1$$
 -----
 # Próximos passos
 Estudos recentes avaliam a utilização de arquiteturas de redes neurais com essemble para garantir resultados superiores na classificação de lesões de pele. Dado isso, as sugestões de próximos passos são: 
