@@ -305,7 +305,7 @@ As curvas de precisão, recall e mAP@0.5 do modelo resultante dos dados aumentad
 
 *Precisão, recall e mAP@0.5 para o melhor modelo obtido*
 <p align="left">
-    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/best_model.png" height="350">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/best_model.jpg" height="350">
 </p>
 
 Dessa forma, considera-se que o melhor modelo obtido é resultante do treinamento ao adotar os dados aumentados. Apesar de não apresentar excelentes métricas, as métricas desse modelo podem ser consideradas satisfatórias frente aos modelos inicialmente treinados. 
