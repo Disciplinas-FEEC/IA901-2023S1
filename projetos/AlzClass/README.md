@@ -165,9 +165,9 @@ Os resultados são apresentados nos gráficos abaixo:
 
 O treinamento com a rede ResNet18 está em fase de testes, para garantirmos que os resultados obtidos não sofreram overfitting. Mas como primeiro resultado, temos que a acurácia obtida foi em torno de **0.97**
 
-# OASIS Dataset
+# Experimentos e Resultados
 
-Adquirimos a base do OASIS para os testes de classificação.
+Após a exploração do dataset do Kaggle, procedemos aos passos de classificação do dataset do OASIS (OASIS 1) conforme descrito abaixxo.
 
 ## Rede pré-treinada AlexNet
 
@@ -272,7 +272,7 @@ Os melhores resultados (ainda que com pouca variação em relação ao pior caso
 >![Métricas 62 épocas](assets/Images/OASIS_AlexNet/épocas/62-centercrop-metrics.PNG)
 >![Matriz de Confusão 62 épocas](assets/Images/OASIS_AlexNet/épocas/62-centercrop-cf.PNG)
 
-# ADNI Dataset
+# Discussão 
 
 # Conclusões
 
