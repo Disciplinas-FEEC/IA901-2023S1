@@ -165,6 +165,33 @@ Os resultados são apresentados nos gráficos abaixo:
 
 O treinamento com a rede ResNet18 está em fase de testes, para garantirmos que os resultados obtidos não sofreram overfitting. Mas como primeiro resultado, temos que a acurácia obtida foi em torno de **0.97**
 
+# OASIS Dataset
+
+Adquirimos a base do OASIS para os testes de classificação.
+
+## Experimento inicial: Classificação de duas classes
+
+Com a base do OASIS, criamos uma divisão simples de duas classes: indivíduos de controle e indivíduos com demência, para validar a eficácia das redes neurais em tratar a classificação.
+
+No arquivo [Classificação 2 classes](/projetos/AlzClass/notebooks/OASIS/unbalanced/redu%C3%A7%C3%A3o%20de%20classes/OASIS_AlexNet_transforms_50epochs_single_2classes.ipynb) executamos esta classificação utilizando para tanto a rede pré-treinada AlexNet. Não foi aplicada nenhuma transformação de imagem nem qualquer otimização de híperparâmetros, para avaliarmos a performance inicial do modelo.
+
+Os resultados de acurácia, perda e acurácia média nas bases de treinamento podem ser visualizados nas imagens a seguir:
+![Treinamento OASIS 2 classes](assets/Images/OASIS_AlexNet/2_classes/Treinamento.png)
+![Treinamento OASIS 2 classes](assets/Images/OASIS_AlexNet/2_classes/Validação.png)
+
+Notamos a convergência rápida na base de treinamento para acurácia de 100%. Na base de validação, o resultado cai ligeiramente, como pode ser verificado no segundo gráfico. Isso se deve ao tamanho da base ser reduzida, o que está trazendo o problema de overfitting na base.
+
+Testando a classificação na base de testes obtemos a matriz de confusão abaixo:
+![Treinamento OASIS 2 classes](assets/Images/OASIS_AlexNet/2_classes/confusion_matrix.png)
+
+Notamos novamente que a performance inicial da rede neural é muito alta, com um índice de acerto em acima de 80% dos casos.
+
+## Ajuste de Híper-Parâmetros
+
+# ADNI Dataset
+
+# Conclusões
+
 # Próximos passos
 - Treinar e avaliar outras redes neurais (ResNet, InceptionV4) no dataset do kaggle. (1 semana)
 - Expandir nossa análise para o dataset do OASIS, desenvolvendo uma pipeline apropriada para a ingestão deste formato de dados. (1 semana)
