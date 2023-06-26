@@ -280,7 +280,7 @@ Observa-se que o balanceamento dos dados piorou os resultados. Conforme apresent
 
 *Resultados do treinamento após o balanceamento dos dados*
 <p align="left">
-    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_nc_30.png" height="350">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_nc_balanceado.png" height="350">
 </p>
 
 ***1.4. Treinamento após a aumentação dos dados***
