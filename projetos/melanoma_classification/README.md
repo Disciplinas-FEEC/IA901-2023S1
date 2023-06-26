@@ -235,12 +235,12 @@ Utilizar informações adicionais disponíveis nos conjuntos públicos de melano
 Alternativamente, ao considerar que redes neurais devem focar e destacar as partes mais importantes de uma imagem de entrada, foi avaliado o mecanismo de *Soft-Attention*, que permite que uma rede neural alcance esse objetivo. Estudos avaliam a eficácia do Soft-Attention em arquiteturas de redes neurais profundas. O objetivo central do Soft-Attention é aumentar o valor das características importantes e suprimir as características que introduzem ruído. Redes combinadas com a ténica alcançam uma precisão de 93,7% no conjunto de dados de melanomas ISIC-2017.
 
 ## Referências 
-1. Data Augmentation for Skin Lesion Analysis, CoRR 2018, Fábio Perez, Cristina Vasconcelos, Sandra Avila, Eduardo Valle
-2. Identifying Melanoma Images using EfficientNet Ensemble: Winning Solution to the SIIM-ISIC Melanoma Classification Challenge, CoRR 2020. Qishen Ha, Bo Liu, Fuxu Liu
-3. SIIM-ISIC Melanoma Classification With DenseNet, 2021 IEEE 2nd International Conference on Big Data, Y. Zhang and C. Wang
-4. EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks, Mingxing Tan, Quoc V. Le
-5. Two-Stage Deep Neural Network via Ensemble Learning for Melanoma Classification, Jiaqi Ding, Jie Song et. al
-6. Soft-Attention Improves Skin Cancer Classification Performance, S. Datta, M. Shaikh, et. al
-7. Visual inspection for diagnosing cutaneous melanoma in adults. Cochrane Database Syst Rev., Dinnes J. et al.,2018.
+1. Perez, F. et al. Data augmentation for skin lesion analysis. Granada, Spain, September 16 and 20, 2018, Proceedings 5 (pp. 303-311). Springer International Publishing.
+2. Ha, Qishen, Bo Liu, and Fuxu Liu. "Identifying melanoma images using efficientnet ensemble: Winning solution to the siim-isic melanoma classification challenge." arXiv preprint arXiv:2010.05351 (2020).
+3. Zhang, Yiming, and Chong Wang. "SIIM-ISIC melanoma classification with DenseNet." 2021 IEEE 2nd International Conference on Big Data, Artificial Intelligence and Internet of Things Engineering (ICBAIE). IEEE, 2021.
+4. Tan, Mingxing, and Quoc Le. "Efficientnet: Rethinking model scaling for convolutional neural networks." International conference on machine learning. PMLR, 2019.
+5. Ding, Jiaqi, et al. "Two-Stage Deep Neural Network via Ensemble Learning for Melanoma Classification." Frontiers in Bioengineering and Biotechnology 9 (2022): 1355.
+6. Kanti Datta, Soumyya, et al. "Soft-Attention Improves Skin Cancer Classification Performance." arXiv e-prints (2021): arXiv-2105.
+7. Dinnes, Jacqueline, et al. "Visual inspection for diagnosing cutaneous melanoma in adults." Cochrane Database of Systematic Reviews 2018.12 (1996).
 8. UptoDate: https://www.uptodate.com/contents/melanoma-clinical-features-and-diagnosis
 
