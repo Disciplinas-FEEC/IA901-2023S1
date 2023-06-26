@@ -260,22 +260,28 @@ Considerando que mAP@0.5 leva em consideração a precisão e o recall do modelo
 
 *Resultados do treinamento com imagens em nível de cinza - 30 épocas*
 <p align="left">
-    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_nc.png" height="350">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_nc_30.png" height="350">
 </p>
 
-
+Observa-se que as classes "walk" e "stand" são as que apresentam melhor mAP@0.5. A classe "walk" possui a maior quantidade de amostras, enquanto a classe "sit", com pior mAP@0.5, é a que possui menos amostras. Nesse sentido, presumiu-se que realizando-se um balanceamento das amostras, conforme descrito na metodologia, ter-se-ia melhor mAP@0.5 para o modelo como um todo.
 
 ***1.3. Treinamento após o balanceamento dos dados***
 
-Como descrito na metodologia do projeto, a fim de obter um melhor modelo, realizou-se um treinamento excluindo-se parte das imagens em que somente a classe 'walk' fosse encontrada. Como os melhores resultados, até o momento, referiam-se ao treinamento com 30 épocas adotando as imagens em níveis de cinza, converteu-se as imagens em nível de cinza após o balanceamento dos dados e executou-se um novo treinamento com 30 épocas. A seguir, apresenta-se os resultados obtidos.
+Como descrito na metodologia, a fim de obter um melhor modelo, realizou-se um treinamento excluindo-se parte das imagens em que somente a classe "walk" fosse encontrada. Como os melhores resultados, até o momento, referiam-se ao treinamento com 30 épocas adotando as imagens em níveis de cinza, converteu-se as imagens em nível de cinza após o balanceamento dos dados e executou-se um novo treinamento com 30 épocas. 
+
+A seguir, apresenta-se os resultados obtidos ao adotar os dados balanceados, em comparação com os resultados alcançados ao adotar o conjunto de imagens filtradas em nível de cinza (descritos em "1.2. Treinamentos com 30 épocas").
 
 Processamento dos Dados | Precisão | Recall | mAP@0.5
 :-----: | :-----: | :-----: | :-----: |
 Escala de cinza (dados filtrados)  |    0.564    |   0.307  | 0.289
 Escala de cinza (dados balanceados) |  0.448   |  0.238 | 0.153  |
 
-Observa-se que o balanceamento dos dados piorou os resultados. Portanto, para os próximos treinamentos passou-se a utilizar novamente os dados filtrados (considerando o conjunto completo de dados, sem a exclusão de imagens).
+Observa-se que o balanceamento dos dados piorou os resultados. Conforme apresenta a figura a seguir, todas as classes tiveram pior desempenho, com exceção da classe "sit". No entanto, considerando que houve pior desempenho do modelo em geral (mAP@0.5 menor ao adotar dados balanceados), concluiu-se que o balanceamento realizado não teve êxito. Assim, para os próximos treinamentos,  passou-se a utilizar somente os dados filtrados em escala de cinza (considerando o conjunto completo de dados, sem a exclusão de imagens).
 
+*Resultados do treinamento após o balanceamento dos dados*
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_nc_30.png" height="350">
+</p>
 
 ***1.4. Treinamento após a aumentação dos dados***
 
