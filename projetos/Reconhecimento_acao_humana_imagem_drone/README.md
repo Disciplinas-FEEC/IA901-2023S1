@@ -417,7 +417,7 @@ De maneira geral, os principais desafios enfrentados foram às limitações do u
 
 Para melhoria do presente trabalho, sugere-se analisar melhor o overfitting do modelo para possíveis melhorias marginais dos experimentos (como treinar por mais épocas e outras estratégias de data augmentation).
 
-Como sugestão de trabalhos futuros, propõe-se realizar a detectar pessoas nas imagens UAV e rastrear sua movimentação, utilizando arquiteturas que levam em consideração a informação temporal das imagens, como Recorrent YOLO (ROLO).
+Como sugestão de trabalhos futuros, propõe-se realizar a detecção de pessoas nas imagens UAV e rastrear sua movimentação, e testar arquiteturas que levam em consideração a informação temporal das imagens, como Recorrent YOLO (ROLO).
 
 
 ## Referências
