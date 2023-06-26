@@ -150,7 +150,7 @@ Ao considerar que o principal objetivo é minimizar a taxa de falsos negativos, 
 
 Embora de grande complexidade, os resultados apresentados a seguir demonstram a dificuldade de discriminar as lesões de pele entre malignas e benignas. Os ganhos foram de apenas 6 acertos na classe de predizer corretamente lesões malignas e, consequentemente, a taxa de falsos negativos (predizer como begnigno, quando na verdade é maligno) foi de 96%.
 
-![resnet50](https://github.com/suellendsena/IA901-2023S1/assets/63214041/39a751b9-07e0-4b3c-9418-c494b8ac479f)
+![resnet50](https://github.com/suellendsena/IA901-2023S1/assets/63214041/df5f7439-7f5a-4d11-b8a2-ef29b5436aca)
 
 **Taxa de falso negativo:** 
 
