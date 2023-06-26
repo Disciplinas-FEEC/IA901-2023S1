@@ -312,6 +312,10 @@ Dessa forma, considera-se que o melhor modelo obtido é resultante do treinament
 
 **2 - Resultados obtidos para o conjunto de Teste**
 
+Após o treinamento dos modelos, testou-se todos os modelos definidos adotando o conjunto de dados de Teste correspondente à cada conjunto de dados oriundos do dataset original (dados filtrados, dados filtrados em escala de cinza, dados filtrados e resultantes do filtro de Sobel, dados filtrados e resultantes do filtro de Prewitt, dados balanceados em escala de cinza e dados aumentados em escala de cinza).
+
+A tabela a seguir apresenta os resultados de mAP@0.5 e mAP@0.95 obtidos para cada um dos modelos, considerando três níveis de confiança ao definir a que classe pertence a ação humana: 25% (já que se tem quatro classes, isto é, 100% / 4 = 25%), 10% e 0.1% (toda pessoa detectada é classificada em alguma das classes).
+
 Modelo | Confiança (%) | mAP@0.5 | mAP@0.95
 :-----: | :-----: | :-----: | :-----: |
 RGB (dados filtrados)  |    25<br>10<br>0.1    |   0.0337<br>0.0483<br>0.0603  | 0.0103<br>0.0142<br>0.0171
@@ -320,6 +324,12 @@ Escala de cinza (dados aumentados) |  25<br>10<br>0.1   | 0.0499<br>0.0584<br>0.
 Escala de cinza (dados balanceados) |  25<br>10<br>0.1   | 0.0207<br>0.0341<br>0.0436  | 0.0064<br>0.0099<br>0.0119  |
 Filtro de Prewitt (dados filtrados) |  25<br>10<br>0.1   | 0.0022<br>0.0046<br>0.0558  | 0.0009<br>0.0017<br>0.0115  |
 Filtro de Sobel (dados filtrados) |  25<br>10<br>0.1   | NaN<br>NaN<br>0.0074  | NaN<br>NaN<br>0.0022  |
+
+Pelos dados acima, verifica-se que todos os modelos apresentam baixo desempenho para o conjunto de teste. O modelo com o desempenho menos pior dentre todos é o modelo treinado a partir dos dados aumentados, como já era esperado de acordo com os resultados obtidos nos treinamentos do modelo. 
+
+No entanto, observa-se que os resultados são muito piores do que os resultados obtidos para o modelo correspondente durante o treinamento. Isso pode indicar o overfitting do modelo.
+
+COMPLETAR. VERIFICAR.
 
 **3 - Inferência: uso do modelo em caso real**
 
@@ -370,12 +380,29 @@ De modo geral, apesar de existirem classificações corretas, há muitas pessoas
   
 - 2 - Inferência com imagens de Phantom 4 Pro
 
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/inf_phantom_1.jpg" height="350">
+</p>
 
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/inf_phantom_2.jpg" height="350">
+</p>
 
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/inf_phantom_3.jpg" height="350">
+</p>
 
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/inf_phantom_4.jpg" height="350">
+</p>
 
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/inf_phantom_5.jpg" height="350">
+</p>
 
+Os exemplos acima mostram que, ao adotar imagens de um drone diferente daquele adotado para aquisição do conjunto de treino e validação, os resultados da inferência são piores do que quando se adota imagens do mesmo drone (como as imagens mostrada em "1 - Inferência com imagens do dataset de teste (NTUT)"). Verifica-se isso pois, para as imagens do Phantom 4 Pro, além dos mesmos problemas citados para as imagens de teste do conjunto original de dados, observa-se que a detecção de pessoas é pequena, principalmente ao nível de confiança de 25%. Ao diminuir o nível de confiança para 10%, muitos objetos que não são pessoas são classificados como tal.
 
+Esses resultados podem derivar do fato de que as imagens originais do conjunto de dados ("NTUT 4K Drone Photo Dataset for Human Detection") tem dimensão distinta das imagens do Phantom 4 Pro (4000x5000 pixels). Portanto, presume-se que o ideal seja realizar o treinamento com imagens do mesmo sensor ou, pelo menos, de mesma dimensão das imagens que se deseja realizar a inferência para obter resultados mais satisfatórios.
 
 
 # Conclusão
