@@ -276,12 +276,15 @@ Os melhores resultados (ainda que com pouca variação em relação ao pior caso
 
 # Conclusões
 
-# Próximos passos
-- Treinar e avaliar outras redes neurais (ResNet, InceptionV4) no dataset do kaggle. (1 semana)
-- Expandir nossa análise para o dataset do OASIS, desenvolvendo uma pipeline apropriada para a ingestão deste formato de dados. (1 semana)
-- Executar o workflow definido pelo projeto na nova base de dados. (1 semana)
-- Analisar e apresentar os resultados obtidos com as nova rede e dataset, comparando com os resultados iniciais da base do Kaggle (1 semana)
+- O problema de classificação em Alzheimer é trivial. Redes simples pré-treinadas são capazes de separar classes de pacientes facilmente.
+- Os datasets disponíveis de forma aberta fornecem dados com alto nível de pré-processamento o que torna a utilização de outros tipos de pré-processamento de imagem irrelevante para os resultados alcançados.
+- Os datasets disponíveis são desbalanceados, o que torna o uso de algoritmos de balanceamento como SMOTE uma alternativa para melhorias de performance dos modelos estudados.
 
+# Trabalhos Futuros
+
+- Sensibilidade de classificação aos estágios iniciais e diagnóstico precoce
+- Análise multimodal: imagens funcionais, exames clínicos, idade, gênero, entre outras
+- Análise longitudinal e prognósticos 
 
 ## Referências
 Hon, Marcia, and Naimul Mefraz Khan. "Towards Alzheimer's disease classification through transfer learning." 2017 IEEE International conference on bioinformatics and biomedicine (BIBM). IEEE, 2017.
