@@ -258,6 +258,20 @@ Notamos que o melhor resultado é obtido com a taxa de aprendizado **0.0001**.
 
 #### Ajuste da quantidade de épocas
 
+Na pasta [Ajuste de épocas](/projetos/AlzClass/notebooks/OASIS/unbalanced/tuning-epochs) executamos a classificação avaliando o impacto na acurácia, precisão e recall multiclasse ao modificarmos a quantidade de épocas utilizada no treinamento do modelo.
+Para este experimento aplicamos todas as transformações definidas originalmente uma a uma para as quantidades de épocas definidas nos arquivos:
+
+- [50](/projetos/AlzClass/notebooks/OASIS/unbalanced/tuning-epochs/OASIS_AlexNet_transforms_50epochs.ipynb)
+- [62](/projetos/AlzClass/notebooks/OASIS/unbalanced/tuning-epochs/OASIS_AlexNet_transforms_62epochs.ipynb)
+- [75](/projetos/AlzClass/notebooks/OASIS/unbalanced/tuning-epochs/OASIS_AlexNet_transforms_75epochs.ipynb)
+- [87](/projetos/AlzClass/notebooks/OASIS/unbalanced/tuning-epochs/OASIS_AlexNet_transforms_87epochs.ipynb)
+- [100](/projetos/AlzClass/notebooks/OASIS/unbalanced/tuning-epochs/OASIS_AlexNet_transforms_100epochs.ipynb)
+
+Os melhores resultados (ainda que com pouca variação em relação ao pior caso) foram obtidos com o treinamento em **62 épocas** e aplicando a transformação de **centralização de imagens**, de acordo com as métricas e a matriz de confusão abaixo.
+
+>![Métricas 62 épocas](assets/Images/OASIS_AlexNet/épocas/62-centercrop-metrics.PNG)
+>![Matriz de Confusão 62 épocas](assets/Images/OASIS_AlexNet/épocas/62-centercrop-cf.PNG)
+
 # ADNI Dataset
 
 # Conclusões
