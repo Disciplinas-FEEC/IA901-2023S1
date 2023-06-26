@@ -33,8 +33,13 @@ A área de classificação de pacientes com Alzheimer tem recebido atenção sig
 
 
 # Metodologia
-Dataset:
-Diversos conjuntos de dados estão disponíveis na internet para classificação de AD. Organizações dedicadas, como ADNI e OASIS, fornecem acesso aos seus conjuntos de dados para fins de pesquisa e educacionais. No entanto, as amostras em ambos os conjuntos de dados estão em formato de imagem tridimensional, e o tamanho dos conjuntos de dados é consideravelmente grande, dificultando o treinamento das redes com os recursos computacionais disponíveis. Dessa forma, para uma análise primária, o conjunto de dados utilizado nesta pesquisa é coletado do Kaggle, o qual contém amostras de pacientes anônimos, apenas com imagens de exames de ressonância magnética (MRI), juntamente com informações sobre suas respectivas classes. Trata-se de um conjunto de dados de várias classes, composto por diferentes visualizações e quatro classes, incluindo uma classe controle ND (Não demente) e outras três classes que representam três diferentes estágios iniciais de AD. Além disso, o tamanho do conjunto de dados é razoável e as imagens já estão limpas, ou seja, redimensionadas e organizadas. O conjunto de dados possui um total de 6400 amostras. As amostras são imagens individuais de três canais (RGB) com dimensões de 176 x 208 pixels, pertencentes a quatro classes diferentes. O número de amostras na classe ND é de 3200. As três classes restantes, MLD (demente muito leve), LD (demente leve) e MD (moderadamente demente), possuem, respectivamente, 2240, 896 e 64 imagens. Um lado negativo desse banco de dados é o desbalance entre o número de amostras das classes, para solucionar esse problema, utilizamos algoritmos que geram dados sintéticos para cada classe desbalanceada (por exemplo, SMOTETOMEK).
+1. Download & Preparação dos datasets
+2. Seleção de slices
+3. Balanceamento de classes
+4. Data Augmentation
+5. Modelos e treinamento
+6. Fine tuning
+7. Avaliação
 
 Modelos: 
 Nós iremos tentar solucionar o problema de classificação utilizando transfer learning, onde arquiteturas de ponta como AlexNet, ResNet e InceptionV4 são inicializadas com pesos pré-treinados provenientes de um treinamento com grandes conjuntos de dados de referência compostos por imagens naturais, e apenas uma parte é ajustada utilizando um pequeno número de imagens de ressonância magnética (MRI). Para essa entrega, iniciamos nossa análise com a AlexNet, por oferecer um bom desempenho comprovado, eficácia na extração de características, capacidade de aprendizado, prevenção de overfitting e acesso a recursos e implementações existentes. Futuramente, nós iremos então, implementar e comparar a performance dessas redes, buscando encontrar qual obtém as melhores métricas de performance em nosso dataset. 
@@ -133,36 +138,10 @@ Nesta primeira fase do experimento, iremos analisar as imagens disponibilizadas 
 
 Os resultados obtidos inicialmente podem ser visualizados nos gráficos abaixo:
 
-**Perda na base de treinamento**
-![AlexNet Train Loss](assets/Images/Kaggle_AlexNet/train_loss.png)
-
-**Acurácia na base de treinamento**
-![AlexNet Train Acc](assets/Images/Kaggle_AlexNet/train_acc.png)
-
-**Perda na base de testes**
-![AlexNet Test Loss](assets/Images/Kaggle_AlexNet/test_loss.png)
-
-**Acurácia na base de testes**
-![AlexNet Test Acc](assets/Images/Kaggle_AlexNet/test_acc.png)
-
 Notamos que a melhor acurácia obtida com a base de testes foi de cerca de **0.875**.
 
 ## Rede Resnet com a base do Kaggle
 Seguindo essa fase do projeto, para fins de comparação, estamos realizando a classificação com a rede Resnet18, ao longo de 20 épocas.
-
-Os resultados são apresentados nos gráficos abaixo:
-
-**Perda na base de treinamento**
-![ResNet18 Train Loss](assets/Images/Kaggle_ResNet/train_loss.png)
-
-**Acurácia na base de treinamento**
-![ResNet18 Train Acc](assets/Images/Kaggle_ResNet/train_acc.png)
-
-**Perda na base de testes**
-![ResNet18 Test Loss](assets/Images/Kaggle_ResNet/test_loss.png)
-
-**Acurácia na base de testes**
-![ResNet18 Test Acc](assets/Images/Kaggle_ResNet/test_acc.png)
 
 O treinamento com a rede ResNet18 está em fase de testes, para garantirmos que os resultados obtidos não sofreram overfitting. Mas como primeiro resultado, temos que a acurácia obtida foi em torno de **0.97**
 
