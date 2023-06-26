@@ -407,12 +407,11 @@ Esses resultados podem derivar do fato de que as imagens originais do conjunto d
 
 # Conclusão
 
-ESCREVER
+Ao longo do desenvolvimento do trabalho foi possível perceber a importância da etapa de pré processamento das imagens antes de ser usada como entrada para qualquer arquitetura. Embora a rede YOLOv7 tenha como foco o reconhecimento de pessoas, a simples utilização das imagens de forma bruta não foi o suficiente para garantir bons resultados. Dessa forma, algumas técnicas de pré processamento foram aplicadas (escala de cinza, filtro de sobel, filtro de prewitt) sendo a técnica que trouxe o maior desempenho e eficiência para o modelo a escala de cinza. No entanto, devido ao desbalanceamento de dados e talvez uma quantidade não muito densa dos mesmos, após a aplicaçao de Data Augmentation o modelo atingiu seu maior desempenho de 55% para a métrica mAP@0.5.
 
+Além disso, ao aplicar o modelo treinado em imagens nunca antes vistas (conjunto de teste e imagens de outro banco de dados) percebeu-se um desempenho pior em relação as métricas obtidas no conjunto de validação, o que pode estar associado ao overfitting. Ademais, como um todo a rede YOLOv7 conseguia reconhecer pessoas (ou objetos) mais do que acertava a classificação.
 
-
-PODEMOS APROVEITAR PARA FALAR ALGO NESSE SENTIDO: De maneira geral, os principais desafios enfrentados até o momento estão relacionados às limitações do uso da plataforma Google Collaboratory; ao tamanho das imagens - o que implica na demora do treinamento por época; no rearranjo do conjunto de dados escolhido para se adequar a rede YOLOv7 e na escolha de um pré processamento que melhore o desempenho da rede.
-
+De maneira geral, os principais desafios enfrentados foram às limitações do uso da plataforma Google Collaboratory, o tamanho das imagens, o que implicava na demora dos treinamentos, no rearranjo do conjunto de dados escolhido para se adequar a rede YOLOv7 e principalmente na escolha de um pré processamento que melhorasse o desempenho da rede.
 
 # Trabalhos futuros
 
