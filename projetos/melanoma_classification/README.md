@@ -170,17 +170,11 @@ Em vista da baixa performance de arquiteturas com CNN simples, passou-se à expl
 
 A primeira configuração foi testada com 32, 32, 256, 256 e 512 filtros nas camadas convolucionais, e a segunda configuração foi testada com 64, 64, 128, 128, 256 filtros, respectivamente. O conjunto de dados da classe benigna foi subamostrada 14 vezes ou 2396 imagens, resultando em um conjunto de dados de treinamento com 2396 imagens benignas e 426 malignas (como no caso anterior).
 
-Os resultados de acurácia são significativamente bons, porém ainda há o mesmo problema de todas as amostras da classe maligna ser classificada como benigna. Não colocamos o percentual, já que 
+Os resultados de acurácia são significativamente bons, porém ainda há o mesmo problema de todas as amostras da classe maligna ser classificada como benigna. A matriz de confusão foi semelhante para ambas as configurações, portanto somente uma foi plotada. 
 
-Rede 1 - 32, 32, 256, 256 e 512 filtros 
+Rede 1 - 32, 32, 256, 256 e 512 filtros; Rede 2 - 64, 64, 128, 128, 256 filtros
 <p align="center">
-  <img src="assets/rede1.png">
-</p>
-
-Rede 2 - 64, 64, 128, 128, 256 filtros
-
-<p align="center">
-  <img src="assets/rede2.png">
+  <img src="assets/rede1-2.png">
 </p>
 
 **Taxa de falso negativo:** 
