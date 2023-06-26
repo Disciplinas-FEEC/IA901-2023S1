@@ -29,7 +29,7 @@ $$P(\hat{f}(x)=\text{Benigno} | f(x)=\text{Maligno})=\frac{FN}{FN+VN}$$
 **Recall:**
 $$P(\hat{f}(x)=\text{Maligno} | f(x)=\text{Maligno})=\frac{VN}{FN+VN}$$
 
-Dessa forma, o contexto gerador do projeto consiste no desafio de validar uma arquitetura que consiga classificar lesões de pele em imagens médicas. Com uma base de dados de 33.007 imagens, das quais apenas 582 são de tumores malignos, o projeto enfrenta o desafio de lidar com um conjunto de dados altamente desequilibrado. A classificação precisa dessas imagens é essencial para identificar corretamente os casos malignos e benignos, a fim de fornecer um diagnóstico adequado e tomar decisões de tratamento adequadas.
+Dessa forma, o contexto gerador do projeto consiste no desafio de validar uma arquitetura que consiga classificar lesões de pele em imagens médicas. Com uma base de dados de 33.007 imagens, das quais apenas 582 são de tumores malignos, o projeto enfrenta o desafio de lidar com um conjunto de dados altamente desequilibrado. A classificação precisa dessas imagens é essencial para identificar corretamente os casos malignos e benignos, a fim de fornecer um diagnóstico adequado e tomar decisões de tratamento adequadas. É interessante apontar que a estimativa é de que médicos experientes reconheçam 70% dos casos, apenas com inspeção visual [7,8].
 
 Portanto, a motivação para esse projeto é a importância da detecção precoce de lesões de pele malignas, como o câncer de pele, que tem maior probabilidade de ser tratado com sucesso se diagnosticado em estágios iniciais. A utilização de arquiteturas de redes neurais convolucionais, combinada com técnicas avançadas de processamento de imagem, permite uma análise mais precisa e automatizada das lesões, reduzindo assim a taxa de falsos negativos. Isso pode auxiliar médicos e especialistas a tomarem decisões mais assertivas, agilizando o processo de diagnóstico e melhorando os resultados dos pacientes.
 
@@ -241,3 +241,6 @@ Alternativamente, ao considerar que redes neurais devem focar e destacar as part
 4. EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks, Mingxing Tan, Quoc V. Le
 5. Two-Stage Deep Neural Network via Ensemble Learning for Melanoma Classification, Jiaqi Ding, Jie Song et. al
 6. Soft-Attention Improves Skin Cancer Classification Performance, S. Datta, M. Shaikh, et. al
+7. Visual inspection for diagnosing cutaneous melanoma in adults. Cochrane Database Syst Rev., Dinnes J. et al.,2018.
+8. UptoDate: https://www.uptodate.com/contents/melanoma-clinical-features-and-diagnosis
+
