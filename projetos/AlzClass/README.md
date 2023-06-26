@@ -66,6 +66,9 @@ O OASIS é uma base de imagens (3D) de ressonância magnética de 416 pacientes 
 
 ![image](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/3b55131b-75df-4b03-b717-fbd1d972642e) ![image](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/8f80de95-407b-4aa9-8a04-fb7d6b186335)
 
+Exemplo de imagens OASIS pré-processadas e suas respectivas classes:
+
+![image](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/b65d2a34-b90b-4b40-9935-1a92244628af)
 
 
 
@@ -78,6 +81,13 @@ O OASIS é uma base de imagens (3D) de ressonância magnética de 416 pacientes 
 O ADNI é uma base de imagens (3D) de ressonância magnética de 1154 pacientes entre 60 e 98 anos, separados em 5 classes de acordo com o grau de demência observado em exames clínicos. Para cada indivíduo, possuímos de 4-5 scans individuais do tipo T1-weighted obtidos em sessões de exame distintas. A imagem utilizada em nossa tarefa de classificação foram fatias selecionadas (usando o mesmo método de seleção por entropia) das imagens sem pré-processamento, visto que o subset de imagens já pré-processadas do ADNI não incluiam todos os estágios intermediários que desejávamos classificar. 
 
 ![image](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/3ef94618-5142-4d84-b717-ef9873d40bcf)
+
+Exemplo de imagens ADNI sem pré-processamento e suas respectivas classes:
+
+![image](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/58c5238e-d3ec-43be-a75c-ced1c7ec09d8)
+
+Nota-se que as imagens ADNI, devido a ausência de processamento são mais heterogêneas e ruídosas, o que pode explicar problemas com overfitting e baixa acurácia expostos abaixos.
+
 
 
 # Ferramentas
@@ -262,6 +272,47 @@ Os melhores resultados (ainda que com pouca variação em relação ao pior caso
 
 >![Métricas 62 épocas](assets/Images/OASIS_AlexNet/épocas/62-centercrop-metrics.PNG)
 >![Matriz de Confusão 62 épocas](assets/Images/OASIS_AlexNet/épocas/62-centercrop-cf.PNG)
+
+
+## Rede Convolucional ADDNet
+
+Para esta série de experimentos, utilizamos a rede convolucional ADD-Net. A ADD-Net proposta é composta por quatro blocos convolucionais, e cada bloco convolucional possui uma função de ativação Rectified Linear Unit (ReLU) e uma camada de pooling médio 2D, duas camadas de dropout, duas camadas densas e uma camada de classificação SoftMax. 
+
+### Experimento inicial: Classificação de duas classes
+
+Com a base do OASIS, criamos uma divisão simples de duas classes: indivíduos de controle e indivíduos com demência, para validar a eficácia das redes neurais em tratar a classificação binária. Os resultados abaixos foram adquiridos com algumas transformações de data augmentation, balanceamento de classes, e garantia de ausência de contaminação.
+
+Os resultados das métricas de avaliação do modelo nos sets de train e validation durante o treinamento do modelo podem ser visualizados nas imagens a seguir:
+
+![model_eval_2classes_transf](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/e6a5d98f-4006-4f5c-928f-912fd3e15d87)
+
+Testando a classificação na base de testes obtemos a matriz de confusão abaixo:
+
+![confusion_matrix_2classes_transf](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/50284206-7d2f-4315-82d4-d6e06a676c21)
+
+E por fim, temos a seguinte curva ROC:
+
+![ROC_2classes_transf](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/17828935-c762-4552-be8b-ac09abe8df88)
+
+### Classificação dos estágios iniciais vs. controle
+
+Com o sucesso da classificação binária, seguimos em frente para o objetivo do projeto de identificar e distinguir os estágios iniciais do Alzheimer de grupos controle. Para isso, realizamos o treinamento da rede com as classes Demente Muito Leve, Demente Leve e Controle. Os resultados abaixos foram adquiridos com algumas transformações de data augmentation, balanceamento de classes, e garantia de ausência de contaminação.
+
+Os resultados das métricas de avaliação do modelo nos sets de train e validation durante o treinamento do modelo podem ser visualizados nas imagens a seguir:
+
+![image](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/cc5c2981-a599-40e9-ab52-39eaef0963b0)
+
+Testando a classificação na base de testes obtemos a matriz de confusão abaixo:
+
+![image](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/dcae73d8-2b81-423c-8703-c44339f07c2f)
+
+E por fim, temos a seguinte curva ROC para multiclasses:
+
+![image](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/ad95116e-f4db-4af8-b579-59145b4fca71)
+
+Nota-se que as curvas ROC com a maior área correspondem as classes controle e demente leve, aos quais, como esperado, seriam as mais facílmente identificadas por serem extremos mais distantes da patologia, enquanto os estágios intermediários como Demente muito Leve são mais díficeis de classificar.
+
+
 
 # Discussão 
 
