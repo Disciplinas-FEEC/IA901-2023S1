@@ -16,7 +16,7 @@ Group:
 |----------------------------------------|-----------------|-------------------------------------------------|
 | Juan Carlos Cortez Aucapiña            | 265568          | Ph.D. Student of Electrical Engineering (Energy)|
 | Luiza Higino Silva Santos              | 264535          | Ph.D. Student of Electrical Engineering (Energy)|
-| Sérgio Augusto de Almeida Christoforo  | 249522          | M.Sc. Student of Electrical Engineering (Energy)|
+| Sérgio Augusto de Almeida Christoforo  | 249522          | M.Sc. Student of Electrical Engineering (Telecommunications and Telematics)|
 
 
 ## Project Description 
