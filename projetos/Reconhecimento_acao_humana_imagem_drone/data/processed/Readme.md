@@ -10,4 +10,4 @@ Seis conjunto de dados foram adotados no treinamento do modelo:
   
 As pastas anexas apresentam um conjunto ilustrativo das imagens de cada um desses conjuntos de dados, juntamente com seus arquivos de labels.
 
-**Nota:** além dos cinco conjuntos ilustrados pelas pastas anexas, há também o conjunto de imagens RBG (pasta "Dados_filtrados", incluída na pasta "/data/interim/", por ter sido um dado intermediário para geração dos demais dados finais apresentados nesse sub-item). Entretanto, ressalta-se que esse conjunto também é citado aqui porque as imagens RGB - filtradas dos dados originais - também compõe um conjunto adotado para a modelagem final. 
+**Nota:** o conjunto de imagens RBG (pasta "Dados_filtrados") está incluída tanto nos dados intermediários (pasta "/data/interim/") quanto aqui nos dados finais adotados para modelagem. Isso porque esses dados foram adotados tanto como dados intermediários para geração de outros dados finais apresentados nesse sub-item (NC, Filtro_Sobel, Filtro_Prewitt e NC_augmentation), quanto um para a modelagem final (também adotou-se as imagens RGB - filtradas dos dados originais - para treinamento do modelo). 
