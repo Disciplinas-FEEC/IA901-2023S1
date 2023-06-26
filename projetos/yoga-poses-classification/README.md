@@ -80,7 +80,7 @@ Abaixo, são mostradas uma imagem de exemplo de cada classe.
 
 Classe downdog |  Classe goddess   | Classe plank | Classe tree | Classe warrior2
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![](./data/processed/TRAIN/downdog/00000143.jpg)  |  ![](./data/processed/TRAIN/goddess/00000102.jpg) | ![](./data/processed/TRAIN/plank/00000151.jpg) | ![](./data/processed/TRAIN/tree/00000075.jpg) | ![](./data/processed/TRAIN/warrior2/00000138.jpg)
+![](./data/raw/TRAIN/downdog/00000128.jpg)  |  ![](./data/raw/TRAIN/goddess/00000096.jpg) | ![](./data/raw/TRAIN/plank/00000129.jpg) | ![](./data/raw/TRAIN/tree/00000070.jpg) | ![](./data/raw/TRAIN/warrior2/00000122.jpg)
 
 Como o conjunto de dados já estava separado em pastas de treino e teste e em subpastas com as classes, a primeira etapa consistiu em realizar uma inspeção visual dos dados, onde foi analisado que existia contaminação, ou seja, a mesma informação na pasta de treino e teste, às vezes variando apenas o tamanho das imagens.
 
