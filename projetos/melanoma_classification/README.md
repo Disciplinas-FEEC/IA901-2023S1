@@ -227,18 +227,17 @@ $$\frac{FN}{FN+VN}=\frac{116}{116+31}=0.79$$
 Ao longo dos experimentos preliminares até o resultado final deste projeto, nosso principal objetivo era reduzir a taxa de falsos negativos. Portanto, foi possível alcançar uma redução de 21% nessa taxa. Esse progresso é um reflexo dos aprendizados e melhorias contínuas realizadas ao longo do processo. 
 
 
------ 
-
-
 -----
 # Trabalhos Futuros
 
-- Fazer busca refinada de parâmetros de pré-processamento com metodologia semelhante ao ajuste de hiperparâmetros;
-- Pesquisar metodologias para refinar a classificação, já que na maioria dos casos melhorar a classificação de melanomas implica em reduzir o acerto na classe benignos;
+Utilizar informações adicionais disponíveis nos conjuntos públicos de melanoma, como idade, sexo, localização da lesão e cor da pele, associado com as características da própria lesão, fornece mais contexto e informações relevantes para os algoritmos de classificação. Essas informações adicionais auxiliam a identificar padrões específicos relacionados a diferentes grupos demográficos ou características específicas dos pacientes. A abordagem de ensemble permite combinar as previsões e decisões dos diferentes modelos ou fontes de informação, o que leva a resultados mais satisfatórios e confiáveis, já que diferentes modelos podem capturar diferentes aspectos da complexidade do problema.
 
+Alternativamente, ao considerar que redes neurais devem focar e destacar as partes mais importantes de uma imagem de entrada, foi avaliado o mecanismo de *Soft-Attention*, que permite que uma rede neural alcance esse objetivo. Estudos avaliam a eficácia do Soft-Attention em arquiteturas de redes neurais profundas. O objetivo central do Soft-Attention é aumentar o valor das características importantes e suprimir as características que introduzem ruído. Redes combinadas com a ténica alcançam uma precisão de 93,7% no conjunto de dados de melanomas ISIC-2017.
 
 ## Referências 
 1. Data Augmentation for Skin Lesion Analysis, CoRR 2018, Fábio Perez, Cristina Vasconcelos, Sandra Avila, Eduardo Valle
 2. Identifying Melanoma Images using EfficientNet Ensemble: Winning Solution to the SIIM-ISIC Melanoma Classification Challenge, CoRR 2020. Qishen Ha, Bo Liu, Fuxu Liu
 3. SIIM-ISIC Melanoma Classification With DenseNet, 2021 IEEE 2nd International Conference on Big Data, Y. Zhang and C. Wang
-4. Image classification from scratch,  Kaggle Cats vs Dogs dataset, F. Chollet.
+4. EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks, Mingxing Tan, Quoc V. Le
+5. Two-Stage Deep Neural Network via Ensemble Learning for Melanoma Classification, Jiaqi Ding, Jie Song et. al
+6. Soft-Attention Improves Skin Cancer Classification Performance, S. Datta, M. Shaikh, et. al
