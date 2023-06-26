@@ -186,7 +186,59 @@ Testando a classificação na base de testes obtemos a matriz de confusão abaix
 
 Notamos novamente que a performance inicial da rede neural é muito alta, com um índice de acerto em acima de 80% dos casos.
 
-## Ajuste de Híper-Parâmetros
+## Pré-processamento e Ajuste de Híper-Parâmetros
+
+Retornando à base completa do OASIS, que é composta de 4 classes:
+
+- 'MildDemented', com 896 imagens.
+- 'ModerateDemented', com 80 imagens.
+- 'NonDemented', com 2528 imagens.
+- 'VeryMildDemented', com 840 imagens.
+
+Executamos transformações e ajustes de híper-parâmetros do modelo AlexNet.
+
+### Transformações de imagens
+
+No arquivo [Transformações de imagens](/projetos/AlzClass/notebooks/OASIS/unbalanced/tuning-epochs/OASIS_AlexNet_transforms_50epochs.ipynb) executamos a classificação avaliando o impacto na acurácia, precisão e recall multiclasse ao aplicarmos as transformações/augumentações da base:
+
+- Conversão de imagens para cinza.
+- Rotação aleatória de algumas das imagens em até 10 graus.
+- Redimensionamento das imagens para o tamanho indicado pela rede AlexNet.
+- Centralização das imagens.
+- Normalização utilizando média.
+
+Os resultados indicam que a influência de qualquer uma das transformações acima é irrelevante.
+
+**Modelo Base:**
+
+![Modelo Base](assets/Images/OASIS_AlexNet/transformações/base-metrics.PNG)
+
+**Tons de Cinza:**
+
+![Tons de Cinza](assets/Images/OASIS_AlexNet/transformações/grayscale-metrics.PNG)
+
+**Rotação Aleatória:**
+
+![Rotação Aleatória](assets/Images/OASIS_AlexNet/transformações/rotation-metrics.PNG)
+
+**Centralização:**
+
+![Centralização](assets/Images/OASIS_AlexNet/transformações/crop-metrics.PNG)
+
+**Redimensionamento:**
+
+![Redimensionamento](assets/Images/OASIS_AlexNet/transformações/resize-metrics.PNG)
+
+**Normalização:**
+
+![Normalização](assets/Images/OASIS_AlexNet/transformações/normalization-metrics.PNG)
+
+Notamos não só que o impacto de cada uma das transformações é irrelevante como no caso da Normalização temos uma piora sensível no desempenho do modelo.
+
+### Ajuste da taxa de aprendizado
+
+### Ajuste da quantidade de épocas
+
 
 # ADNI Dataset
 
