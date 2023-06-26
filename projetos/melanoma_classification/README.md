@@ -156,8 +156,15 @@ Embora de grande complexidade, os resultados apresentados a seguir demonstram a 
 
 $$\frac{FN}{FN+VN}=\frac{141}{141+6}=0.96$$
 
+---
 
-Para etapa intermiediária do projeto, o grupo optou por continuar com os testes com CNNs aumentando-se a complexidade gradativamente e observando o comportamento. Os testes foram feitos também no Google Colab e localmente, quando da indisponibilidade de recursos. Devido às limitações de recursos e ao rápido esgotamento dos mesmos, e também à grande quantidade de experimentos, o grupo optou pela compra de unidades de computação a fim de acessar GPUs mais potentes como a A100, V100 e T4, por mais tempo. Aqui são relatados os experimentos mais importantes apenas. 
+Durante a etapa preliminar do projeto, o grupo enfrentou limitações de recursos e a rápida exaustão dos mesmos. Diante disso, foram consideradas alternativas que permitissem contornar essas restrições, optando por redes mais leves e eficientes para os próximos testes.
+
+![top_accuracy](https://github.com/suellendsena/IA901-2023S1/assets/63214041/f086f884-ec31-431a-a458-376b2b17c7f0)
+
+Foi observado que arquiteturas como EfficientNetB0 apresentam alta eficiência mesmo com um número inferior de parâmetros em comparação com a ResNet-50, Ainda, embora não listado no gráfico, a MobileNet possui as mesmas características e também foi considerada como uma rede promissora. Com base nessa constatação, os experimentos subsequentes levaram em consideração essas arquiteturas, bem como redes mais simples, a fim de avaliar seu desempenho. No entanto, mesmo com a escolha de redes mais leves, ainda era necessário lidar com a demanda de memória RAM para processar as imagens. Para contornar essa limitação, o grupo adquiriu unidades de computação do Google Colab, permitindo o acesso a GPUs mais potentes, como A100, V100 e T4, por períodos de tempo mais longos. Essa abordagem possibilitou realizar os experimentos de forma mais eficiente e obter resultados relevantes para o projeto.
+
+
 
 Experimento 3 - CNN de Complexidade Média e Técnicas de Oversampling e Downsampling
 ----- 
