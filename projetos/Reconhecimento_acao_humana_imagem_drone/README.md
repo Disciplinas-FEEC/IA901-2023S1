@@ -323,20 +323,27 @@ Filtro de Sobel (dados filtrados) |  25<br>10<br>0.1   | NaN<br>NaN<br>0.0074  |
 
 **3 - Inferência: uso do modelo em caso real**
 
-ESCREVER.
+Após os testes descritos na seção anterior e tendo comprovado que, apesar dos resultados insatisfatórios, o melhor modelo é o obtido a partir do treinamento com os dados aumentados (escala de cinza), realizou-se a inferência do modelo adotando dois conjuntos de dados: 
+
+- 1 - 15 imagens escolhidas aleatoriamente do conjunto de teste original (NTUT), convertidas em nível de cinza;
+- 2 - 12 imagens adquiridas com Phantom 4 Pro, convertidas em nível de cinza.
+
+Para cada conjunto de dados, inferiu-se o modelo em um nível de confiança de 25% e 10%. A seguir apresenta-se os resultados obtidos.
+
+- 1 - Inferência com imagens do dataset de teste (NTUT)
+
+
+
+
+  
+- 2 - Inferência com imagens de Phantom 4 Pro
 
 
 
 
 
 
-De maneira geral, os principais desafios enfrentados até o momento estão relacionados às limitações do uso da plataforma Google Collaboratory; ao tamanho das imagens - o que implica na demora do treinamento por época; no rearranjo do conjunto de dados escolhido para se adequar a rede YOLOv7 e na escolha de um pré processamento que melhore o desempenho da rede.
 
-Apesar dos resultados insatisfatórios obtidos nessa versão preliminar, é possível realizar inferências, como se pode visualizar na imagem do conjunto de Teste apresentada a seguir. Assim, o grupo espera que, com novos treinamentos e, se necessário, adoção de *Data augmentation*, possa-se obter resultados satisfatórios na entrega final do projeto.
-
-<p align="left">
-    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/Result_1.png" height="450">
-</p>
 
 
 # Conclusão
@@ -344,20 +351,15 @@ Apesar dos resultados insatisfatórios obtidos nessa versão preliminar, é poss
 ESCREVER
 
 
+
+PODEMOS APROVEITAR PARA FALAR ALGO NESSE SENTIDO: De maneira geral, os principais desafios enfrentados até o momento estão relacionados às limitações do uso da plataforma Google Collaboratory; ao tamanho das imagens - o que implica na demora do treinamento por época; no rearranjo do conjunto de dados escolhido para se adequar a rede YOLOv7 e na escolha de um pré processamento que melhore o desempenho da rede.
+
+
 # Trabalhos futuros
 
-Para as próximas etapas, pretende-se:
 
-- Treinar a rede com um maior número de épocas (a princípio, pretende-se adotar 30 épocas de treinamento), adotando tanto os dados brutos (imagens RGB) quanto as imagens resultantes dos pré-processamentos realizados, e realizar comparações;
-- Implementar a métrica Intersection Over Union (IoU) para validar a qualidade do reconhecimento de pessoas. Segundo Kukil (2022a), IoU avalia o grau de sobreposição entre a região de "Ground Truth" e "Prediction". É dada pela razão entre a área de sobreposição e a área combinada de previsão e dados de campo, e seus valores podem variar de 0 (nenhuma sobreposição) a 1 (sobreposição perfeita). Esse métrica é adotada, especificamente, para avaliar a detecção de pessoas, sendo, portanto, uma métrica auxiliar para avaliar a exatidão do modelo.
-- Caso o desempenho não seja satisfatório, aplicar *Data augmentation* em algumas classes (com menos dados) para balanceá-las e auxiliar na generalização da rede. Para tanto, considerando possíveis movimentos a serem realizados por um drone no momento da aquisição das imagens, serão testados três processos de aumentação dos dados, disponíveis em PyTorch (2023): Espelhamento Horizontal (RandomHorizontalFlip), Espelhamento Vertical (RandomVerticalFlip) e Rotação de 15° (RandomRotation);
-- Aplicar o melhor modelo obtido no treinamento para inferência no conjunto de teste e discutir os resultados finais obtidos.
 
-O cronograma a seguir apresenta o tempo estimado para cada etapa futura:
-
-<p align="left">
-    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/Cronograma_etapas_futuras.png" height="200">
-</p>
+ESCREVER.
 
 ## Referências
 
