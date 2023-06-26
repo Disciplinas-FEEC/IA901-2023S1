@@ -111,8 +111,9 @@ Para avaliar o modelo, foram adotadas as seguintes métricas:
 
 - Mean Average Precision (mAP): é a média das "Precisão média (AP)" calculadas para todas as classes - mAP = 1/n * soma(APs), onde n é o número de classes (KUKIL, 2022b).
 
-
-A *Precisão média (AP)* é definida como a área sob a curva de rechamada de precisão, sendo igual a soma dos valores de precisão interpolados em 11 valores de chamada, dividido por 11 (AP = 1/11 * Soma de 11 valores de precisão interpolados). AP é definida para cada uma das classes (KUKIL, 2022b). Nesse projeto, adotou-se mAP@.5 para avaliação dos resultados, o que significa que os verdadeiros positivos são definidos considerando o limite IoU** de 0.5 (50%).
+A *Precisão média (AP)* é definida como a área sob a curva de rechamada de precisão, sendo igual a soma dos valores de precisão interpolados em 11 valores de chamada, dividido por 11 (AP = 1/11 * Soma de 11 valores de precisão interpolados). AP é definida para cada uma das classes (KUKIL, 2022b). Nesse projeto, adotou-se para avaliação dos resultados:
+- mAP@.5: os verdadeiros positivos são definidos considerando o limite IoU** de 0.5 (50%);
+- mAP@.95: os verdadeiros positivos são definidos considerando o limite IoU** de 0.95 (95%).
 
 ** *Intersection over Union (IoU)*: métrica que quantifica o grau de sobreposição entre duas regiões. Essa métrica avalia a exatidão de uma previsão e seu valor varia de 0 a 1. Com a ajuda do valor limite IoU, define-se se uma previsão é Verdadeiro Positivo, Falso Positivo ou Falso Negativo (KAKIL, 2022a). Como exemplo, se o limite IoU é de 0.5, a previsão é considerada Verdadeiro Positivo se houver 50% ou mais de sobreposição entre o bounding box predito pelo modelo e o bouding box correto (*Ground Truth*).
 
@@ -204,7 +205,7 @@ https://drive.google.com/file/d/11c1_tUSCeSvkG8aUJiVq-PQIpSXtAFUh/view?usp=shari
     <img src="../Reconhecimento_acao_humana_imagem_drone/assets/workflow.png">
 </p>
 
-O workflow dos nossos procedimentos é apresentado na figura acima. Inicialmente os dados são baixados da plataforma Kaggle e colocados em uma pasta do GoogleDrive compartilhada entre os membros do projeto. A partir disso, um notebook [Dados.ipynb](../Reconhecimento_acao_humana_imagem_drone/notebooks/Dados.ipynb) é rodado para uma seleção e filtragem prévia dos dados, retirando-se imagens com rótulos diferentes de ['walk','stand','sit','riding'], separando o dataset nos conjuntos de treino, validação e teste. Isto tudo engloba o bloco "Data Wrangling I". Em seguida, opcionalmente, um [pre processamento](../Reconhecimento_acao_humana_imagem_drone/notebooks/Pre_processing.ipynb) é rodado nas imagens (transformações de cor, aplicação de filtros, etc). Está etapa é chamada de "Data Pre-Processing", e é opcional pois é possível rodar com os dados crus. Por fim, a etapa de "Data Wrangling II" é rodada ("[Creating labels from folders.ipynb](../Reconhecimento_acao_humana_imagem_drone/notebooks/Creating_labels_from_folders.ipynb)") para formatar os dados de acordo com a pipeline da Yolov7, isto é, formatação das labels por imagem e organização das pastas. Por fim, podemos rodar o [training_template.ipynb](../Reconhecimento_acao_humana_imagem_drone/notebooks/Template_tutorial.ipynb) para treinar o modelo e [inference.ipynb](../Reconhecimento_acao_humana_imagem_drone/notebooks/Inference_notebook.ipynb) para a avaliação dos resultados.
+O workflow dos nossos procedimentos é apresentado na figura acima. Inicialmente os dados são baixados da plataforma Kaggle e colocados em uma pasta do GoogleDrive compartilhada entre os membros do projeto. A partir disso, um notebook [Dados.ipynb](../Reconhecimento_acao_humana_imagem_drone/notebooks/Dados.ipynb) é rodado para uma seleção e filtragem prévia dos dados, retirando-se imagens com rótulos diferentes de ['walk','stand','sit','riding'], separando o dataset nos conjuntos de treino, validação e teste. Isto tudo engloba o bloco "Data Wrangling I". Em seguida, opcionalmente, um [pre processamento](../Reconhecimento_acao_humana_imagem_drone/notebooks/Pre_processing.ipynb) é rodado nas imagens (transformações de cor, aplicação de filtros, etc). Esta etapa é chamada de "Data Pre-Processing", e é opcional pois é possível rodar com os dados crus. Por fim, a etapa de "Data Wrangling II" é rodada ("[Creating labels from folders.ipynb](../Reconhecimento_acao_humana_imagem_drone/notebooks/Creating_labels_from_folders.ipynb)") para formatar os dados de acordo com a pipeline da Yolov7, isto é, formatação das labels por imagem e organização das pastas. Por fim, podemos rodar o [training_template.ipynb](../Reconhecimento_acao_humana_imagem_drone/notebooks/Template_tutorial.ipynb) para treinar o modelo e [inference.ipynb](../Reconhecimento_acao_humana_imagem_drone/notebooks/Inference_notebook.ipynb) para a avaliação dos resultados.
 
 # Experimentos, Resultados e Discussão
 
@@ -223,7 +224,9 @@ Escala de Cinza |  0.526   |  0.0168 | 0.00558  |
 Filtro Sobel |     0.555    |  0.131  |  0.0341 |
 Filtro de Prewitt   |  0.277   | 0.073  | 0.0117
 
-Conforme pode-se ver na tabela anterior, as métricas obtidas adotando apenas 10 épocas de treinamento são ruins. As figuras a seguir também apresentam a precisão e recall de cada treinamento, demonstrando a baixa precisão do modelo treinado com apenas 10 épocas.  
+Conforme pode-se ver na tabela anterior, as métricas obtidas adotando apenas 10 épocas de treinamento são ruins, especialmente a mAP@0.5. 
+
+Adotando as imagens em escala de cinza, tem-se o modelo com melhor precisão. Porém, o modelo com melhor recall corresponde ao treinamento com os dados brutos (imagens RBG). As figuras a seguir apresentam a precisão e recall desses dois treinamentos para cada uma das classes.  
 
 *Resultados do treinamento com imagens RGB - 10 épocas*
 <p align="left">
@@ -235,17 +238,7 @@ Conforme pode-se ver na tabela anterior, as métricas obtidas adotando apenas 10
     <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_nc.png" height="350">
 </p>
 
-*Resultados do treinamento com imagens resultantes do filtro de Sobel - 10 épocas*
-<p align="left">
-    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_sobel.png" height="350">
-</p>
-
-*Resultados do treinamento com imagens resultantes do filtro de Prewitt - 10 épocas*
-<p align="left">
-    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_prewitt.png" height="350">
-</p>
-
-Verifica-se que a classe com melhor desempenho é "walk" - que possui maior número de amostras. Mesmo para essa classe, verifica-se baixa precisão.
+Verifica-se que a classe com melhor desempenho é "walk" - que possui maior número de amostras. No entanto, mesmo para essa classe, o valor da mAP@0.5 ainda é muito baixo em ambos os modelos.
 
 
 ***1.2. Treinamentos com 30 épocas***
@@ -261,29 +254,16 @@ Escala de Cinza |  0.564   |  0.307 | 0.289  |
 Filtro Sobel |   0.399      |  0.0824  |  0.0459 | 
 Filtro de Prewitt   |  0.391   | 0.172  | 0.0848
 
-Os resultados dos treinamentos com 30 épocas foram melhores que os anteriores, com exceção dos treinamento adotando as imagens obtidas com o Filtro de Sobel. Especialmente ao adotar os dados brutos (imagens RGB) e as imagens em nível de cinza, observa-se melhoria no modelo. Considerando que mAP@0.5 leva em consideração a precisão e o recall em seu cálculo, o treinamento adotando as imagens em escala de cinza se mostrou o melhor.
+Os resultados dos treinamentos com 30 épocas foram melhores que os anteriores, com exceção do treinamento adotando as imagens obtidas com o Filtro de Sobel. Especialmente ao adotar os dados brutos (imagens RGB) e as imagens em nível de cinza, observa-se melhoria no modelo. 
 
-As figuras a seguir apresentam as curvas definidas a partir dos valores de precisão e recall para todas as classes, considerando 30 épocas de treinamento.
-
-*Resultados do treinamento com imagens RGB - 30 épocas*
-<p align="left">
-    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_rbg.png" height="350">
-</p>
+Considerando que mAP@0.5 leva em consideração a precisão e o recall do modelo, o treinamento adotando as imagens em escala de cinza se mostrou o melhor. A figura a seguir apresenta as curvas definidas a partir dos valores de precisão e recall desse modelo para todas as classes, considerando 30 épocas de treinamento.
 
 *Resultados do treinamento com imagens em nível de cinza - 30 épocas*
 <p align="left">
     <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_nc.png" height="350">
 </p>
 
-*Resultados do treinamento com imagens resultantes do filtro de Sobel - 30 épocas*
-<p align="left">
-    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_sobel.png" height="350">
-</p>
 
-*Resultados do treinamento com imagens resultantes do filtro de Prewitt - 30 épocas*
-<p align="left">
-    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_prewitt.png" height="350">
-</p>
 
 ***1.3. Treinamento após o balanceamento dos dados***
 
