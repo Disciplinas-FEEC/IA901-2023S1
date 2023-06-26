@@ -45,8 +45,7 @@ O câncer de pele é uma das formas mais comuns de câncer em todo o mundo, e a 
 
 *1. Pré-processamento de dados:*
 
-As imagens foram normalizadas, ou seja, todos os pixels foram divididos por 255.0, para padronizar os valores em pixels entre o intervalo de 0 a 1. A normalização é importante para manter a escala de pixels consistentes e facilitar o treinamento de redes complexas. Ainda, a técnica de pré processamento reduz a influência de outliers e melhorar a capacidade do modelo de generalizar para novos exemplos. 
-
+As imagens foram normalizadas, ou seja, todos os pixels foram divididos por 255.0, para padronizar os valores em pixels entre o intervalo de 0 a 1. A normalização é importante para manter a escala de pixels consistentes e facilitar o treinamento de redes complexas. Ainda, a técnica de pré-processamento reduz a influência de outliers e melhora a capacidade do modelo de generalizar para novos exemplos. Também adotamos estratégias de downsampling da classe majoritária, oversampling da classe minoritária e combinação de ambas para testar os efeitos nas arquiteturas avaliadas.
 
 *2. Data augmentation:*  
 
@@ -65,12 +64,11 @@ Dessa forma, estudos que avaliam técnicas de aumentação de dados com foco em 
 
 ![hair_remove](https://github.com/suellendsena/IA901-2023S1/assets/63214041/fe794d91-f908-4f6f-8efa-cac46a9f610a)
 
-
 *3. Avaliação e validação:*
 
-Para viabilizar a possibilidade de avaliar o desempenho das redes treinadas o conjunto de dados foi divido entre treinamento e validação. A escolhe de não utilizar parte do conjunto como teste parte do princípio de que os dados já são extremamente desbalanceados, então informação da classe de malignos seria perdida para o treinamento. Entretanto, existem mais conjuntos públicos com imagens de lesões com o mesmo objetivo de classificar câncer de pele, portanto conjuntos externos são utilizados como teste. 
+Para viabilizar a possibilidade de avaliar o desempenho das redes treinadas o conjunto de dados foi divido entre treinamento e validação. A escolhe de não utilizar parte do conjunto como teste parte do princípio de que os dados já são extremamente desbalanceados, então informação da classe de malignos seria perdida para o treinamento. Entretanto, existem mais conjuntos públicos com imagens de lesões com o mesmo objetivo de classificar câncer de pele, portanto conjuntos externos podem ser utilizados como teste futuramente. 
 
-Todo o treinamento foi realizado configurando a rede para maximizar métricas de sensibilidade e área sob a curva (AUC). Para avaliação pós treinamento, foi avaliado também metricas de precisão e a taxa de falsos negativos, além da matriz de confusão. 
+Todo o treinamento foi realizado configurando-se a rede para maximizar métricas de sensibilidade e área sob a curva (area under curve - AUC). Para avaliação pós treinamento, foi avaliado também metricas de precisão e a taxa de falsos negativos, além da matriz de confusão. 
 - Divisão de dados: organizar o conjunto de dados em bancos de treinamento, validação e teste para avaliar e validar o desempenho do modelo. 
 
 *4. Melhoria e refinamento:*
@@ -80,12 +78,16 @@ Todo o treinamento foi realizado configurando a rede para maximizar métricas de
 - Ajuste e refinamento do modelo: explorar técnicas relevantes na literatura como esembles, segmentação da lesão na imagem, além de iterações adicionais para ajustar e refinar o modelo com base nos resultados obtidos na etapa validação.
 
 - Aquisição de recursos computacionais: devido ao tempo consumido nos treinamentos sem GPU (e mesmo à impossibilidade de trabalhar com o conjunto de dados inteiro), optou-se pela aquisição de recursos computacionais esporádicos via Google Colab.
+
+*5. Metodologia Simple-Complex:*
+
+- Avaliar simultaneamente arquiteturas complexas e consolidadas como Resnet50, MobileNet, EfficientNet e modelos mais simples (começando com pouca profundidade e pequena quantidade de filtros), afim de realizar a tarefa com o menor custo computacional possível e possibilitar mais abordagens de pré-processamento.
   
 ## Bases de Dados e Evolução
 
 Base de Dados | Endereço na Web | Resumo descritivo
 ----- | ----- | -----
-SIIM-ISIC Melanoma Classification | https://www.kaggle.com/competitions/siim-isic-melanoma-classification/data |  O conjunto possui imagens de lesões de pele, tanto de melanomas benignos quanto malignos.
+SIIM-ISIC Melanoma Classification | https://www.kaggle.com/competitions/siim-isic-melanoma-classification/data |  O conjunto possui imagens de lesões de pele, tanto de lesões benignas quanto malignas.
 
 A base possui 88251 imagens do tipo dicom, jpg e tfrecords, totalizando 116.16 GB de tamanho com anotações de identificador exclusivo da imagem, identificador único do paciente, sexo, idade aproximada do paciente no momento da imagem, localização do site com imagem, informações de diagnóstico detalhadas e indicador de malignidade da lesão. Para este projeto, serão utilizadas apenas as imagens jpg, totalizando 33007 arquivos.
 
@@ -103,7 +105,7 @@ Estatísticas quantitativas | Mínimo | Máximo | Média
 Idade | 0 | 90 | 55
 
 # Ferramentas
-O projeto será realizado com o auxílio do Google Colab para treinamento das redes com GPUs. Ainda, bibliotecas como:
+O projeto será realizado com o auxílio do Google Colab para treinamento das redes com GPUs adquiridas A100, V100 e T4. Ainda, bibliotecas como:
 Keras e Tensorflow, pela facilidade de manuseio dos algoritmos de aprendizado de máquina e processamento de imagens;
 Sklearn, para avaliar métricas de resultados dos classificadores;
 OS e Shutil, para movimentação dos arquivos entre diretórios;
@@ -121,9 +123,9 @@ Draw.IO, para confecção do Workflow.
 
 Os experimentos foram realizados através de diferentes arquiteturas, tamanhos de batch e transformações de data augmentation. Ainda, devido à quantidade de imagens, os primeiros testes foram realizados em um conjunto diminuído de dados, visando garantir que as primeiras aplicações iriam ocorrer corretamente ao longo de todo o fluxo de pré processamento, treinamento e validação dos resultados. Dessa forma, os experimentos baseados em batch tamanho 32, otimizadores Adam e SGD (*stochastic gradient descent*) e treinamentos de 20 épocas basearam-se da seguinte forma:
 
-Experimento 1 - CNN simples com downsampling e conjunto completo <br>
+Experimento 1 - CNN simples com downsampling da classe majoritária e  <br>
 ----- 
-Para a primeira etapa do projeto, 10% do conjunto de imagens benignas foram aleatoriamente selecionadas, visando facilitar os primeiros treinamentos e garantir o fluxo do que estava sendo desenvolvido e aplicado. Com o conjunto selecionado e fixado através de uma semente, foi realizada a padronização das imagens, pois o processo garante a normalização das intensidades, reduzir vieses e melhorar a estabilidade numérica do processo de treinamento. Ainda, o data augmentation aplicado consiste em testar diferentes faixas de deslocamento horizontal e vertical, distorções de cisalhamento aleatórias nas imagens, zoom aleatório e ajustes de brilho e matiz. Por fim, uma rede desenvolvida do zero foi criada, consistindo em camadas convolucionais, normalização por batch, pooling global de média para extrair características da imagem e uma camada densa final para realizar a classificação das imagens. 
+Para a primeira etapa do projeto, 10% do conjunto de imagens benignas foram aleatoriamente selecionadas, visando facilitar os primeiros treinamentos e garantir o fluxo do que estava sendo desenvolvido e aplicado. Com o conjunto selecionado e fixado através de uma semente, foi realizada a padronização das imagens, pois o processo garante a normalização das intensidades, reduzir vieses e melhorar a estabilidade numérica do processo de treinamento. Ainda, a aumentação de dados aplicada consiste em testar diferentes faixas de deslocamento horizontal e vertical, distorções de cisalhamento aleatórias nas imagens, zoom aleatório e ajustes de brilho e matiz. Por fim, uma rede desenvolvida do zero foi criada, consistindo em camadas convolucionais, normalização por batch, pooling global de média para extrair características da imagem e uma camada densa final para realizar a classificação das imagens. 
 
 Os resultados de acurácia são significativos, porém ainda há o mesmo problema de todas as amostras da classe maligna ser classificada como benigna. 
 
@@ -132,7 +134,6 @@ Os resultados de acurácia são significativos, porém ainda há o mesmo problem
 **Taxa de falso negativo:** 
 
 $$\frac{FN}{FN+VN}=\frac{118}{118+0}=1$$
-
 
 Com a mesma rede implementada no exemplo anteior, foi realizado o treinamento conjunto de dados completo, considerando exatamente a mesma divisão entre treinamento e validação. Nesse cenário, 24402 imagens foram utilizadas no treinamento da rede e 8608 imagens foram usadas para validação. Também a título de comparação, todas as imagens foram inseridas na rede convolucional com dimensões 224 x 224 e com a aplicação das mesmas técnicas de data augmentation.
 
@@ -164,12 +165,10 @@ Durante a etapa preliminar do projeto, o grupo enfrentou limitações de recurso
 
 Foi observado que arquiteturas como EfficientNetB3 apresentam alta eficiência mesmo com um número inferior de parâmetros em comparação com a ResNet-50, Ainda, embora não listado no gráfico, a MobileNet possui as mesmas características e também foi considerada como uma rede promissora. Com base nessa constatação, os experimentos subsequentes levaram em consideração essas arquiteturas, bem como redes mais simples, a fim de avaliar seu desempenho. No entanto, mesmo com a escolha de redes mais leves, ainda era necessário lidar com a demanda de memória RAM para processar as imagens. Para contornar essa limitação, o grupo adquiriu unidades de computação do Google Colab, permitindo o acesso a GPUs mais potentes, como A100, V100 e T4, por períodos de tempo mais longos. Essa abordagem possibilitou realizar os experimentos de forma mais eficiente e obter resultados relevantes para o projeto.
 
-
-
 Experimento 3 - CNN de Complexidade Média e Técnicas de Oversampling e Downsampling
 ----- 
 
-Em vista da baixa performance de arquiteturas com CNN simples, passou-se à exploração de arquiteturas mais complexas porém com número de parâmetros ainda inferior às arquiteturas Estado da Arte, a fim de acelerar o processo de treinamento e testar técnicas de pré-processamento. Os modelos foram treinados por 100 épocas. A fim de obter mais informações acerca dos impactos do processamento e evitar maior variabilidade do modelo, o grupo optou por fixar o número de camadas nos testes intermediários e limitar a quantidade de filtros. A arquitetura utilizada é apresentada abaixo, consistindo de entrada, cinco camadas convolucionais (todas com batch normalization) e duas camadas totalmente conectadas para classificação. A técnica de dropout é aplicada para regularização. 
+Em vista da baixa performance de arquiteturas com CNN simples (poucas camadas e filtros), passou-se à exploração de arquiteturas mais complexas porém com número de parâmetros ainda inferior às arquiteturas Estado da Arte, a fim de acelerar o processo de treinamento e testar técnicas de pré-processamento. Os modelos foram treinados por 100 épocas. A fim de obter mais informações acerca dos impactos do processamento e evitar maior variabilidade do modelo, o grupo optou por fixar o número de camadas nos testes intermediários e limitar a quantidade de filtros. A arquitetura utilizada é apresentada abaixo, consistindo de entrada, cinco camadas convolucionais (todas com batch normalization) e duas camadas totalmente conectadas para classificação. A técnica de dropout é aplicada para regularização. 
 
 <p align="center">
   <img src="assets/rede.JPG">
@@ -189,11 +188,15 @@ Experimento 4 - EfficientNet B3
 
 A EfficientNet caracteriza uma família de arquiteturas de redes neurais convolucionais projetada para alcançar um equilíbrio ideal entre precisão e eficiência computacional em tarefas de visão computacional. Essa família de redes foi desenvolvida por Mingxing Tan e Quoc V. Le, pesquisadores do Google, e sua primeira versão foi introduzida em 2019.
 
-
 Baseada em um conceito chamado "escalabilidade composta" (compound scaling), a escala da rede é aumentada de forma proporcional em todas as dimensões relevantes, em vez de simplesmente aumentar a profundidade ou a largura. Isso é conseguido por meio de uma fórmula que define a relação entre as diferentes escalas, permitindo um aumento harmonioso e controlado da arquitetura. Além disso, o EfficientNet utiliza blocos residuais chamados de MBConv (Mobile Inverted Bottleneck Convolution). Esses blocos são projetados para serem computacionalmente eficientes, combinando convoluções de ponto de entrada (*input point-wise*) e convoluções de ponto de saída (*output point-wise*) com uma camada de convolução profunda no meio.
 
+Experimento 5 - CNNs com técnicas de downsampling da classe majoritária e upsampling da classe minoritária
+----- 
 
-Experimento 5 - MobileNetV2
+Como as CNNs simples não apresentaram bom desempenho na melhoria do Falso Negativo, caracterizamos os efeitos das variadas técnicas de augmentation nas CNNs de menor e média complexidade, avaliando a AUC para dez épocas de treinamento. Em ordem de eficácia na melhoria do falso negativo, destacam-se as técnicas de Height Shift Range, Width Shift Range e Zoom Range. As outras técnicas aplicadas mostraram pouca ou nenhuma influência quando consideradas individualmente. Buscas mais detalhadas e com mais épocas podem ser feitas para avaliar o efeito das técnicas de pré-processamento em CNNs de baixa complexidade. Para efeitos de teste, mantivemos apenas o Height Shift Range como técnica de augmentation, já que seu resultado superou o resultado das outras técnicas. 
+
+
+Experimento 6 - MobileNetV2
 ----- 
 
 Também conhecida como uma arquitetura desenvolvida para aplicações de visão computacional em dispositivos com recursos computacionais limitados, a MobilNet foi projetada com o objetivo de alcançar um equilíbrio entre a precsão do modelo e a eficiência computacional. Para tanto, seu diferencial são camadas de convolução profunda separrável em vez de convoluções padrão, considerando duas etapas: a primeira é uam convolução em que cada filtro opera em um canal de entrada, e a sgunda etapa é uma convolução ponto a ponto, onde um filtro linear é aplicado a cada para de características separadamente. Isso permite uma redução significativa no número de parâmetros e operações em comparação com as convoluções padrão, tornando a MobileNet mais leve e rápida.
