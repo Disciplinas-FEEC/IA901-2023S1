@@ -180,6 +180,13 @@ Rede 1 - 32, 32, 256, 256 e 512 filtros; Rede 2 - 64, 64, 128, 128, 256 filtros
 
 Experimento 4 - EfficientNet 
 ----- 
+
+A EfficientNet caracteriza uma família de arquiteturas de redes neurais convolucionais projetada para alcançar um equilíbrio ideal entre precisão e eficiência computacional em tarefas de visão computacional. Essa família de redes foi desenvolvida por Mingxing Tan e Quoc V. Le, pesquisadores do Google, e sua primeira versão foi introduzida em 2019.
+
+
+Baseada em um conceito chamado "escalabilidade composta" (compound scaling), a escala da rede é aumentada de forma proporcional em todas as dimensões relevantes, em vez de simplesmente aumentar a profundidade ou a largura. Isso é conseguido por meio de uma fórmula que define a relação entre as diferentes escalas, permitindo um aumento harmonioso e controlado da arquitetura. Além disso, o EfficientNet utiliza blocos residuais chamados de MBConv (Mobile Inverted Bottleneck Convolution). Esses blocos são projetados para serem computacionalmente eficientes, combinando convoluções de ponto de entrada (*input point-wise*) e convoluções de ponto de saída (*output point-wise*) com uma camada de convolução profunda no meio.
+
+
 Experimento 5 - MobileNetV2
 ----- 
 
