@@ -39,29 +39,30 @@ Diversos conjuntos de dados estão disponíveis na internet para classificação
 Modelos: 
 Nós iremos tentar solucionar o problema de classificação utilizando transfer learning, onde arquiteturas de ponta como AlexNet, ResNet e InceptionV4 são inicializadas com pesos pré-treinados provenientes de um treinamento com grandes conjuntos de dados de referência compostos por imagens naturais, e apenas uma parte é ajustada utilizando um pequeno número de imagens de ressonância magnética (MRI). Para essa entrega, iniciamos nossa análise com a AlexNet, por oferecer um bom desempenho comprovado, eficácia na extração de características, capacidade de aprendizado, prevenção de overfitting e acesso a recursos e implementações existentes. Futuramente, nós iremos então, implementar e comparar a performance dessas redes, buscando encontrar qual obtém as melhores métricas de performance em nosso dataset. 
 
-
 ## Bases de Dados e Evolução
 
-Base de Dados | Endereço na Web | Resumo descritivo
------ | ----- | -----
-Kaggle Alzheimer MRI Preprocessed Dataset | https://www.kaggle.com/datasets/sachinkumar413/alzheimer-mri-dataset | Dataset do Kaggle para experimentos iniciais
-Open Access Series of Imaging Studies (OASIS) | https://www.oasis-brains.org/ | O OASIS (Open Access Series of Imaging Studies) é um projeto que visa tornar conjuntos de dados de neuroimagem do cérebro disponíveis gratuitamente para a comunidade científica. Existem quatro bases disponibilizadas - OASIS 1 a OASIS 4, com OASIS 1 e OASIS 2 consideradas as bases mais apropriadas para projetos acadêmicos.
+Base de Dados | Endereço na Web | Resumo descritivo 
+----- | ----- | ----- 
+Kaggle Alzheimer MRI Preprocessed Dataset | https://www.kaggle.com/datasets/<br/>sachinkumar413/alzheimer-mri-dataset | O Kaggle é uma plataforma de competições de ciência de dados e uma comunidade online de cientistas de dados e praticantes de aprendizado de máquina.
+Open Access Series of Imaging Studies (OASIS) | https://www.oasis-brains.org/ | O OASIS é um projeto que visa tornar conjuntos de dados de neuroimagem do cérebro disponíveis gratuitamente para a comunidade científica. | 
+The Alzheimer’s Disease Neuroimaging Initiative (ADNI) | https://adni.loni.usc.edu/about/ | O ADNI é um estudo longitudinal multicêntrico projetado para a detecção precoce e monitoramento da doença de Alzheimer (DA). Permitindo o compartilhamento de dados entre pesquisadores ao redor do mundo. |
 
-**Kaggle Dataset**: Os dados são coletados de vários sites/hospitais/repositórios públicos. O conjunto de dados consiste em recortes bidimensionais de imagens MRI pré-processadas (imagem por ressonância magnética). Todas as imagens são redimensionadas em 128 x 128 pixels.
+- **Kaggle Dataset**
 
-O Dataset tem quatro classes de imagens, com um total de 6.400 imagens de ressonância magnética.
-- Classe - 1: Demente Leve (896 imagens)
-- Classe - 2: Demente Moderado (64 imagens)
-- Classe - 3: Não Demente (3200 imagens)
-- Classe - 4: Demente Muito Leve (2240 imagens)
+Os dados foram coletados de vários sites/hospitais/repositórios públicos. O conjunto de dados consiste em recortes bidimensionais de imagens MRI pré-processadas (imagem por ressonância magnética). Devido a escassez de informações sobre a origem desse banco de dados, número de indivíduos, pré-processamento e de como foi realizada a seleção das fatias e separação das pastas, optamos por utilizar o Kaggle apenas para uma exploração inicial de nossa tarefa de classificação.
 
-**OASIS1**: De acordo com o website, a OASIS1 é uma base de exames de ressonância magnética de 416 pacientes entre 18 e 96 anos. Para cada indivíduo, são incluídos 3 ou 4 exames individuais do tipo T1-weighted obtidos em sessões de exame único.
+O Dataset tem quatro classes de imagens, com um total de 6.400 fatias bidimensionais selecionados de imagens de ressonância magnética.
 
-Os pacientes são todos destros e incluem homens e mulheres. 100 dos indivíduos incluídos com mais de 60 anos de idade foram diagnosticados clinicamente com doença de Alzheimer (AD) muito leve a moderada. Além disso, um conjunto de dados de confiabilidade é incluído contendo 20 sujeitos não dementes foi adicionado em uma visita subsequente dentro de 90 dias de sua sessão inicial.
+![image](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/45d6c4e7-e14d-4d8e-9c97-a0a34fbd77d4)
 
-**OASIS2**: a OASIS2 é uma base de exames de ressonância magnética de 150 pacientes entre 60 e 96 anos. Cada indivíduo foi escaneado em duas ou mais visitas, separadas por pelo menos um ano, totalizando 373 sessões de imagem. Para cada sujeito, são incluídos 3 ou 4 exames individuais do tipo T1-weighted obtidos em sessões de exame único.
+- **OASIS Dataset**
 
-Os pacientes são todos destros e incluem homens e mulheres. 72 dos indivíduos foram caracterizados como não dementes ao longo do estudo, enquanto que 64 dos indivíduos incluídos foram caracterizados como dementes no momento de suas visitas iniciais e permaneceram assim para exames subsequentes, incluindo 51 indivíduos com doença de Alzheimer leve a moderada. Outros 14 indivíduos foram caracterizados como não dementes no momento de sua visita inicial e posteriormente caracterizados como dementes em uma visita posterior.
+O OASIS é uma base de imagens (3D) de ressonância magnética de 416 pacientes entre 18 e 96 anos. Para cada indivíduo, são incluídos 3 ou 4 exames individuais do tipo T1-weighted obtidos em sessões de exame único. Também é providenciado uma imagem pré-processada (Gain-field corrected, atlas registered, brain-masked), gerada a partir da média do sinal dos 3-4 exames de RM, esta foi a imagem que decidimos utilizar em nossa tarefa de classificação. O OASIS possui as mesmas 4 classes que o Kaggle, porém, devido ao baixo número de indivíduos na classe "Demente Moderado", nós decidimos realizar a classificação apenas das 3 classes mais númerosas.
+
+*Seleção de fatias*: Escolher os melhores dados possíveis para o treinamento é crucial para o sucesso da classificação. Tipicamente, a partir de um scan de ressonância magnética em 3D, temos um grande número de imagens para escolher. Em muitos dos métodos recentes, as imagens usadas para o treinamento são extraídas aleatoriamente. No entanto, em nosso método proposto, extraímos as fatias mais informativas para treinar a rede. Para isso, calculamos a entropia da imagem de cada fatia. A entropia fornece uma medida de variação em uma fatia. Portanto, se ordenarmos as fatias em termos de entropia em ordem decrescente, as fatias com os maiores valores de entropia podem ser consideradas as imagens mais informativas, e usar essas imagens para treinamento proporcionará robustez ao modelo.
+
+*Balanceamento de classes*: Mesmo reduzindo nossa classificação a 3 classes, ainda havia um grande desbalanceamento entre as classes, para concertar isso, aplicamos um algoritmo de balanceamento de classes. O algoritmo SMOTETomek é uma técnica de amostragem híbrida que combina a Synthetic Minority Over-sampling Technique (SMOTE) e o método Tomek Links. É amplamente utilizado para tratar o desbalanceamento de classes em problemas de classificação. Essa abordagem consiste em duas etapas principais. Primeiro, o algoritmo aplica o SMOTE para gerar novas amostras sintéticas da classe minoritária, a fim de equilibrar a distribuição das classes. Em seguida, ele utiliza o método Tomek Links para identificar e remover amostras ambíguas ou ruidosas presentes nas regiões de sobreposição entre as classes. Isso resulta em um conjunto de dados mais balanceado e de melhor qualidade para treinamento de modelos de aprendizado de máquina. O objetivo final do algoritmo SMOTETomek é melhorar o desempenho dos classificadores ao lidar com problemas de desbalanceamento de classes, proporcionando uma representação mais justa das diferentes classes presentes nos dados.
+
 
 # Ferramentas
 
