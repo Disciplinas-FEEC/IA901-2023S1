@@ -177,10 +177,6 @@ Rede 1 - 32, 32, 256, 256 e 512 filtros; Rede 2 - 64, 64, 128, 128, 256 filtros
   <img src="assets/rede1-2.png">
 </p>
 
-**Taxa de falso negativo:** 
-
-$$\frac{FN}{FN+VN}=\frac{118}{118+0}=1$$
-
 Experimento 4 - EfficientNet 
 ----- 
 Experimento 5 - MobileNetV2
