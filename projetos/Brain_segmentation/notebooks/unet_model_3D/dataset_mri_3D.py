@@ -4,6 +4,8 @@ import torch
 from glob import iglob
 from torch.utils.data import Dataset
 import torchio as tio
+from return_patch import ReturnPatch
+import random
 
 
 MODES = ["train", "val"]
@@ -45,19 +47,52 @@ class DatasetMRI(Dataset):
 
         dirname = os.path.basename(self.folder)
 
-        if dirname in ["dataset_no_preprocessing", "dataset_voxels_interpolation", "Dataset_HCexpCC"]:
+        if dirname in ["dataset_no_preprocessing", "dataset_voxels_interpolation", "dataset_normalization2"]:
             image = npz["data"][:]
             image = image.astype(np.float32)
             seg_image = npz["mask"].astype(np.float32)
             image = np.expand_dims(image, 0)
             seg_image = np.expand_dims(seg_image, 0)
 
-
         else:
             raise ValueError(f"self.folder {dirname} errado")
+    
+        subject = tio.Subject(
+            image=tio.ScalarImage(tensor = image), 
+            seg_image=tio.LabelMap(tensor = seg_image),
+        )
+
+        self.transform = tio.Compose([
+			tio.transforms.RandomAffine(scales=(0.9, 1.2), degrees=90),
+		])
 
         if self.transform is not None:
-            image, seg_image = self.transform(image, seg_image)
+            transformed = self.transform(subject)
+            image = transformed.image
+
+
+            image = np.asarray(image)
+
+
+        transformed = ReturnPatch(None, (102, 102, 102), fullrandom=True, segmentation=False)
+
+        seed = np.random.randint(2147483647)
+   
+        # Fixar seed e aplicar transformada na imagem
+        random.seed(seed)
+        torch.manual_seed(seed) 
+
+        image, _ = transformed(image)
+        #print("image",type(image))
+	
+        # Fixar seed e aplicar transformada na máscara
+        random.seed(seed) 
+        torch.manual_seed(seed) 
+        seg_image, _ = transformed(seg_image)
+
+
+ #       if self.transform is not None:
+ #           image, seg_image = self.transform(image, seg_image)
 
         return_dict = {"image": image, "seg_image": seg_image}
 

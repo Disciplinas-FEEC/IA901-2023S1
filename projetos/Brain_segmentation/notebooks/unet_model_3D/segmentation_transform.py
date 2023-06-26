@@ -5,7 +5,7 @@ import random
 import numpy as np
 
 from return_patch import ReturnPatch
-
+import torchio as tio
 
 
 class SegmentationTransform():
@@ -52,15 +52,11 @@ def get_transform(string):
     if string is None:
         image_transform = None
         target_transform = None
-    elif string == "resize":
-        image_transform = transforms.Resize(128)
-        target_transform = transforms.Resize(128, interpolation=transforms.InterpolationMode.NEAREST)
-    elif string == "resize_rotate_5":
-        image_transform = transforms.Compose([transforms.Resize(128), 
-                                              transforms.RandomAffine(5)])
-        target_transform = transforms.Compose([transforms.Resize(128, 
-                                                                 interpolation=transforms.InterpolationMode.NEAREST), 
-                                               transforms.RandomAffine(5)])       
+#    elif string == 'RAffine':
+            #subject = tio.Subject(image=tio.ScalarImage(tensor = image))
+#        image_transform = tio.transforms.Compose([tio.transforms.RandomAffine(scales=(0.9, 1.2), degrees=90)])
+ #       target_transform = tio.transforms.Compose([tio.transforms.RandomAffine(scales=(0.9, 1.2), degrees=90)])    
+
     elif string == "RandomCrop":
         return ReturnPatch(None, (102, 102, 102), fullrandom=True)
     elif string == "FocusedCrop_0333":
