@@ -102,7 +102,12 @@ Teste               | 424
 
 A figura abaixo mostra como ficou distribuido cada classe em cada conjunto de dados. Como pode-se observar, não há um grande desbalanceamento entre classes, porém há menos imagens das classes "tree" e "goddess" em todos os conjuntos de dados.
 
-![plot_imgs_classe](./assets/total_imgs_classe.png)
+![plot_imgs_classe](./assets/total_imgs_class.png)
+
+Por esta razão, foi feito um balanceamento dessas classes através de *data augmentation*, aplicando em 50% das imagens, de forma aleatória, um dos seguintes processamentos: flip horizontal, rotação, zoom, ruído gaussiano, blur. 
+Em seguida, foi feito um aumento de todas as classes, a fim de aumentar o conjunto de dados de treinamento. As mesmas transformações foram aplicadas em 80% do conjunto de dados pós-balanceamento, agora podendo ter mais de um tipo de processamento em cada nova imagem.
+
+![plot_imgs_classe](./assets/total_imgs_class_aug.png)
 
 
 # Ferramentas
