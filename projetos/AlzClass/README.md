@@ -169,7 +169,11 @@ O treinamento com a rede ResNet18 está em fase de testes, para garantirmos que 
 
 Adquirimos a base do OASIS para os testes de classificação.
 
-## Experimento inicial: Classificação de duas classes
+## Rede pré-treinada AlexNet
+
+Para esta série de experimentos, utilizamos a rede pré-treinada AlexNet executando o *fine-tuning* com as imagens do OASIS.
+
+### Experimento inicial: Classificação de duas classes
 
 Com a base do OASIS, criamos uma divisão simples de duas classes: indivíduos de controle e indivíduos com demência, para validar a eficácia das redes neurais em tratar a classificação.
 
@@ -186,7 +190,7 @@ Testando a classificação na base de testes obtemos a matriz de confusão abaix
 
 Notamos novamente que a performance inicial da rede neural é muito alta, com um índice de acerto em acima de 80% dos casos.
 
-## Pré-processamento e Ajuste de Híper-Parâmetros
+### Pré-processamento e Ajuste de Híper-Parâmetros
 
 Retornando à base completa do OASIS, que é composta de 4 classes:
 
@@ -197,7 +201,7 @@ Retornando à base completa do OASIS, que é composta de 4 classes:
 
 Executamos transformações e ajustes de híper-parâmetros do modelo AlexNet.
 
-### Transformações de imagens
+#### Transformações de imagens
 
 No arquivo [Transformações de imagens](/projetos/AlzClass/notebooks/OASIS/unbalanced/tuning-epochs/OASIS_AlexNet_transforms_50epochs.ipynb) executamos a classificação avaliando o impacto na acurácia, precisão e recall multiclasse ao aplicarmos as transformações/augumentações da base:
 
@@ -211,34 +215,48 @@ Os resultados indicam que a influência de qualquer uma das transformações aci
 
 **Modelo Base:**
 
-![Modelo Base](assets/Images/OASIS_AlexNet/transformações/base-metrics.PNG)
+>![Modelo Base](assets/Images/OASIS_AlexNet/transformações/base-metrics.PNG)
 
 **Tons de Cinza:**
 
-![Tons de Cinza](assets/Images/OASIS_AlexNet/transformações/grayscale-metrics.PNG)
+>![Tons de Cinza](assets/Images/OASIS_AlexNet/transformações/grayscale-metrics.PNG)
 
 **Rotação Aleatória:**
 
-![Rotação Aleatória](assets/Images/OASIS_AlexNet/transformações/rotation-metrics.PNG)
+>![Rotação Aleatória](assets/Images/OASIS_AlexNet/transformações/rotation-metrics.PNG)
 
 **Centralização:**
 
-![Centralização](assets/Images/OASIS_AlexNet/transformações/crop-metrics.PNG)
+>![Centralização](assets/Images/OASIS_AlexNet/transformações/crop-metrics.PNG)
 
 **Redimensionamento:**
 
-![Redimensionamento](assets/Images/OASIS_AlexNet/transformações/resize-metrics.PNG)
+>![Redimensionamento](assets/Images/OASIS_AlexNet/transformações/resize-metrics.PNG)
 
 **Normalização:**
 
-![Normalização](assets/Images/OASIS_AlexNet/transformações/normalization-metrics.PNG)
+>![Normalização](assets/Images/OASIS_AlexNet/transformações/normalization-metrics.PNG)
 
 Notamos não só que o impacto de cada uma das transformações é irrelevante como no caso da Normalização temos uma piora sensível no desempenho do modelo.
 
-### Ajuste da taxa de aprendizado
+#### Ajuste da taxa de aprendizado
 
-### Ajuste da quantidade de épocas
+No arquivo [Taxa de Aprendizado](/projetos/AlzClass/notebooks/OASIS/unbalanced/tuning-lr/OASIS_AlexNet_transforms_50epochs_learn-rate.ipynb)
+executamos a classificação avaliando o impacto na acurácia, precisão e recall multiclasse ao modificarmos a taxa de aprendizado utilizada na fase de treinamento.
+Para este experimento utilizamos o treinamento em 50 épocas e nenhuma aplicação de transformação de imagens.
 
+**Taxa de aprendizado 0.001**
+>![LR 0.001](assets/Images/OASIS_AlexNet/taxa-aprendizado/lr-001.PNG)
+
+**Taxa de aprendizado 0.0001**
+>![LR 0.0001](assets/Images/OASIS_AlexNet/taxa-aprendizado/lr-0001.PNG)
+
+**Taxa de aprendizado 0.00001**
+>![LR 0.00001](assets/Images/OASIS_AlexNet/taxa-aprendizado/lr-00001.PNG)
+
+Notamos que o melhor resultado é obtido com a taxa de aprendizado **0.0001**.
+
+#### Ajuste da quantidade de épocas
 
 # ADNI Dataset
 
