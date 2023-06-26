@@ -14,4 +14,6 @@ Assim, os dados intermediários estão disponíveis em "Dados_filtrados" (https:
 
 A pasta "Dados_filtrados" (anexo) é um subconjunto ilustrativo dos dados intermediários, em que se pode visualizar algumas imagens do conjunto de treino, bem como o arquivo correspondente ao labels das referidas imagens (.txt).
 
+Além dos "Dados_filtrados", o conjunto de dados intermediários "Dados_balanceados" está exemplificado na pasta anexa (imagens e arquivo de rótulos). Os "Dados_balanceados" são resultantes do balanceamento das classes, excluindo imagens em que se encontra somente a ação humana "walk" (classe com maior número de amostras). O conjunto completo dos "Dados_balanceados" pode ser encontrado em <https://drive.google.com/drive/folders/1USrSfu15YqMutEhxG_7NctzzmTDNnai6?usp=sharing>.
+
 Outros dados intermediários do projeto, são os dados obtidos após a filtragem no domínio espacial, adotando o Filtro de Laplace. Conforme pode-se ver os exemplos na pasta "Filtro_Laplaciano" (anexa), as imagens filtradas são altamente segmentadas e, por isso, o grupo optou por não adotá-las como um conjunto de treinamento. O conjunto completo de imagens obtidas a partir da filtragem laplaciana pode ser verificado em <https://drive.google.com/drive/folders/11fpeEs_bpo2cMhblgVHUovZkou7GaT18?usp=sharing>.
