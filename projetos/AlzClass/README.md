@@ -165,9 +165,9 @@ Os resultados são apresentados nos gráficos abaixo:
 
 O treinamento com a rede ResNet18 está em fase de testes, para garantirmos que os resultados obtidos não sofreram overfitting. Mas como primeiro resultado, temos que a acurácia obtida foi em torno de **0.97**
 
-# OASIS Dataset
+# Experimentos e Resultados
 
-Adquirimos a base do OASIS para os testes de classificação.
+Após a exploração do dataset do Kaggle, procedemos aos passos de classificação do dataset do OASIS (OASIS 1) conforme descrito abaixxo.
 
 ## Rede pré-treinada AlexNet
 
@@ -272,16 +272,19 @@ Os melhores resultados (ainda que com pouca variação em relação ao pior caso
 >![Métricas 62 épocas](assets/Images/OASIS_AlexNet/épocas/62-centercrop-metrics.PNG)
 >![Matriz de Confusão 62 épocas](assets/Images/OASIS_AlexNet/épocas/62-centercrop-cf.PNG)
 
-# ADNI Dataset
+# Discussão 
 
 # Conclusões
 
-# Próximos passos
-- Treinar e avaliar outras redes neurais (ResNet, InceptionV4) no dataset do kaggle. (1 semana)
-- Expandir nossa análise para o dataset do OASIS, desenvolvendo uma pipeline apropriada para a ingestão deste formato de dados. (1 semana)
-- Executar o workflow definido pelo projeto na nova base de dados. (1 semana)
-- Analisar e apresentar os resultados obtidos com as nova rede e dataset, comparando com os resultados iniciais da base do Kaggle (1 semana)
+- O problema de classificação em Alzheimer é trivial. Redes simples pré-treinadas são capazes de separar classes de pacientes facilmente.
+- Os datasets disponíveis de forma aberta fornecem dados com alto nível de pré-processamento o que torna a utilização de outros tipos de pré-processamento de imagem irrelevante para os resultados alcançados.
+- Os datasets disponíveis são desbalanceados, o que torna o uso de algoritmos de balanceamento como SMOTE uma alternativa para melhorias de performance dos modelos estudados.
 
+# Trabalhos Futuros
+
+- Sensibilidade de classificação aos estágios iniciais e diagnóstico precoce
+- Análise multimodal: imagens funcionais, exames clínicos, idade, gênero, entre outras
+- Análise longitudinal e prognósticos 
 
 ## Referências
 Hon, Marcia, and Naimul Mefraz Khan. "Towards Alzheimer's disease classification through transfer learning." 2017 IEEE International conference on bioinformatics and biomedicine (BIBM). IEEE, 2017.
