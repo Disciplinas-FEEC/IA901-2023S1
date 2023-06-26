@@ -329,7 +329,6 @@ Pelos dados acima, verifica-se que todos os modelos apresentam baixo desempenho 
 
 No entanto, observa-se que os resultados são muito piores do que os resultados obtidos para o modelo correspondente durante o treinamento. Isso pode indicar o overfitting do modelo.
 
-COMPLETAR. VERIFICAR.
 
 **3 - Inferência: uso do modelo em caso real**
 
