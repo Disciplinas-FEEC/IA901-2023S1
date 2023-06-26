@@ -254,6 +254,10 @@ Os melhores resultados (ainda que com pouca variação em relação ao pior caso
 
 # Discussão 
 
+Durante o desenvolvimento do projeto, a equipe encontrou algumas dificuldades que não estavam claras no período de planejamento. Entre elas podemos destacar a qualidade dos dados disponibilizados de forma pública, o alto desempenho de redes neurais simples no tratamento do problema e a diferença no tratamento das imagens entre as bases. Encontramos, por exemplo, um alto grau de pré-processamento das imagens de ressonância magnética no caso do OASIS, e quase nenhum pré-processamento no caso do ADNI.
+
+Encontramos na literatura algumas metodologias incorretas de manipulação de datasets o que levou à contaminação das bases de teste. Em nossa opinião, isso levou à apresentação de resultados muito acima do real. No início do desenvolvimento do projeto, seguimos algumas dessas orientações incorretas o que levou a resultados incorretos com os experimentos iniciais. Ao analisarmos mais a fundo os nossos códigos computacionais e as metologias empregadas pelos artigos, notamos que haviam imagens pertecentes a um mesmo indivíduo em ambas as bases de treinamento e teste, fazendo com que o modelo aprendesse as características individuais da imagem ao invés das características da categoria.
+
 # Conclusões
 
 - O problema de classificação em Alzheimer é trivial. Redes simples pré-treinadas são capazes de separar classes de pacientes facilmente.
