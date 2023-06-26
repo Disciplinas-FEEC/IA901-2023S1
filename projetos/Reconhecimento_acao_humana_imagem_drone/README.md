@@ -325,16 +325,48 @@ Filtro de Sobel (dados filtrados) |  25<br>10<br>0.1   | NaN<br>NaN<br>0.0074  |
 
 Após os testes descritos na seção anterior e tendo comprovado que, apesar dos resultados insatisfatórios, o melhor modelo é o obtido a partir do treinamento com os dados aumentados (escala de cinza), realizou-se a inferência do modelo adotando dois conjuntos de dados: 
 
-- 1 - 15 imagens escolhidas aleatoriamente do conjunto de teste original (NTUT), convertidas em nível de cinza;
-- 2 - 12 imagens adquiridas com Phantom 4 Pro, convertidas em nível de cinza.
+- 1 - Imagens escolhidas aleatoriamente do conjunto de teste original (NTUT), convertidas em nível de cinza;
+- 2 - Imagens adquiridas com Phantom 4 Pro, convertidas em nível de cinza.
 
 Para cada conjunto de dados, inferiu-se o modelo em um nível de confiança de 25% e 10%. A seguir apresenta-se os resultados obtidos.
 
 - 1 - Inferência com imagens do dataset de teste (NTUT)
 
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/inf_1.jpg" height="350">
+</p>
 
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/inf_2.jpg" height="350">
+</p>
 
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/inf_3.jpg" height="350">
+</p>
 
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/inf_4.jpg" height="350">
+</p>
+
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/inf_5.jpg" height="350">
+</p>
+
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/inf_6.jpg" height="350">
+</p>
+
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/inf_7.jpg" height="350">
+</p>
+
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/inf_8.jpg" height="350">
+</p>
+
+Como pode-se visualizar nos exemplos acima, o modelo não produz bons resultados, o que corrobora com as métricas extraídas dos testes (descrito em "2 - Resultados obtidos para o conjunto de Teste").
+
+De modo geral, apesar de existirem classificações corretas, há muitas pessoas não detectadas na imagem e, consequentemente, cuja ação não é reconhecida, especialmente considerando o nível de confiança de 25%. Além disso, há diversos objetos reconhecidos como pessoas que não são humanos de fato, principalmente ao considerar o nível de confiança de 10%. Outro problema observado é que, ao considerar o nível de confiança de 10%, há casos em que é reconhecida mais de uma ação humana para uma única pessoa. 
   
 - 2 - Inferência com imagens de Phantom 4 Pro
 
