@@ -79,7 +79,8 @@ Todo o treinamento foi realizado configurando a rede para maximizar métricas de
 
 - Ajuste e refinamento do modelo: explorar técnicas relevantes na literatura como esembles, segmentação da lesão na imagem, além de iterações adicionais para ajustar e refinar o modelo com base nos resultados obtidos na etapa validação.
 
-
+- Aquisição de recursos computacionais: devido ao tempo consumido nos treinamentos sem GPU (e mesmo à impossibilidade de trabalhar com o conjunto de dados inteiro), optou-se pela aquisição de recursos computacionais esporádicos via Google Colab.
+  
 ## Bases de Dados e Evolução
 
 Base de Dados | Endereço na Web | Resumo descritivo
@@ -217,13 +218,11 @@ Ao longo dos experimentos preliminares até o resultado final deste projeto, nos
 
 
 -----
-# Próximos passos
-Estudos recentes avaliam a utilização de arquiteturas de redes neurais com essemble para garantir resultados superiores na classificação de lesões de pele. Dado isso, as sugestões de próximos passos são: 
+# Trabalhos Futuros
 
-- Desenvolvimento e validação de um esemble: criar um ensemble combinando previsões de redes com o modelo ResNet50 e avaliar o desempenho do ensemble usando o conjunto de validação;
-- Avaliar outras diferentes arquiteturas, como Inceptions;
-- Testar outras técnicas de data augmentation, como segmentação do tumor nas imagens e avaliar diferentes tamanhos de batch;
-- Teste e avaliação final: aplicar a melhor arquitetura avaliada no conjunto de validação nos dados de teste e reportar se os resultados foram significativos, principalmente para a taxa de falsos positivos.
+- Fazer busca refinada de parâmetros de pré-processamento com metodologia semelhante ao ajuste de hiperparâmetros;
+- Pesquisar metodologias para refinar a classificação, já que na maioria dos casos melhorar a classificação de melanomas implica em reduzir o acerto na classe benignos;
+
 
 ## Referências 
 1. Data Augmentation for Skin Lesion Analysis, CoRR 2018, Fábio Perez, Cristina Vasconcelos, Sandra Avila, Eduardo Valle
