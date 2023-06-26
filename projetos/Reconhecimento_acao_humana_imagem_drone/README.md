@@ -308,7 +308,14 @@ Escala de cinza (dados aumentados) |  0.545   | 0.471  | 0.555  |
 
 **2 - Resultados obtidos para o conjunto de Teste**
 
-ESCREVER.
+Modelo | Confiança | mAP@0.5 | mAP@0.95
+:-----: | :-----: | :-----: | :-----: |
+RGB (dados filtrados)  |    0.25<br>0.1<br>0.001    |   0.307<br>1<br>1  | 0.289<br>1<br>1
+Escala de cinza (dados filtrados)  |    0.564    |   0.307  | 0.289
+Escala de cinza (dados aumentados) |  0.545   | 0.471  | 0.555  |
+Escala de cinza (dados aumentados) |  0.545   | 0.471  | 0.555  |
+Escala de cinza (dados aumentados) |  0.545   | 0.471  | 0.555  |
+Escala de cinza (dados aumentados) |  0.545   | 0.471  | 0.555  |
 
 **3 - Inferência: uso do modelo em caso real**
 
