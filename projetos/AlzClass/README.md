@@ -66,9 +66,15 @@ O OASIS é uma base de imagens (3D) de ressonância magnética de 416 pacientes 
 
 ![image](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/3b55131b-75df-4b03-b717-fbd1d972642e) ![image](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/8f80de95-407b-4aa9-8a04-fb7d6b186335)
 
-Exemplo de imagens OASIS pré-processadas e suas respectivas classes:
+Exemplo de fatias retiradas de imagens OASIS pré-processadas e suas respectivas classes:
 
-![image](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/b65d2a34-b90b-4b40-9935-1a92244628af)
+![image](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/bcb3fa48-bcd7-44e7-8aa6-e4a7518f02b1)
+
+Exemplo de fatias retiradas de imagens OASIS pré-processadas e suas respectivas classes após transformações de data augmentation:
+
+
+![image](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/3280bec9-28e4-4169-afea-ac36b865f23e)
+
 
 
 
@@ -82,7 +88,7 @@ O ADNI é uma base de imagens (3D) de ressonância magnética de 1154 pacientes 
 
 ![image](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/3ef94618-5142-4d84-b717-ef9873d40bcf)
 
-Exemplo de imagens ADNI sem pré-processamento e suas respectivas classes:
+Exemplo de fatias retiradas de imagens ADNI sem pré-processamento e suas respectivas classes:
 
 ![image](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/58c5238e-d3ec-43be-a75c-ced1c7ec09d8)
 
