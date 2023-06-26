@@ -285,12 +285,30 @@ Observa-se que o balanceamento dos dados piorou os resultados. Conforme apresent
 
 ***1.4. Treinamento após a aumentação dos dados***
 
-Adotando todas as imagens (dados filtrados) em nível de cinza, realizou-se a aumentação dos dados adotando as seis transformações citadas anteriormente. Adotando o conjunto de dados aumentado (dados filtrados + imagens obtidas a partir das técnicas de *data augmentation*), realizou-se um novo treinamento, com 30 épocas. Os resultados são apresentados a seguir.
+Adotando todas as imagens (dados filtrados) em nível de cinza, realizou-se a aumentação dos dados adotando as seis transformações citadas anteriormente. Com o conjunto de dados aumentado (dados filtrados + imagens obtidas a partir das técnicas de *data augmentation*), realizou-se um novo treinamento com 30 épocas. Os resultados são apresentados a seguir, comparados ao resultado do treinamento ao adotar os dados filtrados apenas em escala de cinza (sem aumentação).
 
 Processamento dos Dados | Precisão | Recall | mAP@0.5
 :-----: | :-----: | :-----: | :-----: |
 Escala de cinza (dados filtrados)  |    0.564    |   0.307  | 0.289
-Escala de cinza (dados aumentados) |  0.545   | 0.471  | 0.555  |
+Escala de cinza (dados aumentados) |  0.545   | 0.471  | 0.55  |
+
+Apesar da precisão ter sido um pouco reduzida se comparada à precisão do modelo treinado apenas com os dados filtrados (redução de 1.9%), o recall obtido ao adotar os dados aumentados é melhor. Consequentemente, houve uma melhoria considerável na mAP@0.5, que, nesse modelo, é de 55%.
+
+A figura a seguir apresenta a mAP@0.5 para as quatro classes considerando os modelos treinados com dados filtrados e dados aumentados. Verifica-se que mAP@0.5 é bem melhor para todas as classes. Apenas a classe "sit" obteve mAP@0.5 menor de 50%, o que pode ser ocasionado pela pequena quantidade de amostras originais dessa classe.
+
+*Resultados do treinamento com dados aumentados*
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/PR_curve_nc_aumentado.png" height="350">
+</p>
+
+As curvas de precisão, recall e mAP@0.5 do modelo resultante dos dados aumentados, obtidas com as 30 épocas de treinamento, são ilustradas na figura a seguir.
+
+*Precisão, recall e mAP@0.5 para o melhor modelo obtido*
+<p align="left">
+    <img src="../Reconhecimento_acao_humana_imagem_drone/assets/best_model.png" height="350">
+</p>
+
+Dessa forma, considera-se que o melhor modelo obtido é resultante do treinamento ao adotar os dados aumentados. Apesar de não apresentar excelentes métricas, as métricas desse modelo podem ser consideradas satisfatórias frente aos modelos inicialmente treinados. 
 
 **2 - Resultados obtidos para o conjunto de Teste**
 
