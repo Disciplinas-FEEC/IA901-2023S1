@@ -184,7 +184,7 @@ Rede 1 - 32, 32, 256, 256 e 512 filtros; Rede 2 - 64, 64, 128, 128, 256 filtros
   <img src="assets/rede1-2.png">
 </p>
 
-Experimento 4 - EfficientNet 
+Experimento 4 - EfficientNet B3
 ----- 
 
 A EfficientNet caracteriza uma família de arquiteturas de redes neurais convolucionais projetada para alcançar um equilíbrio ideal entre precisão e eficiência computacional em tarefas de visão computacional. Essa família de redes foi desenvolvida por Mingxing Tan e Quoc V. Le, pesquisadores do Google, e sua primeira versão foi introduzida em 2019.
