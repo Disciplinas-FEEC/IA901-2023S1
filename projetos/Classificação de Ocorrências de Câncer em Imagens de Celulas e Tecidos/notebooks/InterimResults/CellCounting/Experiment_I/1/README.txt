@@ -1,0 +1,1 @@
+Run com 70 epocas usando a EfficientNetB0

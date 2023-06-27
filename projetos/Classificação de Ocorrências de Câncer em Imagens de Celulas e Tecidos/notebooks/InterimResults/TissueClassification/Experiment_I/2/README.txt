@@ -1,0 +1,1 @@
+Treinamento será feito com 100 épocas. Usarei menos técnicas de data augmentation (horizontal, vertical flips e random crop com reflect.)

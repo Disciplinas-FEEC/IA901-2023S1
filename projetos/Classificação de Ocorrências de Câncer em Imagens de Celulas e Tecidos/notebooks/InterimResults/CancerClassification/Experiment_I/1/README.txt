@@ -1,0 +1,1 @@
+Treino por 70 épocas e configuração final de data augmentation

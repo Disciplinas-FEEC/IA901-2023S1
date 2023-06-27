@@ -1,0 +1,1 @@
+Neste caso, usaremos Colon como a classe positiva e os demais tecidos como classe negativa. Empregaremos a EfficientNetb0 pra isso.

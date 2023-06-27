@@ -1,0 +1,1 @@
+Experimento usando a EfficientNet para classificar  diferentes tecidos (multi-classe)
