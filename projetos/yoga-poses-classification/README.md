@@ -13,12 +13,16 @@ Sara Mirthis Dantas dos Santos | 224018 | Aluna Especial - Engenharia Elétrica
 Yasmin Martins Perci           | 271281 | Aluna Especial - Engenharia Elétrica
 
 ## Descrição do Projeto
+A classificação de posturas de yoga pode ser muito útil para instrutores, praticantes e para o desenvolvimento de aplicativos ou dispositivos de assistência. Além disso, esse classificador pode ser aprimorado para aplicações de monitoramento de progresso individual, correção de posturas inadequadas e, consequentemente, prevenção de lesões dos praticantes.
 
-A classificação de posturas de yoga pode ser muito útil para instrutores, praticantes e para o desenvolvimento de aplicativos ou dispositivos de assistência. Além disso, esse classificador pode ser aprimorado para aplicações de monitoramento de progresso individual, correção de posturas inadequadas e, consequentemente, prevenção de lesões dos praticantes. 
+Trabalhos anteriores de classificação de posturas de yoga utilizam deep learning [3], [6] ou técnicas de machine learning para extrair atributos relacionados a ângulos e distância entre pontos do esqueleto e utilizam em classificadores clássicos [2], [5], [7], [12]. 
 
-Trabalhos anteriores de classificação de posturas de yoga utilizam deep learning [3], [6]. Já outros utilizam técnicas de machine learning para extrair atributos relacionados a ângulos e distância entre pontos do esqueleto [2], [5], [7], [12]. Nesse contexto, o objetivo deste trabalho é realizar um estudo comparativo entre o desempenho de uma CNN e uma KNN com atributos extraídos por meio de processamento de imagem para classificar 5 posturas de Yoga. A partir de processamento de imagem, com a aplicação de filtros, detecção de bordas, a KNN será treinada com o vetor resultante do código da cadeia de Freeman, e, a partir das métricas de avaliação, o seu desempenho será comparado com o de uma CNN.
+Inicialmente, o objetivo do projeto era um estudo comparativo entre o desempenho de uma CNN e uma KNN com extração de atributos para classificar 5 posturas de Yoga. A partir de processamento de imagem, com a aplicação de filtros, detecção de bordas, a KNN seria treinada com o vetor resultante do código da cadeia de Freeman, e, a partir das métricas de avaliação, o seu desempenho seria comparado com o de uma CNN.
 
-Portanto, a principal contribuição do trabalho é ressaltar a relevância do processamento de imagem, mesmo em um cenário dominado por técnicas de deep learning. Dessa forma, visa-se demonstrar que é possível obter resultados significativos usando algoritmos mais simples e clássicos, como KNN, quando associados ao processamento de imagens. 
+Porém, na etapa de processamento de dados, observou-se que mesmo testando duas vertentes diferentes de extração de informações e refinando as técnicas complementares, não foram obtidos resultados satisfatórios para todas as imagens, pois muitas ainda apresentavam elementos do fundo após a segmentação. Dessa forma, concluiu-se que a estratégia escolhida para a classificação a partir da extração de atributos apresentava uma complexidade desproporcional à proposta do projeto final da disciplina.
+
+Nesse contexto, o objetivo deste trabalho foi reformulado para realizar um estudo comparativo entre o desempenho de uma CNN com e sem o pré-processamento de dados para classificar 5 posturas de Yoga. A CNN foi treinada com as imagens processadas e, a partir das métricas de avaliação, o seu desempenho foi comparado com o de uma CNN sem pré-processamento, mas com a mesma arquitetura e hiperparâmetros.
+
 
 # Metodologia
 
