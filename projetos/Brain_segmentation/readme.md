@@ -181,7 +181,8 @@ Os resultados qualitativos (Figura 05) confirmam a boa qualidade das segmentaç�
 
 ![Res_qual](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/resul_qual_3D.png)*Figura 05 - Resultados qualitativos usando o melhor Dice obtido em cada conjunto de dados. Renderização 3D da saída do modelo (sup.) e sobreposição das anotação manual e a saída do modelo em fatias centrais dos três eixos (axial, coronnal e sagital). Anotação manual (azul) e saída do modelo (vermelho).*
 
-# Conclusão 
+# Conclusão
+Notou-se ao final do trabalho que o modelo 3D apresentou resultados superiores ao do modelo 2D, especialmente por conta da rede mais complexa utilizada por ele. Em ambos os casos, entretanto, foram obtidas melhorias com o uso de pré-processamentos e/ou data augmentation e foram mapeadas melhorias futuras, que poderiam ser implementadas, com mais tempo, em outro momento. No geral, houve muito aprendizado na manipulação de modelos de Machine Learning aplicados a imagens médicas por parte de todos os integrantes do grupo, e o mapeamento de atividades futuras mostra que o trabalho ainda é promissor quanto a aprimoramento e evolução.
 
 # Próximos passos
 
