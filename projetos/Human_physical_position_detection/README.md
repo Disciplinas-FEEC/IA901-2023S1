@@ -53,22 +53,23 @@ A partir desta primeira base de dados irão ser propostas os treinamentos de alg
 
 * AlexNet
 * VGG19
-* Efficientnet
+* Efficientnet-B0
+* Efficientnet-B2
 * Efficient_V2
 * Googlenet
 * Resnet18
 
-Todas estas redes possuem histórico de terem sido utilizadas para classificar imagens com vários labels. Então a primeiro momento, é necessário alterar o layer de saída para que seja compatível com o problema atual, com 3 labels. Entretanto, após inícios dos testes, o grupo percebeu que se tornava inviável o teste de muitas redes, devido a limitação da memória computacional e de tempo. Visto isso, foi realizado um estudo correlacionando a relação de custo computacional e acurácia entregue, a partir disso o grupo conseguiu concluir que ....
+Todas estas redes possuem histórico de terem sido utilizadas para classificar imagens com vários labels. Então a primeiro momento, é necessário alterar o layer de saída para que seja compatível com o problema atual, com 3 labels. Entretanto, após inícios dos testes, o grupo percebeu que se tornava inviável o teste de muitas redes, devido a limitação da memória computacional e de tempo. Visto isso, foi realizado um estudo correlacionando a relação de custo computacional e acurácia entregue, a partir disso o grupo conseguiu concluir que o uso da rede de modelo Efficientnet-B2 era o mais viável por entregar uma boa precisão com um baixo número de parametros, garantindo uma melhor qualidade na classificação sem atingir o limite da mémoria disponibilizada na GPU dos notebooks desenvolvidos.
 
 ## Fine-Tunning
 
-Devido a baixa complexidade do dataset adotado e que ao testar com imagens reais, a sua acurácia diminui, se faz necessário utilizar de técnicas que consigam utilizar as informações obtidas pelas redes com silhuetas e adicione informações de imagens reais. O fine-tunning propõe exatamente este ponto, pois de maneira bastante objetiva, pretende-se congelar as primeiras camadas da rede, responsáveis pela aquisição de features e então “retreinar” as últimas camadas com um learn rate menor visando então refinar a classificação para casos que não entrem com silhueta.
+Devido a baixa complexidade do dataset adotado e que ao testar com imagens reais, a sua acurácia diminui, se faz necessário utilizar de técnicas que consigam utilizar as informações obtidas pelas redes com silhuetas e adicione informações de imagens reais. O fine-tunning propõe exatamente este ponto, pois de maneira bastante objetiva, pretende-se congelar as primeiras camadas da rede, responsáveis pela aquisição de features e então “retreinar” as últimas camadas com um learn rate maior visando então refinar a classificação para casos que não entrem com silhueta.
 
-Para isso será utilizado um dataset menor composto de imagens com os mesmos labels da rede previamente treinada, uma comparação do antes e depois do fine-tunning será apresentado.
+Para isso será utilizado um dataset menor composto de imagens com os mesmos labels da rede previamente treinada, com adição de um data augmentation para melhores resultados, e uma comparação do antes e depois do fine-tunning será apresentado.
 
 ## Segunda abordagem
 
-Uma abordegmentando-a agem secundária que trabalha com a imagem diretamente, e ao utilizar uma rede de segmentação de objetos, no caso seres humanos que irá gerar a silhueta e então entrará direto na rede de silhuetas que foi treinada no passo anterior.
+Uma abordagem secundária que trabalha com a imagem diretamente, e ao utilizar uma rede de segmentação de objetos, no caso seres humanos que irá gerar a silhueta e então entrará direto na rede de silhuetas que foi treinada no passo anterior.
 A rede a ser utilizada é a [Mask R-CNN](https://github.com/matterport/Mask_RCNN), baseada FPN (Feature pyramid network) e Resnet01 a ser utilizada no desafio COCO (Common Objects in Context). Essa rede então irá encontrar objetos em uma imagem, definirá bounding boxes e a partir delas irá gerar máscaras correspondentes a silhueta do objeto. As imagens utilizadas serão as mesmas aplicadas na rede com finetunning, visando uma comparação com as mesmas imagens.
 
 ## Bases de Dados e Evolução
