@@ -91,14 +91,31 @@ MUDAR MUDAR MUDAR
 
 # Tools
 <!---
-> Ferramentas e/ou bibliotecas já utilizadas e/ou ainda a serem utilizadas (com base na visão atual do grupo sobre o projeto).
+> Ferramentas e/ou bibliotecas utilizadas.
 -->
-- **TensorFlow**: to build and test the convolutional neural network used with the imagery
-- **Scikit-learn**: to divide the sets for testing, validation and training
-- **Matplotlib**: to plot graphs containing statistical information about the dataset
-- **LucidChart**: to draw the workflow of the project
-- **Library**: description 
-- ...
+| Library           | Version | Description                                                                                                                                                                                            |
+|-------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| google            | 2.0.3   | The Google library was chosen for its wide range of functionality related to Google services (Drive and COLAB).                                                                                 |
+| jsonpickle        | 3.0.1   | jsonpickle was chosen for its efficient method of storing partial and final results. JSON was selected as the data storage format, allowing for seamless integration with Google Drive and efficient data querying.            |
+| jupyter-client    | 6.1.12  | Jupyter was selected for its interactive and collaborative environment, enhancing productivity and facilitating data exploration, analysis, and documentation.                                         |
+| keras             | 2.12.0  | We utilized Keras for training and testing machine learning models, opting for its user-friendly and powerful framework that facilitates efficient model development and evaluation.                  |
+| LucidApp          | -       | LucidApp was used to create images illustrating the workflow and process. It provided a user-friendly interface and a variety of visual elements to effectively communicate the steps and concepts involved in the project. |
+| notebook          | 6.4.8   | We chose the notebook library because it provides a convenient and interactive environment for data analysis, code development, and collaboration through Jupyter notebooks.                           |
+| numpy             | 1.22.4  | numpy is a critical library for numerical computing in Python. We chose it due to the wide range of well-implemented solutions and functionalities that it offers for numerical operations.                   |
+| pandas            | 1.5.3   | pandas is a library for data manipulation and analysis, selected for its efficient handling of structured data. It provided data structures and functions that enhanced the handling and analysis of data.         |
+| Pillow            | 8.4.0   | Pillow is a Python imaging library that enhances support for opening, manipulating, and saving various image file formats. We utilized this library to visually inspect the masks created through machine learning algorithms. |
+| pip-tools         | 6.13.0  | This choice ensures efficient management and reproducibility of the project, making it easier to maintain a consistent and stable development environment.                                                |
+| Python            | 3.11.4  | Python is widely recognized for its simplicity, readability, and efficient implementation. It was chosen as the programming language for its extensive standard library.                                |
+| scikit-image      | 0.19.3  | scikit-image, a powerful image processing library in Python, was chosen for its comprehensive collection of algorithms for tasks such as segmentation.                                        |
+| scikit-learn      | 1.2.2   | scikit-learn, a widely-used machine learning library in Python, was chosen for its extensive range of supervised and unsupervised learning algorithms.                                                |
+| scipy             | 1.10.1  | scipy was utilized for mathematical manipulation and analysis. This powerful library for scientific and technical computing in Python was chosen for its extensive functionality and seamless integration with other libraries. |
+| seaborn           | 0.12.2  | seaborn was chosen for its high-level interface, which enables the creation of informative and visually appealing statistical graphics. It is a data visualization library based on matplotlib, providing enhanced functionality and aesthetics for our statistical visualization needs. |
+| sklearn-pandas    | 2.2.0   | Chosen for seamless integration of scikit-learn and pandas in the code. |
+| tabulate          | 0.8.10  | tabulate was chosen as a computationally lightweight option for generating simple tables to represent the defined sets. It provides an efficient and straightforward way to display tabular data in a visually organized manner. |
+| tensorflow        | 2.12.0  | TensorFlow, an open-source deep learning framework, was chosen for its flexible and efficient ecosystem for building and training machine learning models, providing essential tools for deep learning tasks. |
+| zipp              | 3.15.0  | We chose zipp as an option for working with compressed files to preserve file characteristics and minimize storage space in the cloud with our database. |
+
+
 
 # Workflow 
 <!---
