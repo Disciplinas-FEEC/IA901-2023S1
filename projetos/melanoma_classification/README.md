@@ -41,11 +41,18 @@ O problema que buscamos resolver é o erro de classificação de lesões maligna
 
 O câncer de pele é uma das formas mais comuns de câncer em todo o mundo, e a detecção precoce pode gerar um impacto positivo em taxas de mortalidade associadas a lesões malignas de pele. A solução desse problema, por meio do desenvolvimento de um sistema de classificação automatizado, possui certamente um impacto significativo na área médica. Primeiramente, proporciona uma ferramenta automatizada e precisa para auxiliar os médicos no diagnóstico de lesões de pele, aumentando a eficiência e reduzindo a possibilidade de erros humanos. Além disso, ao diminuir a taxa de falsos negativos, o sistema permite uma triagem mais eficiente, identificando corretamente os casos malignos que requerem atenção e tratamento imediato. Essa solução também pode contribuir para a redução dos custos de saúde, uma vez que a detecção precoce e correta pode evitar tratamentos desnecessários e mais invasivos.
 
-# Metodologia
+# Metodologia 
 
 *1. Pré-processamento de dados:*
+Durante o treinamento de redes neurais convolucionais (CNNs), é comum realizar um pré-processamento adequado nos dados de entrada para atender aos requisitos da rede e otimizar o treinamento. Neste contexto, um exemplo de pré-processamento aplicado é a redimensionamento das imagens para um tamanho específico, como 224x224 pixels, utilizando interpolação bilinear. Essa etapa é necessária para atender às demandas de entrada de redes pré-treinadas, como a ResNet50.
 
-As imagens foram redimensionadas para 224x224, através de interpolação bilinear, para atender a demanda de entrada de redes pré-treinadas. Ainda, a etapa de pré-processaento inclui padronização dos pixels de todas as imagens para que estejam no intervalo entre -1 e 1. A normalização é importante para manter a escala de pixels consistentes e facilitar o treinamento de redes complexas, além reduzir a influência de outliers e garantir melhora na capacidade do modelo de generalizar para novos exemplos. Também foram adotadas estratégias de amostragem que incluem downsampling da classe majoritária, oversampling da classe minoritária e combinação de ambas para testar os efeitos nas arquiteturas avaliadas.
+Além disso, é importante organizar os dados de maneira adequada para facilitar a leitura durante o treinamento. Para isso, a classe DataLoader do pacote TensorFlow é comumente utilizada. Essa classe oferece recursos para carregar e pré-processar os dados de forma eficiente, otimizando o processo de treinamento da rede.Para o estudo, os dados foram organizados seguindo os requisitos da classe DataLoader. O conjunto de dados foi dividido em duas partes: 20% foi reservado para validação e o restante foi utilizado para treinamento. No entanto, devido à necessidade de garantir que os pacientes não se repitam entre os conjuntos, as porcentagens foram ajustadas levemente.
+
+Outro passo essencial no pré-processamento é a padronização dos pixels das imagens. Nesse caso, os valores dos pixels foram normalizados para que estejam no intervalo entre -1 e 1. Essa normalização é importante para manter a escala dos pixels consistente, facilitando o treinamento de redes complexas. Além disso, ajuda a reduzir a influência de outliers e melhora a capacidade do modelo de generalizar para novos exemplos.
+
+Além dessas etapas, foram adotadas estratégias de amostragem para lidar com possíveis desequilíbrios de classes nos dados. Essas estratégias incluíram downsampling da classe majoritária, oversampling da classe minoritária e a combinação de ambas. Essas abordagens foram testadas para avaliar seus efeitos nas arquiteturas de rede neural em análise.
+
+Em resumo, o pré-processamento de dados para o treinamento de redes neurais convolucionais envolve várias etapas, como redimensionamento, padronização dos pixels e estratégias de amostragem. Essas etapas visam preparar os dados de forma adequada, melhorar a capacidade de generalização do modelo e otimizar o processo de treinamento.
 
 *2. Data augmentation:*  
 
@@ -69,7 +76,7 @@ Dessa forma, estudos que avaliam técnicas de aumentação de dados com foco em 
   <img src="assets/hair_remove.jpg"  width="510" height="250">
 </p>
 
-Alternativamente, foram consideradas as seguintes transformações nas imagens com o objetivo de torná-las menos heterogêneas, com base em estudos sobre técnicas de aumento de dados para lesões de pele:
+Alternativamente, foram consideradas as seguintes transformações nas imagens com o objetivo de torná-las menos heterogêneas [1]:
 
 - *width_shift_range* e *height_shift_range*: desloca horizontalmente e verticalmente, respectivamente, por uma fração da largura ou altura da imagem original, auxiliando o modelo a aprender a reconhecer objetos em diferentes posições.
 
@@ -90,24 +97,17 @@ As tranformações geraram  o seguinte resultado:
 
 *3. Avaliação e validação:*
 
-Para viabilizar a possibilidade de avaliar o desempenho das redes treinadas o conjunto de dados foi divido entre treinamento e validação. A escolhe de não utilizar parte do conjunto como teste parte do princípio de que os dados já são extremamente desbalanceados, então informação da classe de malignos seria perdida para o treinamento. Entretanto, existem mais conjuntos públicos com imagens de lesões com o mesmo objetivo de classificar câncer de pele, portanto conjuntos externos podem ser utilizados como teste futuramente. 
+Para viabilizar a possibilidade de avaliar o desempenho das redes treinadas o conjunto de dados foi divido entre treinamento e validação. A escolha de não utilizar parte do conjunto como teste parte do princípio de que os dados já são extremamente desbalanceados, portanto, informações da classe de malignos seria perdida para o treinamento. Entretanto, existem mais conjuntos públicos com imagens de lesões com o mesmo objetivo de classificar câncer de pele, havendo possibilidade de conjuntos externos serem utilizados como teste futuramente. 
 
-Todo o treinamento foi realizado configurando-se a rede para maximizar métricas de sensibilidade e área sob a curva (area under curve - AUC). Para avaliação pós treinamento, foi avaliado também metricas de precisão e a taxa de falsos negativos, além da matriz de confusão. 
-- Divisão de dados: organizar o conjunto de dados em bancos de treinamento, validação e teste para avaliar e validar o desempenho do modelo. 
+Todo o treinamento foi realizado configurando-se a rede para maximizar métricas de sensibilidade e área sob a curva (area under curve - AUC). Para avaliação pós treinamento, foi considerado a taxa de falsos negativos, além da matriz de confusão. 
 
-*4. Melhoria e refinamento:*
-
-- Análise de erros: investigar os casos em que nosso modelo cometeu erros e analisaremos as causas subjacentes para identificar possíveis melhorias.
-
-- Ajuste e refinamento do modelo: explorar técnicas relevantes na literatura como esembles, segmentação da lesão na imagem, além de iterações adicionais para ajustar e refinar o modelo com base nos resultados obtidos na etapa validação.
-
-- Aquisição de recursos computacionais: devido ao tempo consumido nos treinamentos sem GPU (e mesmo à impossibilidade de trabalhar com o conjunto de dados inteiro), optou-se pela aquisição de recursos computacionais esporádicos via Google Colab.
+*4. Requisitos para treinamento*
+A aquisição de recursos computacionais foi necessária devido ao tempo consumido nos treinamentos sem GPU (e mesmo à impossibilidade de trabalhar com o conjunto de dados inteiro), optou-se pela aquisição de recursos computacionais esporádicos via Google Colab.
 
 *5. Metodologia Simple-Complex:*
 
-- Avaliar simultaneamente arquiteturas complexas e consolidadas como Resnet50, MobileNet, EfficientNet e modelos mais simples (começando com pouca profundidade e pequena quantidade de filtros), afim de realizar a tarefa com o menor custo computacional possível e possibilitar mais abordagens de pré-processamento.
+Foi avaliado simultaneamente arquiteturas complexas e consolidadas como Resnet50, MobileNet, EfficientNet e modelos mais simples (começando com pouca profundidade e pequena quantidade de filtros), afim de realizar a tarefa com o menor custo computacional possível e possibilitar mais abordagens de pré-processamento.
 
-  
 ## Bases de Dados e Evolução
 
 Base de Dados | Endereço na Web | Resumo descritivo
