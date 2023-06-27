@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-06-27T03:06:25.392Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="Mpa0j7CK5uZEaczR5IVv" version="21.5.0" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2023-06-27T12:00:44.622Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="uioQwSkydNgnINu2OQLT" version="21.5.0" type="github" pages="3">
   <diagram id="-KC26STIBj3t9MYH2vu2" name="Workflow">
-    <mxGraphModel dx="1257" dy="531" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="3180" dy="1870" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -34,7 +34,7 @@
         <mxCell id="8u5Newi8nys6xHAhAptd-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="IXbX5ewmI5MATIdYdqmd-1" target="8u5Newi8nys6xHAhAptd-43" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="IXbX5ewmI5MATIdYdqmd-1" value="Loop de treinamento e&amp;nbsp; validação das 6 redes. Cada melhor modelo é salvo no repositório do Neptune" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=7;" parent="1" vertex="1">
+        <mxCell id="IXbX5ewmI5MATIdYdqmd-1" value="Loop de treinamento da rede Efficient_B2. Cada melhor modelo é salvo no repositório do Neptune após o treino" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=7;" parent="1" vertex="1">
           <mxGeometry x="981.33" y="263" width="128.67" height="42" as="geometry" />
         </mxCell>
         <mxCell id="8u5Newi8nys6xHAhAptd-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="IXbX5ewmI5MATIdYdqmd-3" target="IXbX5ewmI5MATIdYdqmd-1" edge="1">
@@ -190,37 +190,23 @@
         <mxCell id="8u5Newi8nys6xHAhAptd-82" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="8u5Newi8nys6xHAhAptd-52" target="8u5Newi8nys6xHAhAptd-81" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-52" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="8u5Newi8nys6xHAhAptd-52" value="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 7px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;COCO&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="402" y="1050" width="648" height="203" as="geometry" />
         </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="8u5Newi8nys6xHAhAptd-54" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="620" y="1161" as="targetPoint" />
-          </mxGeometry>
+        <mxCell id="je_BnP8xaEcZx0Ltiwll-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="8u5Newi8nys6xHAhAptd-54" target="8u5Newi8nys6xHAhAptd-60">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-54" value="Selecionar o melhor modelo no Neptune e realizar o download" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=7;" parent="1" vertex="1">
-          <mxGeometry x="450" y="1140" width="151.33" height="42" as="geometry" />
+        <mxCell id="8u5Newi8nys6xHAhAptd-54" value="Teste do modelo treinado com os diferentes datasets de entrada" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=7;" parent="1" vertex="1">
+          <mxGeometry x="677" y="1134.5" width="151.33" height="42" as="geometry" />
         </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-57" value="Rodar sequencialmente os paragrafos do notebook para realizar o tuning do modelos;&amp;nbsp;&lt;br&gt;Detecção_de_posição_física_humana_Fluxo_Validacao.ipynb" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="8u5Newi8nys6xHAhAptd-57" value="Rodar sequencialmente os paragrafos do notebook para realizar o tuning do modelos;&amp;nbsp;&lt;br&gt;Teste_de_Redes.ipynb" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="413" y="1066.5" width="540" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-58" value="&lt;font face=&quot;-apple-system, system-ui, Segoe UI, Noto Sans, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji&quot; color=&quot;#1f2328&quot;&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;b&gt;Fluxo validação completo&lt;/b&gt;&lt;/span&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+        <mxCell id="8u5Newi8nys6xHAhAptd-58" value="&lt;font face=&quot;-apple-system, system-ui, Segoe UI, Noto Sans, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji&quot; color=&quot;#1f2328&quot;&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;b&gt;Fluxo Testes&lt;/b&gt;&lt;/span&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="400" y="1020" width="160" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="8u5Newi8nys6xHAhAptd-60" target="8u5Newi8nys6xHAhAptd-62" edge="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-60" value="Rodar parágrafos de validação" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=7;" parent="1" vertex="1">
-          <mxGeometry x="620" y="1140" width="100" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=30;entryPerimeter=0;" parent="1" source="8u5Newi8nys6xHAhAptd-62" target="8u5Newi8nys6xHAhAptd-63" edge="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-62" value="Utilizar Neptune para comparativo entre os treinamentos" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=7;" parent="1" vertex="1">
-          <mxGeometry x="750" y="1140" width="100" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-63" value="Modelo Treinado" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=7;" parent="1" vertex="1">
-          <mxGeometry x="900" y="1132" width="60" height="50" as="geometry" />
+        <mxCell id="8u5Newi8nys6xHAhAptd-60" value="Teste do modelo com fine-tuning com o dataset MPII" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=7;" parent="1" vertex="1">
+          <mxGeometry x="847" y="1134.5" width="100" height="42" as="geometry" />
         </mxCell>
         <mxCell id="8u5Newi8nys6xHAhAptd-79" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="8u5Newi8nys6xHAhAptd-67" target="8u5Newi8nys6xHAhAptd-52" edge="1">
           <mxGeometry relative="1" as="geometry">
@@ -249,6 +235,15 @@
         </mxCell>
         <mxCell id="je_BnP8xaEcZx0Ltiwll-5" value="Apenas dados de teste" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="815.6700000000001" y="510" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="je_BnP8xaEcZx0Ltiwll-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="je_BnP8xaEcZx0Ltiwll-7" target="8u5Newi8nys6xHAhAptd-54">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="je_BnP8xaEcZx0Ltiwll-7" value="DataSets" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=7;" vertex="1" parent="1">
+          <mxGeometry x="575" y="1130" width="60" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="je_BnP8xaEcZx0Ltiwll-10" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 7px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;COCO&lt;br&gt;MPII&lt;br&gt;Human Silhouettes&lt;br&gt;&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="505" y="1136.5" width="90" height="43.5" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
