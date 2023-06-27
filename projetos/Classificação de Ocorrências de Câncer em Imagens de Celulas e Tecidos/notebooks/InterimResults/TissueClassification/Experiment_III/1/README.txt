@@ -1,0 +1,1 @@
+Treinamento da EfficientNetB0  para classificar tecidos SEM DATA AUGMENTATION sobre as classes minoritárias!!!

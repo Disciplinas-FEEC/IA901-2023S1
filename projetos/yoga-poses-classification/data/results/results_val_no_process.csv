@@ -1,0 +1,2 @@
+Accuracy,Balanced Accuracy,Weighted Precision,Weighted F1-Score,Downdog Precision,Downdog Recall,Downdog F1-Score,Goddess Precision,Goddess Recall,Goddess F1-Score,Plank Precision,Plank Recall,Plank F1-Score,Tree Precision,Tree Recall,Tree F1-Score,Warrior2 Precision,Warrior2 Recall,Warrior2 F1-Score
+0.9195,0.9066,0.9201,0.9185,0.9524,1.0,0.9756,0.92,0.7931,0.8519,0.9583,0.9583,0.9583,0.88,0.8462,0.8627,0.8529,0.9355,0.8923
