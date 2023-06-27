@@ -211,9 +211,9 @@ Durante a etapa preliminar do projeto, o grupo enfrentou limitações de recurso
 
 Foi observado que arquiteturas como EfficientNetB3 apresentam alta eficiência mesmo com um número inferior de parâmetros em comparação com a ResNet-50, Ainda, embora não listado no gráfico, a MobileNet possui as mesmas características e também foi considerada como uma rede promissora. Com base nessa constatação, os experimentos subsequentes levaram em consideração essas arquiteturas, bem como redes mais simples, a fim de avaliar seu desempenho. No entanto, mesmo com a escolha de redes mais leves, ainda era necessário lidar com a demanda de memória RAM para processar as imagens. Para contornar essa limitação, o grupo adquiriu unidades de computação do Google Colab, permitindo o acesso a GPUs mais potentes, como A100, V100 e T4, por períodos de tempo mais longos. Essa abordagem possibilitou realizar os experimentos de forma mais eficiente e obter resultados relevantes para o projeto.
 
-Experimento 3 - CNN de Complexidade Média e Técnicas de Oversampling e Downsampling
------ 
+Experimento 3 - CNN com ténicas de reamostragem
 
+# Complexidade média 
 Em vista da baixa performance de arquiteturas com CNN simples (poucas camadas e filtros), passou-se à exploração de arquiteturas mais complexas porém com número de parâmetros ainda inferior às arquiteturas Estado da Arte, a fim de acelerar o processo de treinamento e testar técnicas de pré-processamento. Os modelos foram treinados por 100 épocas. A fim de obter mais informações acerca dos impactos do processamento e evitar maior variabilidade do modelo, o grupo optou por fixar o número de camadas nos testes intermediários e limitar a quantidade de filtros. A arquitetura utilizada é apresentada abaixo, consistindo de entrada, cinco camadas convolucionais [9] (todas com batch normalization) e duas camadas totalmente conectadas para classificação. A técnica de dropout é aplicada para regularização. 
 
 <p align="center">
@@ -231,14 +231,15 @@ Rede 1 - 32, 32, 256, 256 e 512 filtros; Rede 2 - 64, 64, 128, 128, 256 filtros
 
 Como as CNNs simples não apresentaram bom desempenho na melhoria do Falso Negativo, caracterizamos os efeitos das variadas técnicas de augmentation nas CNNs de menor e média complexidade, avaliando a AUC para dez épocas de treinamento. Em ordem de eficácia na melhoria do falso negativo, destacam-se as técnicas de Height Shift Range, Width Shift Range e Zoom Range. As outras técnicas aplicadas mostraram pouca ou nenhuma influência quando consideradas individualmente. Buscas mais detalhadas e com mais épocas podem ser feitas para avaliar o efeito das técnicas de pré-processamento em CNNs de baixa complexidade. Para efeitos de teste, mantivemos apenas o Height Shift Range como técnica de augmentation, já que seu resultado superou o resultado das outras técnicas. 
 
-CNN de complexidade baixa e dados completos, com Oversampling da classe minoritária
------
+# Complexidade baixa
 
 Por fim, passou-se à experimentação da última técnica: oversampling considerando todo o conjunto de dados de treinamento, ou seja: 23964 imagens. Cópias foram feitas das imagens da classe "maligno", até que as classes ficassem balanceadas. Novamente os testes foram realizados a partir de uma configuração mais simples possível, composta por duas camadas convolucionais de filtros, e uma camada totalmente conectada de 100 neurônios. O resultado foi bastante surpreendente para 50 épocas, e acabou elegendo a técnica de oversampling, juntamente com normalização e técnicas de aumentação de dados, como a melhor metodologia aplicável a CNNs de baixa complexidade. Novamente devido à precariedade de recursos computacionais, este experimento com número grande de imagens foi executado por apenas 50 épocas.
 
 <p align="center">
   <img src="assets/rede3.png">
 </p>
+
+$$\frac{FN}{FN+VN}=\frac{86}{86+62}=0.75$$
 
 Experimento 4 - EfficientNet B3
 ----- 
@@ -251,6 +252,7 @@ Baseada em um conceito chamado "escalabilidade composta" (compound scaling), a e
   <img src="assets/efficientb3.png">
 </p>
 
+$$\frac{FN}{FN+VN}=\frac{86}{86+62}=0.58$$
 
 
 Experimento 6 - MobileNetV2
@@ -259,8 +261,6 @@ Experimento 6 - MobileNetV2
 Também conhecida como uma arquitetura desenvolvida para aplicações de visão computacional em dispositivos com recursos computacionais limitados, a MobilNet foi projetada com o objetivo de alcançar um equilíbrio entre a precsão do modelo e a eficiência computacional. Para tanto, seu diferencial são camadas de convolução profunda separrável em vez de convoluções padrão, considerando duas etapas: a primeira é uam convolução em que cada filtro opera em um canal de entrada, e a sgunda etapa é uma convolução ponto a ponto, onde um filtro linear é aplicado a cada para de características separadamente. Isso permite uma redução significativa no número de parâmetros e operações em comparação com as convoluções padrão, tornando a MobileNet mais leve e rápida.
 
 Foram considerados treinamentos com batch tamanho 32 e 64, além do peso das classes, diferentes técnicas de augmentation e aplicação de downsampling e oversampling da classe minoritária. O melhor resultado encontrado foi a partir da seguintes definiçõs:
-
-
 
 O treinamento foi realizado por 100 épocas com batch tamanho 64, otimizador Adam, *learning rate* de 0.001 e função de perda *binary_crossentropy*. 
 
@@ -285,6 +285,10 @@ Ao longo dos experimentos preliminares até o resultado final deste projeto, nos
 Utilizar informações adicionais disponíveis nos conjuntos públicos de melanoma, como idade, sexo, localização da lesão e cor da pele, associado com as características da própria lesão, fornece mais contexto e informações relevantes para os algoritmos de classificação. Essas informações adicionais auxiliam a identificar padrões específicos relacionados a diferentes grupos demográficos ou características específicas dos pacientes. A abordagem de ensemble permite combinar as previsões e decisões dos diferentes modelos ou fontes de informação, o que leva a resultados mais satisfatórios e confiáveis, já que diferentes modelos podem capturar diferentes aspectos da complexidade do problema.
 
 Alternativamente, ao considerar que redes neurais devem focar e destacar as partes mais importantes de uma imagem de entrada, foi avaliado o mecanismo de *Soft-Attention*, que permite que uma rede neural alcance esse objetivo. Estudos avaliam a eficácia do Soft-Attention em arquiteturas de redes neurais profundas. O objetivo central do Soft-Attention é aumentar o valor das características importantes e suprimir as características que introduzem ruído. Redes combinadas com a ténica alcançam uma precisão de 93,7% no conjunto de dados de melanomas ISIC-2017.
+
+Por fim, utilizar GANs (Redes Generativas Adversariais) para criar imagens sintéticas de lesões de pele com melanoma é estudada como estratégia promissora. GANs são modelos de aprendizado de máquina que consistem em duas redes neurais competindo entre si: o gerador e o discriminador. O gerador cria amostras sintéticas, enquanto o discriminador tenta distinguir entre amostras reais e sintéticas. Ao treinar essas redes em conjunto, o gerador aprende a produzir amostras cada vez mais realistas, enquanto o discriminador aprimora sua capacidade de distinguir entre amostras reais e sintéticas.
+
+Ao aplicar GANs para gerar imagens sintéticas de lesões de pele com melanoma, é possível explorar os padrões e características presentes nessas lesões e produzir imagens que se assemelhem às lesões reais. Isso pode ser valioso em várias áreas, como pesquisa médica, treinamento de algoritmos de diagnóstico por imagem e criação de conjuntos de dados de treinamento para modelos de aprendizado de máquina.
 
 ## Referências 
 1. Perez, F. et al. Data augmentation for skin lesion analysis. Granada, Spain, September 16 and 20, 2018, Proceedings 5 (pp. 303-311). Springer International Publishing.
