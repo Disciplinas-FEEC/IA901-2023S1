@@ -94,7 +94,7 @@ Nesta análise, as transformações mais tradicionais foram vistas: VerticalFlip
 
 
 <p align="center">
-    <img src="..//Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Data Augmentation Study/Augmentation_0.png" height="350">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Data Augmentation Study/Augmentation_0.png" height="250">
 </p>
 
 <p align="center">
@@ -173,10 +173,18 @@ Treinamento para discriminar seis tecidos - Breast, Colon, Esophagus, HeadNeck, 
   <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Tissue Classification/Experiment_III/EpochsxAccuracy.png" height="300">
   <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Tissue Classification/Experiment_III/EpochsxLoss.png" height="300">
 </p>
-Fig. 7. Curvas de Loss (Cross Entropy) e Acurácia em função do número de épocas para o treinamento da EfficientNetB0 neste estudo.  
+Fig. 7. Curvas de Loss (Cross Entropy) e Acurácia em função do número de épocas para os grupos treino e teste no treinamento da EfficientNetB0 neste estudo.  
 
 
 #### 2.4.3 Contagem de células
+
+<p align="center">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cell Counting/Cópia de EpochsxLoss.png" height="250">
+</p>
+
+<p align="center">
+    Figura 8: Curvas de Loss (Mean Squared Error) e Acurácia em função do número de épocas para os grupos treino e teste no treinamento da EfficientNetB0 neste estudo.
+</p>
 
 ## 2.5 Análise de dados
 
@@ -221,19 +229,19 @@ A Figura 5 apresenta a ROC Curve comparando o experimento Baseline (treinamento/
 Já no experimento 1, a EfficientNet_B0 apresentou uma queda de performance em comparação com o cenário baseline (AUC=0.917). Mesmo assim, esta ainda é uma performance razoavelmente alta - o que é um indício de que um modelo de Deep Learning é capaz de generalizar e identificar padrões em imagens não vistas durante o treinamento. 
 
 <p align="center">
-    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/ROC_GeneralAnalysis.png" height="350">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/Baseline/Cópia de ROC.png" height="350">
 </p>
-Fig. 5. ROC Curve comparando o modelo de Deep Learning no cenário baseline (treino e teste com todos os tecidos) com o experimento 1 (treino com todos os tecidos menos ‘Breast’, que é usado para o teste). 
+Fig. 9. ROC Curve comparando o modelo de Deep Learning no cenário baseline (treino e teste com todos os tecidos) com o experimento baseline (treino e teste com todos os tecidos). 
 
 A Figura 6 mostra os gráficos de True Positive Rate e False Positive Rate em função do Decision Threshold. Em geral, para todo o intervalo de Decision Threshold, tanto o caso Baseline quanto no experimento 1, as curvas de False Positive Rate são praticamente iguais. A grande diferença entre os modelos é, portanto, no True Positive Rate - que é consideravelmente maior no cenário Baseline.
 
 A Tabela 1 sintetiza algumas métricas de desempenho, para os dois estudos, considerando também o valor de Decision Threshold que maximiza o Índice de Youden. É possível ver que, em geral, os valores obtidos de acurácia e precisão também são elevados (>87%). 
 
 <p align="middle">
-  <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/TPR_GeneralAnalysis.png" height="300">
-  <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/FPR_GeneralAnalysis.png" height="300">
+  <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/Baseline/Cópia de TPRxThreshold.png" height="300">
+  <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/Baseline/Cópia de FPRxThreshold.png" height="300">
 </p>
-Fig. 6. True Positive Rate e False Positive Rate em função do Decision Threshold para os dois estudos.  
+Fig. 10. True Positive Rate e False Positive Rate em função do Decision Threshold para os dois estudos.  
 
 
 Tab. 1. Síntese das principais métricas de performance para os estudos: Baseline e experimento 1. 
@@ -247,9 +255,9 @@ Tab. 1. Síntese das principais métricas de performance para os estudos: Baseli
 A Figura 7 mostra a performance do modelo baseline para diferentes tecidos. Apenas aquelas com as três maiores (Stomach, Lung, Prostate) e três menores (Uterus, HeadNeck, Bile-duct) performances estão representadas. Para as maiores performances, temos AUCs=1 - indicando uma classificação perfeita dos tecidos. Nos piores casos, temos AUC~0.92, que é uma performance considerada razoável para um classificador. A Tabela 2 mostra o resultado para todos os tecidos e outras métricas de desempenho.Por fim, na próxima subseção, exibimos alguns exemplos de imagens cuja a rede neural errou a classificação - porém, não conseguimos detectar padrões que fizeram ela errar as classificações.
 
 <p align="center">
-    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/ROC_TissueAnalysis.png" height="350">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/FinalComparison/ROCAllTissues_Baseline.png" height="350">
 </p>
-Fig. 7. ROC Curve comparando a performance do modelo baseline para diferentes tecidos. Apenas aquelas com as três maiores (Stomach, Lung, Prostate) e três menores (Uterus, HeadNeck, Bile-duct) performances estão representadas. 
+Fig. 11. ROC Curve comparando a performance do modelo baseline para diferentes tecidos. Apenas aquelas com as três maiores (Skin, Thyroid, Esophagus) e três menores (Liver, Bile-duct, Lung) performances estão representadas. 
 
 
 Tab. 2. Síntese das principais métricas de performance para o estudo Baseline considerando os diferentes tecidos.
@@ -280,8 +288,28 @@ Tab. 2. Síntese das principais métricas de performance para o estudo Baseline 
 #### 4.1.1.3 Identificando padrões nas imagens classificadas incorretamente
 
 <p align="center">
-    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/DL_WrongPredictions.png" height="550">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/Baseline/Cópia de WrongPredictions_Image_4732.png" height="250">
 </p>
+
+<p align="center">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/Baseline/Cópia de WrongPredictions_Image_4130.png" height="250">
+</p>
+
+<p align="center">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/Baseline/Cópia de WrongPredictions_Image_3654.png" height="250">
+</p>
+
+<p align="center">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/Baseline/Cópia de WrongPredictions_Image_2356.png" height="250">
+</p>
+
+
+<p align="center">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/Baseline/Cópia de WrongPredictions_Image_2156.png" height="250">
+</p>
+
+Fig. 12. Exemplos de imagens de diferentes tecidos classificadas incorretamente e suas respectivas masks. 
+
 
 ### 4.1.2 Comparação entre experimentos
 
