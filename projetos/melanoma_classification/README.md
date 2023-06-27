@@ -114,7 +114,7 @@ Base de Dados | Endereço na Web | Resumo descritivo
 ----- | ----- | -----
 SIIM-ISIC Melanoma Classification | https://www.kaggle.com/competitions/siim-isic-melanoma-classification/data |  O conjunto possui imagens de lesões de pele, tanto de lesões benignas quanto malignas.
 
-A base possui 33007 imagens do tipo jpg, totalizando 20 GB de tamanho com anotações de identificador exclusivo da imagem, identificador único do paciente, sexo, idade aproximada do paciente no momento da imagem, localização do site com imagem, informações de diagnóstico detalhadas e indicador de malignidade da lesão. Para este projeto, serão utilizadas apenas as imagens jpg, totalizando 33007 arquivos.
+A base possui 33007 imagens do tipo jpg, totalizando 20 GB de tamanho com anotações de identificador exclusivo da imagem, identificador único do paciente, sexo, idade aproximada do paciente no momento da imagem, localização do site com imagem, informações de diagnóstico detalhadas e indicador de malignidade da lesão. Para este projeto, serão utilizadas apenas as imagens jpg, totalizando 33007 arquivos. Devido a quantidade de arquivos, os dados estão disponibilizados no link: https://drive.google.com/drive/u/1/folders/1-3PpNLUawEqOg18QzsjCD8eQRWgvZeIK.
 
 Lesão | Frequencia | Proporção
 ----- | ----- | -----
