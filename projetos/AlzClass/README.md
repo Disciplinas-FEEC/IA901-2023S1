@@ -318,6 +318,24 @@ E por fim, temos a seguinte curva ROC para multiclasses:
 
 Nota-se que as curvas ROC com a maior área correspondem as classes controle e demente leve, aos quais, como esperado, seriam as mais facílmente identificadas por serem extremos mais distantes da patologia, enquanto os estágios intermediários como Demente muito Leve são mais díficeis de classificar.
 
+### Classificação multiclasses (ADNI)
+
+Após os resultados de classificação bem sucedidos no OASIS, seguimos para a classificação de 5 classes no ADNI. 
+Para ilustrar os efeitos de contaminação nas métricas de performance de um modelo, escolhemos incluir neste relatório os resultados de nossos treinamentos iniciais, no qual não havíamos realizado a separação adequada das pastas. 
+
+Os resultados das métricas de avaliação do modelo nos sets de train e validation durante o treinamento do modelo e a matrix de confusão, *com contaminação*, podem ser visualizados nas imagens abaixo:
+
+<img src="https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/9f0085c6-f4ad-486b-9b4b-3b48067c3a8c" width="550" height="400">
+
+<img src="https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/37fedbd6-61b2-4b7c-a9df-87d06a1c5c56" width="450" height="400">
+
+Nota-se que apesar da complexidade do problema, a acurácia durante o treinamento e na base de teste são altíssimas. Isso ocorre pois no treinamento com contaminação, o modelo aprende a identificar e relacionar características indivíduais as classes de imagens no grupo de treino (overfitting) e como esses mesmos indivíduos encontram-se também nos grupos de validação e de teste, a rede é capaz de classificar com sucesso as imagens. Após identificarmos o problema de contaminação, realizamos o treinamento da exata mesma forma com a devida separação, obtendo os resultados abaixo: 
+
+<img src="https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/fd09bba5-bbcb-41e3-91c4-5c6046fdd255" width="550" height="400">
+
+<img src="https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/9650efd9-184f-4674-bf6d-a35eab759d25" width="450" height="400">
+
+
 
 
 # Discussão 
