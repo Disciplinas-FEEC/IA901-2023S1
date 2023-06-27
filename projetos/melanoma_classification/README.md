@@ -16,7 +16,7 @@ oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dr
 
 ## Descrição do Projeto
 
-O objetivo do projeto é desenvolver um sistema para classificação de lesões de pele entre malignas e benignas com o uso de arquiteturas de redes neurais convolucionais. O sistema visa fornecer uma ferramenta precisa e eficiente para ajudar na detecção precoce de tumores malignos, contribuindo para o diagnóstico médico e reduzindo a taxa de falsos negativos (ou seja, classificar como benignas lesões que na verdade são malignas). Adicionalmente, garantir que o classificador tenha a sensibilidade (recall) alta também é de extrema importância para o projeto, dado que o tratamento precoce pode ser mais benéfico ao paciente do que não diagnosticá-lo e o tratamento ser tardio. 
+O objetivo do projeto é desenvolver um sistema para classificação de lesões de pele entre malignas e benignas com o uso de arquiteturas de redes neurais convolucionais. O estudo visa fornecer uma ferramenta eficiente para ajudar na detecção precoce de tumores malignos, contribuindo para o diagnóstico médico e reduzindo a taxa de falsos negativos (ou seja, classificar como benignas lesões que na verdade são malignas). Adicionalmente, garantir que o classificador tenha a sensibilidade (recall) alta também é de extrema importância para o projeto, dado que o tratamento precoce pode ser mais benéfico ao paciente do que não diagnosticá-lo e o tratamento ser tardio. 
 
 <p align="center">
   <img src="assets/Tabela_confusao.png">
@@ -29,13 +29,13 @@ $$P(\hat{f}(x)=\text{Benigno} | f(x)=\text{Maligno})=\frac{FN}{FN+VN}$$
 **Recall:**
 $$P(\hat{f}(x)=\text{Maligno} | f(x)=\text{Maligno})=\frac{VN}{FN+VN}$$
 
-Dessa forma, o contexto gerador do projeto consiste no desafio de validar uma arquitetura que consiga classificar lesões de pele em imagens médicas. Com uma base de dados de 33.007 imagens, das quais apenas 582 são de tumores malignos, o projeto enfrenta o desafio de lidar com um conjunto de dados altamente desequilibrado. A classificação precisa dessas imagens é essencial para identificar corretamente os casos malignos e benignos, a fim de fornecer um diagnóstico adequado e tomar decisões de tratamento adequadas. É interessante apontar que a estimativa é de que médicos experientes reconheçam 70% dos casos, apenas com inspeção visual [7,8].
+Dessa forma, o contexto gerador do projeto consiste no desafio de validar uma arquitetura que consiga classificar lesões de pele em imagens médicas. Com uma base de dados de 33.007 imagens, das quais apenas 582 são de tumores malignos, o projeto enfrenta o desafio de lidar com um conjunto de dados altamente desequilibrado. A classificação precisa dessas imagens é essencial para identificar corretamente os casos malignos e benignos, a fim de fornecer  diagnóstico e tomada de decisões quanto ao tratamento tratamento adequados. É interessante apontar que a estimativa é de que médicos experientes reconheçam 70% dos casos de lesões benignas, apenas com inspeção visual [7,8].
 
-Portanto, a motivação para esse projeto é a importância da detecção precoce de lesões de pele malignas, como o câncer de pele, que tem maior probabilidade de ser tratado com sucesso se diagnosticado em estágios iniciais. A utilização de arquiteturas de redes neurais convolucionais, combinada com técnicas avançadas de processamento de imagem, permite uma análise mais precisa e automatizada das lesões, reduzindo assim a taxa de falsos negativos. Isso pode auxiliar médicos e especialistas a tomarem decisões mais assertivas, agilizando o processo de diagnóstico e melhorando os resultados dos pacientes.
+Portanto, a motivação para esse projeto é a importância da detecção precoce de lesões de pele malignas, pois possuem maior probabilidade de serem tratadas com sucesso se diagnosticado em estágios iniciais. A utilização de arquiteturas de redes neurais convolucionais, combinada com técnicas avançadas de processamento de imagem, permite uma análise mais precisa e automatizada das lesões, podendo reduzir a taxa de falsos negativos. Isso pode auxiliar médicos e especialistas a tomarem decisões mais assertivas, agilizando o processo de diagnóstico e melhorando os resultados dos pacientes.
 
 **Qual problema vocês pretendem solucionar?**
 
-O problema que buscamos resolver é o erro de classificação de lesões malignas classificadas como benignas. Tal erro pode levar a um atraso no diagnóstico e tratamento adequado, o que é fundamental para a saúde e a sobrevida de paciente. Ao desenvolver um sistema de classificação mais preciso, buscamos identificar corretamente os casos de melanoma, o que permitirá a detecção precoce e o tratamento oportuno. 
+O problema que buscamos resolver é o erro de classificação de lesões malignas classificadas como benignas. Tal erro pode levar a um atraso no diagnóstico e tratamento adequado, o que é fundamental para a sobrevida de paciente. Ao desenvolver um sistema de classificação mais preciso, buscamos identificar corretamente os casos de melanoma, o que permitirá a detecção precoce e o tratamento oportuno. 
 
 **Qual a relevância do problema e o impacto da solução do mesmo?**
 
@@ -45,18 +45,17 @@ O câncer de pele é uma das formas mais comuns de câncer em todo o mundo, e a 
 
 *1. Pré-processamento de dados:*
 
-As imagens foram normalizadas, ou seja, todos os pixels foram divididos por 255.0, para padronizar os valores em pixels entre o intervalo de 0 a 1. A normalização é importante para manter a escala de pixels consistentes e facilitar o treinamento de redes complexas. Ainda, a técnica de pré-processamento reduz a influência de outliers e melhora a capacidade do modelo de generalizar para novos exemplos. Também adotamos estratégias de downsampling da classe majoritária, oversampling da classe minoritária e combinação de ambas para testar os efeitos nas arquiteturas avaliadas.
-
+As imagens foram redimensionadas para 224x224, através de interpolação bilinear, para atender a demanda de entrada de redes pré-treinadas. Ainda, a etapa de pré-processaento inclui padronização dos pixels de todas as imagens para que estejam no intervalo entre -1 e 1. A normalização é importante para manter a escala de pixels consistentes e facilitar o treinamento de redes complexas, além reduzir a influência de outliers e garantir melhora na capacidade do modelo de generalizar para novos exemplos. Também foram adotadas estratégias de amostragem que incluem downsampling da classe majoritária, oversampling da classe minoritária e combinação de ambas para testar os efeitos nas arquiteturas avaliadas.
 
 *2. Data augmentation:*  
 
-A avaliação de lesões de pele é realizada levando em conta características visíveis a olho nu, bem como características ampliadas por meio de técnicas de dermatoscopia ou outras ferramentas de diagnóstico. Alguns dos principais aspectos considerados são a assimetria da lesão, bordas irregulares ou mal definidas, lesões com múltiplas cores e lesões com diâmetro maior, que podem indicar malignidade. A seguir, seguem imagens do conjunto que exemplificam a dificuldade em diferenciar as lesões apenas através de sua aparência.
+A avaliação inicial de lesões de pele é realizada levando em conta características visíveis a olho nu, bem como características ampliadas por meio de técnicas de dermatoscopia e coleta do material para avaliação anatomopatológica. Alguns dos principais aspectos considerados são a assimetria da lesão, bordas irregulares ou mal definidas, lesões com múltiplas cores e lesões com diâmetro maior, que podem indicar malignidade. A seguir, seguem imagens do conjunto que exemplificam a dificuldade em diferenciar as lesões apenas através de sua aparência.
 
 <p align="center">
   <img src="assets/lesions.jpg" width="650" height="310">
 </p>
 
-Dessa forma, estudos que avaliam técnicas de aumentação de dados com foco em lesões de pele foram considerados e foram utilizadas técnicas como cisalhamento, escalonamento de imagens para criar novas formas de lesões, espelhamento e mudança de matiz (hue). Essas transformações foram consideradas para diminuir a influência da cor da pele e do tamanho das lesões na discriminação do modelo. Além disso, foi aplicada uma função que diminui a aparência de pelos na imagem, sem comprometer as lesões, garantindo que o modelo não associe essas características com as diferentes classes. Nas próximas seções serão definidos quais transformações apresentaram os melhores resultados. Abaixo estão algumas transformações que foram consideradas para augmentation:
+Dessa forma, estudos que avaliam técnicas de aumentação de dados com foco em lesões de pele foram considerados. Essas transformações são fundamentais para diminuir influência da cor de pele e ruídos na discriminação do modelo. Além de filtros, foram testada técnicas que possuem função que diminuir a aparência de pelos na imagem, sem comprometer as lesões, garantindo que o modelo não associe essas características com as diferentes classes. Nas próximas seções serão definidos quais transformações apresentaram os melhores resultados. Abaixo estão algumas transformações que foram consideradas para a aumentação de dados:
 
 - *Ben Graham* 
 
