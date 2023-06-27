@@ -107,10 +107,6 @@ Todo o treinamento foi realizado configurando-se a rede para maximizar métricas
 *5. Metodologia Simple-Complex:*
 
 - Avaliar simultaneamente arquiteturas complexas e consolidadas como Resnet50, MobileNet, EfficientNet e modelos mais simples (começando com pouca profundidade e pequena quantidade de filtros), afim de realizar a tarefa com o menor custo computacional possível e possibilitar mais abordagens de pré-processamento.
-- 
-<p align="center">
-  <img src="assets/fluxograma_modelos.jpg" width="950" height="310">
-</p>
 
   
 ## Bases de Dados e Evolução
