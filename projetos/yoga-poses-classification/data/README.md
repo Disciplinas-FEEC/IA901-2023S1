@@ -15,11 +15,13 @@ A pasta "data" é organizada da seguinte forma:
 
 ~~~
 ├── data
-    ├── processed      <- dados finais processados (saída do notebook data_augmentation_train.ipynb)
-    ├── interim        <- dados intermediários
-        ├── filtered   <- dados filtrados (saída do notebook pre-processing.ipynb)
-        ├── normalized <- dados normalizados (saída do notebook normalizing.ipynb)
-        └── balanced   <- dados com classes balanceadas (saída do notebook class_balacing.ipynb)
     ├── raw            <- dados originais sem modificações
+    ├── interim        <- dados intermediários
+    |   ├── filtered   <- dados filtrados (saída do notebook pre-processing.ipynb)
+    |   ├── normalized <- dados normalizados (saída do notebook normalizing.ipynb)
+    |   └── balanced   <- dados com classes balanceadas (saída do notebook class_balacing.ipynb)
+    ├── processed      <- dados finais processados (saída do notebook data_augmentation_train.ipynb)
+    ├── weights        <- pesos dos modelos (saída dos notebook CNN.ipynb e CNN_no_process.ipynb)
+    ├── results        <- métricas dos modelos (saída dos notebook CNN_val_process.ipynb, CNN_val_no_process.ipynb, CNN_test_process.ipynb e CNN_test_no_process.ipynb)
     └── README.md      <- instruções da pasta
 ~~~
