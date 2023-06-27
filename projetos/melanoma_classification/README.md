@@ -47,7 +47,7 @@ O câncer de pele é uma das formas mais comuns de câncer em todo o mundo, e a 
 
 As imagens foram normalizadas, ou seja, todos os pixels foram divididos por 255.0, para padronizar os valores em pixels entre o intervalo de 0 a 1. A normalização é importante para manter a escala de pixels consistentes e facilitar o treinamento de redes complexas. Ainda, a técnica de pré-processamento reduz a influência de outliers e melhora a capacidade do modelo de generalizar para novos exemplos. Também adotamos estratégias de downsampling da classe majoritária, oversampling da classe minoritária e combinação de ambas para testar os efeitos nas arquiteturas avaliadas.
 <p align="center">
-  <img src="assets/preparação_do_dados.png" width="650" height="310">
+  <img src="assets/preparação_dos_dados.png" width="650" height="310">
 </p>
 
 *2. Data augmentation:*  
@@ -104,7 +104,7 @@ Todo o treinamento foi realizado configurando-se a rede para maximizar métricas
 - Avaliar simultaneamente arquiteturas complexas e consolidadas como Resnet50, MobileNet, EfficientNet e modelos mais simples (começando com pouca profundidade e pequena quantidade de filtros), afim de realizar a tarefa com o menor custo computacional possível e possibilitar mais abordagens de pré-processamento.
 - 
 <p align="center">
-  <img src="assets/fluxograma_dos_modelos.png" width="650" height="310">
+  <img src="assets/fluxograma_dos_modelos.png" width="950" height="310">
 </p>
 
   
