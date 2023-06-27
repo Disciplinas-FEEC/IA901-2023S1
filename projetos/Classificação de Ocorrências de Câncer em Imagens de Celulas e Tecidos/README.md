@@ -86,6 +86,24 @@ Abaixo vemos a distribuição dos tecidos que possuem ou não células neoplási
 
 Conclui-se então que para o propósito inicial do projeto, que é a classificação de tecidos com ou sem a presença de células neoplásicas, as quais são tumores, tem-se um dataset equilibrado (entre tecidos com e sem tumor) e totalmente anotado para tal propósito.
 
+### 2.2.1 Análise de data augmentation
+
+Foi realizado um estudo exploratório para identificar os efeitos do processo de data augmentation sobre as imagens dos tecidos. Este passo foi necessário para verificar quais transformações são coerentes com o que se esperaria no processo de aquisição das imagens. 
+Nesta análise, as transformações mais tradicionais foram vistas: VerticalFlip, HorizontalFlip, Pad (padding=30), Random Crop (padding mode=’reflect’) e Random Erasing. Os resultados podem ser vistos na Figura x1. Os flips horizontal e vertical preservam a estrutura espacial da imagem original. O Random Crop empregado também preserva grande parte da informação estrutural da imagem, apesar da pequena distorção causada pelo preenchimento de borda do tipo ‘reflect’. Por outro lado, as transformações Pad e Random Erasing criam cenários pouco realistas, introduzindo bordas fixadas ou apagando regiões inteiras - o que pode prejudicar a etapa de treinamento. 
+
+
+
+<p align="center">
+    <img src="..//Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Data Augmentation Study/Augmentation_0.png" height="350">
+</p>
+
+<p align="center">
+    Figura 5: Exemplos de aplicação das transformações de data augmentation (horizontal e vertical flips, Pad, Random Crop e Random Erasing) em uma imagem do conjunto de dados.
+</p>
+
+	Para todos os experimentos envolvendo o treinamento da EfficientNet_B0, optamos por usar os flips horizontal e vertical e o Random Crop como transformações no processo de data augmentation - uma vez que elas não criam artefatos ou distorções muito incongruentes do que se espera de uma imagem deste tipo. 
+O Resize necessário para tamanho 224 x 224 por conta do tamanho de entrada da EfficientNet_B0
+
 ## 2.3 Divisão de treino, teste e validação
 
 Como o projeto envolve treinar algoritmos de aprendizado de máquina, foi necessário dividir o conjunto de imagens em grupos de treino, validação e teste. Portanto, foi desenvolvido um algoritmo que acessa o diretório das imagens ‘.png’ e cria cópias destas imagens (sem repetições) em três novos diretórios: ‘/train’, ‘/val’ e ‘/test’. Todos possuem subdiretórios que representam as classes: ‘/0’ e ‘/1’. Escolhemos essa organização para tirar o máximo de proveito do método DataLoader() da biblioteca PyTorch, que foi usada para os experimentos com Deep Learning. 
@@ -119,6 +137,13 @@ No primeiro tipo de classificação realizado no projeto, o de tumores, são uti
 Neste experimento, utilizamos todos os tecidos nas etapas de treinamento, validação e testes. O objetivo foi verificar a performance do modelo de Deep Learning no cenário mais básico possível, em termos de dataset. 
 Adicionalmente, neste experimento, verificamos o quanto o modelo treinado acertava na tarefa de classificação considerando os diferentes tipos de tecido. A pergunta a ser respondida era: será que algum tecido é mais desafiador para o modelo classificar?
 
+<p align="middle">
+  <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/Baseline/Cópia de EpochsxAccuracy.png" height="300">
+  <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/Baseline/Cópia de EpochsxLoss.png" height="300">
+</p>
+Fig. 6. Curvas de Loss (Cross Entropy) e Acurácia em função do número de épocas para o treinamento da EfficientNetB0 neste estudo.  
+
+
 ##### 2.4.1.1 Experimento II
 	
 Neste experimento, treinamos o modelo de Deep Learning com as imagens de todos os tecidos, menos o tecido ‘Breast’, que foi separado para ser utilizado apenas na fase de testes. Esta escolha se deu pelo fato do tecido ‘Breast’ ser o mais populoso do dataset (>2000 imagens). 
@@ -143,6 +168,13 @@ Treinamento para discriminar 'Colon' dos demais tecidos (One vs All)
 #### 2.4.2.1 Experimento III
 
 Treinamento para discriminar seis tecidos - Breast, Colon, Esophagus, HeadNeck, Adrenal_gland e Bile-duct (estratégia "All vs All")
+
+<p align="middle">
+  <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Tissue Classification/Experiment_III/EpochsxAccuracy.png" height="300">
+  <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Tissue Classification/Experiment_III/EpochsxLoss.png" height="300">
+</p>
+Fig. 7. Curvas de Loss (Cross Entropy) e Acurácia em função do número de épocas para o treinamento da EfficientNetB0 neste estudo.  
+
 
 #### 2.4.3 Contagem de células
 
@@ -202,8 +234,9 @@ A Tabela 1 sintetiza algumas métricas de desempenho, para os dois estudos, cons
   <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/FPR_GeneralAnalysis.png" height="300">
 </p>
 Fig. 6. True Positive Rate e False Positive Rate em função do Decision Threshold para os dois estudos.  
-Tab. 1. Síntese das principais métricas de performance para os estudos: Baseline e experimento 1. 
 
+
+Tab. 1. Síntese das principais métricas de performance para os estudos: Baseline e experimento 1. 
 |Estudos|AUC|TPR*|FPR*|Precision*|Accuracy*|F1-score*|D. Threshold*|
 |---|---|---|---|---|---|---|---|
 |Baseline|0\.974|0\.94|0\.07|0\.93|0\.94|0\.93|0\.22|
@@ -218,8 +251,8 @@ A Figura 7 mostra a performance do modelo baseline para diferentes tecidos. Apen
 </p>
 Fig. 7. ROC Curve comparando a performance do modelo baseline para diferentes tecidos. Apenas aquelas com as três maiores (Stomach, Lung, Prostate) e três menores (Uterus, HeadNeck, Bile-duct) performances estão representadas. 
 
-Tab. 2. Síntese das principais métricas de performance para o estudo Baseline considerando os diferentes tecidos.
 
+Tab. 2. Síntese das principais métricas de performance para o estudo Baseline considerando os diferentes tecidos.
 |N\. amostras|Types|AUC|TPR*|FPR*|Precision*|Accuracy*|F1-Score*|
 |---|---|---|---|---|---|---|---|
 |37|Skin|1\.0|1\.0|0\.0|1\.0|1\.0|1\.0|
@@ -244,7 +277,6 @@ Tab. 2. Síntese das principais métricas de performance para o estudo Baseline 
 * Métricas calculadas com base no valor ótimo (máximo) do F1-score do modelo Baseline junto aos dados de todos os tecidos. 
 
 
-
 #### 4.1.1.3 Identificando padrões nas imagens classificadas incorretamente
 
 <p align="center">
@@ -254,9 +286,8 @@ Tab. 2. Síntese das principais métricas de performance para o estudo Baseline 
 ### 4.1.2 Comparação entre experimentos
 
 Tab. 3. Síntese das principais métricas de performance para os três estudos envolvendo a identificação de células neoplásicas nos tecidos.
-
 |Estudo|AUC|TPR*|FPR*|Precision*|Accuracy*|F1-Score*|
-|---|---|---|---|---|---|
+|---|---|---|---|---|---|---|
 |Baseline|0\.974|0\.94|0\.07|0\.93|0\.94|0\.93|
 |Experiment I|0\.859|0\.59|0\.07|0\.89|0\.72|0\.71|
 |Experiment II|0\.852|0\.92|0\.42|0\.69|0\.75|0\.79|
@@ -310,7 +341,7 @@ Tab. 4. Síntese das principais métricas de performance para a EfficientNet_B0 
 Tab. 5. Comparação de atributos estatísticos (Mean, standard-deviation (STD), Median, Min e Max) das distribuições dos dados reais e preditos pela EfficientNet_B0. Análise feita para o número de células totais e neoplásicas. Para as predições, foram calculados os valores de Mean Squared Error (MSE) e Mean Absolute Error (MAE). 
 
 | EfficientNet_B0 performance w.r.t the Test images (N=1571) |
-| ---------------------------------------------------------- |
+| ---------------------------------------------------------- |        
 |                                                            | Actual | Predicted |
 | Feature                                                    | Mean | STD | Median | Min | Max | Mean | STD | Median | Min | Max | MAE | MSE |
 | N. of
