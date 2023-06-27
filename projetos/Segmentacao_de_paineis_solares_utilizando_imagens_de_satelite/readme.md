@@ -54,7 +54,7 @@ Database| Link|Descriptive Summary
 ----- | ----- | -----
 A crowdsourced dataset of aerial images with annotated solar photovoltaic  arrays and installation metadata  | https://zenodo.org/record/7358126#.ZDVdg3bMK39 | - Installation metadata for more than 28000 installations </br> - Ground truth segmentation masks for 13000 installations, including 7000 with annotations for two different image providers (Google and IGN). </br> - Installation metadata that matches the annotation for more than 8000 installations. </br> - Dataset applications include end-to-end PV registry construction, robust PV installations mapping, and analysis of crowdsourced datasets.
 
-Information provided in the reference article of the dataset.
+Information is provided in the reference article of the dataset.
 
 ### A crowdsourced dataset of aerial images with annotated solar photovoltaic  arrays and installation metadata  
 <!---
@@ -74,7 +74,7 @@ The database contains satellite images from both Google and IGN, as well as a me
 
 Besides that, there is a metadata csv file containing information about the PV arrays, inversor power, pannel type, etc. 
 
-Here is presented a few information about the images from each Image Provider. 
+Here is presented a little information about the images from each Image Provider. 
 
 
 |Image Provider    |Images | Notes     |
@@ -135,7 +135,7 @@ MUDAR MUDAR MUDAR
 - bdappv: database containing imagery from google and ign
 - ds_statistics.ipynb: (description)
 - cnn.ipynb: (description) 
-- black_mask.png: mask for the imagery without solar pannels
+- black_mask.png: mask for the imagery without solar panels
 - (to be continued)...
 -->
 
@@ -148,10 +148,10 @@ MUDAR MUDAR MUDAR
 
 | Experiment       | Results          | Notes |
 | -------------------------------------------- | -------------------------| ----------|
-| U-Net trained from scratch with Google Imagery | Params: 487 297  </br>Cross-entropy Binary Loss: Train - 0.0135 / Val - 0.016 </br> AVG DICE Score Test: 0.7672 | In this experiment, the evaluation with google imagery showed a low dice score, and because of that we decided to use a bigger convolutional neural network (cnn), like Resnet50, and see if there was improvement in the metrics|
-| Resnet50 + mini U-Net fine-tunned with Google Imagery |Params: 20 676 545 </br>Cross-entropy Binary Loss: Train - 0.0078 / Val - 0.0092 </br>AVG DICE Score Test: 0.9330 </br> Base IGN - AVG DICE Score: 0.5888 | There was improvement with the metrics, however the Resnet50 was trained with google Imagery, and when tested with IGN imagery presented an low average DICE Score. In that sense, we decided to focus only with google imagery, for training and testing |
+| U-Net trained from scratch with Google Imagery | Params: 487 297  </br>Cross-entropy Binary Loss: Train - 0.0135 / Val - 0.016 </br> AVG DICE Score Test: 0.7672 | In this experiment, the evaluation with google imagery showed a low dice score, and because of that we decided to use a bigger convolutional neural network (CNN), like Resnet50, and see if there was an improvement in the metrics|
+| Resnet50 + mini U-Net fine-tunned with Google Imagery |Params: 20 676 545 </br>Cross-entropy Binary Loss: Train - 0.0078 / Val - 0.0092 </br>AVG DICE Score Test: 0.9330 </br> Base IGN - AVG DICE Score: 0.5888 | There was an improvement with the metrics, however, the Resnet50 was trained with google Imagery, and when tested with IGN imagery presented a low average DICE Score. In that sense, we decided to focus only on google imagery for training and testing |
 
-The results using Resnet50 to test the segmentation of IGN imagery made us realize that some metrics regarding masks with more than one pannel should be monitored. 
+The results using Resnet50 to test the segmentation of IGN imagery made us realize that some metrics regarding masks with more than one panel should be monitored. 
 
 # Data Augmentation
 Random rotation and flip: 
@@ -178,20 +178,19 @@ These results indicate high performance and validate the effectiveness of the tr
     - [x] Script 1: Identification of images with errors and dataset information | Selecting data for training, validation and test 
     - [x] Script 2: Convolutional network training/testing for segmentation 
     - [x] Preliminary GitHub organization </sub>
-- [ ] Delivery 3:
-    - [ ] Convolutional network for segmentation
+- [x] Delivery 3:
+    - [x] Convolutional network for segmentation
         - [x] Integration of the two scripts from Delivery 2
-        - [ ] Data augmentation on input images for improved results
-        - [ ] Aditional notebook for data augmentation visualization
-        - [ ] Aditional notebook for statistical info about the database
-        - [ ] Optimization of convolutional network hyperparameters (grid search)
-        - [ ] Post processing on segmentation
-    - [ ] Quantitative (segmentation and estimation) and qualitative evaluations (segmentation)
-    - [ ] Git update (readme, workflow, notebooks)
-- [ ] Project finished </sub> :tada: 
+        - [x] Data augmentation on input images for improved results
+        - [x] Aditional notebook for data augmentation visualization
+        - [x] Aditional notebook for statistical info about the database
+        - [x] Optimization of convolutional network hyperparameters (grid search)
+    - [x] Quantitative and qualitative evaluations (segmentation)
+    - [x] Git update (readme, workflow, notebooks)
+- [x] Project finished </sub> :tada: 
 
 ## Future Work!
-
+- [ ]  Pre and post-processing the images and segmentation masks
 - [ ] Training and testing of the neural network for photovoltaic generation power estimation
     - [ ] Definition of input data
     - [ ] Evaluation of results
