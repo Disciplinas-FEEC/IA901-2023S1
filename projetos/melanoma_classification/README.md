@@ -237,24 +237,7 @@ Por fim, passou-se à experimentação da última técnica: oversampling conside
 
 $$\frac{FN}{FN+VN}=\frac{86}{86+62}=0.75$$
 
-Experimento 4 - EfficientNet B3
------ 
-
-A EfficientNet caracteriza uma família de arquiteturas de redes neurais convolucionais projetada para alcançar um equilíbrio ideal entre precisão e eficiência computacional em tarefas de visão computacional. Essa família de redes foi desenvolvida por Mingxing Tan e Quoc V. Le, pesquisadores do Google, e sua primeira versão foi introduzida em 2019.
-
-Baseada em um conceito chamado "escalabilidade composta" (compound scaling), a escala da rede é aumentada de forma proporcional em todas as dimensões relevantes, em vez de simplesmente aumentar a profundidade ou a largura. Isso é conseguido por meio de uma fórmula que define a relação entre as diferentes escalas, permitindo um aumento harmonioso e controlado da arquitetura. Além disso, o EfficientNet utiliza blocos residuais chamados de MBConv (Mobile Inverted Bottleneck Convolution). Esses blocos são projetados para serem computacionalmente eficientes, combinando convoluções de ponto de entrada (*input point-wise*) e convoluções de ponto de saída (*output point-wise*) com uma camada de convolução profunda no meio.
-
-A partir de diferentes treinamentos, o melhor resultado para essa rede foi considerando downsampling do conjunto de benignos utilizados para treinamento, batch tamanho 64, otimizador Adam, learning rate = 0.001, agumentation proposto pela referência [1] e treinamento por 100 épocas, considerando os pesos das classes para tentativa de balancear os erros.
-
-<p align="center">
-  <img src="assets/efficientb3.png">
-</p>
-
-$$\frac{FN}{FN+VN}=\frac{86}{86+62}=0.58$$
-
-Embora a taxa de falsos positivos seja a melhor entre todos os experimentos, é importante considerar que a taxa de falsos positivos também aumentou significativamente. Tal resultado exemplifica a dificuldade em discriminar as duas classes diferentes de lesões, mesmo com as técnicas de *augmentation* apropriadas para o contexto do projeto.
-
-Experimento 6 - MobileNetV2
+Experimento 4 - MobileNetV2
 ----- 
 
 Também conhecida como uma arquitetura desenvolvida para aplicações de visão computacional em dispositivos com recursos computacionais limitados, a MobilNet foi projetada para alcançar um equilíbrio entre a precisão do modelo e a eficiência computacional. Para tanto, seu diferencial são camadas de convolução profunda separável em vez de convoluções padrão, considerando duas etapas: a primeira é uam convolução em que cada filtro opera em um canal de entrada, e a sgunda etapa é uma convolução ponto a ponto, onde um filtro linear é aplicado a cada para de características separadamente. Isso permite uma redução significativa no número de parâmetros e operações em comparação com as convoluções padrão, tornando a MobileNet mais leve e rápida.
@@ -271,6 +254,25 @@ Por fim, a técnica de oversampling da classe de malignos não apresentou result
 Embora a rede apresente resultados positivos para classificação de tumores malignos, o modelo aumentou a taxa de de falsos positivos, ou seja, classifica muitas lesões como malignas, quando na verdade são benignas. Em um contexto médico, é considerado principalmente se a conduta irá apresentar mais benefícios ou maleficios para o paciente. Como o tratamento de lesões consideradas malignas pode ser complexo e doloroso, não é interessante considerar os resultados do algoritmo. 
 
 $$\frac{FN}{FN+VN}=\frac{116}{116+31}=0.79$$
+
+
+Experimento 5 - EfficientNet B3
+----- 
+
+A EfficientNet caracteriza uma família de arquiteturas de redes neurais convolucionais projetada para alcançar um equilíbrio ideal entre precisão e eficiência computacional em tarefas de visão computacional. Essa família de redes foi desenvolvida por Mingxing Tan e Quoc V. Le, pesquisadores do Google, e sua primeira versão foi introduzida em 2019.
+
+Baseada em um conceito chamado "escalabilidade composta" (compound scaling), a escala da rede é aumentada de forma proporcional em todas as dimensões relevantes, em vez de simplesmente aumentar a profundidade ou a largura. Isso é conseguido por meio de uma fórmula que define a relação entre as diferentes escalas, permitindo um aumento harmonioso e controlado da arquitetura. Além disso, o EfficientNet utiliza blocos residuais chamados de MBConv (Mobile Inverted Bottleneck Convolution). Esses blocos são projetados para serem computacionalmente eficientes, combinando convoluções de ponto de entrada (*input point-wise*) e convoluções de ponto de saída (*output point-wise*) com uma camada de convolução profunda no meio.
+
+A partir de diferentes treinamentos, o melhor resultado para essa rede foi considerando downsampling do conjunto de benignos utilizados para treinamento, batch tamanho 64, otimizador Adam, learning rate = 0.001, agumentation proposto pela referência [1] e treinamento por 100 épocas, considerando os pesos das classes para tentativa de balancear os erros.
+
+<p align="center">
+  <img src="assets/efficientb3.png">
+</p>
+
+$$\frac{FN}{FN+VN}=\frac{86}{86+62}=0.58$$
+
+Embora a taxa de falsos positivos seja a melhor entre todos os experimentos, é importante considerar que a taxa de falsos positivos também aumentou significativamente. Tal resultado exemplifica a dificuldade em discriminar as duas classes diferentes de lesões, mesmo com as técnicas de *augmentation* apropriadas para o contexto do projeto.
+
 
 # Conclusões  
 
