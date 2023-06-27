@@ -121,7 +121,7 @@ Os dados do conjunto "interim/normalized" são então usados como entrada para o
 
 Por fim, o código "CNN.pynb" utiliza o modelo MobileNet V2 selecionado, tendo como entrada o conjunto "processed", e gera o arquivo "coeficients_process.pt". Esse arquivo é processado pelo código "CNN_val_process.ipynb", que gera as métricas avaliativas para o conjunto de dados de validação e as salva em "results_val_process.cvs". O código "CNN_test_process.ipynb" gera as métricas de desempenho da rede para os dados de teste e as salva em "results_test_process.csv".
 
-# Experimentos e Resultados preliminares
+# Experimentos e Resultados
 
 Após o pré-processamento de dados, foi realizado o treinamento de uma rede neural convolucional (CNN) do tipo MobileNet V2, pré-treinada. Para o processamento das imagens, foi realizado um redimensionamento para o tamanho (128, 128) e aplicada uma etapa de normalização estruturada na média e no desvio padrão dos dados de treinamento. Isso foi feito com o objetivo de padronizar os dados de entrada e melhorar o aprendizado da rede.
 
@@ -179,13 +179,21 @@ Matriz de confusão |  Principais métricas de classificação
 ![](./assets/confusion_matrix_test_no_process.png) |  ![](./assets/classification_report_test_no_process.png) 
 
 
-# Próximos passos
+# Discussões
+Durante o desenvolvimento do trabalho, surgiram discussões relacionadas à reprodutibilidade do experimento, aumento de desempenho e representatividade do conjunto de dados. Em relação à reprodutibilidade, foi identificada a necessidade de utilizar sementes (*seeds*) em todos os processos de seleção randômica de imagens presentes no banco de dados após o pré-processamento. Dessa forma, todas as transformações visuais implementadas, incluindo o aumento de dados e a separação dos lotes de treinamento, foram associadas a sementes para garantir a reprodutibilidade do experimento.
 
-Na etapa de processamento de dados, observou-se que mesmo testando duas vertentes diferentes de extração de informações e refinando as técnicas complementares, não foram obtidos resultados satisfatórios para todas as imagens, pois muitas ainda apresentavam elementos do fundo após a segmentação. Além disso, analisando trabalhos anteriores com propostas semelhantes, verificou-se que os autores utilizaram técnicas de machine learning para extrair atributos relacionados a ângulos e distâncias entre pontos do esqueleto [2], [5], [7], [12]. Isso corrobora com a ideia de que a estratégia escolhida para a aplicação de técnicas de processamento de imagens apresenta uma complexidade desproporcional à proposta do projeto final da disciplina.
+Em relação ao aumento de desempenho do modelo, constatou-se um desequilíbrio entre as classes "tree" e "goddess", as quais apresentaram maiores dificuldades de treinamento. Para lidar com isso, o grupo aplicou exclusivamente os métodos de aumento de dados nessas classes, o que se mostrou eficiente em melhorar o desempenho. Também pode-se destacar o aumento geral das imagens, que possibilitou o treinamento com mais amostras.
 
-Por esses motivos, decidiu-se alterar a ideia do projeto. Nesse contexto, o objetivo deste trabalho foi reformulado para realizar um estudo comparativo entre o desempenho de uma CNN com e sem o pré-processamento de dados para classificar 5 posturas de Yoga. A partir do processamento de imagem, a CNN será treinada com as imagens processadas e, a partir das métricas de avaliação, o seu desempenho será comparado com o de uma CNN sem pré-processamento, mas com a mesma arquitetura.
+No que diz respeito à representatividade do conjunto de dados, foi identificado um conjunto de imagem das classes “tree”, “plank”, “warrior2” e “goddess” que não representavam adequadamente suas respectivas classes. Essas imagens foram mantidas, porém dificultam o treinamento, visto que contém padrões que podem pertencer a outras classes, como posição dos braços e tronco.  Abaixo, podemos visualizar um exemplo de cada classe dessas imagens, com exceção de downdog que não foi observado.
 
-Portanto, os próximos passos incluem uma modificação dos códigos de processamento de dados, adaptando as técnicas já utilizadas, retirando as etapas de segmentação e código da cadeia para utilizar as imagens processadas como entrada da CNN. Além disso, serão realizados mais experimentos com a CNN a fim de obter um melhor desempenho sem o uso de redes pré-treinadas.
+
+Classe goddess |  Classe tree   | Classe plank| Classe warrior2
+|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|
+![](./assets/true_goddess_predicted_plank.png)  |  ![](./assets/true_tree_predicted_goddess.png) | ![](./assets/true_plank_predicted_downdog.png) | ![](./assets//true_warrior_predicted_tree.png)
+
+Já no conjunto de dados de teste não foram observadas tantas imagens “confusas”, o que justifica a melhoria da performance do modelo em comparação ao conjunto de dados de validação. 
+
+
 
 # Referências
 
