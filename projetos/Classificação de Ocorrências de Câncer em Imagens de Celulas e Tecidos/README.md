@@ -352,9 +352,14 @@ Tab. 4. Síntese das principais métricas de performance para os experimentos I 
 
 
 <p align="center">
-    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Tissue Classification/Experiment_III/CM.png" height="350">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Tissue Classification/Experiment_III/CM.png" height="450">
 </p>
 Fig. 13. Matriz de confusão da EfficientNetB0 treinada para classificar todos os tecidos.
+
+General accuracy:  0.9739
+General precision: 0.9661
+General F1 score:  0.9570
+
 
 Tab. 4. Síntese das principais métricas de performance para a EfficientNet_B0 aplicada na classificação de cada tecido.
 
@@ -394,7 +399,20 @@ Tab. 5. Comparação de atributos estatísticos (Mean, standard-deviation (STD),
 Neoplasic Cells                                     | 9.21 | 13.97 | 1 | 0 | 112 | 9.36 | 12.91 | 3 | 0 | 100 | 2.2 | 16.8 |
 | N. of Total Cells                                          | 23.71 | 20.49 | 19 | 0 | 196 | 23.17 | 20.24 | 19 | 0 | 225 | 2.7 | 16.4 |
 
-# Próximos passos
+<p align="middle">
+  <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cell Counting/Cópia de ScatterTotalCells.png" height="300">
+  <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cell Counting/Cópia de ScatterTotalNeoplasic.png" height="300">
+</p>
+Fig. 14. Comparação entre os valores preditos do número total de células (gráfico superior) e de células neoplásicas (gráfico inferior) pela EfficientNet_B0, assim como os valores esperados para a distribuição das imagens da amostra de testes. O gráfico da esquerda mostra a correlação entre as predições e os seus respectivos valores verdadeiros. A linha diagonal tracejada, que indica um regressor ideal, foi incluída para comparação. Por completeza, o gráfico da direita mostra a correlação dos valores preditos com a diferença entre as predições e os valores esperados. 
+
+<p align="middle">
+  <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cell Counting/Cópia de BoxPlotTotalCells.png" height="300">
+  <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cell Counting/Cópia de BoxPlotTotalNeoplasic.png" height="300">
+</p>
+Fig. 15. Boxplots representando a distribuição do Erro Absoluto cometido pela EfficientNet_B0 com relação a todos os tecidos da amostra de testes na contagem do número total de células (gráfico superior) e de células neoplásicas (gráfico inferior). As linhas amarelas indicam a mediana enquanto os triângulos verdes representam o Mean Absolute Error (MAE). A linha azul tracejada (MAE=12) indica a performance obtida na referência [x1] e foi incluída para comparação.
+
+
+# 5. Conclusão e futuro
 
 Com base nos resultados obtidos, os próximos passos imediatos seriam:
 
