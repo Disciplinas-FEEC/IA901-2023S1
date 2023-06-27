@@ -445,7 +445,7 @@ A Tabela 5 mostra a comparação dos atributos estatísticos dos valores predito
 Tab. 5. Comparação de atributos estatísticos (Mean, standard-deviation (STD), Median, Min e Max) das distribuições dos dados reais e preditos pela EfficientNet_B0. Análise feita para o número de células totais e neoplásicas. Para as predições, foram calculados os valores de Mean Squared Error (MSE) e Mean Absolute Error (MAE). 
 
 <p align="center">
-    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Table00.png" height="350">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Table01.png" height="350">
 </p>
 
 A Figura 14 mostra o gráfico de dispersão das predições e dos valores esperados da contagem de células totais e neoplásicas. As linhas tracejadas indicam o “Best case scenario”, onde cada previsão corresponde ao valor verdadeiro/esperado. No geral, as previsões feitas pela EfficientNet_B0 (tanto para contar células totais quanto para contas células neoplásicas) são muito condizentes com o que se espera, dada a distribuição dos dados em torno das linhas tracejadas. Os pontos mais distantes destas linhas (outliers) indicam imagens mais desafiadoras para o modelo contabilizar o número de células. 
@@ -462,6 +462,8 @@ Os tecidos mais desafiadores:
 Uterus
 Skin
 Lung
+
+
 Tecidos menos desafiadores:
 Adrenal_gland
 Bladder
