@@ -236,7 +236,7 @@ Por fim, passou-se à experimentação da última técnica: oversampling conside
   <img src="assets/rede3.png">
 </p>
 
-$$\frac{FN}{FN+VN}=\frac{86}{86+62}=0.75$$
+$$\frac{FN}{FN+VN}=\frac{119}{119+28}=0.81$$
 
 Experimento 4 - MobileNetV2
 ----- 
