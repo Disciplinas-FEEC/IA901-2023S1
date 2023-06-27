@@ -91,6 +91,8 @@ Em seguida, foi feito um aumento de todas as classes, a fim de aumentar o conjun
 * Ruído aleatório: 40%
 * Blur: 40%
 
+A imagem a seguir mostra como ficou a distribuição dos dados finais, após todo o processamento.
+
 ![plot_imgs_class_aug](./assets/total_imgs_class_aug.png)
 
 
@@ -121,41 +123,61 @@ Por fim, o código "CNN.pynb" utiliza o modelo MobileNet V2 selecionado, tendo c
 
 # Experimentos e Resultados preliminares
 
-A estrutura de processamento de dados final foi determinada por meio da análise dos resultados obtidos ao aplicar diferentes métodos e técnicas de processamento de imagem. O objetivo era otimizar a detecção de pessoas nas imagens. A seguir, descreveremos os resultados obtidos em cada etapa do processamento de dados.
+Após o pré-processamento de dados, foi realizado o treinamento de uma rede neural convolucional (CNN) do tipo MobileNet V2, pré-treinada. Para o processamento das imagens, foi realizado um redimensionamento para o tamanho (128, 128) e aplicada uma etapa de normalização estruturada na média e no desvio padrão dos dados de treinamento. Isso foi feito com o objetivo de padronizar os dados de entrada e melhorar o aprendizado da rede.
 
-Na etapa de remoção de ruídos, foi escolhido o filtro bilateral devido à sua capacidade de preservar as bordas e remover os ruídos das imagens. Por outro lado, as técnicas de abertura e fechamento não se mostraram tão eficazes, destacando bordas indesejadas de outros objetos na imagem.
-
-Na seleção do canal apropriado para melhorar os realces na imagem e facilitar a segmentação das pessoas, foram analisadas as representações HSV e escala de cinza. Inicialmente, considerou-se a saturação como o canal prioritário devido ao contraste da cor da pele humana. No entanto, devido à variação do cenário de fundo, a saturação se mostrou menos eficiente, pois algumas regiões das pessoas se confundiam com o fundo. Assim, optou-se pelo uso exclusivo do canal de escala de cinza por meio de uma simples conversão das imagens.
-
-Após a análise comparativa das técnicas de segmentação, a de limiarização por OTSU se destacou como a mais eficaz. Essa técnica conseguiu automaticamente encontrar o valor aceitável de limiar, considerando a distribuição dos níveis de cinza na imagem. Para algumas imagens mais complexas, como com marca d'água, textos e fundo com bastante textura, não foi possível separar totalmente a pessoa na imagem do restante dos objetos.
-
-Com relação a detecção da borda, entre os diversos métodos disponíveis, o Canny se mostrou mais adequado para a tarefa, proporcionando resultados satisfatórios. Além de detectar a borda por meio do gradiente, ele aplica um filtro gaussiano que contribui para remoção de artefatos indesejáveis na imagem.
-
-Comparando as duas vertentes analisadas para a extração de características, optou-se pelo uso do código da cadeia com uma vizinhança de 8. Entretanto, verificou-se que, devido à presença de bordas de outros objetos na imagem, ele acabou representando apenas uma pequena parte das pessoas nas imagens. É importante ressaltar que para a detecção do código da cadeia, foi usado uma transformada morfológica de abertura para a limpeza da imagem e extração do gradiente, para a alimentação do código da cadeia.
-
-A figura a seguir mostra as bordas de uma imagem de teste após processamento, com o resultado do código da cadeia abaixo.
-
-![plot_workflow](./assets/result.png)
-
-
-Em seguida, a KNN foi implementada para receber os vetores que representam as imagens do código da cadeia, porém essa etapa foi postergada para melhorar a fase de processamento de dados.
-
-Em paralelo, foi realizado o treinamento de uma rede neural convolucional (CNN) do tipo MobileNet V2, pré-treinada. Para o processamento das imagens, foi realizado apenas um redimensionamento para o tamanho (128,128) e aplicada uma etapa de normalização. Isso foi feito com o objetivo de padronizar os dados de entrada e melhorar o aprendizado da rede.
-
-Durante os experimentos, diversos hiperparâmetros foram variados, incluindo o otimizador, a taxa de aprendizagem, o número de épocas e o tamanho do lote (*batch size*). Após análise das curvas de acurácia e de *loss*, os hiperparâmetros foram ajustados da seguinte forma: 
+Após análise das curvas de acurácia e de loss, os hiperparâmetros foram ajustados da seguinte forma:
 
 * Tamanho do lote: 32;
 * Otimizador: Adam;
-* Taxa de aprendizagem: 0.000015;
-* Número de épocas: 40. 
+* Weight decay ou Regularização L2: 0.00001;
+* Taxa de aprendizagem: 0.000005;
+* Período de declínio da taxa de aprendizado: 10;
+* Fator multiplicativo da queda da taxa de aprendizado: 0.8;
+* Número de épocas: 55.
 
-O tamanho do lote foi escolhido de modo que o custo computacional fosse reduzido, mas que fosse evitado o overfitting. Em relação aos otimizadores, observou-se que o Adam convergiu mais rápido para o mínimo global devido aos recursos adaptativos. A taxa de aprendizagem escolhida foi de 0.000015, considerada baixa, para evitar oscilações bruscas no treinamento que atrapalham a convergência do processo de aprendizado. Por estar associada ao otimizador Adam, essa taxa de aprendizado baixa não ocasionou lentidão do treinamento. Dessa forma, em apenas 40 épocas já foi alcançada uma acurácia de validação de 94% e *loss* de 22%, conforme observado nas figuras abaixo. 
+O tamanho do lote foi escolhido de modo que o custo computacional fosse reduzido, mas que fosse evitado o overfitting. Em relação aos otimizadores, observou-se que o Adam convergiu mais rápido para o mínimo global devido aos recursos adaptativos. A taxa de aprendizagem escolhida foi de 0.000005, considerada baixa, para evitar oscilações bruscas no treinamento que atrapalham a convergência do processo de aprendizado. Por estar associada ao otimizador Adam, essa taxa de aprendizado baixa não ocasionou lentidão do treinamento. Dessa forma, em apenas 55 épocas já foi alcançada uma acurácia de validação de 93,7% e 91,95% e loss de 25% e 34,43%, considerando os datasets com e sem processamento respectivamente, conforme observado na figura abaixo.
 
-![plot_loss](./assets/loss.png)
+Dataset com processamento de imagem
+Acurácia |  Loss 
+| :-------------------------:|:-------------------------:
+![](./assets/acc_process.png)  |  ![](./assets/loss_process.png)
 
-![plot_acc](./assets/acc.png)
 
-A partir dessas figuras observou-se que a convergência ocorreu de forma gradual, em que a *loss* de treinamento ficou muito próxima de 0% e a de validação estabilizou-se em 22%. Com relação a acurácia, a de treinamento alcançou 100%, mas sem apresentar *overfitting*, visto que a curva de loss de validação não aumentou ao longo das épocas, representando que os parâmetros da rede estavam adequados tanto para o conjunto de treinamento quanto para o conjunto de validação. 
+Dataset sem processamento de imagem	
+Acurácia |  Loss 
+| :-------------------------:|:-------------------------:
+![](./assets/acc_no_process.png)  |  ![](./assets/loss_no_process.png) 
+
+Também analisaram-se os dados de validação a partir da matriz de confusão e das métricas, como mostram as Figuras 3 e 4. 
+
+
+Dataset com processamento de imagem
+Matriz de confusão |  Principais métricas de classificação 
+| :-------------------------:|:-------------------------:
+![](./assets/confusion_matrix_val_process.png)  |  ![](./assets/classification_report_val_process.png)
+
+
+Dataset sem processamento de imagem	
+Matriz de confusão |  Principais métricas de classificação 
+| :-------------------------:|:-------------------------:
+![](./assets/confusion_matrix_val_no_process.png) |  ![](./assets/classification_report_val_no_process.png) 
+
+Analisando a matriz de confusão nas figuras acima, foi possível observar que o modelo apresentou uma maior quantidade de acertos para as classes “downdog”, “plank” e “warrior2”, ao passo que nas classes “tree” e “goddess” observou-se uma maior taxa de erros, com os dois conjuntos de dados. Entretanto, considerando os dados com processamento, verificou-se que o modelo acertou mais casos.
+
+Isso foi confirmado pela análise das métricas, onde as classes “tree” e “goddess” apresentaram um desempenho inferior para o conjunto de dados sem processamento, com F1-score de 86% e 85% respectivamente. Em comparação, observou-se uma melhora dessas classes no conjunto com processamento, obtendo F1-score de 92% e 89% para “tree” e “goddess” respectivamente.
+Por fim, aplicou-se o modelo ajustado aos dados de teste e calcularam-se as métricas apresentadas abaixo, onde verificou-se uma melhora significativa de 2% em média com processamento de imagens.
+
+Dataset com processamento de imagem
+Matriz de confusão  |  Principais métricas de classificação 
+| :-------------------------:|:-------------------------:
+![](./assets/confusion_matrix_test_process.png)  |  ![](./assets/classification_report_test_process.png)
+
+
+Dataset sem processamento de imagem	
+Matriz de confusão |  Principais métricas de classificação 
+| :-------------------------:|:-------------------------:
+![](./assets/confusion_matrix_test_no_process.png) |  ![](./assets/classification_report_test_no_process.png) 
+
 
 # Próximos passos
 
