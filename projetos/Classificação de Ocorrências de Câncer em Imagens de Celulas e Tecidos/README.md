@@ -282,7 +282,7 @@ Tab. 1. Síntese das principais métricas de performance para os estudos: Baseli
 
 #### 4.1.1.2 Análise de desempenho por tecido
 
-A Figura 11 mostra a performance do modelo baseline para diferentes tecidos. Apenas aquelas com as três maiores (Stomach, Lung, Prostate) e três menores (Uterus, HeadNeck, Bile-duct) performances estão representadas. Para as maiores performances, temos AUCs~1 - indicando uma classificação perfeita dos tecidos. Nos piores casos, temos AUC~0.89, que ainda é uma performance considerada razoável para um classificador. Por completeza, a Tabela 2 mostra o resultado para todos os tecidos e outras métricas de desempenho. 
+A Figura 11 mostra a performance do modelo baseline para diferentes tecidos. Apenas aquelas com as três maiores (Stomach, Lung, Prostate) e três menores (Uterus, HeadNeck, Bile-duct) performances estão representadas. Para as maiores performances, temos AUCs em torno de 1 - indicando uma classificação perfeita dos tecidos. Nos piores casos, temos AUC em torno de 0.89, que ainda é uma performance considerada razoável para um classificador. Por completeza, a Tabela 2 mostra o resultado para todos os tecidos e outras métricas de desempenho. 
 
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/FinalComparison/ROCAllTissues_Baseline.png" height="350">
