@@ -137,45 +137,68 @@ Após análise das curvas de acurácia e de loss, os hiperparâmetros foram ajus
 
 O tamanho do lote foi escolhido de modo que o custo computacional fosse reduzido, mas que fosse evitado o overfitting. Em relação aos otimizadores, observou-se que o Adam convergiu mais rápido para o mínimo global devido aos recursos adaptativos. A taxa de aprendizagem escolhida foi de 0.000005, considerada baixa, para evitar oscilações bruscas no treinamento que atrapalham a convergência do processo de aprendizado. Por estar associada ao otimizador Adam, essa taxa de aprendizado baixa não ocasionou lentidão do treinamento. Dessa forma, em apenas 55 épocas já foi alcançada uma acurácia de validação de 93,7% e 91,95% e loss de 25% e 34,43%, considerando os datasets com e sem processamento respectivamente, conforme observado na figura abaixo.
 
-Dataset com processamento de imagem
-Acurácia |  Loss 
-| :-------------------------:|:-------------------------:
+<br>
+<br>
+Dataset com processamento de imagem 
+
+Acurácia | Loss 
+|:-------------------------:|:-------------------------:
 ![](./assets/acc_process.png)  |  ![](./assets/loss_process.png)
 
 
-Dataset sem processamento de imagem	
+<br>
+<br>
+
+Dataset sem processamento de imagem 	
+
 Acurácia |  Loss 
-| :-------------------------:|:-------------------------:
+|:-------------------------:|:-------------------------:
 ![](./assets/acc_no_process.png)  |  ![](./assets/loss_no_process.png) 
 
 Também analisaram-se os dados de validação a partir da matriz de confusão e das métricas, como mostram as Figuras 3 e 4. 
 
+<br>
+<br>
 
-Dataset com processamento de imagem
-Matriz de confusão |  Principais métricas de classificação 
-| :-------------------------:|:-------------------------:
+
+Dataset de validação com processamento de imagem
+
+Matriz de confusão |  Principais métricas de classificação
+|:-------------------------:|:-------------------------:
 ![](./assets/confusion_matrix_val_process.png)  |  ![](./assets/classification_report_val_process.png)
 
 
-Dataset sem processamento de imagem	
-Matriz de confusão |  Principais métricas de classificação 
-| :-------------------------:|:-------------------------:
+<br>
+<br>
+
+Dataset de validação sem processamento de imagem	
+
+Matriz de confusão |  Principais métricas de classificação
+|:-------------------------:|:-------------------------:
 ![](./assets/confusion_matrix_val_no_process.png) |  ![](./assets/classification_report_val_no_process.png) 
 
 Analisando a matriz de confusão nas figuras acima, foi possível observar que o modelo apresentou uma maior quantidade de acertos para as classes “downdog”, “plank” e “warrior2”, ao passo que nas classes “tree” e “goddess” observou-se uma maior taxa de erros, com os dois conjuntos de dados. Entretanto, considerando os dados com processamento, verificou-se que o modelo acertou mais casos.
 
 Isso foi confirmado pela análise das métricas, onde as classes “tree” e “goddess” apresentaram um desempenho inferior para o conjunto de dados sem processamento, com F1-score de 86% e 85% respectivamente. Em comparação, observou-se uma melhora dessas classes no conjunto com processamento, obtendo F1-score de 92% e 89% para “tree” e “goddess” respectivamente.
+
+
 Por fim, aplicou-se o modelo ajustado aos dados de teste e calcularam-se as métricas apresentadas abaixo, onde verificou-se uma melhora significativa de 2% em média com processamento de imagens.
 
-Dataset com processamento de imagem
-Matriz de confusão  |  Principais métricas de classificação 
-| :-------------------------:|:-------------------------:
+<br>
+<br>
+
+Dataset de treino com processamento de imagem
+
+Matriz de confusão |  Principais métricas de classificação 
+|:-------------------------:|:-------------------------:
 ![](./assets/confusion_matrix_test_process.png)  |  ![](./assets/classification_report_test_process.png)
 
+<br>
+<br>
 
-Dataset sem processamento de imagem	
+Dataset de treino sem processamento de imagem
 Matriz de confusão |  Principais métricas de classificação 
-| :-------------------------:|:-------------------------:
+|:-------------------------:|:-------------------------:
 ![](./assets/confusion_matrix_test_no_process.png) |  ![](./assets/classification_report_test_no_process.png) 
 
 
