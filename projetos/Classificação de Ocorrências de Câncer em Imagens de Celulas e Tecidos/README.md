@@ -94,7 +94,7 @@ Nesta análise, as transformações mais tradicionais foram vistas: VerticalFlip
 
 
 <p align="center">
-    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Data Augmentation Study/Augmentation_0.png" height="250">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Data Augmentation Study/Augmentation_0.png" height="150">
 </p>
 
 <p align="center">
@@ -179,7 +179,7 @@ Fig. 7. Curvas de Loss (Cross Entropy) e Acurácia em função do número de ép
 #### 2.4.3 Contagem de células
 
 <p align="center">
-    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cell Counting/Cópia de EpochsxLoss.png" height="250">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cell Counting/Cópia de EpochsxLoss.png" height="350">
 </p>
 
 <p align="center">
@@ -190,17 +190,23 @@ Fig. 7. Curvas de Loss (Cross Entropy) e Acurácia em função do número de ép
 
 ### 2.5.1 Problema de classificação binário
 As técnicas de classificação podem fornecer a probabilidade P de uma observação pertencer a uma determinada classe. Pelo fato desta saída probabilística P ser contínua e restrita ao intervalo [0, 1], a classificação em si ocorre ao se determinar um parâmetro livre conhecido como Decision Threshold, que representa um valor de corte sobre as probabilidades. Considerando um cenário com duas classes, uma observação é classificada como positiva se P ≥Decision Threshold - caso contrário, ela é rotulada como sendo negativa. Cada valor de Decision Threshold produz uma matriz de confusão diferente, modificando também as suas métricas de desempenho. Mesmo assim, ainda é possível avaliar a performance geral de classificadores binários recorrendo a um método conhecido como ROC Curve, que não depende da escolha de qualquer limiar sobre as probabilidades. Resumidamente: A ROC Curve correlaciona os valores de True Positive Rate (TPR) e False Positive Rate (FPR) para todos os valores possíveis de Decision Threshold [Ref].Uma quantidade que sintetiza as informações das ROC Curves é a Area Under the Curve (AUC), que varia no intervalo $[0, 1]$.
-Mesmo recorrendo às ROC Curves para fazer avaliações gerais dos modelos, é fato que, na prática, a qualidade das classificações depende fortemente do valor escolhido para o Decision Threshold. Algumas análises adotam o seu valor padrão de $0.5$. No entanto, o ideal é que a escolha desse limiar leve em consideração as demandas e particularidades de cada estudo. Em situações em que os erros de classificação possuem um custo alto, pode ser mais adequado trabalhar com valores mais elevados de Decision Threshold. Por outro lado, se os erros de classificação forem menos importantes do que identificar a classe positiva, pode ser mais interessante recorrer a Decision Thresholds menores. De todo modo, existem algumas figuras de mérito que podem ser empregadas para otimizar essa escolha, como o Youden's Index, que mede a diferença entre as Taxas de Verdadeiro e Falso Positivo:
+Mesmo recorrendo às ROC Curves para fazer avaliações gerais dos modelos, é fato que, na prática, a qualidade das classificações depende fortemente do valor escolhido para o Decision Threshold. Algumas análises adotam o seu valor padrão de $0.5$. No entanto, o ideal é que a escolha desse limiar leve em consideração as demandas e particularidades de cada estudo. Em situações em que os erros de classificação possuem um custo alto, pode ser mais adequado trabalhar com valores mais elevados de Decision Threshold. Por outro lado, se os erros de classificação forem menos importantes do que identificar a classe positiva, pode ser mais interessante recorrer a Decision Thresholds menores. De todo modo, existem algumas figuras de mérito que podem ser empregadas para otimizar essa escolha, tais como:
 
 $$\textrm{Youden's Index} = TPR - FPR $$
 
-Nesse caso, o Decision Threshold escolhido deve ser aquele que maximiza a relação acima, por representar o valor de corte em que a quantidade de acertos do classificador é máxima com relação aos seus erros. 
+$$\textrm{F1-Score} = 2*\frac{Precision*TPR}{Precision+TPR}$$
+
+$$\textrm{G-Mean} = \sqrt{TPR*(1 - FPR)} $$
+
+Nesse caso, o Decision Threshold escolhido deve ser aquele que maximiza as relações acima, por representar o valor de corte em que a quantidade de acertos do classificador é máxima ou equilibrada com relação aos seus erros. 
 
 Portanto, todas estas métricas (TPR, FPR e AUC) serão usadas em nossas análises. Adicionalmente, usaremos outras métricas de classificação conhecidas, tais como: 
+
 Acurácia: porcentagem de observações classificadas corretamente 
+
 Precisão: porcentagem de observações classificadas como positivas que são realmente positivas. 
 
-Para o cálculo delas, consideramos o valor de Decision Threshold que maximiza o Índice de Youden. 
+Em geral, para o cálculo delas, consideramos o valor de Decision Threshold que maximiza uma das três figuras de mérito apresentadas. 
 
 ### 2.5.2 Problema de classificação multi-classe
 
@@ -210,6 +216,8 @@ Para o cálculo delas, consideramos o valor de Decision Threshold que maximiza o
 
 Para a organização e visualização dos dados do dataset, foram utilizadas as bibliotecas Pandas, Numpy e Matplotlib. Para a confecção do workflow do projeto, o grupo utilizou a ferramenta de desenho de workflows Draw.io. Para a execução do projeto em si, isto é, as classificações da imagens, irão ser utilizadas as bibliotecas PyTorch, para a parte de Deep Learning, e o SciKit-Learn para a parte de algoritmos tradicionais de machine learning voltados à classificação.
 Todo o projeto tem sido desenvolvido, em linguagem Python, no formato de Notebooks do Google Colaboratory - com uso de GPUs/CPUs. Adicionalmente, todos os arquivos (raw, intermediários e finais) têm sido salvos na plataforma Google Drive - sendo, eventualmente, repassados para o Github. 
+
+Os detalhemento completo sobre todos os pacotes/bibliotecas utilizadas assim como suas versões pode ser encontrada nao diretório /src. Instruções para instalação também estão inclusas. 
 
 # 3. Workflow
 
