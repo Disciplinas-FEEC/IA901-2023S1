@@ -215,7 +215,7 @@ Foram considerados treinamentos com batch tamanho 32 e 64, além do peso das cla
 
 - *fill_mode*: o parâmetro determina como os pixels são preenchidos quando ocorre um deslocamento ou distorção da imagem. O valor 'nearest' preenche os pixels ausentes com o valor do pixel mais próximo.
 
-O treinamento foi realizado por 200 épocas com batch tamanho 64, otimizador Adam, *learning rate* de 0.001 e função de perda *binary_crossentropy*. 
+O treinamento foi realizado por 100 épocas com batch tamanho 64, otimizador Adam, *learning rate* de 0.001 e função de perda *binary_crossentropy*. 
 
 O Adam é um otimizador popular que combina os benefícios do algoritmo de otimização estocástica gradiente descendente (SGD) com adaptação de taxa de aprendizado. Ele ajusta a taxa de aprendizado para cada parâmetro individualmente, com base em estimativas do primeiro e segundo momento dos gradientes. Essa adaptação permite que o Adam se ajuste mais efetivamente a diferentes taxas de aprendizado para diferentes parâmetros. Ainda, a função de perda 'binary_crossentropy' é uma função de perda comumente usada para problemas de classificação binária. Ela mede a diferença entre as probabilidades preditas pelo modelo e as classes reais do problema. O objetivo é minimizar essa diferença durante o treinamento.
 
