@@ -69,7 +69,17 @@ Dessa forma, estudos que avaliam técnicas de aumentação de dados com foco em 
   <img src="assets/hair_remove.jpg"  width="510" height="250">
 </p>
 
+Alternativamente, foram consideradas as seguintes transformações nas imagens com o objetivo de torná-las menos heterogêneas, com base em estudos sobre técnicas de aumento de dados para lesões de pele:
 
+- *width_shift_range* e *height_shift_range*: desloca horizontalmente e verticalmente, respectivamente, por uma fração da largura ou altura da imagem original, auxiliando o modelo a aprender a reconhecer objetos em diferentes posições.
+
+- *shear_range*: aplica um cisalhamento aleatório na imagem, distorcendo-a ao longo do eixo horizontal, podendo ser útil para ensinar o modelo a lidar com objetos inclinados.
+
+- *zoom_range*: aplica um zoom aleatório na imagem, ampliando-a ou reduzindo-a, com objetivo de treinar o modelo a aprender a reconhecer objetos em diferentes escalas.
+
+- *brightness_range*: ajusta aleatoriamente o brilho das imagens, aumentando ou diminuindo seus valores de pixel. Isso pode ajudar o modelo a ser mais robusto em relação a variações de iluminação.
+
+- *fill_mode*: o parâmetro determina como os pixels são preenchidos quando ocorre um deslocamento ou distorção da imagem. O valor 'nearest' preenche os pixels ausentes com o valor do pixel mais próximo.
 
 *3. Avaliação e validação:*
 
@@ -227,17 +237,7 @@ Também conhecida como uma arquitetura desenvolvida para aplicações de visão 
 
 Foram considerados treinamentos com batch tamanho 32 e 64, além do peso das classes, diferentes técnicas de augmentation e aplicação de downsampling e oversampling da classe minoritária. O melhor resultado encontrado foi a partir da seguintes definiçõs:
 
- **Data agumentation**:
 
-- *width_shift_range* e *height_shift_range*: desloca horizontalmente e verticalmente, respectivamente, por uma fração da largura ou altura da imagem original, auxiliando o modelo a aprender a reconhecer objetos em diferentes posições.
-
-- *shear_range*: aplica um cisalhamento aleatório na imagem, distorcendo-a ao longo do eixo horizontal, podendo ser útil para ensinar o modelo a lidar com objetos inclinados.
-
-- *zoom_range*: aplica um zoom aleatório na imagem, ampliando-a ou reduzindo-a, com objetivo de treinar o modelo a aprender a reconhecer objetos em diferentes escalas.
-
-- *brightness_range*: ajusta aleatoriamente o brilho das imagens, aumentando ou diminuindo seus valores de pixel. Isso pode ajudar o modelo a ser mais robusto em relação a variações de iluminação.
-
-- *fill_mode*: o parâmetro determina como os pixels são preenchidos quando ocorre um deslocamento ou distorção da imagem. O valor 'nearest' preenche os pixels ausentes com o valor do pixel mais próximo.
 
 O treinamento foi realizado por 100 épocas com batch tamanho 64, otimizador Adam, *learning rate* de 0.001 e função de perda *binary_crossentropy*. 
 
