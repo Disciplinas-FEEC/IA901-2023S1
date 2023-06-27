@@ -120,19 +120,19 @@ Como informado anteriormente, foram selecionadas 6 redes conhecidas para serem t
 
 
 
-## Efficient_V2
+## Efficient_B2
 
-Efficient_V2 - Train Acc
+Efficient_B2 - Train Acc
 
 ![train_epoch_acc (15)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/b2e15b27-23cb-4e13-9637-cc0754f315f2)
 
-Efficient_V2 - Val Acc
+Efficient_B2 - Val Acc
 ![val_epoch_acc (10)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/da729945-cd01-42cf-8a9b-f59e21de62c9)
 
-Efficient_V2 - Train Loss
+Efficient_B2 - Train Loss
 ![train_epoch_loss (12)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/498c50f6-f513-4a2a-992d-d549ae34df33)
 
-Efficient_V2 - Val Loss
+Efficient_B2 - Val Loss
 ![val_epoch_loss (10)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/4b72047a-1cb4-43c6-8def-33f7da18212f)
 
 
