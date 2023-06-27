@@ -40,40 +40,6 @@ Após analisar as métricas por classe, verificou-se a necessidade de balancear 
 
 Com as imagens já processadas, aplicou-se a mesma CNN e comparou-se o desempenho sem e com o processamento de imagens.
 
-**Processamento:**
-
-Nesta etapa, utilizou-se métodos de processamento de imagens para distinguir as pessoas do restante da imagem, separando-as do plano de fundo. Isso é essencial para isolar as regiões de interesse e facilitar a análise. Uma vez que as pessoas foram detectadas, aplicou-se métodos de extração de características para capturar informações relevantes que possibilitem a classificação das poses que cada pessoa está realizando. Foram abordadas 2 vertentes: extração das posições das articulações através de um esqueleto e o resultante do código da cadeia de Freeman.
-
-O esqueleto de uma imagem é uma forma afinada da mesma, a fim de obter uma representação mais simples da forma de um objeto que facilite a extração de algumas características. A partir da imagem dos esqueletos, os pontos finais e ramificados de cada imagem podem ser extraidos para serem usados como entrada de uma rede como a KNN.
-
-![plot_skeleton](./assets/esqueleto.png)
-
-
-Já o código da cadeia representa a borda de um objeto a partir da posição relativa entre os pixels vizinhos da borda ao invés da coordenada absoluta dos pixels. O código retorna uma sequência formada pelas direções entre cada pixel e o seu consecutivo, até que toda a borda seja analisada. Pode-se ter vizinhança-4 ou vizinhaça-8, conforme mostrado abaixo.
-
-![plot_freeman](./assets/chain_code.png)
-
-
-![plot_freeman_example](./assets/chain_code_example.png)
-
-
-A fim de facilitar o desenvolvimento desta fase, ela foi subdivididas em cinco etapas principais: Remoção de ruídos das imagens, transformações para realce, segmentação, detecção de bordas e extração de características.
-
-A primeira etapa envolve a remoção de ruídos das imagens. Isso é importante para eliminar interferências e imperfeições que possam prejudicar a detecção das pessoas nas imagens, para esse método optou-se por estudar quatro diferentes filtros, sendo eles média, gaussiana, bilateral e filtro morfológico ASF (abertura e fechamento), para então levantar qual deveria ser utilizado no projeto.
-
-Levantou-se um estudo do canal apropriado a ser trabalhado (Matiz, saturação, níveis de cinza), com o intuito de melhorar os realces na imagem e facilitar o processo de segmentação das pessoas.
-
-A etapa de segmentação usou-se diferentes técnicas, a fim de separar a pessoa do plano de fundo e de outros objetos indesejáveis. Entre as técnicas investigadas estão limiarização usando OTSU, *Adaptive Mean*, *Watershed* e *Histogram-based segmentation*.
-
-Após a segmentação, detectou-se as bordas das imagens utilizando o método Canny.
-
-Por fim, avaliou-se qual caminho de técnicas fornece características relevantes para servirem de treinamento na KNN.
-
-**Desenvolvimento da CNN:** 
-
-Com o objetivo de criar um estudo comparativo entre os métodos de processamento de imagem e o uso de uma rede convolucional, desenvolveu-se uma CNN a partir do modelo MobileNet V2,onde ajustou-se apenas os hiperparâmetros após uma normalização e redimensionamento dos dados. O modelo MobileNet V2 foi escolhido pela quantidade razoável de 2.230.277 parâmetros treinados, sendo considerado adequado para o tamanho do dataset, por possuir poucas amostras. Essa arquitetura de rede neural foi inicialmente adaptada para dispositivos móveis e ambientes com recursos restritos, diminuindo significativamente o número de operações e memória necessária, mantendo uma boa precisão.
-
-Com relação ao processamento das imagens, realizou-se um redimensionamento para o tamanho (128,128) e uma normalização. Após realizar testes variando os hiperparâmetros da rede (otimizador, taxa de aprendizagem, número de épocas, tamanho do lote), analisou-se o desempenho da rede, com base na curva de acurácia x *loss*.
 
 ## Bases de Dados e Evolução
 A base de dados utilizada no projeto foi a "Yoga Poses Dataset", contendo as cinco mais conhecidas poses de Yoga: cachorro olhando para baixo (classe "downdog"), deusa (classe "goddess"), árvore (classe "tree"), prancha (classe "plank") e guerreiro (classe "warrior2").
@@ -89,34 +55,43 @@ Abaixo, são mostradas uma imagem de exemplo de cada classe.
 
 Classe downdog |  Classe goddess   | Classe plank | Classe tree | Classe warrior2
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![](./data/raw/TRAIN/downdog/00000128.jpg)  |  ![](./data/raw/TRAIN/goddess/00000096.jpg) | ![](./data/raw/TRAIN/plank/00000129.jpg) | ![](./data/raw/TRAIN/tree/00000070.jpg) | ![](./data/raw/TRAIN/warrior2/00000122.jpg)
+![](./data/processed/TRAIN/downdog/00000143.jpg)  |  ![](./data/processed/TRAIN/goddess/00000102.jpg) | ![](./data/processed/TRAIN/plank/00000151.jpg) | ![](./data/processed/TRAIN/tree/00000075.jpg) | ![](./data/processed/TRAIN/warrior2/00000138.jpg)
 
 Como o conjunto de dados já estava separado em pastas de treino e teste e em subpastas com as classes, a primeira etapa consistiu em realizar uma inspeção visual dos dados, onde foi analisado que existia contaminação, ou seja, a mesma informação na pasta de treino e teste, às vezes variando apenas o tamanho das imagens.
 
 
-Dessa forma, foi criado um *script* para automatizar a limpeza dos dados. Inicialmente, foi feita uma padronização das imagens, visto que elas possuem tamanho e formatos variados. Apenas as imagens RGB no formato PNG foram selecionadas, e em seguida redimensionadas para o tamanho 120x120.
+Dessa forma, foi criado um *script* para automatizar a limpeza dos dados. Inicialmente, foi feita uma padronização das imagens, visto que elas possuem tamanho e formatos variados. Apenas as imagens RGB no formato PNG foram selecionadas, e em seguida redimensionadas para o tamanho 128x128.
 
 
-A métrica SSIM (*Structural Similarity Index Method*) foi utilizada a fim de analisar o nível de similaridade entre as imagens no conjunto de treino e teste. Ela compara características estruturais das imagens, levando em consideração elementos como texturas, contrastes e detalhes visuais. O valor do SSIM varia entre -1 até 1, sendo 1 o valor resultante quando as duas imagens comparadas são idênticas, e -1 quando são completamente diferentes. Nesse caso, as imagem com SSIM acima de 0.95 foram consideradas semelhantes e removidas do conjunto de treinamento. 
+A métrica SSIM (*Structural Similarity Index Method*) foi utilizada a fim de analisar o nível de similaridade entre as imagens no conjunto de treino e teste. Ela compara características estruturais das imagens, levando em consideração elementos como texturas, contrastes e detalhes visuais. O valor do SSIM varia entre -1 até 1, sendo 1 o valor resultante quando as duas imagens comparadas são idênticas, e -1 quando são completamente diferentes. Nesse caso, as imagens com SSIM acima de 0.95 foram consideradas semelhantes e removidas do conjunto de treinamento. 
 
 Por fim, para se obter um conjunto de validação, a pasta de treino desse novo conjunto de dados foi dividida aleatoriamente em treino e validação, na proporção 80%-20%. 
 
 O conjunto de treino representa 55.17% do total de dados, validação 13.04% e teste 31.78%, como pode ser visto na tabela abaixo.
 
 Conjunto de dados   | Quantidade de imagens
---------------------|----------------------
-Treino              | 736                  
-Validação           | 174                  
-Teste               | 424                  
+----------------------------|----------------------
+Treino                       |  736                  
+Validação                  | 174                  
+Teste                         | 424                  
 
-A figura abaixo mostra como ficou distribuido cada classe em cada conjunto de dados. Como pode-se observar, não há um grande desbalanceamento entre classes, porém há menos imagens das classes "tree" e "goddess" em todos os conjuntos de dados.
+Em todas as imagens dos conjuntos foi feito um processo de normalização com relação a transformações visuais. Foram analisadas as mudanças de brilho, contraste, matiz e saturação, entretanto os melhores resultados foram obtidos apenas com o aumento de 10% do contraste.
 
-![plot_imgs_classe](./assets/total_imgs_class.png)
+Abaixo, temos como ficou distribuído cada classe em cada conjunto de dados. Como pode-se observar as classes "tree" e "goddess" possuem menos imagens em todos os conjuntos de dados. Apesar de não ser um grande desbalanceamento, essa diferença prejudica a classificação dessas classes.
 
-Por esta razão, foi feito um balanceamento dessas classes através de *data augmentation*, aplicando em 50% das imagens, de forma aleatória, um dos seguintes processamentos: flip horizontal, rotação, zoom, ruído gaussiano, blur. 
-Em seguida, foi feito um aumento de todas as classes, a fim de aumentar o conjunto de dados de treinamento. As mesmas transformações foram aplicadas em 80% do conjunto de dados pós-balanceamento, agora podendo ter mais de um tipo de processamento em cada nova imagem.
+![plot_imgs_class](./assets/total_imgs_class.png)
 
-![plot_imgs_classe](./assets/total_imgs_class_aug.png)
+
+Por esta razão, foi feito um balanceamento dessas classes através de *data augmentation*, aplicando em 50% das imagens, de forma aleatória, um dos seguintes processamentos: flip horizontal, rotação, zoom, ruído gaussiano e blur, na proporção de 20%. 
+ 
+Em seguida, foi feito um aumento de todas as classes, a fim de aumentar o conjunto de dados de treinamento. As mesmas transformações foram aplicadas em 80% do conjunto de dados pós-balanceamento, agora podendo ter mais de um tipo de processamento em cada nova imagem. Desses 80%, cada processamento foi aplicado na seguinte proporção:
+* Rotação: 20%
+* Flip horizontal: 80% 
+* Zoom: 50%
+* Ruído aleatório: 40%
+* Blur: 40%
+
+![plot_imgs_class_aug](./assets/total_imgs_class_aug.png)
 
 
 # Ferramentas
