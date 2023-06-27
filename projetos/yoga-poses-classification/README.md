@@ -13,58 +13,33 @@ Sara Mirthis Dantas dos Santos | 224018 | Aluna Especial - Engenharia Elétrica
 Yasmin Martins Perci           | 271281 | Aluna Especial - Engenharia Elétrica
 
 ## Descrição do Projeto
+A classificação de posturas de yoga pode ser muito útil para instrutores, praticantes e para o desenvolvimento de aplicativos ou dispositivos de assistência. Além disso, esse classificador pode ser aprimorado para aplicações de monitoramento de progresso individual, correção de posturas inadequadas e, consequentemente, prevenção de lesões dos praticantes.
 
-A classificação de posturas de yoga pode ser muito útil para instrutores, praticantes e para o desenvolvimento de aplicativos ou dispositivos de assistência. Além disso, esse classificador pode ser aprimorado para aplicações de monitoramento de progresso individual, correção de posturas inadequadas e, consequentemente, prevenção de lesões dos praticantes. 
+Trabalhos anteriores de classificação de posturas de yoga utilizam deep learning [2], [4] ou técnicas de machine learning para extrair atributos relacionados a ângulos e distância entre pontos do esqueleto e utilizam em classificadores clássicos [1], [3], [5], [7]. 
 
-Trabalhos anteriores de classificação de posturas de yoga utilizam deep learning [3], [6]. Já outros utilizam técnicas de machine learning para extrair atributos relacionados a ângulos e distância entre pontos do esqueleto [2], [5], [7], [12]. Nesse contexto, o objetivo deste trabalho é realizar um estudo comparativo entre o desempenho de uma CNN e uma KNN com atributos extraídos por meio de processamento de imagem para classificar 5 posturas de Yoga. A partir de processamento de imagem, com a aplicação de filtros, detecção de bordas, a KNN será treinada com o vetor resultante do código da cadeia de Freeman, e, a partir das métricas de avaliação, o seu desempenho será comparado com o de uma CNN.
+Inicialmente, o objetivo do projeto era um estudo comparativo entre o desempenho de uma CNN e uma KNN com extração de atributos para classificar 5 posturas de Yoga. A partir de processamento de imagem, com a aplicação de filtros, detecção de bordas, a KNN seria treinada com o vetor resultante do código da cadeia de Freeman, e, a partir das métricas de avaliação, o seu desempenho seria comparado com o de uma CNN.
 
-Portanto, a principal contribuição do trabalho é ressaltar a relevância do processamento de imagem, mesmo em um cenário dominado por técnicas de deep learning. Dessa forma, visa-se demonstrar que é possível obter resultados significativos usando algoritmos mais simples e clássicos, como KNN, quando associados ao processamento de imagens. 
+Porém, na etapa de processamento de dados, observou-se que mesmo testando duas vertentes diferentes de extração de informações e refinando as técnicas complementares, não foram obtidos resultados satisfatórios para todas as imagens, pois muitas ainda apresentavam elementos do fundo após a segmentação. Dessa forma, concluiu-se que a estratégia escolhida para a classificação a partir da extração de atributos apresentava uma complexidade desproporcional à proposta do projeto final da disciplina.
+
+Nesse contexto, o objetivo deste trabalho foi reformulado para realizar um estudo comparativo entre o desempenho de uma CNN com e sem o pré-processamento de dados para classificar 5 posturas de Yoga. A CNN foi treinada com as imagens processadas e, a partir das métricas de avaliação, o seu desempenho foi comparado com o de uma CNN sem pré-processamento, mas com a mesma arquitetura e hiperparâmetros.
+
 
 # Metodologia
 
-O projeto é composto por três etapas distintas de desenvolvimento, as quais trabalham em conjunto para fornecer informações relevantes como um todo.
+O projeto é composto por três etapas principais, sendo a primeira relacionada ao pré-processamento dos dados, onde eles são analisados, limpos e preparados. Nessa fase, é feita a análise de contaminação entre conjuntos de dados, algo de extrema importância, sobretudo ao se trabalhar com dados de domínio público. Essa contaminação pode causar dificuldades no treinamento do modelo e levar a erros no processo de classificação. Além disso, nesse estágio é feita a seleção e padronização das imagens que serão usadas no processamento.
 
-A primeira etapa está relacionada ao pré-processamento dos dados, onde eles são analisados, limpos e preparados. O principal foco é a análise de contaminação entre conjuntos de dados, sobretudo ao se trabalhar com dados de domínio público. Essa contaminação pode causar dificuldades no treinamento do modelo e levar a erros no processo de classificação. Além disso, nessa parte é feita a seleção e padronização das imagens que serão usadas no processamento.
+Depois do pré-processamento de dados, desenvolveu-se uma CNN a partir do modelo MobileNet V2, onde ajustou-se apenas os hiperparâmetros após uma normalização com base na média e o desvio padrão, seguido por um redimensionamento dos dados para tamanho de (128, 128). O modelo MobileNet V2 foi escolhido pela quantidade razoável de 2.230.277 parâmetros treinados, em comparação com modelos mais complexos, como o ResNet ou o Inception. Esse valor foi considerado adequado para o tamanho do dataset, que possui poucas amostras.
 
-A segunda etapa envolve o processamento desses dados com o objetivo de extrair atributos importantes para a classificação, através de um algoritmo de classificação conhecido como KNN (*K-Nearest Neighbors*), que tem como propósito identificar as classes e classificar as diferentes poses de yoga.
+ Essa arquitetura de rede neural foi inicialmente adaptada para dispositivos móveis e ambientes com recursos restritos, diminuindo significativamente o número de operações e memória necessária, mantendo uma boa precisão [6].
 
-A última etapa concentra-se no desenvolvimento de uma CNN (*Convolutional Neural Network*) utilizando a arquitetura MobileNet V2, responsável por classificar as diferentes poses de Yoga. Essa etapa é crucial para comparar os resultados obtidos pela KNN e avaliar a eficácia do modelo de classificação.
+Posterior ao ajuste de hiperparâmetros da rede (otimizador, taxa de aprendizagem, número de épocas, tamanho do lote, regularização L2), analisou-se o desempenho com base nas curvas de acurácia e loss de treino e validação, além das métricas extraídas da matriz de confusão: F1-score, acurácia, precisão e recall.  
 
+Analisando os resultados de validação, verificou-se a necessidade de aplicação de técnicas de processamento de imagens para melhoria do desempenho do modelo. Foram feitas algumas transformações nas imagens, além de data augmentation para balancear as classes e também aumentar os dados de treino.
 
-**Processamento:**
+Após analisar as métricas por classe, verificou-se a necessidade de balancear as classes através de data augmentation. Por fim, foi feito data augmentation em todas as classes no dataset de teste, a fim de aumentar a quantidade de imagens e melhorar o treinamento. 
 
-Nesta etapa, utilizou-se métodos de processamento de imagens para distinguir as pessoas do restante da imagem, separando-as do plano de fundo. Isso é essencial para isolar as regiões de interesse e facilitar a análise. Uma vez que as pessoas foram detectadas, aplicou-se métodos de extração de características para capturar informações relevantes que possibilitem a classificação das poses que cada pessoa está realizando. Foram abordadas 2 vertentes: extração das posições das articulações através de um esqueleto e o resultante do código da cadeia de Freeman.
+Com as imagens já processadas, aplicou-se a mesma CNN e comparou-se o desempenho sem e com o processamento de imagens.
 
-O esqueleto de uma imagem é uma forma afinada da mesma, a fim de obter uma representação mais simples da forma de um objeto que facilite a extração de algumas características. A partir da imagem dos esqueletos, os pontos finais e ramificados de cada imagem podem ser extraidos para serem usados como entrada de uma rede como a KNN.
-
-![plot_skeleton](./assets/esqueleto.png)
-
-
-Já o código da cadeia representa a borda de um objeto a partir da posição relativa entre os pixels vizinhos da borda ao invés da coordenada absoluta dos pixels. O código retorna uma sequência formada pelas direções entre cada pixel e o seu consecutivo, até que toda a borda seja analisada. Pode-se ter vizinhança-4 ou vizinhaça-8, conforme mostrado abaixo.
-
-![plot_freeman](./assets/chain_code.png)
-
-
-![plot_freeman_example](./assets/chain_code_example.png)
-
-
-A fim de facilitar o desenvolvimento desta fase, ela foi subdivididas em cinco etapas principais: Remoção de ruídos das imagens, transformações para realce, segmentação, detecção de bordas e extração de características.
-
-A primeira etapa envolve a remoção de ruídos das imagens. Isso é importante para eliminar interferências e imperfeições que possam prejudicar a detecção das pessoas nas imagens, para esse método optou-se por estudar quatro diferentes filtros, sendo eles média, gaussiana, bilateral e filtro morfológico ASF (abertura e fechamento), para então levantar qual deveria ser utilizado no projeto.
-
-Levantou-se um estudo do canal apropriado a ser trabalhado (Matiz, saturação, níveis de cinza), com o intuito de melhorar os realces na imagem e facilitar o processo de segmentação das pessoas.
-
-A etapa de segmentação usou-se diferentes técnicas, a fim de separar a pessoa do plano de fundo e de outros objetos indesejáveis. Entre as técnicas investigadas estão limiarização usando OTSU, *Adaptive Mean*, *Watershed* e *Histogram-based segmentation*.
-
-Após a segmentação, detectou-se as bordas das imagens utilizando o método Canny.
-
-Por fim, avaliou-se qual caminho de técnicas fornece características relevantes para servirem de treinamento na KNN.
-
-**Desenvolvimento da CNN:** 
-
-Com o objetivo de criar um estudo comparativo entre os métodos de processamento de imagem e o uso de uma rede convolucional, desenvolveu-se uma CNN a partir do modelo MobileNet V2,onde ajustou-se apenas os hiperparâmetros após uma normalização e redimensionamento dos dados. O modelo MobileNet V2 foi escolhido pela quantidade razoável de 2.230.277 parâmetros treinados, sendo considerado adequado para o tamanho do dataset, por possuir poucas amostras. Essa arquitetura de rede neural foi inicialmente adaptada para dispositivos móveis e ambientes com recursos restritos, diminuindo significativamente o número de operações e memória necessária, mantendo uma boa precisão.
-
-Com relação ao processamento das imagens, realizou-se um redimensionamento para o tamanho (128,128) e uma normalização. Após realizar testes variando os hiperparâmetros da rede (otimizador, taxa de aprendizagem, número de épocas, tamanho do lote), analisou-se o desempenho da rede, com base na curva de acurácia x *loss*.
 
 ## Bases de Dados e Evolução
 A base de dados utilizada no projeto foi a "Yoga Poses Dataset", contendo as cinco mais conhecidas poses de Yoga: cachorro olhando para baixo (classe "downdog"), deusa (classe "goddess"), árvore (classe "tree"), prancha (classe "plank") e guerreiro (classe "warrior2").
@@ -80,123 +55,192 @@ Abaixo, são mostradas uma imagem de exemplo de cada classe.
 
 Classe downdog |  Classe goddess   | Classe plank | Classe tree | Classe warrior2
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![](./data/processed/TRAIN/downdog/00000143.jpg)  |  ![](./data/processed/TRAIN/goddess/00000102.jpg) | ![](./data/processed/TRAIN/plank/00000151.jpg) | ![](./data/processed/TRAIN/tree/00000075.jpg) | ![](./data/processed/TRAIN/warrior2/00000138.jpg)
+![](./data/raw/TRAIN/downdog/00000128.jpg)  |  ![](./data/raw/TRAIN/goddess/00000096.jpg) | ![](./data/raw/TRAIN/plank/00000136.png) | ![](./data/raw/TRAIN/tree/00000074.jpg) | ![](./data/raw/TRAIN/warrior2/00000125.jpg)
 
 Como o conjunto de dados já estava separado em pastas de treino e teste e em subpastas com as classes, a primeira etapa consistiu em realizar uma inspeção visual dos dados, onde foi analisado que existia contaminação, ou seja, a mesma informação na pasta de treino e teste, às vezes variando apenas o tamanho das imagens.
 
 
-Dessa forma, foi criado um *script* para automatizar a limpeza dos dados. Inicialmente, foi feita uma padronização das imagens, visto que elas possuem tamanho e formatos variados. Apenas as imagens RGB no formato PNG foram selecionadas, e em seguida redimensionadas para o tamanho 120x120.
+Dessa forma, foi criado um *script* para automatizar a limpeza dos dados. Inicialmente, foi feita uma padronização das imagens, visto que elas possuem tamanho e formatos variados. Apenas as imagens RGB no formato PNG foram selecionadas, e em seguida redimensionadas para o tamanho 128x128.
 
 
-A métrica SSIM (*Structural Similarity Index Method*) foi utilizada a fim de analisar o nível de similaridade entre as imagens no conjunto de treino e teste. Ela compara características estruturais das imagens, levando em consideração elementos como texturas, contrastes e detalhes visuais. O valor do SSIM varia entre -1 até 1, sendo 1 o valor resultante quando as duas imagens comparadas são idênticas, e -1 quando são completamente diferentes. Nesse caso, as imagem com SSIM acima de 0.95 foram consideradas semelhantes e removidas do conjunto de treinamento. 
+A métrica SSIM (*Structural Similarity Index Method*) foi utilizada a fim de analisar o nível de similaridade entre as imagens no conjunto de treino e teste. Ela compara características estruturais das imagens, levando em consideração elementos como texturas, contrastes e detalhes visuais. O valor do SSIM varia entre -1 até 1, sendo 1 o valor resultante quando as duas imagens comparadas são idênticas, e -1 quando são completamente diferentes. Nesse caso, as imagens com SSIM acima de 0.95 foram consideradas semelhantes e removidas do conjunto de treinamento. 
 
 Por fim, para se obter um conjunto de validação, a pasta de treino desse novo conjunto de dados foi dividida aleatoriamente em treino e validação, na proporção 80%-20%. 
 
 O conjunto de treino representa 55.17% do total de dados, validação 13.04% e teste 31.78%, como pode ser visto na tabela abaixo.
 
 Conjunto de dados   | Quantidade de imagens
---------------------|----------------------
-Treino              | 736                  
-Validação           | 174                  
-Teste               | 424                  
+----------------------------|----------------------
+Treino                       |  736                  
+Validação                  | 174                  
+Teste                         | 424                  
 
-A figura abaixo mostra como ficou distribuido cada classe em cada conjunto de dados. Como pode-se observar, não há um grande desbalanceamento entre classes, porém há menos imagens das classes "tree" e "goddess" em todos os conjuntos de dados.
+Em todas as imagens dos conjuntos foi feito um processo de normalização com relação a transformações visuais. Foram analisadas as mudanças de brilho, contraste, matiz e saturação, entretanto os melhores resultados foram obtidos apenas com o aumento de 10% do contraste.
 
-![plot_imgs_classe](./assets/total_imgs_classe.png)
+Abaixo, temos como ficou distribuído cada classe em cada conjunto de dados. Como pode-se observar as classes "tree" e "goddess" possuem menos imagens em todos os conjuntos de dados. Apesar de não ser um grande desbalanceamento, essa diferença prejudica a classificação dessas classes.
+
+![plot_imgs_class](./assets/total_imgs_class.png)
+
+
+Por esta razão, foi feito um balanceamento dessas classes através de *data augmentation*, aplicando em 50% das imagens, de forma aleatória, um dos seguintes processamentos: flip horizontal, rotação, zoom, ruído gaussiano e blur, na proporção de 20%. 
+ 
+Em seguida, foi feito um aumento de todas as classes, a fim de aumentar o conjunto de dados de treinamento. As mesmas transformações foram aplicadas em 80% do conjunto de dados pós-balanceamento, agora podendo ter mais de um tipo de processamento em cada nova imagem. Desses 80%, cada processamento foi aplicado na seguinte proporção:
+* Rotação: 20%
+* Flip horizontal: 80% 
+* Zoom: 50%
+* Ruído aleatório: 40%
+* Blur: 40%
+
+A imagem a seguir mostra como ficou a distribuição dos dados finais, após todo o processamento.
+
+![plot_imgs_class_aug](./assets/total_imgs_class_aug.png)
 
 
 # Ferramentas
+No pré-processamento de dados, utilizou-se a biblioteca “os” para interagir com o sistema operacional e realizar ações como acessar, ler arquivos, entre outros. A fim de eliminar a contaminação dos dados, utilizou-se o módulo “skimage.metrics” da biblioteca “skimage” para calcular índices de similaridade das imagens (SSIM), métrica escolhida devido a sua sensibilidade quanto a informações de luminância, contraste e estrutura. A “shutil”, junto a biblioteca “random”, foi utilizada para aleatoriamente fazer a separação dos dados  originalmente de treinamento em treinamento e validação.
 
-No pré-processamento de dados, utilizou-se a biblioteca “os” para interagir com o sistema operacional e realizar ações como acessar, ler arquivos, entre outros. A fim de eliminar a contaminação dos dados, utilizou-se o módulo “skimage.metrics” da biblioteca “skimage” para calcular índices de similaridade das imagens. A “shutil” foi utilizada para mover as imagens na etapa de divisão dos dados de treinamento em treinamento e validação e a biblioteca “random” para fazer a seleção aleatória das imagens a serem separadas em treinamento e validação.
+A CNN foi implementada utilizando a biblioteca “pytorch”, por ser mais flexível para o desenvolvimento de modelos. Também utilizou-se a biblioteca “torchvision” para utilizar as arquiteturas de modelo e transformações de imagem presentes nesta biblioteca. Além disso, utilizou-se a biblioteca “torchsummary” para imprimir os parâmetros treináveis ​​e não treináveis do modelo. Para o acompanhamento das alterações nos modelos, utilizou-se a biblioteca “torch.utils.tensorboard” que possui utilitários que permitem o registro de modelos e métricas do PyTorch em um diretório para visualização na interface do TensorBoard.
 
-Para o processamento de imagens, utilizou-se a biblioteca “opencv” para realizar alterações de forma, limiarização, detecção de bordas e outros processamentos, a fim de realizar a segmentação das imagens. De forma complementar, utilizou-se a biblioteca “skimage”, por meio de  módulos referentes a mudanças nas cores e alterações morfológicas. 
+Na etapa de processamento dos dados, aplicou-se a biblioteca “torchsummary” a qual contém as funções para se fazer ajustes no brilho, contraste, matiz e saturação nas imagens. Para o processo de aumento dos dados, utilizou-se bibliotecas e pacotes, como PIL (Python Imaging Library) e Pillow (fork moderno e ativo do PIL), que permitiram rotacionar, flipar, modificar o brilho, aplicar fatores de zoom e introduzir ruídos e borrões nas imagens.
 
-Para desenvolver a KNN, utilizou-se o módulo “sklearn.neighbors” da biblioteca “sklearn”. Já a rede CNN foi implementada utilizando a biblioteca “pytorch”, por ser mais flexível para o desenvolvimento de modelos. Também utilizou-se a biblioteca “torchvision” para utilizar as arquiteturas de modelo e transformações de imagem presentes nessa biblioteca. Além disso, utilizou-se a biblioteca “torchsummary” para imprimir os parâmetros treináveis ​​e não treináveis do modelo. Para o acompanhamento das alterações nos modelos, utilizou-se a biblioteca “torch.utils.tensorboard” que possui utilitários que permitem o registro de modelos e métricas do PyTorch em um diretório para visualização na interface do TensorBoard.
-
-Por fim, para avaliar o desempenho da KNN e da CNN foram utilizadas as métricas de acurácia, acurácia balanceada, F1-score e matriz de confusão calculadas por meio de módulos da biblioteca “sklearn”.
-
+Por fim, para avaliar o desempenho da CNN com e sem processamento foram utilizadas as métricas de acurácia, acurácia balanceada, F1-score ponderado, precisão ponderada e matriz de confusão calculadas por meio de módulos da biblioteca “sklearn”. Também foram analisadas as métricas individuais de cada classe (precisão, recall e F1-score), através da função “classification_report”.
 
 # Workflow
 
-O Workflow é um documento que faz todo o mapeamento de como executar todos os códigos desenvolvidos durante o projeto. Ele foi feito na ferramenta Draw.io e está acessível para visualização no formato .png.
-
-O diagrama presente no Workflow inicia-se com as "Fotos Cruas" (pasta data/raw) que representa o conjunto de fotos de domínio público. Essas imagens são a entrada do código "Pré-processamento.pynb", responsável por identificar e remover contaminações entre os dados de treinamento e teste, assim como filtrar o formato de imagem que será usada.  
-
-O resultado deste processo é representado como "Banco de dados"(pasta data/interim) no diagrama, e nele estão contidas as imagens que serão efetivamente usadas durante o projeto. Os códigos "Processamento.pynb" e "CNN.pynb" fazem usos diferentes deste banco de dados. O primeiro executa vários métodos e técnicas de processamento de imagem para obter o "código da cadeia.txt" das imagens do dataset, o que é enviado posteriormente para o código "KNN.pynb" que extrai as informações de classes. O segundo treina uma rede convolucional e gera o arquivo "Coeficientes treinados.pn" que será usado no código "CNN_test.pynb" para gerar os resultados das classes. 
-
-A seguir, é mostrado o workflow do projeto.
+O Workflow é um documento que faz todo o mapeamento de como executar todos os códigos desenvolvidos durante o projeto. Seu desenho foi feito na ferramenta Draw.io e está acessível para visualização como .PNG e .SVG. 
 
 ![plot_workflow](./assets/Workflow.drawio.png)
 
+O fluxo de trabalho começa com as imagens da pasta "raw", que são um conjunto de imagens de domínio público. Essas imagens passam por uma etapa de pré-processamento "pre-processing.ipynb" para identificar e remover contaminações entre os dados de treinamento e teste, além de filtrar o formato de imagem desejado. O resultado desse processo é o conjunto "interim/filtered".
 
-# Experimentos e Resultados preliminares
+Em seguida, o conjunto de imagens gerado passa por duas etapas independentes. A primeira etapa, chamada "CNN_no_process.ipynb", treina a MobileNet V2 com esses dados, e a etapa "normalizing.ipynb" é aplicada ao conjunto para gerar outro conjunto chamado "interim/normalized".
 
-A estrutura de processamento de dados final foi determinada por meio da análise dos resultados obtidos ao aplicar diferentes métodos e técnicas de processamento de imagem. O objetivo era otimizar a detecção de pessoas nas imagens. A seguir, descreveremos os resultados obtidos em cada etapa do processamento de dados.
+O resultado da etapa "CNN_no_process_ipymnb" é um arquivo chamado "coeficients_no_process.pt". Esse arquivo é usado como entrada em dois códigos. O primeiro código avalia o desempenho da rede no conjunto de dados de validação "CNN_val_no_process.ipynb", resultando em métricas que são salvas em "result_val_no_process.csv". O segundo código, "CNN_test_no_process.ipynb", gera métricas de avaliação para o conjunto de dados de teste e salva essas informações em "results.csv".
 
-Na etapa de remoção de ruídos, foi escolhido o filtro bilateral devido à sua capacidade de preservar as bordas e remover os ruídos das imagens. Por outro lado, as técnicas de abertura e fechamento não se mostraram tão eficazes, destacando bordas indesejadas de outros objetos na imagem.
+Os dados do conjunto "interim/normalized" são então usados como entrada para o código "class_balancing.ipynb", que tem como objetivo balancear as classes que possuem menos dados. O resultado desse processo é o conjunto "interim/balanced". Em seguida, é feito um aumento dos dados de treinamento com o código "data_augmentation_train.ipynb", gerando a pasta final chamada "processed".
 
-Na seleção do canal apropriado para melhorar os realces na imagem e facilitar a segmentação das pessoas, foram analisadas as representações HSV e escala de cinza. Inicialmente, considerou-se a saturação como o canal prioritário devido ao contraste da cor da pele humana. No entanto, devido à variação do cenário de fundo, a saturação se mostrou menos eficiente, pois algumas regiões das pessoas se confundiam com o fundo. Assim, optou-se pelo uso exclusivo do canal de escala de cinza por meio de uma simples conversão das imagens.
+Por fim, o código "CNN.pynb" utiliza o modelo MobileNet V2 selecionado, tendo como entrada o conjunto "processed", e gera o arquivo "coeficients_process.pt". Esse arquivo é processado pelo código "CNN_val_process.ipynb", que gera as métricas avaliativas para o conjunto de dados de validação e as salva em "results_val_process.cvs". O código "CNN_test_process.ipynb" gera as métricas de desempenho da rede para os dados de teste e as salva em "results_test_process.csv".
 
-Após a análise comparativa das técnicas de segmentação, a de limiarização por OTSU se destacou como a mais eficaz. Essa técnica conseguiu automaticamente encontrar o valor aceitável de limiar, considerando a distribuição dos níveis de cinza na imagem. Para algumas imagens mais complexas, como com marca d'água, textos e fundo com bastante textura, não foi possível separar totalmente a pessoa na imagem do restante dos objetos.
+# Experimentos e Resultados
 
-Com relação a detecção da borda, entre os diversos métodos disponíveis, o Canny se mostrou mais adequado para a tarefa, proporcionando resultados satisfatórios. Além de detectar a borda por meio do gradiente, ele aplica um filtro gaussiano que contribui para remoção de artefatos indesejáveis na imagem.
+Após o pré-processamento de dados, foi realizado o treinamento de uma rede neural convolucional (CNN) do tipo MobileNet V2, pré-treinada. Para o processamento das imagens, foi realizado um redimensionamento para o tamanho (128, 128) e aplicada uma etapa de normalização estruturada na média e no desvio padrão dos dados de treinamento. Isso foi feito com o objetivo de padronizar os dados de entrada e melhorar o aprendizado da rede.
 
-Comparando as duas vertentes analisadas para a extração de características, optou-se pelo uso do código da cadeia com uma vizinhança de 8. Entretanto, verificou-se que, devido à presença de bordas de outros objetos na imagem, ele acabou representando apenas uma pequena parte das pessoas nas imagens. É importante ressaltar que para a detecção do código da cadeia, foi usado uma transformada morfológica de abertura para a limpeza da imagem e extração do gradiente, para a alimentação do código da cadeia.
-
-A figura a seguir mostra as bordas de uma imagem de teste após processamento, com o resultado do código da cadeia abaixo.
-
-![plot_workflow](./assets/result.png)
-
-
-Em seguida, a KNN foi implementada para receber os vetores que representam as imagens do código da cadeia, porém essa etapa foi postergada para melhorar a fase de processamento de dados.
-
-Em paralelo, foi realizado o treinamento de uma rede neural convolucional (CNN) do tipo MobileNet V2, pré-treinada. Para o processamento das imagens, foi realizado apenas um redimensionamento para o tamanho (128,128) e aplicada uma etapa de normalização. Isso foi feito com o objetivo de padronizar os dados de entrada e melhorar o aprendizado da rede.
-
-Durante os experimentos, diversos hiperparâmetros foram variados, incluindo o otimizador, a taxa de aprendizagem, o número de épocas e o tamanho do lote (*batch size*). Após análise das curvas de acurácia e de *loss*, os hiperparâmetros foram ajustados da seguinte forma: 
+Após análise das curvas de acurácia e de loss, os hiperparâmetros foram ajustados da seguinte forma:
 
 * Tamanho do lote: 32;
 * Otimizador: Adam;
-* Taxa de aprendizagem: 0.000015;
-* Número de épocas: 40. 
+* Weight decay ou Regularização L2: 0.00001;
+* Taxa de aprendizagem: 0.000005;
+* Período de declínio da taxa de aprendizado: 10;
+* Fator multiplicativo da queda da taxa de aprendizado: 0.8;
+* Número de épocas: 55.
 
-O tamanho do lote foi escolhido de modo que o custo computacional fosse reduzido, mas que fosse evitado o overfitting. Em relação aos otimizadores, observou-se que o Adam convergiu mais rápido para o mínimo global devido aos recursos adaptativos. A taxa de aprendizagem escolhida foi de 0.000015, considerada baixa, para evitar oscilações bruscas no treinamento que atrapalham a convergência do processo de aprendizado. Por estar associada ao otimizador Adam, essa taxa de aprendizado baixa não ocasionou lentidão do treinamento. Dessa forma, em apenas 40 épocas já foi alcançada uma acurácia de validação de 94% e *loss* de 22%, conforme observado nas figuras abaixo. 
+O tamanho do lote foi escolhido de modo que o custo computacional fosse reduzido, mas que fosse evitado o overfitting. Em relação aos otimizadores, observou-se que o Adam convergiu mais rápido para o mínimo global devido aos recursos adaptativos. A taxa de aprendizagem escolhida foi de 0.000005, considerada baixa, para evitar oscilações bruscas no treinamento que atrapalham a convergência do processo de aprendizado. Por estar associada ao otimizador Adam, essa taxa de aprendizado baixa não ocasionou lentidão do treinamento. Dessa forma, em apenas 55 épocas já foi alcançada uma acurácia de validação de 93,7% e 91,95% e loss de 25% e 34,43%, considerando os datasets com e sem processamento respectivamente, conforme observado na figura abaixo.
 
-![plot_loss](./assets/loss.png)
+<br>
+<br>
+Dataset com processamento de imagem 
 
-![plot_acc](./assets/acc.png)
+Acurácia | Loss 
+|:-------------------------:|:-------------------------:
+![](./assets/acc_process.png)  |  ![](./assets/loss_process.png)
 
-A partir dessas figuras observou-se que a convergência ocorreu de forma gradual, em que a *loss* de treinamento ficou muito próxima de 0% e a de validação estabilizou-se em 22%. Com relação a acurácia, a de treinamento alcançou 100%, mas sem apresentar *overfitting*, visto que a curva de loss de validação não aumentou ao longo das épocas, representando que os parâmetros da rede estavam adequados tanto para o conjunto de treinamento quanto para o conjunto de validação. 
 
-# Próximos passos
+<br>
+<br>
 
-Na etapa de processamento de dados, observou-se que mesmo testando duas vertentes diferentes de extração de informações e refinando as técnicas complementares, não foram obtidos resultados satisfatórios para todas as imagens, pois muitas ainda apresentavam elementos do fundo após a segmentação. Além disso, analisando trabalhos anteriores com propostas semelhantes, verificou-se que os autores utilizaram técnicas de machine learning para extrair atributos relacionados a ângulos e distâncias entre pontos do esqueleto [2], [5], [7], [12]. Isso corrobora com a ideia de que a estratégia escolhida para a aplicação de técnicas de processamento de imagens apresenta uma complexidade desproporcional à proposta do projeto final da disciplina.
+Dataset sem processamento de imagem 	
 
-Por esses motivos, decidiu-se alterar a ideia do projeto. Nesse contexto, o objetivo deste trabalho foi reformulado para realizar um estudo comparativo entre o desempenho de uma CNN com e sem o pré-processamento de dados para classificar 5 posturas de Yoga. A partir do processamento de imagem, a CNN será treinada com as imagens processadas e, a partir das métricas de avaliação, o seu desempenho será comparado com o de uma CNN sem pré-processamento, mas com a mesma arquitetura.
+Acurácia |  Loss 
+|:-------------------------:|:-------------------------:
+![](./assets/acc_no_process.png)  |  ![](./assets/loss_no_process.png) 
 
-Portanto, os próximos passos incluem uma modificação dos códigos de processamento de dados, adaptando as técnicas já utilizadas, retirando as etapas de segmentação e código da cadeia para utilizar as imagens processadas como entrada da CNN. Além disso, serão realizados mais experimentos com a CNN a fim de obter um melhor desempenho sem o uso de redes pré-treinadas.
+Também analisaram-se os dados de validação a partir da matriz de confusão e das métricas, como mostram as Figuras 3 e 4. 
+
+<br>
+<br>
+
+
+Dataset de validação com processamento de imagem
+
+Matriz de confusão |  Principais métricas de classificação
+|:-------------------------:|:-------------------------:
+![](./assets/confusion_matrix_val_process.png)  |  ![](./assets/classification_report_val_process.png)
+
+
+<br>
+<br>
+
+Dataset de validação sem processamento de imagem	
+
+Matriz de confusão |  Principais métricas de classificação
+|:-------------------------:|:-------------------------:
+![](./assets/confusion_matrix_val_no_process.png) |  ![](./assets/classification_report_val_no_process.png) 
+
+Analisando a matriz de confusão nas figuras acima, foi possível observar que o modelo apresentou uma maior quantidade de acertos para as classes “downdog”, “plank” e “warrior2”, ao passo que nas classes “tree” e “goddess” observou-se uma maior taxa de erros, com os dois conjuntos de dados. Entretanto, considerando os dados com processamento, verificou-se que o modelo acertou mais casos.
+
+Isso foi confirmado pela análise das métricas, onde as classes “tree” e “goddess” apresentaram um desempenho inferior para o conjunto de dados sem processamento, com F1-score de 86% e 85% respectivamente. Em comparação, observou-se uma melhora dessas classes no conjunto com processamento, obtendo F1-score de 92% e 89% para “tree” e “goddess” respectivamente.
+
+
+Por fim, aplicou-se o modelo ajustado aos dados de teste e calcularam-se as métricas apresentadas abaixo, onde verificou-se uma melhora significativa de 2% em média com processamento de imagens.
+
+<br>
+<br>
+
+Dataset de treino com processamento de imagem
+
+Matriz de confusão |  Principais métricas de classificação 
+|:-------------------------:|:-------------------------:
+![](./assets/confusion_matrix_test_process.png)  |  ![](./assets/classification_report_test_process.png)
+
+<br>
+<br>
+
+Dataset de treino sem processamento de imagem
+Matriz de confusão |  Principais métricas de classificação 
+|:-------------------------:|:-------------------------:
+![](./assets/confusion_matrix_test_no_process.png) |  ![](./assets/classification_report_test_no_process.png) 
+
+
+# Discussões
+Durante o desenvolvimento do trabalho, surgiram discussões relacionadas à reprodutibilidade do experimento, aumento de desempenho e representatividade do conjunto de dados. Em relação à reprodutibilidade, foi identificada a necessidade de utilizar sementes (*seeds*) em todos os processos de seleção randômica de imagens presentes no banco de dados após o pré-processamento. Dessa forma, todas as transformações visuais implementadas, incluindo o aumento de dados e a separação dos lotes de treinamento, foram associadas a sementes para garantir a reprodutibilidade do experimento.
+
+Em relação ao aumento de desempenho do modelo, constatou-se um desequilíbrio entre as classes "tree" e "goddess", as quais apresentaram maiores dificuldades de treinamento. Para lidar com isso, o grupo aplicou exclusivamente os métodos de aumento de dados nessas classes, o que se mostrou eficiente em melhorar o desempenho. Também pode-se destacar o aumento geral das imagens, que possibilitou o treinamento com mais amostras.
+
+No que diz respeito à representatividade do conjunto de dados, foi identificado um conjunto de imagem das classes “tree”, “plank”, “warrior2” e “goddess” que não representavam adequadamente suas respectivas classes. Essas imagens foram mantidas, porém dificultam o treinamento, visto que contém padrões que podem pertencer a outras classes, como posição dos braços e tronco.  Abaixo, podemos visualizar um exemplo de cada classe dessas imagens, com exceção de downdog que não foi observado.
+
+
+Classe goddess |  Classe tree   | Classe plank| Classe warrior2
+|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|
+![](./assets/true_goddess_predicted_plank.png)  |  ![](./assets/true_tree_predicted_goddess.png) | ![](./assets/true_plank_predicted_downdog.png) | ![](./assets//true_warrior_predicted_tree.png)
+
+Já no conjunto de dados de teste não foram observadas tantas imagens “confusas”, o que justifica a melhoria da performance do modelo em comparação ao conjunto de dados de validação. 
+
+# Conclusão
+
+Nesse projeto, analisou-se o impacto de técnicas de processamento de imagem na melhoria de desempenho de uma CNN aplicada para classificação de 5 posturas de yoga. Foram utilizadas técnicas de normalização e aumento de contraste, além de aumento de dados nas classes que apresentavam maior dificuldade de treinamento, possuindo variações das posturas, o que apresentava um desafio para a representatividade. Dessa maneira, obteve-se uma melhoria em média de 2% de acurácia, acurácia balanceada, F1-score e precisão nos dados de teste. Portanto, este estudo enfatiza a relevância do pré-processamento adequado dos dados e destaca o desempenho das técnicas de aumento de dados nas classes mais desafiadoras. 
+
+
+# Trabalhos Futuros
+Em trabalhos futuros, seria ideal o uso de sementes (*seeds*) para garantir a consistência na separação dos conjuntos de dados de validação e teste no processo de pré-processamento. Ao fixar as sementes, é possível reproduzir a mesma divisão de dados em diferentes experimentos, facilitando a comparação e validação dos resultados. Além disso, é importante buscar por mais dados para enriquecer o conjunto total de treinamento, validação e teste, com o objetivo de aumentar a representatividade das variações de posturas para a mesma pose.
+
+A inclusão de novas amostras pode envolver a busca por imagens adicionais em bancos de dados públicos, colaborações com profissionais de yoga ou até mesmo a aquisição de novas imagens por meio de sessões fotográficas controladas. O enriquecimento do conjunto de dados é um passo crucial para aprimorar a generalização e a capacidade do modelo de lidar com uma ampla variedade de poses de yoga.
+
+Também é de interesse estudar algum método que auxilie na identificação e tratamento de imagens “confusas”, que são de uma classe porém possuem padrões de outra.
+
 
 # Referências
 
-[1] ACHARYA, Akruti. Guide to Image Segmentation in Computer Vision: Best Practices. 2023. Disponível em: https://encord.com/blog/image-segmentation-for-computer-vision-best-practice-guide/. Acesso em: 10 maio 2023.
+[1] AGRAWAL, Yash; SHAH, Yash; SHARMA, Abhishek. Implementation of machine learning technique for identification of yoga poses. In: 2020 IEEE 9th international conference on communication systems and network technologies (CSNT). IEEE, 2020. p. 40-43. https://doi.org/10.1109/CSNT48778.2020.9115758 
 
-[2] AGRAWAL, Yash; SHAH, Yash; SHARMA, Abhishek. Implementation of machine learning technique for identification of yoga poses. In: 2020 IEEE 9th international conference on communication systems and network technologies (CSNT). IEEE, 2020. p. 40-43. https://doi.org/10.1109/CSNT48778.2020.9115758 
+[2] ASHRAF, Faisal Bin et al. Yonet: A neural network for yoga pose classification. SN Computer Science, v. 4, n. 2, p. 198, 2023. https://doi.org/10.1007/s42979-022-01618-8 
 
-[3] ASHRAF, Faisal Bin et al. Yonet: A neural network for yoga pose classification. SN Computer Science, v. 4, n. 2, p. 198, 2023. https://doi.org/10.1007/s42979-022-01618-8 
+[3] DESAI, Miral; MEWADA, Hiren. A novel approach for yoga pose estimation based on in-depth analysis of human body joint detection accuracy. PeerJ Computer Science, v. 9, p. e1152, 2023. https://peerj.com/articles/cs-1152/
 
-[4] DEEPIKA, Yamuna. Python OpenCV – Pose Estimation. Disponível em: https://www.geeksforgeeks.org/python-opencv-pose-estimation/. Acesso em: 09 maio 2023.
+[4] GARG, Shubham; SAXENA, Aman; GUPTA, Richa. Yoga pose classification: a CNN and MediaPipe inspired deep learning approach for real-world application. Journal of Ambient Intelligence and Humanized Computing, p. 1-12, 2022.https://doi.org/10.1007/s12652-022-03910-0
 
-[5] DESAI, Miral; MEWADA, Hiren. A novel approach for yoga pose estimation based on in-depth analysis of human body joint detection accuracy. PeerJ Computer Science, v. 9, p. e1152, 2023. https://peerj.com/articles/cs-1152/
+[5] PALANIMEERA, J.; PONMOZHI, K. Classification of yoga pose using machine learning techniques. Materials Today: Proceedings, v. 37, p. 2930-2933, 2021. https://doi.org/10.1016/j.matpr.2020.08.700  
 
-[6] GARG, Shubham; SAXENA, Aman; GUPTA, Richa. Yoga pose classification: a CNN and MediaPipe inspired deep learning approach for real-world application. Journal of Ambient Intelligence and Humanized Computing, p. 1-12, 2022.https://doi.org/10.1007/s12652-022-03910-0
+[6] SANDLER, Mark et al. Mobilenetv2: Inverted residuals and linear bottlenecks. In: Proceedings of the IEEE conference on computer vision and pattern recognition. 2018. p. 4510-4520. https://doi.org/10.48550/arXiv.1801.04381 
 
-[7] PALANIMEERA, J.; PONMOZHI, K. Classification of yoga pose using machine learning techniques. Materials Today: Proceedings, v. 37, p. 2930-2933, 2021. https://doi.org/10.1016/j.matpr.2020.08.700  
-
-[8] PEDRINI, Hélio; SCHWARTZ, William Robson. Análise de imagens digitais: princípios, algoritmos e aplicações. Cengage Learning, 2008.
-
-[9] RAJENDRAN, Arun Kumar; SETHURAMAN, Sibi Chakkaravarthy. A Survey on Yogic Posture Recognition. IEEE Access, v. 11, p. 11183-11223, 2023.https://doi.org/10.1109/ACCESS.2023.3240769 
-
-[10] SANDLER, Mark et al. Mobilenetv2: Inverted residuals and linear bottlenecks. In: Proceedings of the IEEE conference on computer vision and pattern recognition. 2018. p. 4510-4520. https://doi.org/10.48550/arXiv.1801.04381 
-
-[11] WALIA, Mrinal Singh. Guide to Image Segmentation in Computer Vision: Best Practices. 2022. Disponível em: https://www.analyticsvidhya.com/blog/2022/01/a-comprehensive-guide-on-human-pose-estimation/. Acesso em: 10 maio 2023.
-
-[12] WU, Yubin et al. A computer vision-based yoga pose grading approach using contrastive skeleton feature representations. In: Healthcare. MDPI, 2021. p. 36. https://doi.org/10.3390/healthcare10010036 
+[7] WU, Yubin et al. A computer vision-based yoga pose grading approach using contrastive skeleton feature representations. In: Healthcare. MDPI, 2021. p. 36. https://doi.org/10.3390/healthcare10010036 
