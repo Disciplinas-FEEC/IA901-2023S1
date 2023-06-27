@@ -35,7 +35,7 @@ Detatalhes importantes sobre os conjuntos de dados e sua organização:
 
 ## Metodologia
 ### Arquitetura U-Net
-Este trabalho utilizou a arquitetura [U-Net](https://link.springer.com/chapter/10.1007/978-3-319-24574-4_28), uma rede neural convolucional bastante utilizada para segmentação de imagens médicas. Utilizamos as versões 2D e 3D da [U-Net modificada](https://link.springer.com/chapter/10.1007/978-3-030-72084-1_38), conforme implementado por Carmo et al. (2020). 
+Este trabalho utilizou a arquitetura [U-Net](https://link.springer.com/chapter/10.1007/978-3-319-24574-4_28), uma rede neural convolucional bastante utilizada para segmentação de imagens médicas. Utilizamos a versão 3D da [U-Net modificada](https://link.springer.com/chapter/10.1007/978-3-030-72084-1_38), conforme implementado por Carmo et al. (2020). 
 
 ![U-Net modificada](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/Unet-IA901A.png)*Figura 01 - U-Net modificada: a resolução espacial é reduzida pela segunda convolução de cada nível do codificador; os blocos verde se referem as características filtradas pela operação de self attention; cada nível do codificador e decodificador (blocos de duas convoluções) possui conexão residual realizando a conexão da entrada da primeira convolução à saída da segunda convolução (seta em laranja)*
 
@@ -142,11 +142,6 @@ Apenas o modelo 3D da nnU-Net foi executado e o resultado obtido por este foi um
 ### Avaliação da U-Net 3D
 Os experimentos desta seção foram realizados em uma GPU Titan X. Experimentos foram realizados para testar a aplicação de pré-processamento de dados (redimensioanmento de voxel e normalização) e definir aumento de dados e os principais hiperparâmetros, como a learning rate e número de épocas. Desde o início, foram mantidos fixos o uso do [otimizador Adam](https://arxiv.org/abs/1412.6980) com [Dice Loss](https://link.springer.com/chapter/10.1007/978-3-319-67558-9_28), o método de patch RandomCrop com seu tamanhos de (102, 102, 102) e o tamanho do batch de 2. Esses parâmetros fixos foram usados de acordo com os sugeridos pela nnU-Net, com exceção do otimizados e da função de perda. Também o tamanho de patch não foi o mesmo sugerido pela nnU-Net, pois a GPU usada para a execução do treinamento, não permitiu o tamanho de patch de (128, 128, 128).
 
-Os objetivos desses experimentos foram (de acordo com o sugerido pela nnU-Net):
-1. Verificar quais pré-processamentos são relevantes para melhorar o desempenho do modelo;
-2. Verificar quais aumento de dados ajudam a obter um modelo mais robusto;
-3. Verificar se há ganho significativo ao mudar os hiperparâmetros taxa de aprendizado e número de época.
-
 A execução dos experimentos usando a U-Net 3D, objetivou avaliar a aplicação dos pré-processamento: redimensionamento de voxel, normalização e padronização das labels das anotações fornecidas nos conjuntos de dados. Também a avaliação da técnica de aumento de dados RandomAffine (Tab. 2). 
 
 
@@ -174,8 +169,8 @@ Tabela 1 : Resultados das métricas para o melhor modelo 3D (conjunto de teste):
 |Conjunto de dados     |Dice             | AVD                  | SV    |
 |----------------------|-----------------|----------------------|-------|
 |todos                 | $0.9629\pm0.0055$| $0.0673\pm0.0242$   | $0.9849\pm0.0080$   |
-| IBSR                |$0.9737\pm0.0032$|$0.0445\pm0.0259$     | $0.9867\pm0.0100$|
-| CC359                 |$0.9671\pm0.0031$|$0.0593\pm0.0116$ |$0.9880\pm0.0082$ | 
+| IBSR                |$0.9737\pm0.0032$|$0.0445\pm0.0259$     | $0.9914\pm0.0044$|
+| CC359                 |$0.9764\pm0.0061$|$0.0389\pm0.0231$ |$0.9867\pm0.00100$ | 
 | LBPA40              | $0.9671\pm0.0031$ |$0.0593\pm0.0116$ | $0.9880\pm0.0082$|
 
 Os resultados foram satisfatórios, uma vez que o dice médio se manteve próximo ao que foi apresentado no conjunto de validação e treinamento. Além disso, não houve divergencia entre os conjuntos de dados, pois os resultados são bastante semelhantes inclusive com os resultados de todos os conjuntos de dados juntos.
