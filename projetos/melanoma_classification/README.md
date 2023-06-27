@@ -193,6 +193,7 @@ Embora de grande complexidade, os resultados apresentados a seguir demonstram a 
 **Taxa de falso negativo:** 
 
 $$\frac{FN}{FN+VN}=\frac{141}{141+6}=0.96$$
+
 ---
 
 # Experimentos intermediários
