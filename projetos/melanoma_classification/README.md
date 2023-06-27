@@ -46,9 +46,7 @@ O câncer de pele é uma das formas mais comuns de câncer em todo o mundo, e a 
 *1. Pré-processamento de dados:*
 
 As imagens foram normalizadas, ou seja, todos os pixels foram divididos por 255.0, para padronizar os valores em pixels entre o intervalo de 0 a 1. A normalização é importante para manter a escala de pixels consistentes e facilitar o treinamento de redes complexas. Ainda, a técnica de pré-processamento reduz a influência de outliers e melhora a capacidade do modelo de generalizar para novos exemplos. Também adotamos estratégias de downsampling da classe majoritária, oversampling da classe minoritária e combinação de ambas para testar os efeitos nas arquiteturas avaliadas.
-<p align="center">
-  <img src="assets/preparação_dados.jpg" width="650" height="310">
-</p>
+
 
 *2. Data augmentation:*  
 
@@ -83,6 +81,13 @@ Alternativamente, foram consideradas as seguintes transformações nas imagens c
 - *brightness_range*: ajusta aleatoriamente o brilho das imagens, aumentando ou diminuindo seus valores de pixel. Isso pode ajudar o modelo a ser mais robusto em relação a variações de iluminação.
 
 - *fill_mode*: o parâmetro determina como os pixels são preenchidos quando ocorre um deslocamento ou distorção da imagem. O valor 'nearest' preenche os pixels ausentes com o valor do pixel mais próximo.
+
+As tranformações geraram  o seguinte resultado: 
+
+
+<p align="center">
+  <img src="assets/top_augmentation.jpg"  width="400" height="350">
+</p>
 
 *3. Avaliação e validação:*
 
