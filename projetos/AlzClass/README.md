@@ -420,10 +420,17 @@ Journal of Cognitive Neuroscience, 19, 1498-1507. doi: 10.1162/jocn.2007.19.9.14
 
 Weiner MW, Aisen PS, Jack CR Jr, Jagust WJ, Trojanowski JQ, Shaw L, Saykin AJ, Morris JC, Cairns N, Beckett LA, Toga A, Green R, Walter S, Soares H, Snyder P, Siemers E, Potter W, Cole PE, Schmidt M; Alzheimer's Disease Neuroimaging Initiative. The Alzheimer's disease neuroimaging initiative: progress report and future plans. Alzheimers Dement. 2010 May;6(3):202-11.e7. doi: 10.1016/j.jalz.2010.03.007. PMID: 20451868; PMCID: PMC2927112.
 
-Doença de Alzheimer. Ministério da saúde. Disponível em: <https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/alzheimer>. Acesso em 23 de jun. de 2023.
+Ministério da saúde. Doença de Alzheimer. Disponível em: <https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/alzheimer>. Acesso em 23 de jun. de 2023.
 
-Doença de Alzheimer: principais informações. Hospital Israelita Albert Einstein, 17 de jan. de 2021. Disponível em: <https://vidasaudavel.einstein.br/alzheimer-principais-informacoes/>. Acesso em 23 de jun. de 2023.
+Hospital Israelita Albert Einstein. Vida saudável, o blog do Einstein, 2017. Doença de Alzheimer: principais informações. Disponível em: <https://vidasaudavel.einstein.br/alzheimer-principais-informacoes/>. Acesso em 23 de jun. de 2023.
 
-Proporção de brasileiros com Alzheimer cresceu 127% em 30 anos. Revista Galileu, 15 de abr. de 2021. Disponível em: <https://revistagalileu.globo.com/Ciencia/Saude/noticia/2021/04/proporcao-de-brasileiros-com-alzheimer-cresceu-127-em-30-anos.html>. Acesso em 23 de jun de 2023.
+Proporção de brasileiros com Alzheimer cresceu 127% em 30 anos. Revista Galileu, 15 de abr. de 2021. Disponível em: <https://revistagalileu.globo.com/Ciencia/Saude/noticia/2021/04/proporcao-de-brasileiros-com-alzheimer-cresceu-127-em-30-anos.html>. Acesso em 23 de jun. de 2023.
 
-Informações sobre Alzheimer e demência. Alzheimer’s association. Disponível em: <https://www.alz.org/br/demencia-alzheimer-brasil.asp>. Acesso em 23 de jun. de 2023
+Alzheimer’s association. Alz.org | Brasil: Informações sobre Alzheimer e demência. Página inicial. Disponível em: <https://www.alz.org/br/demencia-alzheimer-brasil.asp>. Acesso em 23 de jun. de 2023
+
+Lloyd-Jones, Graham.  What are MRI images?. Radiology masterclass, 2017. Disponível em: <https://www.radiologymasterclass.co.uk/tutorials/mri/mri_images>. Acesso em 23 de jun. de 2023.
+
+Vaskovic, Jana. Normal Brain MRI. Kenhub, 2023. Disponível em: <https://www.kenhub.com/en/library/anatomy/normal-brain-mri>. Acesso em 23 de jun. de 2023
+
+National Institute of Biomedical Imaging and Bioengineering. Nibib. Magnetic Resonance Imaging (MRI). Disponível em: <https://www.nibib.nih.gov/science-education/science-topics/magnetic-resonance-imaging-mri>. Acesso em 23 de jun. de 2023.
+
