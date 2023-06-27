@@ -90,6 +90,9 @@ $$ AVD = max(max_{s\in{S}}\left| d_s \right| . max_{r\in{R}}\left| d_r \right|)$
 $d$ é a distância média controlada pela métrica $AVD$, $AVD$ é a segmentação de referência (padrão-ouro), $S$ é a segmentação obtida pelo método, $r$ e $s$ são os pontos contidos nos contornos de $R$ e $S$, respectivamente, e $d_s$ e $d_r$ são as distâncias médias entre os pontos $s$ e $r$ aos pontos de contorno de $R$ e $S$ mais próximos.
 
 ### Treinamento da arquitetura 2D
+O treinamento do modelo 2D utilizou uma UNet com o framework PyTorch junto a MONAI (Medical Open Network for AI). Uma vez divididas as pastas de treino, validação e testes, foram gerados modelos com e sem pré-processamento (arquivos na pasta notebooks/unet_model_2D, sendo unet_sem_preproc.ipynb e unet_COM_preproc.ipynb).
+
+O modelo U-net contém quatro camadas Conv de downsampling (parte de codificação), com quatro camadas de pooling e uma camada de Bottleneck, seguida por quatro camadas de upsampling Conv. Uma camada de Transposição foi adicionada antes do Upsampling para aumentar a resolução espacial. Cada Codificador/Decodificador consiste em uma camada conv dupla, havendo uma sequência de camadas Conv>BatchNorm>Relu>Conv>BatchNorm>Relu. Na camada final, a saída é passada pela função sigmóide para obter valores de probabilidade para cada voxel, e limite, para se obter resultados binários.
 
 ### Treinamento da arquitetura 3D
 O treinamento do modelo 3D foi realizado ao utilizar o volume de entrada para obter patch 3D que foi usado como canal de entrada da U-Net 3D. A rede realiza o treinamento e retorna como saída a segmentação do cérebro.  
@@ -99,9 +102,9 @@ O treinamento do modelo 3D foi realizado ao utilizar o volume de entrada para ob
 
 #### Treinamento e Avaliação do Modelo 3D
 
-Por ser uma arquitetura totalmente convolucional, o tamanho da imagem para o treinamento da U-Net não precisa ser o mesmo da avaliação. Sendo assim, o treinamento do modelo 3D foi feito usando patch 3D de tamanho 102 × 102 × 102 nos canais de entrada (Fig x). Para cada volume (amostra) é escolhido um patch de forma aleatória, como é apenas um de cada imagem, isso introduz variabilidade a cada amostra passada para a rede, mas não é necessariamente um aumento de dados. 
+Por ser uma arquitetura totalmente convolucional, o tamanho da imagem para o treinamento da U-Net não precisa ser o mesmo da avaliação. Sendo assim, o treinamento do modelo 3D foi feito usando patch 3D de tamanho 102 × 102 × 102 nos canais de entrada (Fig 02). Para cada volume (amostra) é escolhido um patch de forma aleatória, como é apenas um de cada imagem, isso introduz variabilidade a cada amostra passada para a rede, mas não é necessariamente um aumento de dados. 
 
-Com o modelo treinado, a segmentação volumétrica do cérebro de uma nova amostra foi feita ao passar uma imagem completa para o modelo (Fig. x-II). Para isso, foi usado um método de inferência de janela deslizante, inspirado na implementação da [nnU-Net](https://www.nature.com/articles/s41592-020-01008-z) e usando uma implementação do [Monai](https://link.springer.com/chapter/10.1007/978-3-031-12053-4_58). Esse método reconstrói a segmentação completa do volume de entrada usando patches com ponderação gaussiana para predições e uma janela 3D de 10%.
+Com o modelo treinado, a segmentação volumétrica do cérebro de uma nova amostra foi feita ao passar uma imagem completa para o modelo (Fig. 02-II). Para isso, foi usado um método de inferência de janela deslizante, inspirado na implementação da [nnU-Net](https://www.nature.com/articles/s41592-020-01008-z) e usando uma implementação do [Monai](https://link.springer.com/chapter/10.1007/978-3-031-12053-4_58). Esse método reconstrói a segmentação completa do volume de entrada usando patches com ponderação gaussiana para predições e uma janela 3D de 10%.
 
 #### Aumento de dados
 Para a abordagem 3D, foram testadas apenas as técnicas de RandomAffine e a RandomBlur implementadas na biblioteca [TorchIO](https://torchio.readthedocs.io/transforms/augmentation.html).
@@ -127,9 +130,7 @@ As principais ferramentas utilizadas para o pré-processamento dos dados e trein
 
 * [TorchIO](https://torchio.readthedocs.io/transforms/augmentation.html): uma biblioteca de processamento de imagens baseada no PyTorch, que permite transformações e utilidades para o pré-processamento de dados médicos. Fornece um conjunto de transformações flexíveis para manipulação e aumentação de dados de imagem, como rotação, translação, redimensionamento, normalização, entre outras. O TorchIO é frequentemente usado em imagem 3D, por oferecer simplicidade na implementação de manipulação de volumes, no entanto, não é limitado apenas a dados 3D e pode ser usado para processar dados 2D e 1D, desde que haja ajuste as transformações e operações de acordo com a natureza dos seus dados.
 
-* Além dessas ferramentas, outras foram usadas para monipulação dos dados, como: [NumPy](https://numpy.org/doc/). (COLOCAR OUTRAS FERRAMENTAS). 
-
-> Fazer na próxima etapa.
+* Além dessas ferramentas, outras foram usadas para monipulação dos dados, como: [NumPy](https://numpy.org/doc/).
 
 ## Experimentos e Resultados
 ### nnU-Net
@@ -138,6 +139,7 @@ O framework realiza o pré-processamento dos dados usando o comando "nnUNetv2_pl
 Apenas o modelo 3D da nnU-Net foi executado e o resultado obtido por este foi um valor de Dice médio de 0,9898 no conjunto de validação. Detalhes sobre este resultados pode ser encontrado no [arquivo summary](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/summary.json) e [gráfico](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/progress.png) fornecidos pelo framework. 
 
 ### Avaliação da U-Net 2D
+Com o uso das técnicas de pré-processamento comentadas, a principal métrica avaliada, o DiceLoss, teve melhoria de ~23% para ~10%. Isso mostra que houve aprimoramento na segmentação com os pré-processamentos, sendo que poderia haver ainda mais avanços se fossem testados outros hiperparâmetros, como variar o número de épocas, por exemplo, que não foram cobertos neste projeto.
 
 ### Avaliação da U-Net 3D
 Os experimentos desta seção foram realizados em uma GPU Titan X. Experimentos foram realizados para testar a aplicação de pré-processamento de dados (redimensioanmento de voxel e normalização) e definir aumento de dados e os principais hiperparâmetros, como a learning rate e número de épocas. Desde o início, foram mantidos fixos o uso do [otimizador Adam](https://arxiv.org/abs/1412.6980) com [Dice Loss](https://link.springer.com/chapter/10.1007/978-3-319-67558-9_28), o método de patch RandomCrop com seu tamanhos de (102, 102, 102) e o tamanho do batch de 2. Esses parâmetros fixos foram usados de acordo com os sugeridos pela nnU-Net, com exceção do otimizados e da função de perda. Também o tamanho de patch não foi o mesmo sugerido pela nnU-Net, pois a GPU usada para a execução do treinamento, não permitiu o tamanho de patch de (128, 128, 128).
@@ -145,7 +147,7 @@ Os experimentos desta seção foram realizados em uma GPU Titan X. Experimentos 
 A execução dos experimentos usando a U-Net 3D, objetivou avaliar a aplicação dos pré-processamento: redimensionamento de voxel, normalização e padronização das labels das anotações fornecidas nos conjuntos de dados. Também a avaliação da técnica de aumento de dados RandomAffine (Tab. 2). 
 
 
-Tabela 1: Dice médio no conjunto de validação para os experimentos realizados usando a U-Net 3D: dados sem nenhum processamento (Experimento 1); ao realizar a padronização das labels de entre os 3 datasets (Experimento 2); Depois de padronizar as labels, foi feita a interpolação de voxel nos dados (Experimento 3); em seguida os dados foram normalizados (Experimento 4); por fim foi testado a técinca de Random Affine (Experimento 5).
+Tabela 1: Dice médio no conjunto de validação para os experimentos realizados usando a U-Net 3D: dados sem nenhum processamento (Experimento 1); ao realizar a padronização das labels de entre os 3 datasets (Experimento 2); Depois de padronizar as labels, foi feita a interpolação de voxel nos dados (Experimento 3); em seguida os dados foram normalizados (Experimento 4); por fim foi testado a técnica de Random Affine (Experimento 5).
 |Experimento  | N° de épocas (época) | perda |modelo| pós-processada|
 |-------------|-----------------|--------------|-------|------------|
 | 1 |500 (459)             | -0.05 | 0.6643     | 0.8309
@@ -175,7 +177,7 @@ Tabela 1 : Resultados das métricas para o melhor modelo 3D (conjunto de teste):
 
 Os resultados foram satisfatórios, uma vez que o dice médio se manteve próximo ao que foi apresentado no conjunto de validação e treinamento. Além disso, não houve divergencia entre os conjuntos de dados, pois os resultados são bastante semelhantes inclusive com os resultados de todos os conjuntos de dados juntos.
 
-Os resultados qualitativos (Figura 5) confirmam a boa qualidade das segmentações obtida pelo modelo. O pior resultado aparenta ser no conjunto de dados LBPA40.
+Os resultados qualitativos (Figura 05) confirmam a boa qualidade das segmentações obtida pelo modelo. O pior resultado aparenta ser no conjunto de dados LBPA40.
 
 ![Res_qual](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/resul_qual_3D.png)*Figura 05 - Resultados qualitativos usando o melhor Dice obtido em cada conjunto de dados. Renderização 3D da saída do modelo (sup.) e sobreposição das anotação manual e a saída do modelo em fatias centrais dos três eixos (axial, coronnal e sagital). Anotação manual (azul) e saída do modelo (vermelho).*
 
