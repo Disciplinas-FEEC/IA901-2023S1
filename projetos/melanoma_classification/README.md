@@ -51,18 +51,27 @@ As imagens foram normalizadas, ou seja, todos os pixels foram divididos por 255.
 
 A avaliação de lesões de pele é realizada levando em conta características visíveis a olho nu, bem como características ampliadas por meio de técnicas de dermatoscopia ou outras ferramentas de diagnóstico. Alguns dos principais aspectos considerados são a assimetria da lesão, bordas irregulares ou mal definidas, lesões com múltiplas cores e lesões com diâmetro maior, que podem indicar malignidade. A seguir, seguem imagens do conjunto que exemplificam a dificuldade em diferenciar as lesões apenas através de sua aparência.
 
-![lesions](https://github.com/suellendsena/IA901-2023S1/assets/63214041/b2825343-04fb-45d8-889b-d4894a36bc68)
+<p align="center">
+  <img src="assets/lesions.jpg">
+</p>
+
+
 Mingxing Tan, Quoc V. Le, "EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks"
 
 Dessa forma, estudos que avaliam técnicas de aumentação de dados com foco em lesões de pele foram considerados e foram utilizadas técnicas como cisalhamento, escalonamento de imagens para criar novas formas de lesões, espelhamento e mudança de matiz (hue). Essas transformações foram consideradas para diminuir a influência da cor da pele e do tamanho das lesões na discriminação do modelo. Além disso, foi aplicada uma função que diminui a aparência de pelos na imagem, sem comprometer as lesões, garantindo que o modelo não associe essas características com as diferentes classes. Nas próximas seções serão definidos quais transformações apresentaram os melhores resultados. Abaixo estão algumas transformações que foram consideradas para augmentation:
 
 *Ben Graham* 
 
-![ben_graham](https://github.com/suellendsena/IA901-2023S1/assets/63214041/607de482-688e-4c30-a260-6d3c8eec01b7)
+<p align="center">
+  <img src="assets/ben_graham.jpg">
+</p>
 
 *Hair remove*
 
-![hair_remove](https://github.com/suellendsena/IA901-2023S1/assets/63214041/fe794d91-f908-4f6f-8efa-cac46a9f610a)
+<p align="center">
+  <img src="assets/hair_remove.jpg">
+</p>
+
 
 *3. Avaliação e validação:*
 
@@ -129,7 +138,10 @@ Para a primeira etapa do projeto, 10% do conjunto de imagens benignas foram alea
 
 Os resultados de acurácia são significativos, porém ainda há o mesmo problema de todas as amostras da classe maligna ser classificada como benigna. 
 
-![cnn1_downsampling](https://github.com/suellendsena/IA901-2023S1/assets/63214041/50651b6c-19e8-4339-8bee-a5886fcaa2d3)
+<p align="center">
+  <img src="assets/cnn1_downsampling.png">
+</p>
+
 
 **Taxa de falso negativo:** 
 
@@ -139,7 +151,9 @@ Com a mesma rede implementada no exemplo anteior, foi realizado o treinamento co
 
 Os resultados do experimento anterior persistiram e um dos principais problemas foi o tempo despendido para treinamento da rede neural convolucional. Ainda, obsera-se que a diminuição do desbalanceamento não conduz a um resultado favorável de classificação da classe com menores amostras.
 
-![cnn1_complete_data](https://github.com/suellendsena/IA901-2023S1/assets/63214041/48608ef9-1960-4156-bcd8-62007a746e32)
+<p align="center">
+  <img src="assets/cnn1_complete_data.png">
+</p>
 
 **Taxa de falso negativo:** 
 
@@ -151,7 +165,9 @@ Ao considerar que o principal objetivo é minimizar a taxa de falsos negativos, 
 
 Embora de grande complexidade, os resultados apresentados a seguir demonstram a dificuldade de discriminar as lesões de pele entre malignas e benignas. Os ganhos foram de apenas 6 acertos na classe de predizer corretamente lesões malignas e, consequentemente, a taxa de falsos negativos (predizer como begnigno, quando na verdade é maligno) foi de 96%.
 
-![resnet50](https://github.com/suellendsena/IA901-2023S1/assets/63214041/df5f7439-7f5a-4d11-b8a2-ef29b5436aca)
+<p align="center">
+  <img src="assets/resnet50.png">
+</p>
 
 **Taxa de falso negativo:** 
 
@@ -161,7 +177,10 @@ $$\frac{FN}{FN+VN}=\frac{141}{141+6}=0.96$$
 
 Durante a etapa preliminar do projeto, o grupo enfrentou limitações de recursos e a rápida exaustão dos mesmos. Diante disso, foram consideradas alternativas que permitissem contornar essas restrições, optando por redes mais leves e eficientes para os próximos testes.
 
-![top_accuracy](https://github.com/suellendsena/IA901-2023S1/assets/63214041/f086f884-ec31-431a-a458-376b2b17c7f0)
+
+<p align="center">
+  <img src="assets/top_accuracy.png">
+</p>
 
 Foi observado que arquiteturas como EfficientNetB3 apresentam alta eficiência mesmo com um número inferior de parâmetros em comparação com a ResNet-50, Ainda, embora não listado no gráfico, a MobileNet possui as mesmas características e também foi considerada como uma rede promissora. Com base nessa constatação, os experimentos subsequentes levaram em consideração essas arquiteturas, bem como redes mais simples, a fim de avaliar seu desempenho. No entanto, mesmo com a escolha de redes mais leves, ainda era necessário lidar com a demanda de memória RAM para processar as imagens. Para contornar essa limitação, o grupo adquiriu unidades de computação do Google Colab, permitindo o acesso a GPUs mais potentes, como A100, V100 e T4, por períodos de tempo mais longos. Essa abordagem possibilitou realizar os experimentos de forma mais eficiente e obter resultados relevantes para o projeto.
 
@@ -221,7 +240,9 @@ O Adam é um otimizador popular que combina os benefícios do algoritmo de otimi
 
 Por fim, a técnica de oversampling da classe de malignos não apresentou resultados significativos, causando mais confusão no modelo para discriminar as classes corretamente. Portanto, apenas o downsampling foi considerado e o modelo foi treinado apenas com 5000 da classe de benignos. 
 
-![mobilenet_100](https://github.com/suellendsena/IA901-2023S1/assets/63214041/8ff5afc8-801f-49ef-bf94-8708eaa8d850)
+<p align="center">
+  <img src="assets/mobilenet_100.png">
+</p>
 
 Embora a rede apresente resultados positivos para classificação de tumores malignos, o modelo aumentou a taxa de de falsos positivos, ou seja, classifica muitas lesões como malignas, quando na verdade são benignas. Em um contexto médico, é considerado principalmente se a conduta irá apresentar mais benefícios ou maleficios para o paciente. Como o tratamento de lesões consideradas malignas pode ser complexo e doloroso, não é interessante considerar os resultados do algoritmo. 
 
