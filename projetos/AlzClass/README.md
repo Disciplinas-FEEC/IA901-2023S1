@@ -103,6 +103,10 @@ Esses testes/treinamentos realizados com as redes foram constituídos de algumas
   - treinamos a rede com o ADNI incluíndo apenas 2 classes (Alzhemer's e controle) para verificar a performance na classificação binária
   - treinamos a rede com o ADNI incluíndo todas as 5 classes para verificar a performance na classificação de multiclasses
   - todos os testes foram realizados para diferentes quantidades de épocas e utilizando diferentes transformações
+  
+    ![ADDNet_scheme](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/2e254545-f974-4cd1-8ed5-af22a939829c)
+    Visualização da rede convolucional ADDNEt
+
 
 7. *Fine tuning*
 
