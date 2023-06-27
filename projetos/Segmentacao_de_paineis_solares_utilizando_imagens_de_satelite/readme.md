@@ -42,6 +42,8 @@ Therefore, this project aims to segment solar panels in satellite images using i
 The methodology of the project adopted so far (as of May 22, 2023) involved the use of an annotated dataset provided in a scientific article and convolutional networks (U-Net, Resnet) for solar panel segmentation. Convolutional networks are used to learn filters that result in the desired segmentation.
 
 Thus, a mini U-Net was trained from scratch, and its performance was evaluated on the Google dataset. On the other hand, a pre-trained Resnet 50 underwent a fine-tuning process using the Google dataset to segment the solar panels. The Resnet50 was also tested with the IGN images.
+
+After the first evaluations, the final CNN configuration was U-net + Resnet50 and the train method consisted in using only google imagery. 
  
 ##  Databases and evolution
 <!---
