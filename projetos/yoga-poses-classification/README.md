@@ -105,16 +105,19 @@ Por fim, para avaliar o desempenho da CNN com e sem processamento foram utilizad
 
 # Workflow
 
-O Workflow é um documento que faz todo o mapeamento de como executar todos os códigos desenvolvidos durante o projeto. Ele foi feito na ferramenta Draw.io e está acessível para visualização no formato .png.
-
-O diagrama presente no Workflow inicia-se com as "Fotos Cruas" (pasta data/raw) que representa o conjunto de fotos de domínio público. Essas imagens são a entrada do código "Pré-processamento.pynb", responsável por identificar e remover contaminações entre os dados de treinamento e teste, assim como filtrar o formato de imagem que será usada.  
-
-O resultado deste processo é representado como "Banco de dados"(pasta data/interim) no diagrama, e nele estão contidas as imagens que serão efetivamente usadas durante o projeto. Os códigos "Processamento.pynb" e "CNN.pynb" fazem usos diferentes deste banco de dados. O primeiro executa vários métodos e técnicas de processamento de imagem para obter o "código da cadeia.txt" das imagens do dataset, o que é enviado posteriormente para o código "KNN.pynb" que extrai as informações de classes. O segundo treina uma rede convolucional e gera o arquivo "Coeficientes treinados.pn" que será usado no código "CNN_test.pynb" para gerar os resultados das classes. 
-
-A seguir, é mostrado o workflow do projeto.
+O Workflow é um documento que faz todo o mapeamento de como executar todos os códigos desenvolvidos durante o projeto. Seu desenho foi feito na ferramenta Draw.io e está acessível para visualização como .PNG e .SVG. 
 
 ![plot_workflow](./assets/Workflow.drawio.png)
 
+O fluxo de trabalho começa com as imagens da pasta "raw", que são um conjunto de imagens de domínio público. Essas imagens passam por uma etapa de pré-processamento "pre-processing.ipynb" para identificar e remover contaminações entre os dados de treinamento e teste, além de filtrar o formato de imagem desejado. O resultado desse processo é o conjunto "interim/filtered".
+
+Em seguida, o conjunto de imagens gerado passa por duas etapas independentes. A primeira etapa, chamada "CNN_no_process.ipynb", treina a MobileNet V2 com esses dados, e a etapa "normalizing.ipynb" é aplicada ao conjunto para gerar outro conjunto chamado "interim/normalized".
+
+O resultado da etapa "CNN_no_process_ipymnb" é um arquivo chamado "coeficients_no_process.pt". Esse arquivo é usado como entrada em dois códigos. O primeiro código avalia o desempenho da rede no conjunto de dados de validação "CNN_val_no_process.ipynb", resultando em métricas que são salvas em "result_val_no_process.csv". O segundo código, "CNN_test_no_process.ipynb", gera métricas de avaliação para o conjunto de dados de teste e salva essas informações em "results.csv".
+
+Os dados do conjunto "interim/normalized" são então usados como entrada para o código "class_balancing.ipynb", que tem como objetivo balancear as classes que possuem menos dados. O resultado desse processo é o conjunto "interim/balanced". Em seguida, é feito um aumento dos dados de treinamento com o código "data_augmentation_train.ipynb", gerando a pasta final chamada "processed".
+
+Por fim, o código "CNN.pynb" utiliza o modelo MobileNet V2 selecionado, tendo como entrada o conjunto "processed", e gera o arquivo "coeficients_process.pt". Esse arquivo é processado pelo código "CNN_val_process.ipynb", que gera as métricas avaliativas para o conjunto de dados de validação e as salva em "results_val_process.cvs". O código "CNN_test_process.ipynb" gera as métricas de desempenho da rede para os dados de teste e as salva em "results_test_process.csv".
 
 # Experimentos e Resultados preliminares
 
