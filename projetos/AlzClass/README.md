@@ -418,7 +418,9 @@ Por fim, a classificação de 5 classes no ADNI proposta pelo projeto não obtev
 # Conclusões
 
 - O problema de classificação binária em Alzheimer é trivial. Redes simples pré-treinadas (AlexNet) ou inicializada do zero (ADDNet) são capazes de separar a classe patológica do controle com sucesso.
-- Os datasets disponíveis de forma aberta fornecem dados com alto nível de pré-processamento o que torna a utilização de outros tipos de pré-processamento de imagem irrelevante para os resultados alcançados.
+
+- Os datasets disponíveis de forma aberta fornecem dados com diferentes niveis de pré-processamento o que dificulta a utilização de outros tipos de processamento de imagem e compromete a comparação de performance entre datasets.
+
 - Os datasets disponíveis são desbalanceados, o que torna o uso de algoritmos de balanceamento como SMOTE uma alternativa para melhorias de performance dos modelos estudados.
 - Atenção a forma com que a separação das pastas de treinamento, validação e teste é de extrema importância para evitar contaminação das bases e o comprometimento da validade dos resultados.
   
