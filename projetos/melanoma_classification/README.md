@@ -217,17 +217,23 @@ Rede 1 - 32, 32, 256, 256 e 512 filtros; Rede 2 - 64, 64, 128, 128, 256 filtros
   <img src="assets/rede1-2.png">
 </p>
 
+Como as CNNs simples não apresentaram bom desempenho na melhoria do Falso Negativo, caracterizamos os efeitos das variadas técnicas de augmentation nas CNNs de menor e média complexidade, avaliando a AUC para dez épocas de treinamento. Em ordem de eficácia na melhoria do falso negativo, destacam-se as técnicas de Height Shift Range, Width Shift Range e Zoom Range. As outras técnicas aplicadas mostraram pouca ou nenhuma influência quando consideradas individualmente. Buscas mais detalhadas e com mais épocas podem ser feitas para avaliar o efeito das técnicas de pré-processamento em CNNs de baixa complexidade. Para efeitos de teste, mantivemos apenas o Height Shift Range como técnica de augmentation, já que seu resultado superou o resultado das outras técnicas. 
+
+MELHOR RESULTADO: CNN de complexidade baixa e dados completos, com Oversampling da classe minoritária
+-----
+
+Por fim, passou-se à experimentação da última técnica: oversampling considerando todo o conjunto de dados de treinamento, ou seja: 23964 imagens. Cópias foram feitas das imagens da classe "maligno", até que as classes ficassem balanceadas. Novamente os testes foram realizados a partir de uma configuração mais simples possível, composta por duas camadas convolucionais de filtros, e uma camada totalmente conectada de 100 neurônios. O resultado foi bastante surpreendente para 50 épocas, e acabou elegendo a técnica de oversampling, juntamente com normalização e técnicas de aumentação de dados, como a melhor metodologia aplicável a CNNs de baixa complexidade. Novamente devido à precariedade de recursos computacionais, este experimento com número grande de imagens foi executado por apenas 50 épocas.
+
+<p align="center">
+  <img src="assets/rede3.png">
+</p>
+
 Experimento 4 - EfficientNet B3
 ----- 
 
 A EfficientNet caracteriza uma família de arquiteturas de redes neurais convolucionais projetada para alcançar um equilíbrio ideal entre precisão e eficiência computacional em tarefas de visão computacional. Essa família de redes foi desenvolvida por Mingxing Tan e Quoc V. Le, pesquisadores do Google, e sua primeira versão foi introduzida em 2019.
 
 Baseada em um conceito chamado "escalabilidade composta" (compound scaling), a escala da rede é aumentada de forma proporcional em todas as dimensões relevantes, em vez de simplesmente aumentar a profundidade ou a largura. Isso é conseguido por meio de uma fórmula que define a relação entre as diferentes escalas, permitindo um aumento harmonioso e controlado da arquitetura. Além disso, o EfficientNet utiliza blocos residuais chamados de MBConv (Mobile Inverted Bottleneck Convolution). Esses blocos são projetados para serem computacionalmente eficientes, combinando convoluções de ponto de entrada (*input point-wise*) e convoluções de ponto de saída (*output point-wise*) com uma camada de convolução profunda no meio.
-
-Experimento 5 - CNNs com técnicas de downsampling da classe majoritária e upsampling da classe minoritária
------ 
-
-Como as CNNs simples não apresentaram bom desempenho na melhoria do Falso Negativo, caracterizamos os efeitos das variadas técnicas de augmentation nas CNNs de menor e média complexidade, avaliando a AUC para dez épocas de treinamento. Em ordem de eficácia na melhoria do falso negativo, destacam-se as técnicas de Height Shift Range, Width Shift Range e Zoom Range. As outras técnicas aplicadas mostraram pouca ou nenhuma influência quando consideradas individualmente. Buscas mais detalhadas e com mais épocas podem ser feitas para avaliar o efeito das técnicas de pré-processamento em CNNs de baixa complexidade. Para efeitos de teste, mantivemos apenas o Height Shift Range como técnica de augmentation, já que seu resultado superou o resultado das outras técnicas. 
 
 
 Experimento 6 - MobileNetV2
