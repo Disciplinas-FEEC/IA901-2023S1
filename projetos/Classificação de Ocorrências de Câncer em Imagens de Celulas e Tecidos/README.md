@@ -1,5 +1,5 @@
-# Identificação de Ocorrências de Tumor em Imagens de Tecidos
-# Identification of Tumor Occurrences in Tissue Images
+# Identificação de Ocorrências de Tumor em Imagens de Tecidos Humanos
+# Identification of Tumor Occurrences in Human Tissue Images
 
 
 ## 0. Apresentação
