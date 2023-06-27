@@ -198,6 +198,13 @@ Já no conjunto de dados de teste não foram observadas tantas imagens “confus
 Nesse projeto, analisou-se o impacto de técnicas de processamento de imagem na melhoria de desempenho de uma CNN aplicada para classificação de 5 posturas de yoga. Foram utilizadas técnicas de normalização e aumento de contraste, além de aumento de dados nas classes que apresentavam maior dificuldade de treinamento, possuindo variações das posturas, o que apresentava um desafio para a representatividade. Dessa maneira, obteve-se uma melhoria em média de 2% de acurácia, acurácia balanceada, F1-score e precisão nos dados de teste. Portanto, este estudo enfatiza a relevância do pré-processamento adequado dos dados e destaca o desempenho das técnicas de aumento de dados nas classes mais desafiadoras. 
 
 
+# Trabalhos Futuros
+Em trabalhos futuros, seria ideal o uso de sementes (*seeds*) para garantir a consistência na separação dos conjuntos de dados de validação e teste no processo de pré-processamento. Ao fixar as sementes, é possível reproduzir a mesma divisão de dados em diferentes experimentos, facilitando a comparação e validação dos resultados. Além disso, é importante buscar por mais dados para enriquecer o conjunto total de treinamento, validação e teste, com o objetivo de aumentar a representatividade das variações de posturas para a mesma pose.
+
+A inclusão de novas amostras pode envolver a busca por imagens adicionais em bancos de dados públicos, colaborações com profissionais de yoga ou até mesmo a aquisição de novas imagens por meio de sessões fotográficas controladas. O enriquecimento do conjunto de dados é um passo crucial para aprimorar a generalização e a capacidade do modelo de lidar com uma ampla variedade de poses de yoga.
+
+Também é de interesse estudar algum método que auxilie na identificação e tratamento de imagens “confusas”, que são de uma classe porém possuem padrões de outra.
+
 
 # Referências
 
