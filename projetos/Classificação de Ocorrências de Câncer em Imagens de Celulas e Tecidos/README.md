@@ -459,14 +459,20 @@ Fig. 14. Comparação entre os valores preditos do número total de células (gr
 Finalmente, calculamos o valor do MAE para cada tecido considerando os dois cenários: contagem de células totais e neoplásicas. Os resultados foram organizados em BoxPlots e podem ser vistos na Figura 15. Pra contagem do número total de células, incluímos para comparação o resultado da literatura [6] (linha azul tracejada). Podemos observar que a EfficientNetB0 conseguiu uma performance consideravelmente superior na tarefa, com um valor de MAE muito próximo a zero. Obviamente, tiveram tecidos que foram mais ou menos desafiadores para o modelo trabalhar. 
 
 Os tecidos mais desafiadores:
+
 Uterus
+
 Skin
+
 Lung
 
 
 Tecidos menos desafiadores:
+
 Adrenal_gland
+
 Bladder
+
 Colon
 
 Com isso, concluímos que o modelo tem grande potencial de realizar a tarefa de contagem de células com competência. 
