@@ -1,5 +1,5 @@
-# `Solar panels segmentation and power estimation using satellite imagery`
-# `Segmentação e estimação da Potência de painéis solares utilizando imagens de satélite`
+# `Solar panels segmentation using satellite imagery`
+# `Segmentação de painéis solares utilizando imagens de satélite`
 
 
 ## Presentation
