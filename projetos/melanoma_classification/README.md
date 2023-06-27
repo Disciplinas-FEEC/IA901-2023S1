@@ -193,11 +193,11 @@ Embora de grande complexidade, os resultados apresentados a seguir demonstram a 
 **Taxa de falso negativo:** 
 
 $$\frac{FN}{FN+VN}=\frac{141}{141+6}=0.96$$
-
 ---
 
-Durante a etapa preliminar do projeto, o grupo enfrentou limitações de recursos e a rápida exaustão dos mesmos. Diante disso, foram consideradas alternativas que permitissem contornar essas restrições, optando por redes mais leves e eficientes para os próximos testes.
+# Experimentos intermediários
 
+Na etapa preliminar do projeto, o grupo enfrentou limitações de recursos e a rápida exaustão dos mesmos. Diante disso, foram consideradas alternativas que permitissem contornar essas restrições, optando por redes mais leves e eficientes para os próximos testes.
 
 <p align="center">
   <img src="assets/top_accuracy.jpg" width="500" height="400">
@@ -283,7 +283,6 @@ Utilizar informações adicionais disponíveis nos conjuntos públicos de melano
 Alternativamente, ao considerar que redes neurais devem focar e destacar as partes mais importantes de uma imagem de entrada, foi avaliado o mecanismo de *Soft-Attention*, que permite que uma rede neural alcance esse objetivo. Estudos avaliam a eficácia do Soft-Attention em arquiteturas de redes neurais profundas. O objetivo central do Soft-Attention é aumentar o valor das características importantes e suprimir as características que introduzem ruído. Redes combinadas com a ténica alcançam uma precisão de 93,7% no conjunto de dados de melanomas ISIC-2017.
 
 Por fim, utilizar GANs (Redes Generativas Adversariais) para criar imagens sintéticas de lesões de pele com melanoma é estudada como estratégia promissora. GANs são modelos de aprendizado de máquina que consistem em duas redes neurais competindo entre si: o gerador e o discriminador. O gerador cria amostras sintéticas, enquanto o discriminador tenta distinguir entre amostras reais e sintéticas. Ao treinar essas redes em conjunto, o gerador aprende a produzir amostras cada vez mais realistas, enquanto o discriminador aprimora sua capacidade de distinguir entre amostras reais e sintéticas.
-
 Ao aplicar GANs para gerar imagens sintéticas de lesões de pele com melanoma, é possível explorar os padrões e características presentes nessas lesões e produzir imagens que se assemelhem às lesões reais. Isso pode ser valioso em várias áreas, como pesquisa médica, treinamento de algoritmos de diagnóstico por imagem e criação de conjuntos de dados de treinamento para modelos de aprendizado de máquina.
 
 ## Referências 
@@ -296,4 +295,5 @@ Ao aplicar GANs para gerar imagens sintéticas de lesões de pele com melanoma, 
 7. Dinnes, Jacqueline, et al. "Visual inspection for diagnosing cutaneous melanoma in adults." Cochrane Database of Systematic Reviews 2018.12 (1996).
 8. UptoDate: https://www.uptodate.com/contents/melanoma-clinical-features-and-diagnosis
 9. E. Nasr-Esfahani et al., "Melanoma detection by analysis of clinical images using convolutional neural network," 2016 38th Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC), Orlando, FL, USA, 2016, pp. 1373-1376, doi: 10.1109/EMBC.2016.7590963.
+10. A. Bissoto and S. Avila. "Improving Skin Lesion Analysis with Generative Adversarial Networks", in Anais Estendidos do XXXIII Conference on Graphics, Patterns and Images, Evento Online, 2020, pp. 70-76, doi: https://doi.org/10.5753/sibgrapi.est.2020.12986.
 
