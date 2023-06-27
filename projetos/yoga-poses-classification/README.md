@@ -193,6 +193,10 @@ Classe goddess |  Classe tree   | Classe plank| Classe warrior2
 
 Já no conjunto de dados de teste não foram observadas tantas imagens “confusas”, o que justifica a melhoria da performance do modelo em comparação ao conjunto de dados de validação. 
 
+# Conclusão
+
+Nesse projeto, analisou-se o impacto de técnicas de processamento de imagem na melhoria de desempenho de uma CNN aplicada para classificação de 5 posturas de yoga. Foram utilizadas técnicas de normalização e aumento de contraste, além de aumento de dados nas classes que apresentavam maior dificuldade de treinamento, possuindo variações das posturas, o que apresentava um desafio para a representatividade. Dessa maneira, obteve-se uma melhoria em média de 2% de acurácia, acurácia balanceada, F1-score e precisão nos dados de teste. Portanto, este estudo enfatiza a relevância do pré-processamento adequado dos dados e destaca o desempenho das técnicas de aumento de dados nas classes mais desafiadoras. 
+
 
 
 # Referências
