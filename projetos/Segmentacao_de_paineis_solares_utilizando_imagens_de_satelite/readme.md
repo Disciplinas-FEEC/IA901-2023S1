@@ -14,9 +14,9 @@ Incluir nome RA e foco de especialização de cada membro do grupo. Os projetos 
 Group:
 |Names                                   | Academic Record |  Course                                         |
 |----------------------------------------|-----------------|-------------------------------------------------|
-| Juan Carlos Cortez Aucapiña            | 265568          | Ph.D. Student of Electrical Engineering (Energy)|
-| Luiza Higino Silva Santos              | 264535          | Ph.D. Student of Electrical Engineering (Energy)|
-| Sérgio Augusto de Almeida Christoforo  | 249522          | M.Sc. Student of Electrical Engineering (Telecommunications and Telematics)|
+| Juan Carlos Cortez Aucapiña            | 265568          | <p align="center">Ph.D. Student of Electrical Engineering (Energy)</p>|
+| Luiza Higino Silva Santos              | 264535          | <p align="center">Ph.D. Student of Electrical Engineering (Energy)</p>|
+| Sérgio Augusto de Almeida Christoforo  | 249522          | <p align="center">M.Sc. Student of Electrical Engineering (Telecommunications and Telematics)</p>|
 
 
 ## Project Description 
