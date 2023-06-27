@@ -66,8 +66,9 @@ Dessa forma, estudos que avaliam técnicas de aumentação de dados com foco em 
 - *Hair remove*
 
 <p align="center">
-  <img src="assets/hair_remove.jpg"  width="500" height="300">
+  <img src="assets/hair_remove.jpg"  width="510" height="250">
 </p>
+
 
 
 *3. Avaliação e validação:*
