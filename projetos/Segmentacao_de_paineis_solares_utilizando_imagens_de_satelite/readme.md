@@ -85,12 +85,6 @@ Here is presented a little information about the images from each Image Provider
 
 For the training of the convolutional network using the datasets, the sets for training, validation, and testing were divided as shown in the images below. It is important to note that in this initial stage, we are not using the IGN dataset.</sub>
 
-#### Google
-<!---
-MUDAR MUDAR MUDAR
--->
-![Google Dataset Segmentation](./assets/splits.svg)
-
 
 # Tools
 <!---
@@ -140,28 +134,23 @@ MUDAR MUDAR MUDAR
 - (to be continued)...
 -->
 
-# Experiments and Preliminary Results 
+# Experiments  
 <!---
 > Descreva de forma sucinta e organizada os experimentos realizados
 > Para cada experimento, apresente os principais resultados obtidos
 > Aponte os problemas encontrados nas soluções testadas até aqui
 -->
 
-| Experiment       | Results          | Notes |
+## Preliminary Results 
+| Experiment       | Preliminary Results          | Notes |
 | -------------------------------------------- | -------------------------| ----------|
 | U-Net trained from scratch with Google Imagery | Params: 487 297  </br>Cross-entropy Binary Loss: Train - 0.0135 / Val - 0.016 </br> AVG DICE Score Test: 0.7672 | In this experiment, the evaluation with google imagery showed a low dice score, and because of that we decided to use a bigger convolutional neural network (CNN), like Resnet50, and see if there was an improvement in the metrics|
 | Resnet50 + mini U-Net fine-tunned with Google Imagery |Params: 20 676 545 </br>Cross-entropy Binary Loss: Train - 0.0078 / Val - 0.0092 </br>AVG DICE Score Test: 0.9330 </br> Base IGN - AVG DICE Score: 0.5888 | There was an improvement with the metrics, however, the Resnet50 was trained with google Imagery, and when tested with IGN imagery presented a low average DICE Score. In that sense, we decided to focus only on google imagery for training and testing |
 
 The results using Resnet50 to test the segmentation of IGN imagery made us realize that some metrics regarding masks with more than one panel should be monitored. 
 
-# Data Augmentation
-Random rotation and flip: 
-Random zoom:
-Random brightness, contrast, and saturation adjustments
-![masked_sample](./assets/data_augmentation_sample1.svg)
-![unmasked_sample](./assets/data_augmentation_sample2.svg)
 
-# Final results
+## Final results
 
 Based on the training parameters used, including a batch size of 8, a learning rate of 1e-4, and an 80/20 data split for training and validation sets, the final results were very promising. The model achieved an F1 Score of 0.9837 and 0.9818 on the validation and test sets, respectively. Additionally, the model demonstrated a DICE Score of 0.9107 on the validation set and 0.9049 on the test set.
 
@@ -169,6 +158,31 @@ These results indicate high performance and validate the effectiveness of the tr
 
 ![masked_sample](./assets/best_model_sample0.svg)
 ![unmasked_sample](./assets/best_model_sample1.svg)
+
+#### Google
+<!---
+MUDAR MUDAR MUDAR
+-->
+
+The image below shows the sets for the defined proportions to evaluate the hyperparams of the CNN. 
+![Google Dataset Segmentation](./assets/splits.svg)
+
+### Hyperparams evaluation 
+![model_eval_average_dice](./assets/model_eval_average_dice.svg)
+![model_eval_val_loss](./assets/model_eval_val_loss.svg)
+![model_eval_f1_score](./assets/model_eval_f1_score.svg)
+
+With the graphs, the chosen hyperparams for the CNN to evaluate on the test set were:
+* Batch size: 8
+* Learning rate: $\small {1\cdot10^{-4}}$
+* Proportion: 80% masked, 20% unmasked
+
+### Data Augmentation
+Random rotation and flip: 
+Random zoom:
+Random brightness, contrast, and saturation adjustments
+![masked_sample](./assets/data_augmentation_sample1.svg)
+![unmasked_sample](./assets/data_augmentation_sample2.svg)
 
 # Next steps 
 <!---
