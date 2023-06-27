@@ -88,10 +88,8 @@ Conclui-se então que para o propósito inicial do projeto, que é a classifica�
 
 ### 2.2.1 Análise de data augmentation
 
-Foi realizado um estudo exploratório para identificar os efeitos do processo de data augmentation sobre as imagens dos tecidos. Este passo foi necessário para verificar quais transformações são coerentes com o que se esperaria no processo de aquisição das imagens. 
-Nesta análise, as transformações mais tradicionais foram vistas: VerticalFlip, HorizontalFlip, Pad (padding=30), Random Crop (padding mode=’reflect’) e Random Erasing. Os resultados podem ser vistos na Figura x1. Os flips horizontal e vertical preservam a estrutura espacial da imagem original. O Random Crop empregado também preserva grande parte da informação estrutural da imagem, apesar da pequena distorção causada pelo preenchimento de borda do tipo ‘reflect’. Por outro lado, as transformações Pad e Random Erasing criam cenários pouco realistas, introduzindo bordas fixadas ou apagando regiões inteiras - o que pode prejudicar a etapa de treinamento. 
-
-
+Inicialmente, foi realizado um estudo exploratório para identificar os efeitos do processo de data augmentation sobre as imagens dos tecidos. Este passo foi necessário para verificar quais transformações são coerentes com o que se esperaria no processo de aquisição das imagens. 
+Nesta análise, as transformações mais tradicionais foram vistas: VerticalFlip, HorizontalFlip, Pad (padding=30), Random Crop (padding mode=’reflect’) e Random Erasing. Os resultados podem ser vistos na Figura 5. Os flips horizontal e vertical preservam a estrutura espacial da imagem original. O Random Crop também preserva grande parte da informação estrutural da imagem, apesar da pequena distorção causada pelo preenchimento de borda do tipo ‘reflect’. Por outro lado, as transformações Pad e Random Erasing criam cenários pouco realistas, introduzindo bordas fixadas ou apagando regiões inteiras - o que pode prejudicar a etapa de treinamento. Em vista disso, excluímos estas transformações do processo de data augmentation de todos os treinamentos contidos neste trabalho.
 
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Data Augmentation Study/Augmentation_0.png" height="150">
@@ -101,32 +99,30 @@ Nesta análise, as transformações mais tradicionais foram vistas: VerticalFlip
     Figura 5: Exemplos de aplicação das transformações de data augmentation (horizontal e vertical flips, Pad, Random Crop e Random Erasing) em uma imagem do conjunto de dados.
 </p>
 
-	Para todos os experimentos envolvendo o treinamento da EfficientNet_B0, optamos por usar os flips horizontal e vertical e o Random Crop como transformações no processo de data augmentation - uma vez que elas não criam artefatos ou distorções muito incongruentes do que se espera de uma imagem deste tipo. 
-O Resize necessário para tamanho 224 x 224 por conta do tamanho de entrada da EfficientNet_B0
 
 ## 2.3 Divisão de treino, teste e validação
 
 Como o projeto envolve treinar algoritmos de aprendizado de máquina, foi necessário dividir o conjunto de imagens em grupos de treino, validação e teste. Portanto, foi desenvolvido um algoritmo que acessa o diretório das imagens ‘.png’ e cria cópias destas imagens (sem repetições) em três novos diretórios: ‘/train’, ‘/val’ e ‘/test’. Todos possuem subdiretórios que representam as classes: ‘/0’ e ‘/1’. Escolhemos essa organização para tirar o máximo de proveito do método DataLoader() da biblioteca PyTorch, que foi usada para os experimentos com Deep Learning. 
     
-A partição escolhida para os conjuntos foi de 70% treino, 20% teste e 10% validação. Além disso, mantivemos, em cada conjunto, a mesma proporção de tipos de tecido encontradas no dataset original (por exemplo, se no conjunto original de imagens tivéssemos 30% delas sendo do pulmão; nos conjuntos de treino, teste e validação teremos a mesma proporção). 
+Em todos os estudos (com exceção daqueles em que o treinamento usava um único tecido), a partição escolhida para os conjuntos foi de 70% treino, 20% teste e 10% validação. Além disso, mantivemos, em cada conjunto, a mesma proporção de tipos de tecido encontradas no dataset original (por exemplo, se no conjunto original de imagens tivéssemos 30% delas sendo do pulmão; nos conjuntos de treino, teste e validação teremos a mesma proporção). 
 
 ## 2.4 Experimentos
 	
 Nesta etapa, utilizamos os conjuntos de treino, teste e validação para fazer as análises com técnicas de Deep Learning. Uma descrição sucinta destas abordagens pode ser vista abaixo. 
 
-Para tais análises recorremos, em um primeiro momento, a uma abordagem envolvendo o método de Transfer Learning. A arquitetura escolhida foi a EfficientNet_B0, a qual obteve um melhor desempenho dentre as outras arquiteturas testadas. O método DataLoader foi empregado para carregar na memória as imagens processadas dos diretórios e aplicar as transformações necessárias. 
+Para tais análises recorremos, em um primeiro momento, a uma abordagem envolvendo o método de Transfer Learning. A arquitetura escolhida foi a EfficientNet_B0, a qual obteve um melhor desempenho dentre as outras arquiteturas testadas. O método DataLoader foi empregado para carregar na memória as imagens processadas dos diretórios e aplicar as transformações necessárias. Uma etapa de resize necessário para tamanho 224 x 224 por conta do tamanho de entrada da EfficientNet_B0. 
 
-Alguns sub experimentos, testando diferentes configurações de hiperparâmetros, foram feitos visando um ajuste ótimo da rede neural. Ao fim deste processo, fixamos para todos os treinamentos os seguintes hiperparâmetros:
+Alguns sub experimentos, testando diferentes configurações de hiperparâmetros, foram feitos visando um ajuste ótimo da rede neural. Ao fim deste processo fixamos para todos os treinamentos, que envolveram tarefas de classificação, os seguintes hiperparâmetros:
 
 
 - Learning Rate: 0.0001
-- Optmizer: ADAM
+- Optimizer: ADAM
 - N Epochs: 20 
+- Loss Function: Cross Entropy
 
+Finalmente, ajustamos uma semente aleatória igual à 42 para garantir reprodutibilidade em todos os estudos. 
 
-E uma semente aleatória igual à 42 foi utilizada para garantir reprodutibilidade. Em todos os casos, usamos data augmentation, com métodos de Random Crop, Flips horizontais e verticais, Pad e Random Erasing. 
-
-A seguir, todos os experimentos feitos, tanto para a classificação de tumores quanto a do tipo de tecido, são detalhados.
+A seguir, todos os estudos e experimentos feitos serão detalhados.
 
 #### 2.4.1 Classificação de Tumores
 
@@ -157,8 +153,7 @@ Neste experimento, treinamos o modelo somente com as imagens do tecido ‘Breast
 
 Para o segundo tipo de classificação do projeto, o de tipos de tecidos, assim como no primeiro, fez-se o treinamento com as imagens rotuladas do dataset com base no seu tipo. Enquanto nós, humanos, somos capazes de diferenciar tipos de tecido com base em algumas características de seu estrutura, como discutido em [5], a máquina, assim como no caso dos tumores, irá aprender a identificar tais padrões para, assim, conseguir predizer o tipo daquele tecido.
 
-Neste estudo, utilizamos a EfficientNetB0 porque ela já havia mostrado bons resultados no estudo anterior e é pequena o suficiente para treinamentos no ambiente do Google Colaboratory
-			- Mantivemos os hiperparâmetros usados em todos os experimentos anteriores
+Neste estudo, utilizamos a EfficientNetB0 em vista dos seus bons resultados no estudo anterior e por ser  pequena o suficiente para treinamentos no ambiente do Google Collaboratory. Os hiperparâmetros hiperparâmetros usados em todos os experimentos anteriores
 		- O conjunto de imagens foi dividido seguindo as mesmas proporções dos experimentos anteriores:
 70% treinamento
 10% validação
@@ -477,4 +472,5 @@ Sep 16;22(18):7007. doi: 10.3390/s22187007. PMID: 36146356; PMCID: PMC9504738.
 [5]: Rachel. "Classification and Types of Epithelial Tissues" (rsscience.com/epithelium-classification-and-types/)
 
 [6]: Lavitt, Falko, et al. "Deep learning and transfer learning for automatic cell counting in microscope images of human cancer cell lines." Applied Sciences 11.11 (2021): 4912.
+
 
