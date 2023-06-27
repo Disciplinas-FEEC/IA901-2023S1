@@ -26,12 +26,12 @@ Base de Dados | Endereço na Web | Resumo descritivo
 LBPA40 | [link de acesso](https://www.loni.usc.edu/research/atlas_downloads) | este conjunto de dados é público e contém dados de 40 sujeitos. Dentre outros arquivos, este conjunto de dados contém as imagens ponderadas em T1 e segmentações manuais do cérebro também em T1. Esse conjunto de dados foi fornecido por um membro do grupo MICLab. Os dados originais estão no formato mri.img.gz, porém os dados fornecidos para este estudo já se encontrava no formato nifti. A conversão de img.gz para NIfTI foi feita usando o software [ITKSnap](http://www.itksnap.org/pmwiki/pmwiki.php?n=Documentation.TutorialSectionInstallation). Para a organização desses dados, foi feito a separação apenas dos arquivos que foram usados neste trabalho (imagens e segmentação do cérebro); em seguida renomeamos estes arquivos para brainmask_T1w (segmentação do cérebro) e brain_T1w (imagem do cérebro) e então realizamos a divisão deste dataset em treinamento (70%), validação (20%) e teste (10%). Detalhes para esta organização estão no notebook [organização dos dados LBPA40](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/data_organization/LBPA40_dataset_organization.ipynb). 
 CC359 | [link de acesso](https://portal.conp.ca/dataset?id=projects/calgary-campinas) | este é um conjunto de dados de ressonância magnética cerebral desenvolvido por pesquisadores da universidade de Calgary e Unicamp (MICLab). É composto por imagens de RM do cérebro ponderadas em T1 e máscaras de segmentação do cérebro também em T1. Contém 359 sujeitos todos com segmentação padrão-prata gerada a partir de um consenso entre segmentações obtidas por pelo menos 3 ferramentas (STAPLE). Apenas 12 sujeitos desses conjunto de dados contém máscaras manuais geradas por um especialista. Este conjunto de dados foi adquirido no formato NIfTI e em dois diretórios: um onde continham todas as imagens de todos os sujeito (original) e outro com todas as máscaras de todos os sujeitos (staple). Novamente, este conjunto de dados foi fornecido por um membro do grupo MICLab. A partir dos dados fornecidos não foi possível identificar os dados que continham segmentação manual. Para isso, foi preciso baixar os dados com anotação manual do site e identificar os sujeitos com anotações manuais, para separá-los manualmente e utilizá-los para teste final do modelo. Também, foi preciso separar os dados de cada sujeito em pastas (uma pasta para cada sujeito) com as imagens e as máscaras. Em seguida as imagens foram renomeadas para brain_T1w e as segmentações para brainmask_T1w. Por fim foi feito a divisão dos dados sem anotação manual (347 sujeitos) em treinamento (80%) e validação (20%). Detalhes da organização desse conjunto de dados estão no notebook [organização dos dados CC359](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/data_organization/CC359_dataset_organization.ipynb).
 NFBS | [link de acesso](http://preprocessed-connectomes-project.org/NFB_skullstripped/) | é um dataset com 125 ressonâncias magnéticas anatômicas ponderadas em T1 que tem anotações manuais do cérebro. Este conjunto de dados fornece 3 arquivos para cada sujeito: Structural T1-weighted anonymized image, Skull-stripped image, Brain mask. (FALTA DESCREVER COMO FOI FEITA A ORGANIZÇÃO DESTE CONJUNTO DE DADOS)
-IBSR | [link de acesso](https://www.nitrc.org/projects/ibsr) | este conjunto de dados é um repositório de segmentação cerebral da internet (IBSR, do inglês Internet Brain Segmentation Repository) que fornece anotações manuais, juntamente com dados de imagem cerebral por ressonância magnética em T1. Contém 18 sujeitos, todos com anotações manuais. Novamente adquiridos por um membro do MICLab. No entanto, os dados estão com incompatibilidade, uma vez que as anotações manuais não estão alinhadas com as imagens. Por isso e para tentar corrigir isto, todo o conjunto de dados foi reservado para teste final. Os arquivos das imagens e máscaras foram transferidos para outro diretório e em seguida as imagens foram renomeadas para  brain_T1w e as segmentações para brainmask_T1w. Detalhes da organização desse conjunto de dados estão no notebook [organização dos dados IBSR](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/data_organization/IBSR_dataset_organization.ipynb).
 
 Detatalhes importantes sobre os conjuntos de dados e sua organização:
 * Todos os conjuntos de dados originais estão no formato NIfTI.
 * A organização dos dados foi feita separadamente para cada conjunto de dados. Isso porque os conjuntos de dados eram muito diferentes e nos perdemos ao tentar implementar um único código para organizar e separar em treinamento validação e teste automaticamente. Além disso, alguns passos simples foram feitos manualmente como, criar pastas para cada conjunto de dados ou separar os dados com anotações manuais do conjunto de dados CC359.
 * Para o treinamento da nn-Unet não foram usados todos os conjuntos de dados, apenas alguns dados do CC359, LBPA40 e NFBS, pois ainda estávamos muito perdidos nessa organização. A quantidade de dados usados incluído os três conjuntos foi de 240 sujeitos e a divisão do conjunto de dados em treinamento e validação é feito automaticamente pelo framework. 29 sujeitos desses 3 conjuntos de dados foram reservados para teste final do experimento do framework. Ainda, foi preciso organizar os dados da maneira que o framework exige, consulte o [tutorial da nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/master). Em seguida, as anotações foram binarizadas usando limiarização de 0.5, uma vez que os dados adquiridos estavam com as máscaras de tipo float (entre 0 e 1) nas bordas e este framework não permite máscaras com labels que não contêm valores inteiros. A implementação para isso está no notebook [organizar de dados para executar a nnU-Net](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/data_organization/organizar_dados_nnUNet.ipynb).
+* Essa divisão dos conjuntos de dados foi usada apenas no modelo 3D.
 
 ## Metodologia
 ### Arquitetura U-Net
@@ -59,7 +59,6 @@ Após a execução da nnU-Net, foi obtido uma [lista de pré-processamento](http
 | CC359   | 1 x 1 x 1                 | 1 x 1 x 1             | 171 x 256 x 256    | 171 x 256 x 256 |
 | LBPA40  | 0.8594 x 1.5 x 0.8594     | 1 x 1 x 1             | 256 x 124 x 256    | 220 x 186 x 120 |
 | NFBS    | 1 x 1 x 0.9999            | 1 x 1 x 1             |  256 x 256 x 192   | 256 x 256 x 192 |
-| IBSR    | 0.9375 x 0.9375 x 1.5     | 1 x 1 x 1             |  256 x 256 x 128   | - |
 
 * [Normalização](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/pre-processing/data_normalization.ipynb): a normalização sugerida pelo framework foi a Z-Score Normalization 'ZScoreNormalization'. Essa é uma técnica utilizada para transformar os valores de uma variável para que tenham média zero e desvio padrão igual a 1. Bastante utilizada quando se tem variáveis que têm escalas diferente, deixando as variáveis em uma escala compatível ou comparável. Em MRIs, para a realização dessa normalização a imagem é subtraída de sua média e essa operação é dividida pelo desvio padrão da imagem: 
 
@@ -70,7 +69,7 @@ Onde X é a matriz (volume); $\mu$ é a média da matriz; e $\sigma$ é o desvio
 * [Conversão para o npz](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/notebooks/pre-processing/get_data_npz.ipynb): Para facilitar a treinamento e diminuir o custo computacional durante o treinamento, os dados foram convertidos de NIfTI para npz. Uma vez os dados corretos e alinhados com a máscara é mais vantajoso computacionalmente converter para um formato mais leve. Neste caso, o npz não armazena a informação do cabeçalho da imagem e isso diminui o custo computacional e tempo de execução ao carregar os dados durante o treinamento. Para cada experimento (3D) os dados foram salvos em npz (imagem e máscara no mesmo arquivo). Por exemplo, após a realização do pré-processamento de normalização, os dados eram salvos em npz.
 
 ### Utilização e divisão dos conjuntos de dados 
-Para o treinamento das versões arquitetura (2D e 3D), os conjuntos de dados LBPA40, CC359 e NFBS foram usados simultaneamente durante o treinamento do modelo em todos os experimentos. Os dados foram então dividos (incluidos esses 3 conjuntos de dados) em treinamento (392 sujeitos: 87 do NFBS, 277 do CC359 e 28 do LBPA40) e validação (103 sujeitos: 25 do NFBS, 70 do CC359 e 8 do LBPA40). A avaliação do modelo foi feita no conjunto de teste final (xx sujeitos) (VERIFICAR SE ISSO VAI SE MANTER PARA O 2D)
+Para o treinamento da versão da arquitetura 3D, os conjuntos de dados LBPA40, CC359 e NFBS foram usados simultaneamente durante o treinamento do modelo em todos os experimentos. Os dados foram então dividos (incluidos esses 3 conjuntos de dados) em treinamento (392 sujeitos: 87 do NFBS, 277 do CC359 e 28 do LBPA40) e validação (103 sujeitos: 25 do NFBS, 70 do CC359 e 8 do LBPA40). A avaliação do modelo foi feita no conjunto de teste final (xx sujeitos) (VERIFICAR SE ISSO VAI SE MANTER PARA O 2D)
 
 ### Métricas de Avaliação
 As métricas de avaliação utilizadas foram:
@@ -104,6 +103,11 @@ Por ser uma arquitetura totalmente convolucional, o tamanho da imagem para o tre
 
 Com o modelo treinado, a segmentação volumétrica do cérebro de uma nova amostra foi feita ao passar uma imagem completa para o modelo (Fig. x-II). Para isso, foi usado um método de inferência de janela deslizante, inspirado na implementação da [nnU-Net](https://www.nature.com/articles/s41592-020-01008-z) e usando uma implementação do [Monai](https://link.springer.com/chapter/10.1007/978-3-031-12053-4_58). Esse método reconstrói a segmentação completa do volume de entrada usando patches com ponderação gaussiana para predições e uma janela 3D de 10%.
 
+#### Aumento de dados
+Para a abordagem 3D, foram testadas apenas as técnicas de RandomAffine e a RandomBlur implementadas na biblioteca [TorchIO](https://torchio.readthedocs.io/transforms/augmentation.html).
+
+1. RandomAffine: é uma transformação geométrica aleatória que pode ser aplicada na imagens e permite a combinação aleatória de rotação, translação, redimensionamento, cisalhamento e reflexão em uma imagem. É comumente usada para criar variações sintéticas nos dados de treinamento e melhorar a robustez e generalização de modelos de aprendizado de máquina. Neste trabalho foram aplicados para essa técnica o fator escala (scales) de (0.9, 1.2) e graus (degrees) de 90.  Graus é um intervalo de ângulos de rotação possíveis, em que cada ângulo é escolhido aleatoriamente dentro desse intervalo, enquanto a escala é um fator de escala de mínimo e máximo, em que é escolhido aleatoriamente dentro desse intervalo. 
+
 ### Ferramentas
 
 As principais ferramentas utilizadas para o pré-processamento dos dados e treinamento do modelo foram:
@@ -121,9 +125,9 @@ As principais ferramentas utilizadas para o pré-processamento dos dados e trein
 
 * [Neptune](https://neptune.ai/): é uma plataforma de colaboração para experimentos de aprendizado de máquina. Ele oferece recursos avançados para rastrear, visualizar e compartilhar experimentos, bem como para monitorar e otimizar modelos de aprendizado de máquina. Com uma interface intuitiva e simples, permite acompanhar todas as etapas de um projeto, desde a coleta de dados até a implantação do modelo. Neste trabalho, foi utilizado apenas para monitoramento do modelo 3D.
 
-* Além dessas ferramentas, outras foram usadas para monipulação dos dados, como: [NumPy](https://numpy.org/doc/). (COLOCAR OUTRAS FERRAMENTAS). 
+* [TorchIO](https://torchio.readthedocs.io/transforms/augmentation.html): uma biblioteca de processamento de imagens baseada no PyTorch, que permite transformações e utilidades para o pré-processamento de dados médicos. Fornece um conjunto de transformações flexíveis para manipulação e aumentação de dados de imagem, como rotação, translação, redimensionamento, normalização, entre outras. O TorchIO é frequentemente usado em imagem 3D, por oferecer simplicidade na implementação de manipulação de volumes, no entanto, não é limitado apenas a dados 3D e pode ser usado para processar dados 2D e 1D, desde que haja ajuste as transformações e operações de acordo com a natureza dos seus dados.
 
-# Workflow
+* Além dessas ferramentas, outras foram usadas para monipulação dos dados, como: [NumPy](https://numpy.org/doc/). (COLOCAR OUTRAS FERRAMENTAS). 
 
 > Fazer na próxima etapa.
 
@@ -131,16 +135,62 @@ As principais ferramentas utilizadas para o pré-processamento dos dados e trein
 ### nnU-Net
 O framework realiza o pré-processamento dos dados usando o comando "nnUNetv2_plan_and_preprocess -d DATASET_ID --verify_dataset_integrity" e para treinamento o comando "nnUNetv2_train DATASET_NAME_OR_ID UNET_CONFIGURATION FOLD --val --npz". Como o objetivo da execução da nnU-Net é apenas obter algumas ideias de pré-processamento deste dataset, este não será detalhado aqui, para mais informações, consulte o tutorial da [nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/master).
 
-Apenas o modelo 3D da nnU-Net foi executado e o resultado obtido por este foi um valor de Dice médio de 0,9898. Detalhes sobre este resultados pode ser encontrado no [arquivo summary](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/summary.json) e [gráfico](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/progress.png) fornecidos pelo framework. 
+Apenas o modelo 3D da nnU-Net foi executado e o resultado obtido por este foi um valor de Dice médio de 0,9898 no conjunto de validação. Detalhes sobre este resultados pode ser encontrado no [arquivo summary](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/summary.json) e [gráfico](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/progress.png) fornecidos pelo framework. 
 
 ### Avaliação da U-Net 2D
 
 ### Avaliação da U-Net 3D
-> O treinamento do modelo inclui o uso de [Dice Loss](https://link.springer.com/chapter/10.1007/978-3-319-67558-9_28) como função de perda e [otimizador Adam](https://arxiv.org/abs/1412.6980). O tamanho do batch foi o mesmo sugerido pelo framework nnU-Net, 2. O tamanho de patch não foi o mesmo sugerido pala nnU-Net, isso porque não havia GPU que coubesse o tamanho de patch sugerido, logo foi necessário diminuir o tamanho de patch para (102 x 102 x102)
+Os experimentos desta seção foram realizados em uma GPU Titan X. Experimentos foram realizados para testar a aplicação de pré-processamento de dados (redimensioanmento de voxel e normalização) e definir aumento de dados e os principais hiperparâmetros, como a learning rate e número de épocas. Desde o início, foram mantidos fixos o uso do [otimizador Adam](https://arxiv.org/abs/1412.6980) com [Dice Loss](https://link.springer.com/chapter/10.1007/978-3-319-67558-9_28), o método de patch RandomCrop com seu tamanhos de (102, 102, 102) e o tamanho do batch de 2. Esses parâmetros fixos foram usados de acordo com os sugeridos pela nnU-Net, com exceção do otimizados e da função de perda. Também o tamanho de patch não foi o mesmo sugerido pela nnU-Net, pois a GPU usada para a execução do treinamento, não permitiu o tamanho de patch de (128, 128, 128).
+
+Os objetivos desses experimentos foram (de acordo com o sugerido pela nnU-Net):
+1. Verificar quais pré-processamentos são relevantes para melhorar o desempenho do modelo;
+2. Verificar quais aumento de dados ajudam a obter um modelo mais robusto;
+3. Verificar se há ganho significativo ao mudar os hiperparâmetros taxa de aprendizado e número de época.
+
+A execução dos experimentos usando a U-Net 3D, objetivou avaliar a aplicação dos pré-processamento: redimensionamento de voxel, normalização e padronização das labels das anotações fornecidas nos conjuntos de dados. Também a avaliação da técnica de aumento de dados RandomAffine (Tab. 2). 
+
+
+Tabela 1: Dice médio no conjunto de validação para os experimentos realizados usando a U-Net 3D: dados sem nenhum processamento (Experimento 1); ao realizar a padronização das labels de entre os 3 datasets (Experimento 2); Depois de padronizar as labels, foi feita a interpolação de voxel nos dados (Experimento 3); em seguida os dados foram normalizados (Experimento 4); por fim foi testado a técinca de Random Affine (Experimento 5).
+|Experimento  | N° de épocas (época) | perda |modelo| pós-processada|
+|-------------|-----------------|--------------|-------|------------|
+| 1 |500 (459)             | -0.05 | 0.6643     | 0.8309
+|2 | 100 (68)             | 0.04  | 0.7752     | 0.8239
+|3 |100 (90)              | 0.03  | 0.8953     | 0.9044|
+| 4  |100 (55)              | 0.03  | 0.9637     | 0.97307 |
+|5   |100 (55)              | 0.03  | 0.9357     | 0.9596 |
+
+Note que o pré-processamento é sequencial, sendo que a interpolação do voxel foi aplica nos dados com as labels padronizadas. Foi observado que realizar o pré-processamento nos dados ajuda no desempenho do modelo, principalmente a normalização dos dados e a interpolação de voxel. 
+
+As figuras abaixo mostram as curvas de perda do treinamento e da validação. O experimento 4 e convergiram melhor se comparados aos demais experimentos, no entanto, o experimento 4 convergiu melhor, apresentando melhores resultados na avaliação feita no conjunto de validação. Este foi definido para a análise subsequente. 
+
+![Train_loss](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/training_loss_epoch.png)*Figura 03 - Curva de aprendizado durante o treinamento (função de perda para o treinamento): experimetos 2 (rosa), 3 (amarelo), 4 (vinho); e 5 (azul)*
+
+![Val_loss](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/training_val_loss.png)*Figura 04 - Curva de aprendizado durante o treinamento (função de perda para a validação: experimetos 2 (rosa), 3 (amarelo), 4 (vinho); e 5 (azul)*
+
+A avaliação no conjunto de teste foi feita apenas no melhor modelo 3D (experimento 4). Foi possível fazer um estudo ao realizar a predição usando todos os conjuntos de dados do conjunto de teste simultaneamente ou separadamente.
+
+
+Tabela 1 : Resultados das métricas para o melhor modelo 3D (conjunto de teste): média e desvio padrão.
+|Conjunto de dados     |Dice             | AVD                  | SV    |
+|----------------------|-----------------|----------------------|-------|
+|todos                 | $0.9629\pm0.0055$| $0.0673\pm0.0242$   | $0.9849\pm0.0080$   |
+| IBSR                |$0.9737\pm0.0032$|$0.0445\pm0.0259$     | $0.9867\pm0.0100$|
+| CC359                 |$0.9671\pm0.0031$|$0.0593\pm0.0116$ |$0.9880\pm0.0082$ | 
+| LBPA40              | $0.9671\pm0.0031$ |$0.0593\pm0.0116$ | $0.9880\pm0.0082$|
+
+Os resultados foram satisfatórios, uma vez que o dice médio se manteve próximo ao que foi apresentado no conjunto de validação e treinamento. Além disso, não houve divergencia entre os conjuntos de dados, pois os resultados são bastante semelhantes inclusive com os resultados de todos os conjuntos de dados juntos.
+
+Os resultados qualitativos (Figura 5) confirmam a boa qualidade das segmentações obtida pelo modelo. O pior resultado aparenta ser no conjunto de dados LBPA40.
+
+![Res_qual](https://github.com/jimitogni/IA901-2023S1/blob/vers%C3%B5es_unet/projetos/Brain_segmentation/assets/resul_qual_3D.png)*Figura 05 - Resultados qualitativos usando o melhor Dice obtido em cada conjunto de dados. Renderização 3D da saída do modelo (sup.) e sobreposição das anotação manual e a saída do modelo em fatias centrais dos três eixos (axial, coronnal e sagital). Anotação manual (azul) e saída do modelo (vermelho).*
+
+# Conclusão 
 
 # Próximos passos
 
-Trainar uma U-Net 3D a partir de alguns pré-processamentos fornecidos pela nn-Unet.
+* Realizar experimentos ao aplicar outras técnicas de aumento de dados, como RandomBlur.
+* Testar hiperparâmetros da rede, como variar a taxa de aprendizagem e número de épocas.
+* Verificar a normalização implementada, pois para se ter valores entre -1 e 1 a média e o desvio padrão deixaram de ser 0 e 1, respectivamente.
 
 ## Referências
 
