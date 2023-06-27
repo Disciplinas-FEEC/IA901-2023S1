@@ -313,6 +313,12 @@ Fig. 12. Exemplos de imagens de diferentes tecidos classificadas incorretamente 
 
 ### 4.1.2 Comparação entre experimentos
 
+
+<p align="center">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/FinalComparison/Cópia de ROC_GeneralAnalysis.png" height="350">
+</p>
+Fig. 11. ROC Curve comparando a performance do modelo baseline com o experimentos I e II. 
+
 Tab. 3. Síntese das principais métricas de performance para os três estudos envolvendo a identificação de células neoplásicas nos tecidos.
 |Estudo|AUC|TPR*|FPR*|Precision*|Accuracy*|F1-Score*|
 |---|---|---|---|---|---|---|
@@ -321,8 +327,13 @@ Tab. 3. Síntese das principais métricas de performance para os três estudos e
 |Experiment II|0\.852|0\.92|0\.42|0\.69|0\.75|0\.79|
 * Métricas calculadas com base no valor ótimo (máximo) do F1-score do modelo Baseline junto aos dados de todos os tecidos. 
 
-
 #### 4.1.2.1 Performance entre tecidos para o experimento II
+
+
+<p align="center">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/FinalComparison/Cópia de ROC_TissueAnalysis.png" height="350">
+</p>
+Fig. 12. ROC Curve comparando a performance do modelo obtido no experimento II para diferentes tecidos. Apenas aquelas com as três maiores e três menores  performances estão representadas. 
 
 ## 4.2 Classificação de Tecidos
 
@@ -338,6 +349,12 @@ Tab. 4. Síntese das principais métricas de performance para os experimentos I 
 
 
 ## 4.2.2 Experimento III (All vs All)
+
+
+<p align="center">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Tissue Classification/Experiment_III/CM.png" height="350">
+</p>
+Fig. 13. Matriz de confusão da EfficientNetB0 treinada para classificar todos os tecidos.
 
 Tab. 4. Síntese das principais métricas de performance para a EfficientNet_B0 aplicada na classificação de cada tecido.
 
