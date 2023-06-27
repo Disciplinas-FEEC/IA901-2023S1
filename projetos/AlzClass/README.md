@@ -34,7 +34,7 @@ A área de classificação de pacientes com Alzheimer tem recebido atenção sig
 
 # Metodologia
 
-Esse projeto foi desenvolvido em algumas etapas que estão destacadas, uma a uma, a seguir
+Esse projeto foi desenvolvido em etapas que estão destacadas a seguir
 
 1. *Download & Preparação dos datasets*
 
@@ -107,7 +107,10 @@ A técnica de *fine tuning* carrega os pesos pré-treinados nos conjuntos de dad
 
 Temos como última etapa a análise dos resultados obtidos em relação ao desempenho das redes. A cada treinamento realizado, analisamos as métricas de avaliação, para conseguirmos prosseguir com o projeto, entender se estávamos no caminho certo, se as transformações estavam influenciando de alguma forma ou se precisávamos mudar as nossas abordagens. Como comentado anteriormente, a classificação proposta é uma classificação multiclasses na qual os conjuntos de dados utilizados possuem, além da classe de controle, outras classes que representam níveis iniciais da doença de Alzheimer. 
 Então, para avaliar os desempenhos obtidos, utilizamos as seguintes métricas apropriadas para a classificação multiclasses:
-- Acurácia de multiclasse, mostrando o quanto o modelo acertou corretamente na classificação de cada classe ou a média entre elas
+- Acurácia de multiclasse -> dada pela fórmula: (verdadeiro positivo + verdadeiros negativos)/(número total de previsões)
+
+A acurácia fornece uma primeira estimativa de perfomance, representando o quanto o modelo acertou na classificação de cada classe ou a média entre elas. A acurácia por si só não fornece uma imagem completa do desempenho do modelo, especialmente ao lidar com conjuntos de dados desbalanceados, nos quais a distribuição das classes é desigual. Nesses casos, um valor de acurácia alto pode ser enganoso se o modelo estiver enviesado em relação à classe majoritária e tiver um desempenho ruim na classe minoritária. Dessa forma, torna-se vital para a avaliação de um modelo considerar as diversas métricas expostas abaixo.
+
 - Precisão de multiclasse -> dada pela fórmula: (verdadeiro positivo)/(verdadeiro positivo + falso positivo)
 
 A precisão representa a capacidade de um classificador identificar corretamente instâncias positivas entre todas as instâncias classificadas como positivas. Em outras palavras, a precisão mede a acurácia do classificador na classificação de instâncias positivas.
@@ -123,7 +126,7 @@ A Curva ROC no caso de classificação binária é criada traçando-se a taxa de
 
 A curva ROC também pode ser estendida para problemas de classificação multiclasse. Existem abordagens diferentes para construir uma curva ROC para problemas multiclasse, incluindo as estratégias um-contra-todos (também conhecida como um-contra-restante) e um-contra-um. Em nosso projeto optamos por utilizar a abordagem um-contra-todos, na qual construímos vários classificadores binários, cada um treinado para distinguir uma classe das demais classes. Em seguida, calculamos a curva ROC para cada classificador binário, tratando-o como um problema de classificação binária separado. As curvas ROC resultantes podem ser plotadas juntas, e o desempenho pode ser avaliado com base na macro-averaging ou micro-averaging da TPR e FPR entre as classes.
 
-Além dessas métricas, conforme os treinamentos eram realizados, analisamos também a curva de acurácia e de perda, tanto para o conjunto de treinamento quanto para o conjunto de validação, para verificar como estava o comportamento da rede a cada transformação que era realizada. Para completar as análises, usamos também as matrizes de confusão, plotadas para verificarmos, em quantidades, quantas amostras estavam sendo classificadas de forma correta e quantas amostras estavam sendo classificadas erradas.
+Além dessas métricas, conforme os treinamentos eram realizados, analisamos também a curva de acurácia e de perda, tanto para o conjunto de treinamento quanto para o conjunto de validação, para verificar como estava o comportamento da rede a cada transformação que era realizada. Para completar as análises, usamos também as matrizes de confusão, plotadas para verificarmos quantas amostras estavam sendo classificadas de forma correta e quantas amostras estavam sendo classificadas erradas.
 
 ## Bases de Dados e Evolução
 
