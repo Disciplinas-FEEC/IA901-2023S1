@@ -22,7 +22,7 @@ O objetivo do projeto é desenvolver um sistema para classificação de lesões 
   <img src="assets/Tabela_confusao.png">
 </p>
 
-**Taxa de falso negativo:** 
+**Proporção de falso negativo:** 
 
 $$P(\hat{f}(x)=\text{Benigno} | f(x)=\text{Maligno})=\frac{FN}{FN+VN}$$
 
