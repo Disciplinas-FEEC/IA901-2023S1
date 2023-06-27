@@ -157,6 +157,19 @@ Neste experimento, treinamos o modelo somente com as imagens do tecido ‘Breast
 
 Para o segundo tipo de classificação do projeto, o de tipos de tecidos, assim como no primeiro, fez-se o treinamento com as imagens rotuladas do dataset com base no seu tipo. Enquanto nós, humanos, somos capazes de diferenciar tipos de tecido com base em algumas características de seu estrutura, como discutido em [5], a máquina, assim como no caso dos tumores, irá aprender a identificar tais padrões para, assim, conseguir predizer o tipo daquele tecido.
 
+Neste estudo, utilizamos a EfficientNetB0 porque ela já havia mostrado bons resultados no estudo anterior e é pequena o suficiente para treinamentos no ambiente do Google Colaboratory
+			- Mantivemos os hiperparâmetros usados em todos os experimentos anteriores
+		- O conjunto de imagens foi dividido seguindo as mesmas proporções dos experimentos anteriores:
+70% treinamento
+10% validação
+20% teste
+
+Ao todo, temos imagens de 19 tipos de tecidos disponíveis no banco de dados.
+A discriminação do tipo de tecido, neste caso, configura um problema de classificação multi-classe
+Neste cenário, existem pelo menos duas abordagens para se atacar este problema:
+One vs All: O problema multiclasse é transformado em um problema de classificação binária, onde uma categoria é tida como “positiva” e todas as demais são tidas como “negativas”. O problema desta abordagem é que é necessário treinar um modelo para cada combinação possível de classes. Por outro lado, a vantagem é que se torna possível aplicar métricas da classificação binária (ROC Curve, AUC, TPR, FPR e etc) nas análises, que são facilmente interpretadas. 
+All vs All: Um único modelo é treinado para discriminar todas as categorias possíveis. A dificuldade desta abordagem reside na forma de mensurar a qualidade das predições. Por outro lado, a vantagem é o treino e uso de um único modelo. 
+
 #### 2.4.2.1 Experimento I
 
 Treinamento para discriminar 'Breast' dos demais tecidos (One vs All)
@@ -202,13 +215,15 @@ Nesse caso, o Decision Threshold escolhido deve ser aquele que maximiza as rela�
 
 Portanto, todas estas métricas (TPR, FPR e AUC) serão usadas em nossas análises. Adicionalmente, usaremos outras métricas de classificação conhecidas, tais como: 
 
-Acurácia: porcentagem de observações classificadas corretamente 
+  Acurácia: porcentagem de observações classificadas corretamente 
 
-Precisão: porcentagem de observações classificadas como positivas que são realmente positivas. 
+  Precisão: porcentagem de observações classificadas como positivas que são realmente positivas. 
 
 Em geral, para o cálculo delas, consideramos o valor de Decision Threshold que maximiza uma das três figuras de mérito apresentadas. 
 
 ### 2.5.2 Problema de classificação multi-classe
+
+Para o problema multiclasse, 
 
 ### 2.5.3 Problema de Regressão
 
