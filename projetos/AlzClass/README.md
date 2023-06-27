@@ -107,9 +107,21 @@ A técnica de *fine tuning* carrega os pesos pré-treinados nos conjuntos de dad
 
 Temos como última etapa a análise dos resultados obtidos em relação ao desempenho das redes. A cada treinamento realizado, analisamos as métricas de avaliação, para conseguirmos prosseguir com o projeto, entender se estávamos no caminho certo, se as transformações estavam influenciando de alguma forma ou se precisávamos mudar as nossas abordagens. Como comentado anteriormente, a classificação proposta é uma classificação multiclasses na qual os conjuntos de dados utilizados possuem, além da classe de controle, outras classes que representam níveis iniciais da doença de Alzheimer. 
 Então, para avaliar os desempenhos obtidos, utilizamos as seguintes métricas apropriadas para a classificação multiclasses:
-- acurácia de multiclasse, mostrando o quanto o modelo acertou corretamente na classificação 
-- precisão de multiclasse -> dada pela fórmula: (verdadeiro positivo)/(verdadeiro positivo + falso positivo)
-- *recall* de multiclasse -> dada pela fórmula: (verdadeiro positivo)/(verdadeiro positivo + falso negativo)
+- Acurácia de multiclasse, mostrando o quanto o modelo acertou corretamente na classificação de cada classe ou a média entre elas
+- Precisão de multiclasse -> dada pela fórmula: (verdadeiro positivo)/(verdadeiro positivo + falso positivo)
+
+A precisão representa a capacidade de um classificador identificar corretamente instâncias positivas entre todas as instâncias classificadas como positivas. Em outras palavras, a precisão mede a acurácia do classificador na classificação de instâncias positivas.
+- *Recall* de multiclasse -> dada pela fórmula: (verdadeiro positivo)/(verdadeiro positivo + falso negativo)
+
+A recall, também conhecida como sensibilidade ou taxa de verdadeiros positivos, representa a capacidade de um classificador identificar corretamente todas as instâncias positivas a partir das instâncias positivas reais no conjunto de dados. A recall mede a capacidade do classificador em capturar corretamente instâncias positivas.
+- *F1-score* de multiclasse -> dada pela fórmula:  2 * (precisão * recall) / (precisão + recall)
+
+O F1-score é obtido a partir da média harmônica da precisão e da recall, combinando as duas métricas em um único valor. Essa métrica fornece uma avaliação equilibrada do desempenho de um classificador, considerando tanto a precisão quanto a recall. O F1-score é particularmente útil quando a distribuição das classes é desequilibrada, pois ele dá peso igual à precisão e à recall, ambas as quais são afetadas pelo desbalanço de classes.
+- Curva *Receiver Operating Characteristic (ROC)*
+
+A Curva ROC no caso de classificação binária é criada traçando-se a taxa de verdadeiros positivos (TPR) no eixo y em relação à taxa de falsos positivos (FPR) no eixo x. A curva ROC fornece uma representação visual do desempenho do classificador para diferentes limiares de discriminação. Quanto mais próxima a curva estiver do canto superior esquerdo do gráfico, melhor será o desempenho do classificador. Esse desempenho é medido pela área abaixo, da curva, a qual assume valor 1 para classificadores perfeitos e 0.5 para um classificador aleatório.
+
+A curva ROC também pode ser estendida para problemas de classificação multiclasse. Existem abordagens diferentes para construir uma curva ROC para problemas multiclasse, incluindo as estratégias um-contra-todos (também conhecida como um-contra-restante) e um-contra-um. Em nosso projeto optamos por utilizar a abordagem um-contra-todos, na qual construímos vários classificadores binários, cada um treinado para distinguir uma classe das demais classes. Em seguida, calculamos a curva ROC para cada classificador binário, tratando-o como um problema de classificação binária separado. As curvas ROC resultantes podem ser plotadas juntas, e o desempenho pode ser avaliado com base na macro-averaging ou micro-averaging da TPR e FPR entre as classes.
 
 Além dessas métricas, conforme os treinamentos eram realizados, analisamos também a curva de acurácia e de perda, tanto para o conjunto de treinamento quanto para o conjunto de validação, para verificar como estava o comportamento da rede a cada transformação que era realizada. Para completar as análises, usamos também as matrizes de confusão, plotadas para verificarmos, em quantidades, quantas amostras estavam sendo classificadas de forma correta e quantas amostras estavam sendo classificadas erradas.
 
@@ -155,7 +167,7 @@ Exemplo de fatias retiradas de imagens ADNI sem pré-processamento e suas respec
 
 ![image](https://github.com/fabiograssiotto/IA901-2023S1/assets/128602969/58c5238e-d3ec-43be-a75c-ced1c7ec09d8)
 
-Nota-se que as imagens ADNI, devido a ausência de processamento são mais heterogêneas e ruídosas, o que pode explicar problemas com overfitting e baixa acurácia expostos abaixos.
+Nota-se que as imagens ADNI, devido a ausência de pré-processamento (sem registramento em atlas e segmentação do volume cerebral), aparentam ser mais heterogêneas e ruídosas, o que pode explicar problemas com overfitting e baixa acurácia de classificação expostos abaixos.
 
 
 
