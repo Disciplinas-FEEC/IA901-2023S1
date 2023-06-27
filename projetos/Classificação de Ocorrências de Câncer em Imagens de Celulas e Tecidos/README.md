@@ -388,6 +388,8 @@ Tab. 4. Síntese das principais métricas de performance para a EfficientNet_B0 
 
 ## 4.3 Contagem de células
 
+### 4.3.1 Desempenho geral e por tecido
+
 Tab. 5. Comparação de atributos estatísticos (Mean, standard-deviation (STD), Median, Min e Max) das distribuições dos dados reais e preditos pela EfficientNet_B0. Análise feita para o número de células totais e neoplásicas. Para as predições, foram calculados os valores de Mean Squared Error (MSE) e Mean Absolute Error (MAE). 
 
 | EfficientNet_B0 performance w.r.t the Test images (N=1571) |
@@ -409,48 +411,34 @@ Fig. 14. Comparação entre os valores preditos do número total de células (gr
   <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cell Counting/Cópia de BoxPlotTotalCells.png" height="300">
   <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cell Counting/Cópia de BoxPlotTotalNeoplasic.png" height="300">
 </p>
-Fig. 15. Boxplots representando a distribuição do Erro Absoluto cometido pela EfficientNet_B0 com relação a todos os tecidos da amostra de testes na contagem do número total de células (gráfico superior) e de células neoplásicas (gráfico inferior). As linhas amarelas indicam a mediana enquanto os triângulos verdes representam o Mean Absolute Error (MAE). A linha azul tracejada (MAE=12) indica a performance obtida na referência [x1] e foi incluída para comparação.
+Fig. 15. Boxplots representando a distribuição do Erro Absoluto cometido pela EfficientNet_B0 com relação a todos os tecidos da amostra de testes na contagem do número total de células (gráfico superior) e de células neoplásicas (gráfico inferior). As linhas amarelas indicam a mediana enquanto os triângulos verdes representam o Mean Absolute Error (MAE). A linha azul tracejada (MAE=12) indica a performance obtida na referência [6] e foi incluída para comparação.
 
+### 4.3.1 Inspeção visual das predições feitas pela EfficientNet_B0
+
+Abaixo, temos alguns exemplos de imagens com as respectivas masks relacionadas com a performance da  EfficientNet_B0. Olhando as imagens, podemos concluir que:
+Em alguns casos, o modelo foi capaz de reconhecer com perfeição todas as estruturas dos tecidos. Identificamos também que a reden neural apresentou uma Dificuldade maior em diferenciar as células neoplásicas das demais (especialmente as inflamatórias e epiteliais)
+
+<p align="center">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cell Counting/Cópia de CellCounts_Image_7504.png" height="250">
+</p>
+<p align="center">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cell Counting/Cópia de CellCounts_Image_4591.png" height="250">
+</p>
+<p align="center">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cell Counting/Cópia de CellCounts_Image_6435.png" height="250">
+</p>
+<p align="center">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cell Counting/Cópia de CellCounts_Image_4533.png" height="250">
+</p>
+
+Fig. 16. Exemplos de imagens de diferentes tecidos classificadas incorretamente e suas respectivas masks. 
 
 # 5. Conclusão e futuro
 
-Com base nos resultados obtidos, os próximos passos imediatos seriam:
 
-1. Realizar extração de atributos e testar modelos tradicionais de Machine Learning na classificação de imagens; (médio/longo prazo)
-
-2. Aprimorar o modelo baseline testando outras arquiteturas (com ou sem Transfer Learning) ou métodos de data augmentation ; (curto prazo)
-
-3. Fazer fine-tuning do modelo de Deep Learning para aumentar a performance de classificação do tecido ‘Breast’ (experimento 1); (médio prazo)
-
-4. Em geral, o modelo de Deep Learning apresentou uma alta performance em classificar as imagens no nosso problema - mesmo considerando o caso em que excluímos um dos tipos de tecido. Por isso, estudaremos algumas possíveis extensões para o projeto (médio/longo prazo):
-
-4.1 Contagem do número de células neoplásicas em cada imagem - tarefa de regressão;
-
-4.2 Uso de técnicas de interpretação das redes neurais treinadas;
-
-4.3 Analisar a necessidade de balancear o dataset para o número de cada tipo de tecido;
-
-4.4 Analisar a possibilidade de classificação entre tumores benignos e malignos;
-
-5. Aspectos técnicos a serem trabalhados:
-
-5.1 Adicionar salvaguardas nos códigos para evitar que imagens corrompidas sejam usadas; (curto prazo)
-
-5.2 Criar algum critério de exclusão para imagens com baixa qualidade; (curto prazo)
-
-5.3 Adaptar os códigos para salvar mais resultados intermediários e garantir a reprodutibilidade e fácil entendimento pelos usuários; (curto prazo)
-
-5.4 Implementar ferramentas para o arquivamento dos experimentos (por ex. NeptuneAI) (médio prazo)
-
-5.5 Documentar as versões e pré-requisitos das bibliotecas e programas utilizados. (curto prazo)
-
-Dado que teremos 1 mês até a entrega final, estamos considerando que:
-
-Curto prazo: 1-2 semanas
-
-Médio prazo: 2-3 semanas
-
-Longo prazo: 3-4 semanas
+<p align="center">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/ProjectConclusion.png" height="250">
+</p>
 
 ## Referências 
 
@@ -464,3 +452,6 @@ Sep 16;22(18):7007. doi: 10.3390/s22187007. PMID: 36146356; PMCID: PMC9504738.
 [4]: Jaber, N. "Can Artificial Intelligence Help See Cancer in New, and Better, Ways?" (cancer.gov/news-events/cancer-currents-blog/2022/artificial-intelligence-cancer-imaging). March 22, 2022.
 
 [5]: Rachel. "Classification and Types of Epithelial Tissues" (rsscience.com/epithelium-classification-and-types/)
+
+[6]: Lavitt, Falko, et al. "Deep learning and transfer learning for automatic cell counting in microscope images of human cancer cell lines." Applied Sciences 11.11 (2021): 4912.
+
