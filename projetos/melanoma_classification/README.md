@@ -46,6 +46,9 @@ O câncer de pele é uma das formas mais comuns de câncer em todo o mundo, e a 
 *1. Pré-processamento de dados:*
 
 As imagens foram normalizadas, ou seja, todos os pixels foram divididos por 255.0, para padronizar os valores em pixels entre o intervalo de 0 a 1. A normalização é importante para manter a escala de pixels consistentes e facilitar o treinamento de redes complexas. Ainda, a técnica de pré-processamento reduz a influência de outliers e melhora a capacidade do modelo de generalizar para novos exemplos. Também adotamos estratégias de downsampling da classe majoritária, oversampling da classe minoritária e combinação de ambas para testar os efeitos nas arquiteturas avaliadas.
+<p align="center">
+  <img src="assets/preparação do dados.jpg" width="650" height="310">
+</p>
 
 *2. Data augmentation:*  
 
@@ -99,6 +102,11 @@ Todo o treinamento foi realizado configurando-se a rede para maximizar métricas
 *5. Metodologia Simple-Complex:*
 
 - Avaliar simultaneamente arquiteturas complexas e consolidadas como Resnet50, MobileNet, EfficientNet e modelos mais simples (começando com pouca profundidade e pequena quantidade de filtros), afim de realizar a tarefa com o menor custo computacional possível e possibilitar mais abordagens de pré-processamento.
+- 
+<p align="center">
+  <img src="assets/fluxograma.jpg" width="650" height="310">
+</p>
+
   
 ## Bases de Dados e Evolução
 
@@ -119,7 +127,6 @@ Não houve necessidade de reanotação dos dados para o conjunto proposto. No en
 Estatísicas Qualitativas | Proporções
 ----- | ----- 
 Sexo | 52% homens e 48% mulheres
-Diagnóstico | 98% benignos e 2% malignos
 
 
 Estatísticas quantitativas | Mínimo | Máximo | Média
