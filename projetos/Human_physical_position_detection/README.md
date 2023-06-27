@@ -118,6 +118,24 @@ Neptune.ai | https://neptune.ai/ | Experiment tracker and model registry
 
 Como informado anteriormente, foram selecionadas 6 redes conhecidas para serem treinadas e determinar qual ferramenta seria ideal para a classificação das imagens de silhuetas. Apesar da Alexnet possuir melhores resultados, ela foi a rede que foi mais treinada durante nossos experimentos, devido ao fato de que ela era a primeira a ser treinada e no meio do processo o notebook atingia seu limite de memória, acarretando na falta de treino das redes seguintes. Devido a esse fato, ficou claro que há uma necessidade de focar somente em uma rede, e dar preferência a redes mais leves como as convolucionais, para evitar problemas de processamento futuros.
 
+
+
+## Efficient_V2
+
+Efficient_V2 - Train Acc
+
+![train_epoch_acc (15)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/b2e15b27-23cb-4e13-9637-cc0754f315f2)
+
+Efficient_V2 - Val Acc
+![val_epoch_acc (10)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/da729945-cd01-42cf-8a9b-f59e21de62c9)
+
+Efficient_V2 - Train Loss
+![train_epoch_loss (12)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/498c50f6-f513-4a2a-992d-d549ae34df33)
+
+Efficient_V2 - Val Loss
+![val_epoch_loss (10)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/4b72047a-1cb4-43c6-8def-33f7da18212f)
+
+
 ## AlexNet
 
 AlexNet - Train Acc
@@ -160,20 +178,6 @@ Efficientnet - Train Loss
 
 Efficientnet - Val Loss
 ![val_epoch_loss (5)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/d975e0ea-17b0-480d-bbf7-10181e13fa20)
-
-## Efficient_V2
-
-Efficient_V2 - Train Acc
-![train_epoch_acc (10)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/22b45dbc-66a3-4d82-a0fc-cbc65e1d7c28)
-
-Efficient_V2 - Val Acc
-![val_epoch_acc (6)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/e02322de-6249-4612-be37-df5281a982a0)
-
-Efficient_V2 - Train Loss
-![train_epoch_loss (8)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/3aa5a632-66d3-4477-88e5-81366f90c45e)
-
-Efficient_V2 - Val Loss
-![val_epoch_loss (6)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/a3089f94-6611-4273-aa1e-2667861e2d83)
 
 
 ## Googlenet
