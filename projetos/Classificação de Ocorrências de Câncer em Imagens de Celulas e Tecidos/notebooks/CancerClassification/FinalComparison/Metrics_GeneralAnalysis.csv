@@ -1,4 +1,0 @@
-Estudo,AUC,TPR,FPR,Precision,Accuracy,F1Score
-DL_Baseline,0.974,0.94,0.07,0.93,0.94,0.93
-Experiment_I,0.859,0.59,0.07,0.89,0.72,0.71
-Experiment_II,0.852,0.92,0.42,0.69,0.75,0.79
