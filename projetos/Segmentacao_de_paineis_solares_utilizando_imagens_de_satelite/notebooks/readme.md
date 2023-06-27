@@ -1,19 +1,26 @@
-# Instruções para Uso do Notebook
+# Instructions for Notebook Usage
 
-## Pré-requisitos: 
+## Prerequisites:
 
-### 1 - Ter usuário ativo da UNICAMP
-### 2 - Criar um atalho no Google Drive para a pasta com a base de dados
+### 1 - Have an active UNICAMP user
 
-A base de dados está disponível para a comunidade acadêmica da UNICAMP pelo link https://drive.google.com/drive/folders/1Jca80MO1lM_8Jb6cTlM9RcwiVCRQd7td?usp=sharing
+### 2 - Download the folder "Segmentacao_de_paineis_solares_utilizando_imagens_de_satelite" available on GitHub and upload it to the main folder on Google Drive
 
-Passo a passo para criação do atalho
+### 3 - Create a shortcut in Google Drive to the folder containing the database
 
-#### Passo 1: abrir o link, clicar na seta ao lado de bdappv e clicar novamente em "Adicionar atalho ao drive"
-![imagem assets 1](../assets/step1.png)
-#### Passo 2: no pop-up do atalho, selecionar no menu superior "Todos os locais" e em seguida "Meu drive", como destino do atalho. Clicar em Adicionar.
-![imagem assets 2](../assets/step2.png) 
-#### Passo 3: verificar se o atalho (pasta com uma seta no ícone) foi criado no seu drive. Para isso, acesse https://drive.google.com/ e procure a pasta com nome bdappv (certifique-se de estar com a conta google da UNICAMP)
-![imagem assets 2](../assets/step3.png)
+Add shortcut to the path: Segmentacao_de_paineis_solares_utilizando_imagens_de_satelite/data/raw
 
-### Com o atalho criado, o notebook pode ser rodado.
+The database is available to the academic community of UNICAMP through the link: [https://drive.google.com/drive/folders/1Jca80MO1lM_8Jb6cTlM9RcwiVCRQd7td?usp=sharing](https://drive.google.com/drive/folders/1Jca80MO1lM_8Jb6cTlM9RcwiVCRQd7td?usp=sharing)
+
+## Step-by-step guide to create the shortcut
+
+#### Step 1: Open the link, click on the arrow next to bdappv, and then click on "Add shortcut to Drive"
+![image assets 1](../assets/step1.png)
+
+#### Step 2: In the shortcut pop-up, select "My Drive/Segmentacao_de_paineis_solares_utilizando_imagens_de_satelite/data/raw" as the destination for the shortcut by choosing "All locations" from the top menu. Click on Add.
+![image assets 2](../assets/step2.png) 
+
+#### Step 3: Verify if the shortcut (folder with an arrow icon) has been created in your Drive. To do this, access [https://drive.google.com/](https://drive.google.com/) and navigate to the subfolders Segmentacao_de_paineis_solares_utilizando_imagens_de_satelite / data / raw (make sure you are using your UNICAMP Google account)
+![image assets 2](../assets/step3.png)
+
+### With the shortcut created, the notebooks can be executed.
