@@ -248,7 +248,7 @@ A documentação com o detalhamento sobre todos os pacotes/bibliotecas utilizada
 O Workflow para a reprodução dos estudos e experimentos feitos pode ser conferido abaixo. 
 
 <p align="center">
-    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/workflow_2.png" height="350">
+    <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Workflowresumido.png" height="350">
 </p>
 
 # 4. Resultados Finais
