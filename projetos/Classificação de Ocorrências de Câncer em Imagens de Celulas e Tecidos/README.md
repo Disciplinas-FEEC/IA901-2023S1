@@ -24,7 +24,7 @@ Todos os anos, milhares de pessoas são acometidas pelo câncer no Brasil e no m
 
 As lâminas de tecidos contêm informações visuais sobre as células e suas características morfológicas. No entanto, a análise manual dessas imagens requer um tempo significativo e está sujeita a variações e a erros humanos. Ao desenvolver algoritmos de análise de imagens, é possível automatizar e agilizar o processo de detecção de células cancerígenas, melhorando a tomada de decisão dos médicos e levando a práticas mais personalizadas no tratamento de cada paciente [3].
 
-Perante o exposto, este projeto consiste em aplicar técnicas de aprendizado de máquina para classificar imagens de lâminas de tecidos de diferentes órgãos. Serão feitas duas classificações: a primeira irá separar as imagens com presença ou não de tumor no tecido a partir da análise de células neoplásicas, que podem estar presentes (indicação de tumor) ou não. A segunda classificação é do tipo de tecido representado pela imagem da lâmina de microscopia entre dezenove classes distintas. Para o primeiro tipo de classificação, serão utilizadas máscaras com a segmentação das células neoplásicas, as quais extraímos a classe binária da imagem (0: não possui célula neoplásica, 1: possui célula neoplásica).
+Perante o exposto, este projeto consiste em aplicar técnicas de aprendizado de máquina para classificar imagens de lâminas de tecidos de diferentes órgãos. Serão feitas duas classificações: a primeira irá separar as imagens com presença ou não de tumor no tecido a partir da análise de células neoplásicas, que podem estar presentes (indicação de tumor) ou não. A segunda classificação é do tipo de tecido representado pela imagem da lâmina de microscopia entre dezenove classes distintas. Para o primeiro tipo de classificação, serão utilizadas máscaras com a segmentação das células neoplásicas, as quais extraímos a classe binária da imagem (0: não possui célula neoplásica, 1: possui célula neoplásica). Adicionalmente, uma tarefa de regressão foi feita para estimar o número de células totais e neoplásicas em cada imagem. Com esta informação, torna-se possível estimar a “densidade de células potencialmente cancerígenas” em uma imagem e, com isso, diagnosticar o estado de agravamento do paciente - algo que pode ser usado para a otimização dos tratamentos.
 
 # 2. Metodologia
 Para o desenvolvimento do projeto, utilizamos o dataset 'PanNuke', disponibilizado no site Kaggle. A escolha do dataset se deu pelo fato deste ser atualmente o maior e mais diverso dataset para segmentação de núcleos celulares e classificação, o qual foi feito a partir do NuClick. Além disso, ele foi anotado de maneira semi-automática, com a supervisão de profissionais da área para o controle de qualidade [1]. Mais informações sobre as imagens podem ser vistas a seguir.
@@ -70,9 +70,9 @@ Cancer Instance Segmentation and Classification 3 | https://www.kaggle.com/datas
 
 Para facilitar o uso das imagens (e permitir que elas fossem carregadas na memória RAM/GPU dos sistemas operacionais utilizados), desenvolvemos um algoritmo que faz uma cópia local das três partes do dataset 'PanNuke', extraindo e salvando cada imagem, de dentro dos arquivos .npy, no formato .png. Cada imagem foi salva com um número em seu nome, que serve como um identificador ( `Image_*.png`). 
 
-Este mesmo código também faz a leitura da máscara de cada imagem, mais especificamente da banda '0', que corresponde a segmentação de células neoplásicas, visando a classificação. Assim, segue que a variável-classe (presença ou não de células neoplásicas) é construída a partir do cálculo do desvio-padrão (STD) dessa banda. Se STD=0, a imagem de tecido correspondente é classificada como sem células neoplásicas (classe '0', negativa), caso contrário (STD>0), consideramos que a imagem possui células neoplásicas. 
+Este mesmo código também faz a leitura da máscara de cada imagem, mais especificamente da banda '0', que corresponde a segmentação de células neoplásicas, visando a classificação. Assim, segue que a variável-classe (presença ou não de células neoplásicas) é construída a partir do cálculo do desvio-padrão (STD) dessa banda. Se STD=0, a imagem de tecido correspondente é classificada como sem células neoplásicas (classe '0', negativa), caso contrário (STD>0), consideramos que a imagem possui células neoplásicas. Adicionalmente, calculamos o número de células totais de cada imagem a partir dos cinco canais nas respectivas máscaras de segmentação (Neoplasic, Inflammatory,Connective/Soft tissue, Dead, Epithelial) - o mesmo foi feito para o número de células neoplásicas apenas. O método de contagem consistiu em contabilizar o número de valores únicos nas matrizes de cada canal. Essa contagem foi possível apenas pelo fato de que a cada região de segmentação é associado um valor único. 
 
-Além das próprias imagens, este código possui como output uma tabela, em que cada linha representa uma imagem. Nela, ainda existem três colunas que representam ID das imagens, Tipo de tecido e Classe (presença ou não de célula neoplásica). 
+Além das próprias imagens, este código possui como output uma tabela, em que cada linha representa uma imagem. Nela, ainda existem cinco colunas que representam ID das imagens, Tipo de tecido, Classe (presença ou não de célula neoplásica), Número total de células e Número de células neoplásicas. 
 
 Abaixo vemos a distribuição dos tecidos que possuem ou não células neoplásicas:
 
@@ -102,7 +102,7 @@ Nesta análise, as transformações mais tradicionais foram vistas: VerticalFlip
 
 ## 2.3 Divisão de treino, teste e validação
 
-Como o projeto envolve treinar algoritmos de aprendizado de máquina, foi necessário dividir o conjunto de imagens em grupos de treino, validação e teste. Portanto, foi desenvolvido um algoritmo que acessa o diretório das imagens ‘.png’ e cria cópias destas imagens (sem repetições) em três novos diretórios: ‘/train’, ‘/val’ e ‘/test’. Todos possuem subdiretórios que representam as classes: ‘/0’ e ‘/1’. Escolhemos essa organização para tirar o máximo de proveito do método DataLoader() da biblioteca PyTorch, que foi usada para os experimentos com Deep Learning. 
+Como o projeto envolve treinar algoritmos de aprendizado de máquina, foi necessário dividir o conjunto de imagens em grupos de treino, validação e teste. Portanto, foi desenvolvido um algoritmo que acessa o diretório das imagens ‘.png’ e cria cópias destas imagens (sem repetições) em três novos diretórios: ‘/train’, ‘/val’ e ‘/test’. Para as tarefas de classificação, estruturamos as classes em subdiretórios no formato: ‘/0’, ‘/1’, ‘/2’,...,‘/n’. Escolhemos essa organização para tirar o máximo de proveito do método DataLoader() da biblioteca PyTorch. Para a tarefa de regressão, os valores a serem preditos foram salvos em um arquivo .csv. 
     
 Em todos os estudos (com exceção daqueles em que o treinamento usava um único tecido), a partição escolhida para os conjuntos foi de 70% treino, 20% teste e 10% validação. Além disso, mantivemos, em cada conjunto, a mesma proporção de tipos de tecido encontradas no dataset original (por exemplo, se no conjunto original de imagens tivéssemos 30% delas sendo do pulmão; nos conjuntos de treino, teste e validação teremos a mesma proporção). 
 
@@ -110,28 +110,27 @@ Em todos os estudos (com exceção daqueles em que o treinamento usava um único
 	
 Nesta etapa, utilizamos os conjuntos de treino, teste e validação para fazer as análises com técnicas de Deep Learning. Uma descrição sucinta destas abordagens pode ser vista abaixo. 
 
-Para tais análises recorremos, em um primeiro momento, a uma abordagem envolvendo o método de Transfer Learning. A arquitetura escolhida foi a EfficientNet_B0, a qual obteve um melhor desempenho dentre as outras arquiteturas testadas. O método DataLoader foi empregado para carregar na memória as imagens processadas dos diretórios e aplicar as transformações necessárias. Uma etapa de resize necessário para tamanho 224 x 224 por conta do tamanho de entrada da EfficientNet_B0. 
+Para tais análises recorremos, em um primeiro momento, a uma abordagem envolvendo o método de Transfer Learning. A arquitetura escolhida foi a EfficientNet_B0, a qual obteve um melhor desempenho dentre as outras arquiteturas testadas e que também se mostrou pouco custosa computacionalmente, evitando treinamentos/testes proibitivos. O método DataLoader foi empregado para carregar na memória as imagens processadas dos diretórios e aplicar as transformações necessárias. Devido ao tamanho de entrada da EfficientNet_B0, uma etapa de resize foi necessária para redimensionar todas as imagens para o tamanho 224 x 224. 
 
-Alguns sub experimentos, testando diferentes configurações de hiperparâmetros, foram feitos visando um ajuste ótimo da rede neural. Ao fim deste processo fixamos para todos os treinamentos, que envolveram tarefas de classificação, os seguintes hiperparâmetros:
-
+Alguns sub experimentos, testando diferentes configurações de hiperparâmetros, foram feitos visando um ajuste ótimo da rede neural. Ao fim deste processo fixamos para todos os treinamentos os seguintes hiperparâmetros:
 
 - Learning Rate: 0.0001
 - Optimizer: ADAM
-- N Epochs: 20 
-- Loss Function: Cross Entropy
+- N Epochs: 70 
 
-Finalmente, ajustamos uma semente aleatória igual à 42 para garantir reprodutibilidade em todos os estudos. 
+No caso das tarefas de classificação, a Loss Function escolhida foi a Entropia Cruzada (Cross Entropy). Para a tarefa de regressão, optamos pelo Erro Quadrático Médio (Mean Squared Error, MSE). Em todos os casos, o modelo escolhido após o treinamento foi aquele que minimizou o erro junto aos dados do conjunto de validação (Holdout). Por fim, ajustamos uma semente aleatória igual à 42 nos códigos para garantir reprodutibilidade em todos os estudos. 
 
-A seguir, todos os estudos e experimentos feitos serão detalhados.
+A seguir, todas as análises realizadas serão descritas em detalhe.
 
 #### 2.4.1 Classificação de Tumores
 
-No primeiro tipo de classificação realizado no projeto, o de tumores, são utilizadas as máscaras disponibilizadas no dataset, que rotulam, dentre outros canais, a presença de tecido neoplásico, isto é, um tumor. Então, ao associar tal imagem a uma das duas classes retiradas dessa máscara (com tumor ou sem tumor), pode-se então treinar o algoritmo de DL para classificar imagens não vistas no treinamento. Mesmo que a máquina não utilize dos mesmos critérios que um ser humano utilizaria para determinar tal presença ou não, como citado em [4], ela será capaz de aprender a identificar certos padrões e utilizá-los, então, para cumprir seu objetivo.
+No primeiro tipo de classificação realizado no projeto, o de tumores, são utilizadas as máscaras disponibilizadas no dataset, que rotulam, dentre outros canais, a presença de tecido neoplásico, isto é, um tumor. Então, ao associar tal imagem a uma das duas classes retiradas dessa máscara (com tumor ou sem tumor), pode-se então treinar a EfficientNet_B0 para classificar imagens não vistas no treinamento. Mesmo que a máquina não utilize dos mesmos critérios que um ser humano utilizaria para determinar tal presença ou não, como citado em [4], ela será capaz de aprender a identificar certos padrões e utilizá-los, então, para cumprir seu objetivo.
 
 ##### 2.4.1.1 Experimento I (Baseline)
 
-Neste experimento, utilizamos todos os tecidos nas etapas de treinamento, validação e testes. O objetivo foi verificar a performance do modelo de Deep Learning no cenário mais básico possível, em termos de dataset. 
-Adicionalmente, neste experimento, verificamos o quanto o modelo treinado acertava na tarefa de classificação considerando os diferentes tipos de tecido. A pergunta a ser respondida era: será que algum tecido é mais desafiador para o modelo classificar?
+Neste experimento, utilizamos todos os tecidos nas etapas de treinamento, validação e testes. O objetivo foi verificar a performance do modelo de Deep Learning no cenário mais básico possível, em termos de dataset. Adicionalmente, neste experimento, verificamos o quanto o modelo treinado acertava na tarefa de classificação considerando os diferentes tipos de tecido. A pergunta de pesquisa a ser respondida foi: será que algum tecido é mais desafiador para o modelo classificar?
+
+A qualidade do treinamento feito com a EfficientNet_B0 pode ser vista na Figura 6, que mostra as curvas de Loss e Acurácia em função do número de épocas. A partir de certo ponto, as curvas tendem a oscilar em torno de um valor específico de Loss e Acurácia - indicando algum tipo de saturação no treinamento, sendo uma evidência de que a rede neural pode já ter capturado os principais padrões a serem aprendidos do conjunto de treinamento. 
 
 <p align="middle">
   <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/Baseline/Cópia de EpochsxAccuracy.png" height="300">
@@ -142,49 +141,54 @@ Fig. 6. Curvas de Loss (Cross Entropy) e Acurácia em função do número de ép
 
 ##### 2.4.1.1 Experimento II
 	
-Neste experimento, treinamos o modelo de Deep Learning com as imagens de todos os tecidos, menos o tecido ‘Breast’, que foi separado para ser utilizado apenas na fase de testes. Esta escolha se deu pelo fato do tecido ‘Breast’ ser o mais populoso do dataset (>2000 imagens). 
+Neste experimento, treinamos a EfficientNet_B0 com as imagens de todos os tecidos, menos o tecido ‘Breast’, que foi separado para ser utilizado apenas na fase de testes. Esta escolha se deu pelo fato do tecido ‘Breast’ ser o mais populoso do dataset (>2000 imagens). 
 Portanto, a pergunta a ser respondida neste experimento foi: o modelo de Deep Learning é capaz de generalizar e aprender a reconhecer células neoplásicas em um tipo de tecido não visto durante o treinamento? 
 
 ##### 2.4.1.1 Experimento III
 
-Neste experimento, treinamos o modelo somente com as imagens do tecido ‘Breast’, enquanto os demais tecidos foram utilizados como conjunto teste. Pelo mesmo motivo do experimento anterior, a escolha do tecido ‘Breast’ se deu por ser aquele mais populoso do dataset. Assim, a pergunta a ser respondida neste experimento foi: o modelo de Deep Learning é capaz de aprender e generalizar a presença de células neoplásicas no restante dos tecidos sendo que foi treinado somente com um deles?
+Este experimento envolveu o treinamento da EfficientNet_B0 somente com as imagens do tecido ‘Breast’, enquanto os demais tecidos foram utilizados como conjunto teste. Pelo mesmo motivo do experimento anterior, a escolha do tecido ‘Breast’ se deu por ser aquele mais populoso do dataset. Assim sendo, a pergunta de pesquisa a ser respondida neste experimento foi: o modelo de Deep Learning é capaz de aprender e generalizar a presença de células neoplásicas no restante dos tecidos sendo que foi treinado somente com um deles?
 
 #### 2.4.2 Classificação de Tecidos
 
-Para o segundo tipo de classificação do projeto, o de tipos de tecidos, assim como no primeiro, fez-se o treinamento com as imagens rotuladas do dataset com base no seu tipo. Enquanto nós, humanos, somos capazes de diferenciar tipos de tecido com base em algumas características de seu estrutura, como discutido em [5], a máquina, assim como no caso dos tumores, irá aprender a identificar tais padrões para, assim, conseguir predizer o tipo daquele tecido.
+Neste estudo, a EfficientNet_B0 foi treinada para classificar os 19 tipos distintos de tecido. A premissa é que, enquanto nós, humanos, somos capazes de diferenciar tipos de tecido com base em algumas características morfológicas, como discutido em [5], os algoritmos de ML deverão também ser capazes de aprender a identificar tais padrões para, assim, conseguir predizer o tipo daquele tecido.
+Neste problema, a discriminação do tipo de tecido configura um problema de classificação multi-classe. Existem pelo menos duas abordagens para se atacar este problema:
 
-Neste estudo, utilizamos a EfficientNetB0 em vista dos seus bons resultados no estudo anterior e por ser  pequena o suficiente para treinamentos no ambiente do Google Collaboratory. Os hiperparâmetros hiperparâmetros usados em todos os experimentos anteriores
-		- O conjunto de imagens foi dividido seguindo as mesmas proporções dos experimentos anteriores:
-70% treinamento
-10% validação
-20% teste
 
-Ao todo, temos imagens de 19 tipos de tecidos disponíveis no banco de dados.
-A discriminação do tipo de tecido, neste caso, configura um problema de classificação multi-classe
-Neste cenário, existem pelo menos duas abordagens para se atacar este problema:
 One vs All: O problema multiclasse é transformado em um problema de classificação binária, onde uma categoria é tida como “positiva” e todas as demais são tidas como “negativas”. O problema desta abordagem é que é necessário treinar um modelo para cada combinação possível de classes. Por outro lado, a vantagem é que se torna possível aplicar métricas da classificação binária (ROC Curve, AUC, TPR, FPR e etc) nas análises, que são facilmente interpretadas. 
+
 All vs All: Um único modelo é treinado para discriminar todas as categorias possíveis. A dificuldade desta abordagem reside na forma de mensurar a qualidade das predições. Por outro lado, a vantagem é o treino e uso de um único modelo. 
+
+As duas abordagens foram empregadas nos experimentos deste estudo, como pode ser visto a seguir.
 
 #### 2.4.2.1 Experimento I
 
-Treinamento para discriminar 'Breast' dos demais tecidos (One vs All)
+Este experimento consistiu em discriminar as imagens do tecido 'Breast' (categoria “positiva”), que é a categoria predominante no dataset, dos demais tecidos (categoria “negativa”). A abordagem foi, portanto, do tipo “One-vs-All”. O intuito foi verificar se “Breast” possuía algum padrão muito distinto dos demais tecidos, permitindo a sua identificação. Além disto, este experimento (em conjunto do Experimento II) serviu como um “Toy Model”, sendo a forma mais simples de se abordar o problema multiclasse - porém, com o potencial de provar se a EfficientNet_B0 tinha capacidade de discriminar diferentes tecidos de acordo com a sua estrutura. 
 
 #### 2.4.2.1 Experimento II
 
-Treinamento para discriminar 'Colon' dos demais tecidos (One vs All)
+As mesmas configurações do Experimento I foram empregadas neste experimento, porém o tecido considerado (classe “positiva”) foi “Colon”, o segundo com mais imagens no dataset. 
 
 #### 2.4.2.1 Experimento III
 
-Treinamento para discriminar seis tecidos - Breast, Colon, Esophagus, HeadNeck, Adrenal_gland e Bile-duct (estratégia "All vs All")
+Finalmente, o Experimento III consistiu em empregar a EfficientNet_B0 para diferenciar os 19 tipos de tecido. Para isso, construímos a camada de saída da rede neural com 19 neurônios. A qualidade do treinamento pode ser vista na Figura 7. Como nos estudos anteriores, escolhemos o modelo que minimiza o erro junto aos dados de validação durante o treinamento. 
 
 <p align="middle">
   <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Tissue Classification/Experiment_III/EpochsxAccuracy.png" height="300">
   <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Tissue Classification/Experiment_III/EpochsxLoss.png" height="300">
 </p>
-Fig. 7. Curvas de Loss (Cross Entropy) e Acurácia em função do número de épocas para os grupos treino e teste no treinamento da EfficientNetB0 neste estudo.  
+Fig. 7. Curvas de Loss (Cross Entropy) e Acurácia em função do número de épocas para os grupos treino e teste no treinamento da EfficientNet_B0 neste estudo.  
 
+Nas análises, também observamos quais tecidos foram mais desafiadores ou mais fáceis do modelo discriminar.
 
 #### 2.4.3 Contagem de células
+
+Para este estudo, escolhemos novamente empregar a EfficientNet_B0 com Transfer Learning. Partimos da premissa de que, se a EfficientNet_B0 foi capaz de reconhecer padrões nas imagens (isto é, diferenciou os tipos de células e os tipos de tecidos) para fazer as classificações, ela deveria ser capaz de fazer o mesmo na tarefa de contabilização das células.
+Todos os hiperparâmetros da EfficientNet_B0 foram mantidos iguais aos dos estudos anteriores de classificação. A maior modificação foi em relação a camada de saída, que foi construída com 2 neurônios e sem qualquer função de ativação. Portanto, para uma certa imagem de entrada, a EfficientNet_B0 deveria estimar o número de células neoplásicas e o número total de células. Esta escolha se deu pelo fato de que a escala de aproximação das imagens de microscopia pode afetar diretamente a contagem do número de células neoplásicas. Deste modo, o valor absoluto de células neoplásicas em uma certa imagem pode não ter muito valor clínico - sem uma referência, é difícil estimar se a quantidade de células neoplásicas presentes em um tecido é alarmante ou não. Deste modo, construímos a EfficientNet_B0 para estimar também o número de células totais. Com isso, é possível calcular a razão:
+$$Densidade= \frac{N. de células neoplásicas}{N. total de células}$$,
+
+que pode ser relacionada de forma mais confiável com o estado de agravamento do paciente. Pacientes com tecidos muito acometidos pelo câncer, devem apresentar uma Densidade=1, enquanto pacientes saudáveis ou ainda nos estágios iniciais da doença devem ter Densidade~0. 
+	Em termos de treinamento, utilizamos como função custo o MSE. O modelo escolhido foi aquele que minimizou o MSE junto aos dados de validação. A Figura 8 mostra o desempenho do treinamento. Em geral, o modelo apresentou uma certa estabilidade (tanto junto ao grupo de treino quanto ao de validação) para épocas mais elevadas. 
+
 
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cell Counting/Cópia de EpochsxLoss.png" height="350">
@@ -218,18 +222,30 @@ Em geral, para o cálculo delas, consideramos o valor de Decision Threshold que 
 
 ### 2.5.2 Problema de classificação multi-classe
 
-Para o problema multiclasse, 
+Para o problema multiclasse na abordagem All vs All, também empregamos a métrica de Acurácia, Precisão, TPR e F1-score adaptadas para o cenário com múltiplas categorias. 
 
 ### 2.5.3 Problema de Regressão
 
+Para a contagem de células, estimamos a qualidade do modelo com o próprio MSE e em conjunto do Erro Absoluto Médio (Mean Absolute Error, MAE), que tem a vantagem de retornar valores na mesma “escala de medida” da grandeza medida pela regressão. Adicionalmente, as análises feita envolveram:
+
+Comparação estatística (média, desvio-padrão (STD), Mediana, Min, Max) das predições com os valores esperados. 
+
+Scatter plot entre as predições feitas para o número de células (totais e neoplásicas) em relação aos valores esperados
+
+Comparação do MAE entre os tecidos, para descobrir qual era o mais desafiador para a EfficientNet_B0. Adicionalmente, comparamos os nossos resultados à literatura recente [6]. 
+
+Inspeção visual dos acertos e erros cometidos pela EfficientNet_B0 utilizando as imagens dos tecidos e as respectivas máscaras. 
+
 ## 2.6 Ferramentas
 
-Para a organização e visualização dos dados do dataset, foram utilizadas as bibliotecas Pandas, Numpy e Matplotlib. Para a confecção do workflow do projeto, o grupo utilizou a ferramenta de desenho de workflows Draw.io. Para a execução do projeto em si, isto é, as classificações da imagens, irão ser utilizadas as bibliotecas PyTorch, para a parte de Deep Learning, e o SciKit-Learn para a parte de algoritmos tradicionais de machine learning voltados à classificação.
-Todo o projeto tem sido desenvolvido, em linguagem Python, no formato de Notebooks do Google Colaboratory - com uso de GPUs/CPUs. Adicionalmente, todos os arquivos (raw, intermediários e finais) têm sido salvos na plataforma Google Drive - sendo, eventualmente, repassados para o Github. 
+Para a organização e visualização dos dados do dataset, foram utilizadas as bibliotecas Pandas, Numpy e Matplotlib. Para a confecção do workflow do projeto, o grupo utilizou a ferramenta de desenho de workflows Draw.io. Para as tarefas de classificação e regressão sobre as imagens, foi utilizada unicamente a biblioteca PyTorch. A análise dos resultados finais (com as métricas de performance apropriadas) foi feita com a biblioteca Scikit-Learn. 
+Todo o projeto foi desenvolvido, em linguagem Python, no formato de Notebooks do Google Colaboratory - com uso de GPUs/CPUs. Adicionalmente, todos os arquivos (raw, intermediários e finais) têm sido salvos na plataforma Google Drive - sendo, eventualmente, repassados para o Github. 
 
-Os detalhemento completo sobre todos os pacotes/bibliotecas utilizadas assim como suas versões pode ser encontrada nao diretório /src. Instruções para instalação também estão inclusas. 
+A documentação com o detalhamento sobre todos os pacotes/bibliotecas utilizadas, assim como suas versões, pode ser encontrada no diretório ‘/src’. Instruções para instalação também estão inclusas. 
 
 # 3. Workflow
+
+O Workflow para a reprodução dos estudos e experimentos feitos pode ser conferido abaixo. 
 
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/workflow_2.png" height="350">
@@ -243,24 +259,20 @@ Nesta seção, apresentamos os resultados finais do projeto, considerando todos 
 
 ### 4.1.1 Experimento Baseline: 
 #### 4.1.1.1 Performance Geral
-A Figura 5 apresenta a ROC Curve comparando o experimento Baseline (treinamento/validação/teste com todos os tecidos) com o experimento 1 (treinamento/validação com todos os tecidos, exceto ‘Breast’ que foi usado apenas para os testes). No cenário Baseline, o modelo de Deep Learning apresentou um desempenho elevado (AUC=0.97), indicando que mesmo sem qualquer tipo de pré-processamento, foi possível identificar a existência de células neoplásicas na maior parte das imagens de teste. 
-Já no experimento 1, a EfficientNet_B0 apresentou uma queda de performance em comparação com o cenário baseline (AUC=0.917). Mesmo assim, esta ainda é uma performance razoavelmente alta - o que é um indício de que um modelo de Deep Learning é capaz de generalizar e identificar padrões em imagens não vistas durante o treinamento. 
+A Figura 9 apresenta a ROC Curve do experimento Baseline (treinamento/validação/teste com todos os tecidos). Neste cenário, a EfficientNet_B0 apresentou um desempenho elevado (AUC=0.974), indicando que mesmo sem qualquer tipo de pré-processamento, foi possível identificar a existência de células neoplásicas na maior parte das imagens de teste. Os pontos coloridos correspondem aos valores de threshold que maximizam o Índice de Youden, o G-Mean e o F1-Score. É possível ver na Figura 6, que mostra o True Positive Rate e o False Positive Rate em função do Decision Threshold, que o F1-Score é máximo para o valor de Threshold igual a 0.22. Em termos de desempenho, este limiar é equivalente aos obtidos com G-Mean e o Índice de Youden, porém, a escolha de um D. Threshold inferior é interessante sob o ponto de vista clínico por retornarem valores mais elevados de falsos positivos. Clinicamente, é menos custoso ter falsos positivos no diagnóstico de câncer do que ter falsos negativos. Portanto, elegemos Decision Threshold=0.22 como o ponto ótimo de trabalho do modelo Baseline. 
 
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/Baseline/Cópia de ROC.png" height="350">
 </p>
-Fig. 9. ROC Curve comparando o modelo de Deep Learning no cenário baseline (treino e teste com todos os tecidos) com o experimento baseline (treino e teste com todos os tecidos). 
+Fig. 9. ROC Curve da EfficientNet_B0 no cenário baseline (treino e teste com todos os tecidos). Os pontos coloridos correspondem aos valores de threshold que maximizam o Índice de Youden, o G-Mean e o F1-Score.  
 
-A Figura 6 mostra os gráficos de True Positive Rate e False Positive Rate em função do Decision Threshold. Em geral, para todo o intervalo de Decision Threshold, tanto o caso Baseline quanto no experimento 1, as curvas de False Positive Rate são praticamente iguais. A grande diferença entre os modelos é, portanto, no True Positive Rate - que é consideravelmente maior no cenário Baseline.
-
-A Tabela 1 sintetiza algumas métricas de desempenho, para os dois estudos, considerando também o valor de Decision Threshold que maximiza o Índice de Youden. É possível ver que, em geral, os valores obtidos de acurácia e precisão também são elevados (>87%). 
+A Tabela 1 sintetiza algumas métricas de desempenho, para o estudo baseline, considerando também o valor de Decision Threshold que maximiza o F1-Score. É possível ver que, em geral, os valores obtidos de acurácia e precisão também são muito elevados (>90%), reafirmando que o modelo foi capaz de distinguir as principais diferenças contidas nas imagens. 
 
 <p align="middle">
   <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/Baseline/Cópia de TPRxThreshold.png" height="300">
   <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/Baseline/Cópia de FPRxThreshold.png" height="300">
 </p>
 Fig. 10. True Positive Rate e False Positive Rate em função do Decision Threshold para os dois estudos.  
-
 
 Tab. 1. Síntese das principais métricas de performance para os estudos: Baseline e experimento 1. 
 |Estudos|AUC|TPR*|FPR*|Precision*|Accuracy*|F1-score*|D. Threshold*|
@@ -270,7 +282,7 @@ Tab. 1. Síntese das principais métricas de performance para os estudos: Baseli
 
 #### 4.1.1.2 Análise de desempenho por tecido
 
-A Figura 7 mostra a performance do modelo baseline para diferentes tecidos. Apenas aquelas com as três maiores (Stomach, Lung, Prostate) e três menores (Uterus, HeadNeck, Bile-duct) performances estão representadas. Para as maiores performances, temos AUCs=1 - indicando uma classificação perfeita dos tecidos. Nos piores casos, temos AUC~0.92, que é uma performance considerada razoável para um classificador. A Tabela 2 mostra o resultado para todos os tecidos e outras métricas de desempenho.Por fim, na próxima subseção, exibimos alguns exemplos de imagens cuja a rede neural errou a classificação - porém, não conseguimos detectar padrões que fizeram ela errar as classificações.
+A Figura 11 mostra a performance do modelo baseline para diferentes tecidos. Apenas aquelas com as três maiores (Stomach, Lung, Prostate) e três menores (Uterus, HeadNeck, Bile-duct) performances estão representadas. Para as maiores performances, temos AUCs~1 - indicando uma classificação perfeita dos tecidos. Nos piores casos, temos AUC~0.89, que ainda é uma performance considerada razoável para um classificador. Por completeza, a Tabela 2 mostra o resultado para todos os tecidos e outras métricas de desempenho. 
 
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/FinalComparison/ROCAllTissues_Baseline.png" height="350">
@@ -305,6 +317,10 @@ Tab. 2. Síntese das principais métricas de performance para o estudo Baseline 
 
 #### 4.1.1.3 Identificando padrões nas imagens classificadas incorretamente
 
+Nesta seção, exibimos alguns exemplos de imagens cuja a rede neural errou a classificação. A Figura 12 apresenta tanto as imagens originais quanto as respectivas máscaras de segmentação, junto com a predição feita pela EfficientNet_B0 e o resultado verdadeiro. 
+Em muitos casos, notamos que a EfficientNet_B0 treinada confundia células de tipos diferentes (inflamatórias, epiteliais e etc) com as células neoplásicas - levando a predição incorreta de que haviam células neoplásicas na imagem. Por outro lado, houveram situações em que a região da célula neoplásica presente era pouco definida na imagem, ou estava em uma região de borda. Em alguns destes casos, a EfficientNet_B0 não foi capaz de detectar a presença das células neoplásicas, portanto.
+Estes problemas também podem ser a causa para a dificuldade da rede neural em operar com alguns tipos de tecidos, como visto anteriormente. Porém, reforçamos que esta afirmação só pode ser feita com absoluta certeza junto a presença de algum especialista na área de histologia. 
+
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/Baseline/Cópia de WrongPredictions_Image_4732.png" height="250">
 </p>
@@ -326,7 +342,7 @@ Tab. 2. Síntese das principais métricas de performance para o estudo Baseline 
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/Baseline/Cópia de WrongPredictions_Image_2156.png" height="250">
 </p>
 
-Fig. 12. Exemplos de imagens de diferentes tecidos classificadas incorretamente e suas respectivas masks. 
+Fig. 12. Exemplos de imagens de diferentes tecidos classificados incorretamente e suas respectivas masks. 
 
 
 ### 4.1.2 Comparação entre experimentos
