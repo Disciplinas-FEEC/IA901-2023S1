@@ -210,29 +210,36 @@ Resnet18 - Train Loss
 Resnet18 - Val Loss
 ![val_epoch_loss (8)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/096c10eb-e3b6-4bf4-8e4e-c87bcea0c32e)
 
-# Fine Tuning vs Efficientnet_v2 
+# Resultados
+
+## Matriz Confusão MPII com Fine Tuning
+![cf_MPII_ft](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/8d4ab38c-dc11-4f80-be1b-283b963d544c)
+
+## Matriz Confusão MPII Sem Fine Tuning
+![cf_MPII_no_ft](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/01a4a8d1-4178-4d46-845d-538ef6d9d0ea)
+
+## Coco sem Fine Tuning
+![cf_coco_no_ft](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/9c57e5df-d4b7-4028-ad5a-9259589e63c4)
+
+## Human Silhouettes sem Fine Tuning
+![cf_human_silhouettes_no_ft](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/00ecbcca-7557-4031-96de-145ef72623c9)
+
+
+## Fine Tuning vs Efficientnet_v2 
 
 Train Acc
-![train_epoch_acc (15)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/ac357845-22e2-4a73-a1a9-48a82a1f0b24)
+![train_epoch_acc (15)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/2e0fdc05-ea8c-4874-9f7b-699166ffb6b4)
 
 Val Acc
-![val_epoch_acc (10)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/272a6a36-f018-498d-8477-997069a95506)
+![val_epoch_acc (10)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/45a1c8eb-ba72-40b6-99f5-442fb83b0840)
 
 Train Loss
-![train_epoch_loss (12)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/21eafbd7-4aad-4c6a-9cb0-15549faf12e8)
+![train_epoch_loss (12)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/cb19535b-4985-4e89-87fe-73afce34b01e)
 
 Val Loss
-![val_epoch_loss (10)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/490dfcb2-270f-4086-82ac-677f5365ca58)
+![val_epoch_loss (10)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/15105b42-4a55-4037-a8a6-435bbf118c19)
 
 
-# Próximos passos
-
-As etapas seguintes são:
-
-- Definir uma rede a ser utilizada para a classificação de silhuetas e refinar atributos [learning rate, épocas etc] (até 26/05)
-- Separação de imagens reais do dataset MPII e aplicação na rede treinada como fine tunning (até 09/06)
-- Aplicação do segundo método no dataset COCO para comparar com a rede treinada por fine tunning (até 20/06)
-- Refinamento e documentação (até 23/06)
 
 ## Referências
 
