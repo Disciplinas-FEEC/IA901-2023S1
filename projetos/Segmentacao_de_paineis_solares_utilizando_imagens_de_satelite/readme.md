@@ -159,23 +159,26 @@ These results indicate high performance and validate the effectiveness of the tr
 ![masked_sample](./assets/best_model_sample0.svg)
 ![unmasked_sample](./assets/best_model_sample1.svg)
 
-#### Google
-<!---
-MUDAR MUDAR MUDAR
--->
+
+### Hyperparams evaluation 
+With the graphs, the chosen hyperparams for the CNN for a grid search evaluation were:
+* Batch size: 8, 16
+* Learning rate: $\small {1\cdot10^{-4}}$, $\small {5\cdot10^{-5}}$, $\small {1\cdot10^{-5}}$
+* Proportion: (70% masked, 30% unmasked), (80% masked, 20% unmasked), (80% masked, 20% unmasked)
+  
 
 The image below shows the sets for the defined proportions to evaluate the hyperparams of the CNN. 
 ![Google Dataset Segmentation](./assets/splits.svg)
 
-### Hyperparams evaluation 
+### Results
+
+The results for the hyperparams search were: 
+
 ![model_eval_average_dice](./assets/model_eval_average_dice.svg)
 ![model_eval_val_loss](./assets/model_eval_val_loss.svg)
 ![model_eval_f1_score](./assets/model_eval_f1_score.svg)
 
-With the graphs, the chosen hyperparams for the CNN to evaluate on the test set were:
-* Batch size: 8
-* Learning rate: $\small {1\cdot10^{-4}}$
-* Proportion: 80% masked, 20% unmasked
+
 
 ### Data Augmentation
 Random rotation and flip: 
