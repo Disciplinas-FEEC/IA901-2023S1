@@ -7,12 +7,11 @@
 O presente projeto foi originado no contexto das atividades da disciplina de pós-graduação *IA901 - Processamento de Imagens e Reconhecimento de Padrões*,
 oferecida no primeiro semestre de 2023, na Unicamp, sob supervisão da Profa. Dra. Leticia Rittner, do Departamento de Engenharia de Computação e Automação (DCA) da Faculdade de Engenharia Elétrica e de Computação (FEEC).
 
-
-> |Nome  | RA | Curso|
-> |--|--|--|
-> | Eduardo Parducci  | 170272  | Graduação em Eng. de Computação|
-> | Gianni Shigeru Setoue Liveraro | 265945 | Doutorado em Física Aplicada|
-> | Pedro Rodrigues Corrêa  | 243236  | Graduação em Física|
+|Nome  | RA | Curso|
+|--|--|--|
+| Eduardo Parducci  | 170272  | Graduação em Eng. de Computação|
+| Gianni Shigeru Setoue Liveraro | 265945 | Doutorado em Física Aplicada|
+| Pedro Rodrigues Corrêa  | 243236  | Graduação em Física|
 
 
 ## Descrição do Projeto
