@@ -419,3 +419,11 @@ Marcus, DS, Wang, TH, Parker, J, Csernansky, JG, Morris, JC, Buckner, RL. Open A
 Journal of Cognitive Neuroscience, 19, 1498-1507. doi: 10.1162/jocn.2007.19.9.1498
 
 Weiner MW, Aisen PS, Jack CR Jr, Jagust WJ, Trojanowski JQ, Shaw L, Saykin AJ, Morris JC, Cairns N, Beckett LA, Toga A, Green R, Walter S, Soares H, Snyder P, Siemers E, Potter W, Cole PE, Schmidt M; Alzheimer's Disease Neuroimaging Initiative. The Alzheimer's disease neuroimaging initiative: progress report and future plans. Alzheimers Dement. 2010 May;6(3):202-11.e7. doi: 10.1016/j.jalz.2010.03.007. PMID: 20451868; PMCID: PMC2927112.
+
+Doença de Alzheimer. Ministério da saúde. Disponível em: <https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/alzheimer>. Acesso em 23 de jun. de 2023.
+
+Doença de Alzheimer: principais informações. Hospital Israelita Albert Einstein, 17 de jan. de 2021. Disponível em: <https://vidasaudavel.einstein.br/alzheimer-principais-informacoes/>. Acesso em 23 de jun. de 2023.
+
+Proporção de brasileiros com Alzheimer cresceu 127% em 30 anos. Revista Galileu, 15 de abr. de 2021. Disponível em: <https://revistagalileu.globo.com/Ciencia/Saude/noticia/2021/04/proporcao-de-brasileiros-com-alzheimer-cresceu-127-em-30-anos.html>. Acesso em 23 de jun de 2023.
+
+Informações sobre Alzheimer e demência. Alzheimer’s association. Disponível em: <https://www.alz.org/br/demencia-alzheimer-brasil.asp>. Acesso em 23 de jun. de 2023
