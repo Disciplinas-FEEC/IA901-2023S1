@@ -30,7 +30,9 @@ Modernizing electrical systems results from technological development, primarily
 
 Given that the modernization of power systems allows users to play an active role by injecting power into the system, energy distribution companies must monitor the adoption of these technologies for planning improvements and expansions. Photovoltaic generation is mainly installed on rooftops or in medium/large-scale solar farms. Since the sun is the energy source, satellite images can provide information on the locations of these photovoltaic panels.
 
-Therefore, this project aims to segment solar panels in satellite images using image analysis and pattern recognition techniques. Subsequently, the aim is to estimate the system's generation using neural networks.
+Therefore, this project aims to segment solar panels in satellite images using image analysis and pattern recognition techniques. 
+
+ <!--- Subsequently, the aim is to estimate the system's generation using neural networks.-->
 
  
 ## Methodology 
