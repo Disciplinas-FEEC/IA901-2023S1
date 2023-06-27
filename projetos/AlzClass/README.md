@@ -33,7 +33,13 @@ A área de classificação de pacientes com Alzheimer tem recebido atenção sig
 
 
 # Metodologia
-1. Download & Preparação dos datasets
+
+Esse projeto foi desenvolvido em algumas etapas que estão destacadas, uma a uma, a seguir
+
+1. *Download & Preparação dos datasets*
+
+O download dos datasets é realizado nos próprios sites do Kaggle, OASIS e ADNI e o conjunto de dados já vem separado na pasta referente a cada indivíduo. Como preparação/organização do dataset, pegamos somente as imagens referentes a ressonância, no formato o qual iremos manipular (por exemplo, no OASIS, usamos as imagens em formato .nii) e fizemos o download de todas essas imagens em nossos drive de projeto, para que pudéssemos usá-las no desenvolvimento dos códigos. Cada imagem dos datasets escolhidos precisou passar pelos processamentos descritos nos próximos tópicos, para que as mesmas estivessem padronizadas para que fosse possível a utilização delas no treinamento de redes. A necessidade da seleção de slices se deu pelo fato de as imagens obtidas estarem em formato tridimensional e o tamanho dos conjuntos de dados ser consideravelmente grande, dificultando o treinamento das redes com os recursos computacionais disponíveis. A necessidade do balanceamento de classes se deu pelo fato de nos depararmos com conjuntos de dados nos quais há um desbalance entre as quantidades de amostras de cada classe. As técnicas de data augmentation nos auxiliaram em todo o processo para diversificar o set de treinamento e evitar overfitting, verificamos também sistematicamente a influência dessas transformações no treinamento das redes.
+
 2. *Seleção de fatias*
 
 Escolher os melhores dados possíveis para o treinamento é crucial para o sucesso da classificação. Tipicamente, a partir de um scan de ressonância magnética em 3D, temos um grande número de imagens para escolher. Em muitos dos métodos recentes, as imagens usadas para o treinamento são extraídas aleatoriamente. No entanto, em nosso método proposto, extraímos as fatias mais informativas para treinar a rede. Para isso, calculamos a entropia da imagem de cada fatia. A entropia fornece uma medida de variação em uma fatia. Portanto, se ordenarmos as fatias em termos de entropia em ordem decrescente, as fatias com os maiores valores de entropia podem ser consideradas as imagens mais informativas, e usar essas imagens para treinamento proporcionará robustez ao modelo.
@@ -42,10 +48,69 @@ Escolher os melhores dados possíveis para o treinamento é crucial para o suces
 
 Mesmo reduzindo nossa classificação a 3 classes, ainda havia um grande desbalanceamento entre as classes em certos datasets, para concertar isso, aplicamos um algoritmo de balanceamento de classes. O algoritmo SMOTETomek é uma técnica de amostragem híbrida que combina a Synthetic Minority Over-sampling Technique (SMOTE) e o método Tomek Links. É amplamente utilizado para tratar o desbalanceamento de classes em problemas de classificação. Essa abordagem consiste em duas etapas principais. Primeiro, o algoritmo aplica o SMOTE para gerar novas amostras sintéticas da classe minoritária, a fim de equilibrar a distribuição das classes. Em seguida, ele utiliza o método Tomek Links para identificar e remover amostras ambíguas ou ruidosas presentes nas regiões de sobreposição entre as classes. Isso resulta em um conjunto de dados mais balanceado e de melhor qualidade para treinamento de modelos de aprendizado de máquina. O objetivo final do algoritmo SMOTETomek é melhorar o desempenho dos classificadores ao lidar com problemas de desbalanceamento de classes, proporcionando uma representação mais justa das diferentes classes presentes nos dados.
 
-5. Data Augmentation
-6. Modelos e treinamento
-7. Fine tuning
-8. Avaliação
+4. *Pré-processamento*
+
+Uma das etapas necessárias para prepararmos o conjunto de dados para o treinamento das redes é a etapa de pré-processamento, na qual, técnicas necessárias são aplicadas em cada imagem, para que o treinamento seja possível. Por vezes, sem essa etapa, as imagens não estão padronizadas para o que as redes pedem como entrada, impossibilitando e/ou prejudicando o treinamento e o desempenho da rede. 
+Para as redes que escolhemos trabalhar nesse projeto, as imagens precisaram passar por duas etapas de pré-processamento:
+- redimensionamento das imagens (resize) do dataset OASIS para o tamanho 256, para treinar a rede AlexNet (esse pré-processamento é feito quando os pesos pré-treinados da rede são carregados)
+- redimensionamento das imagens (resize) do dataset ADNI e OASIS para o tamanho 176x208, para treinar a rede ADDNet
+- redimensionamento das imagens (resize) do dataset ADNI para o tamanho 256x176, para treinar a rede AlexNet
+- normalização das imagens do dataset OASIS e ADNI com mean = [0.485, 0.456, 0.406] and std=[0.229, 0.224, 0.225] para o treinamento da rede AlexNet
+- normalização das imagens do dataset ADNI com a operação 1./255, de forma que os pixels das imagens fica na faixa de [0,1]
+
+5. *Data Augmentation*
+
+Após passar pela etapa de pré-processamento, os conjuntos de dados foram submetidos a uma série de técnicas de data augmentation (transformações aplicadas nas imagens), para que pudéssemos analisar quais auxiliam na melhora do desempenho das redes que estavam sendo treinadas. Aplicamos uma a uma dessas transformações, visualizando o antes e o depois das imagens, para garantir que a transformação estava sendo aplicada. E, para cada transformação, realizamos o treinamento das redes e comparamos os resultados obtidos. 
+Após a leitura de alguns papers e materiais, entendemos que o melhor caminho a seguir na escolha dessas técnicas seria aplicar transformações simples, nada muito elaborado, adição de um ruído, o processo de padding, técnicas simples mas que poderiam auxiliar na melhora do desempenho. Sendo assim, aplicamos as seguintes lista de transformações:
+- conversão de imagens para cinza (grayscale)
+- rotação aleatória de algumas das imagens em até 10 graus
+- redimensionamento das imagens para o tamanho indicado pela rede AlexNet
+- centralização das imagens
+- normalização utilizando média
+- adição de ruído gaussiano e pad (para o treinamento com a rede ResNet18)
+
+6. *Modelos e treinamento*
+
+Passado por todo o processo de manipulação do conjunto de dados, partimos para a parte de treinamento das redes, para análise do desempenho de cada uma delas. 
+Inicialmente, pensamos em testar em mais de uma rede neural e comparar as diferentes performances. Para isso, selecionamos 3 redes: AlexNet, ResNet e Inception V4, sendo essas escolhas, baseadas em papers encontrados durante a primeira fase do projeto. Após a segunda entrega e feedback da professora, escolhemos permanecer somente com a rede AlexNet, pois ela já estava apresentando um bom desempenho e focar nossos esforços nas etapas de pré-processamento das imagens e o estudo da influência das transformações nessas imagens. Um adendo muito importante quanto às redes neurais que havíamos escolhido diz respeito a dificuldade que encontramos de obter informações em relação a rede InceptionV4. Em nossas pesquisas, apesar de nos depararmos com papers falando sobre o uso da mesma para essa finalidade, tivemos muita dificuldade em encontrar materiais, tutoriais e/ou códigos que nos auxiliassem com informações, principalmente na manipulação da sua última camada, para obter a classificação multiclasses.  
+Durante o desenvolvimento, nos deparamos com um outro trabalho que também tinha a finalidade de classificação, no qual era proposta e disponibilizada uma nova arquitetura de rede, chamada ADDNet (Alzheimer’s Disease Detection Network). Assim, decidimos por testá-la também, para verificar esses primeiros resultados. Porém, no meio do caminho, nos deparamos com um problema em relação a uma possível contaminação dos datasets (problema que demoramos um tempo pra identificarmos e isso nos custou algumas semanas do projeto) de forma que os testes realizados com o dataset OASIS na rede AlexNet, não tinham melhora nem piora, havíamos chegado a um ponto ótimo. Porém, isso aconteceu logo com o primeiro treinamento e sem nenhuma transformação aplicada às imagens do dataset.  
+Diante desse resultado, decidimos então testar com mais uma rede, para verificar se o comportamento permanecia o mesmo ou se era simplesmente uma escolha de rede que não estava propícia ao projeto que estávamos desenvolvendo. Assim, escolhemos então por uma ResNet (como pensado inicialmente), para fazer esse teste complementar. Por ser uma rede mais conhecida, muito utilizada no meio, optamos por ir por esse caminho, selecionando uma ResNet que tivesse um número menor de parâmetros, dentre as opções e com isso, escolhemos a ResNet18. Ao fim, realizamos paralelamente, testes com três redes neurais: AlexNet, ResNet18 e ADDNe, de forma que os testes fossem semelhantes, com o objetivo de termos uma boa base de comparação entre as três.  
+Esses testes/treinamentos realizados com as redes passaram foram constituídos de algumas etapas, para que pudéssemos trilhar um caminho para seguir com o projeto e analisar os resultados que eram obtidos etapa a etapa.
+- treinamento preliminar: inicialmente, como uma análise primária de modelos e dataset, realizamos o treinamento das redes com o conjunto de dados disponibilizado pelo Kaggle (esses resultados preliminares, estão indicados nos resultados preliminares mais a frente neste relatório e também fazem parte da nossa segunda entrega do projeto), o qual contém amostras de pacientes anônimos, apenas com imagens de exames de ressonância magnética (MRI), juntamente com informações sobre suas respectivas classes. Trata-se de um conjunto de dados de várias classes, composto por diferentes visualizações e quatro classes, incluindo uma classe controle ND (Não demente) e outras três classes que representam três diferentes estágios iniciais de doença de Alzheimer. Além disso, o tamanho do conjunto de dados é razoável e as imagens já estão limpas, ou seja, redimensionadas e organizadas.
+- treinamento OASIS nas redes AlexNet e ResNet18: 
+  - treinamos as redes com múltiplas fatias das imagens do dataset OASIS sem nenhuma transformação, para verificar o desempenho inicial das redes
+  - treinamos as redes com múltiplas fatias das imagens do dataset OASIS passando por diferentes transformações (indicadas na seção anterior “Data Augmentation”), para verificar quais delas melhoraria a performance
+  - após descobrirmos o problema com a possível contaminação do dataset, fizemos a separação das slices e pastas, garantindo que teriam indivíduos únicos em cada pasta e fizemos o treinamento desse novo formato do dataset nas redes AlexNet e ResNet18
+  - “montamos” um novo dataset, pegando somente a fatia 01 de cada indivíduo e treinamos as redes AlexNet e ResNet18, para verificar o desempenho das redes, porém, nos deparamos com outro problema nesse caso, pois uma das classes ficou apenas com duas amostras, o que nos impossibilitou de realizar um treinamento eficiente
+  - mesmo exigindo recursos computacionais melhores, fizemos o treinamento do dataset completo, sem a seleção das fatias
+  - fizemos o balanceamento das classes através da função de perda, para verificar se isso influenciaria na performance das redes e treinamos as mesmas
+  - decidimos por excluir a classe com duas amostras e seguimos com treinamento das redes para três classes
+  - reproduzimos alguns testes com taxa de aprendizagem (learning rate) menor
+  - todos os testes citados acima foram realizados para diversas quantidades de épocas: 20, 50, 75, 100
+- treinamento OASIS na rede ADDNet
+  - treinamos o dataset OASIS na rede ADDNet com 3 classes (excluindo a classe que tinham duas amostras) sem nenhuma transformação
+  - treinamos o dataset OASIS na rede ADDNet com 3 classes (excluindo a classe que tinham duas amostras) sem nenhuma transformação
+  - os testes foram realizados para diferentes quantidades de épocas
+- treinamento ADNI na rede ADDNet
+  - treinamos o dataset com apenas 10 épocas e sem nenhuma transformação, para verificar a performance dessa rede
+  - treinamos a rede com o dataset usando somente uma fatia de cada imagem
+  - treinamos a rede com múltiplas fatias mas garantindo a não contaminação das pastas
+  - treinamos a rede utilizando algoritmo de balanceamento (citado anteriormente)
+  - os testes foram realizados para diferentes quantidades de épocas
+
+7. *Fine tuning*
+
+A técnica de fine tuning carrega os pesos pré-treinados nos conjuntos de dados novos que estão sendo usados para o treinamento das redes. Para o nosso projeto, uma das abordagens foi usar redes pré-treinadas nas amostras do conjunto de dados OASIS. Tanto a rede AlexNet quanto a rede ResNet18, nos possibilitam a opção de usar os pesos do pré-treinamento.
+
+8. *Avaliação*
+
+Temos como última etapa a análise dos resultados obtidos em relação ao desempenho das redes. A cada treinamento realizado, analisamos as métricas de avaliação, para conseguirmos prosseguir com o projeto, entender se estávamos no caminho certo, se as transformações estavam influenciando de alguma forma ou se precisávamos mudar as nossas abordagens. Como comentado anteriormente, a classificação proposta é uma classificação de multi classes, os conjuntos de dados utilizados possuem, além da classe de controle, outras classes que representam níveis iniciais da doença de Alzheimer. 
+Então, para avaliar os desempenhos obtidos, utilizamos as seguintes métricas apropriadas para a classificação multiclasses:
+- acurácia de multiclasse, mostrando o quanto o modelo acertou corretamente na classificação 
+- precisão de multiclasse -> dada pela fórmula: (verdadeiro positivo)/(verdadeiro positivo + falso positivo)
+- recall de multiclasse -> dada pela fórmula: (verdadeiro positivo)/(verdadeiro positivo + falso negativo)
+Além dessas métricas, conforme os treinamentos eram realizados, analisamos também a curva de acurácia e de perda, tanto para o conjunto de treinamento quanto para o conjunto de validação, para verificar como estava o comportamento da rede a cada transformação que era realizada. Para completar as análises, usamos também as matrizes de confusão, plotadas para verificarmos, em quantidades, quantas amostras estavam sendo classificadas de forma correta e quantas amostras estavam sendo classificadas erradas.
+
 
 Modelos: 
 Nós iremos tentar solucionar o problema de classificação utilizando transfer learning, onde arquiteturas de ponta como AlexNet, ResNet e InceptionV4 são inicializadas com pesos pré-treinados provenientes de um treinamento com grandes conjuntos de dados de referência compostos por imagens naturais, e apenas uma parte é ajustada utilizando um pequeno número de imagens de ressonância magnética (MRI). Para essa entrega, iniciamos nossa análise com a AlexNet, por oferecer um bom desempenho comprovado, eficácia na extração de características, capacidade de aprendizado, prevenção de overfitting e acesso a recursos e implementações existentes. Futuramente, nós iremos então, implementar e comparar a performance dessas redes, buscando encontrar qual obtém as melhores métricas de performance em nosso dataset. 
