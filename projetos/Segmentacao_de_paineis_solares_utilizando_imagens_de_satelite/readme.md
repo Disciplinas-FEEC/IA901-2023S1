@@ -126,13 +126,18 @@ MUDAR MUDAR MUDAR
 > Lembre-se que o objetivo de desenhar o workflow é ajudar a quem quiser reproduzir seus experimentos. 
 -->
 ![Workflow](./assets/workflow.svg)
-
+| File               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| dataset_prep.ipynb | This notebook contains a collection of functions for handling and analyzing images and masks from a compressed directory (zip file) database. The functions include file listing, data categorization, filtering and cleaning criteria application, mask creation, object counting in masks, creation of balanced training, testing, and validation sets, and the generation of charts for visualizing class distribution.                                                                                             |
+| train_model.ipynb  | In this notebook, we perform data preprocessing for data augmentation and generate data batches for training using TensorFlow's tf.data API. We also build the U-Net + ResNet50 model and save the best training results based on metrics such as Dice-Score and the confusion matrix.                                                                                                                                                                                                                                                                                                                                                                                                  |
+| test_model.ipynb   | This notebook provides a quantitative evaluation of saved models, offering information through visual models such as tables and heatmaps. Additionally, the notebook utilizes predefined metrics to compare different models, providing a comprehensive understanding of their performance. By leveraging these visual models and comparative metrics, users gain valuable insights into the strengths and weaknesses of each model.                                                                        
+<!---                                                                                                                                                                                |
 - bdappv: database containing imagery from google and ign
 - ds_statistics.ipynb: (description)
 - cnn.ipynb: (description) 
 - black_mask.png: mask for the imagery without solar pannels
 - (to be continued)...
-
+-->
 
 # Experiments and Preliminary Results 
 <!---
@@ -156,6 +161,11 @@ Random brightness, contrast, and saturation adjustments
 ![unmasked_sample](./assets/data_augmentation_sample2.svg)
 
 # Final results
+
+Based on the training parameters used, including a batch size of 8, a learning rate of 1e-4, and an 80/20 data split for training and validation sets, the final results were very promising. The model achieved an F1 Score of 0.9837 and 0.9818 on the validation and test sets, respectively. Additionally, the model demonstrated a DICE Score of 0.9107 on the validation set and 0.9049 on the test set.
+
+These results indicate high performance and validate the effectiveness of the trained model for the task of photovoltaic panel segmentation in Google satellite images. However, it is important to highlight that there were some inconsistencies observed both in the model's classification and the annotated data. The model struggles with correctly classifying panels that have colors very similar to roofs, which can result in segmentation errors. Furthermore, cases were identified where the presence of panels does not correspond to an appropriate mask. Despite the limitations, the obtained results show significant potential for the application of photovoltaic panel segmentation in satellite images.
+
 ![masked_sample](./assets/best_model_sample0.svg)
 ![unmasked_sample](./assets/best_model_sample1.svg)
 
