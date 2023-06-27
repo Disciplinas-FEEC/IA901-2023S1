@@ -1,0 +1,1 @@
+Usando EfficientNetB0 para o treino com 70 epocas. Data augmentation restrito a horizontal, vertical flips e random crop com reflect de padding

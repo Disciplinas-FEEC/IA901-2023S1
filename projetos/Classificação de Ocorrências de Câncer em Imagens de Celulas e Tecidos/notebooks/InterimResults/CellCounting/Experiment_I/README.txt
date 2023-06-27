@@ -1,0 +1,1 @@
+Experimento para calcular o número de células (totais e neoplasicas) nas imagens.

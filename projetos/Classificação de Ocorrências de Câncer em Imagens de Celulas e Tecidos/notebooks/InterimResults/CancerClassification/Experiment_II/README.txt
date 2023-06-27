@@ -1,0 +1,1 @@
+Treinamento da EfficientNetB0 sobre as imagens de Breast apenas. O teste e validação são feitos sobre outros tecidos.

@@ -1,0 +1,1 @@
+Treino da efficientnetb0 com todas as classes
