@@ -109,7 +109,8 @@ Temos como última etapa a análise dos resultados obtidos em relação ao desem
 Então, para avaliar os desempenhos obtidos, utilizamos as seguintes métricas apropriadas para a classificação multiclasses:
 - acurácia de multiclasse, mostrando o quanto o modelo acertou corretamente na classificação 
 - precisão de multiclasse -> dada pela fórmula: (verdadeiro positivo)/(verdadeiro positivo + falso positivo)
-- *recall* de multiclasse -> dada pela fórmula: (verdadeiro positivo)/(verdadeiro positivo + falso negativo)    
+- *recall* de multiclasse -> dada pela fórmula: (verdadeiro positivo)/(verdadeiro positivo + falso negativo)
+
 Além dessas métricas, conforme os treinamentos eram realizados, analisamos também a curva de acurácia e de perda, tanto para o conjunto de treinamento quanto para o conjunto de validação, para verificar como estava o comportamento da rede a cada transformação que era realizada. Para completar as análises, usamos também as matrizes de confusão, plotadas para verificarmos, em quantidades, quantas amostras estavam sendo classificadas de forma correta e quantas amostras estavam sendo classificadas erradas.
 
 ## Bases de Dados e Evolução
