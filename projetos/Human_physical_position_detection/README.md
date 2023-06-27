@@ -208,6 +208,20 @@ Resnet18 - Train Loss
 Resnet18 - Val Loss
 ![val_epoch_loss (8)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/096c10eb-e3b6-4bf4-8e4e-c87bcea0c32e)
 
+# Fine Tuning vs Efficientnet_v2 
+
+Train Acc
+![train_epoch_acc (15)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/ac357845-22e2-4a73-a1a9-48a82a1f0b24)
+
+Val Acc
+![val_epoch_acc (10)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/272a6a36-f018-498d-8477-997069a95506)
+
+Train Loss
+![train_epoch_loss (12)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/21eafbd7-4aad-4c6a-9cb0-15549faf12e8)
+
+Val Loss
+![val_epoch_loss (10)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/490dfcb2-270f-4086-82ac-677f5365ca58)
+
 
 # Próximos passos
 
