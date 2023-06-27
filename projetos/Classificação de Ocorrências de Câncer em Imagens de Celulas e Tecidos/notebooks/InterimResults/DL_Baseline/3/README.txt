@@ -1,1 +1,0 @@
-Ainda estamos usando a EfficientNet_B0 com Transfer Learning. Porém, agora aumentamos o número de épocas para 20 e incluí outras técnicas de data augmentation (RandomCrop, Horizontal e Vertical Flips e Pad). Agora o modelo será salvo no formato .pt.
