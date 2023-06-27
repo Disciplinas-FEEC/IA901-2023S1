@@ -1,5 +1,5 @@
-# Identificação de Ocorrências de Tumor em Imagens de Tecidos Humanos
-# Identification of Tumor Occurrences in Human Tissue Images
+# Identificação de Ocorrências de Tumor em Imagens de Tecidos
+# Identification of Tumor Occurrences in Tissue Images
 
 
 ## 0. Apresentação
@@ -184,7 +184,7 @@ Nas análises, também observamos quais tecidos foram mais desafiadores ou mais 
 
 Para este estudo, escolhemos novamente empregar a EfficientNet_B0 com Transfer Learning. Partimos da premissa de que, se a EfficientNet_B0 foi capaz de reconhecer padrões nas imagens (isto é, diferenciou os tipos de células e os tipos de tecidos) para fazer as classificações, ela deveria ser capaz de fazer o mesmo na tarefa de contabilização das células.
 Todos os hiperparâmetros da EfficientNet_B0 foram mantidos iguais aos dos estudos anteriores de classificação. A maior modificação foi em relação a camada de saída, que foi construída com 2 neurônios e sem qualquer função de ativação. Portanto, para uma certa imagem de entrada, a EfficientNet_B0 deveria estimar o número de células neoplásicas e o número total de células. Esta escolha se deu pelo fato de que a escala de aproximação das imagens de microscopia pode afetar diretamente a contagem do número de células neoplásicas. Deste modo, o valor absoluto de células neoplásicas em uma certa imagem pode não ter muito valor clínico - sem uma referência, é difícil estimar se a quantidade de células neoplásicas presentes em um tecido é alarmante ou não. Deste modo, construímos a EfficientNet_B0 para estimar também o número de células totais. Com isso, é possível calcular a razão:
-$$Densidade= \frac{N. de células neoplásicas}{N. total de células}$$,
+$$Densidade= \frac{\textrm{N. de células neoplásicas}}{\textrm{N. total de células}}$$,
 
 que pode ser relacionada de forma mais confiável com o estado de agravamento do paciente. Pacientes com tecidos muito acometidos pelo câncer, devem apresentar uma Densidade=1, enquanto pacientes saudáveis ou ainda nos estágios iniciais da doença devem ter Densidade~0. 
 	Em termos de treinamento, utilizamos como função custo o MSE. O modelo escolhido foi aquele que minimizou o MSE junto aos dados de validação. A Figura 8 mostra o desempenho do treinamento. Em geral, o modelo apresentou uma certa estabilidade (tanto junto ao grupo de treino quanto ao de validação) para épocas mais elevadas. 
@@ -347,11 +347,13 @@ Fig. 12. Exemplos de imagens de diferentes tecidos classificados incorretamente 
 
 ### 4.1.2 Comparação entre experimentos
 
+Nesta seção, comparamos os resultados do experimento Baseline com os experimentos I e II, como pode ser visto na Figura 11. Utilizando “Breast” apenas no treino ou apenas nos testes mostrou uma queda de performance da EfficientNet_B0 em comparação com o cenário baseline, com AUCs~0.85. Isso é um indicativo de que a rede neural não consegue generalizar perfeitamente o que foi aprendido com um ou mais tecidos para tecidos não vistos na fase de treinamento. Contudo, é importante ponderar que este valor de AUC está longe de ser equivalente ao de um classificador aleatório (=0.5). Isso significa que, mesmo com um desempenho longe do que foi visto no caso Baseline, a EfficientNet_B0 ainda é capaz de ter um grau razoável de generalização. 
+	Por completeza, algumas métricas de performance adicionais foram calculadas e comparadas entre os experimentos. Os resultados estão na Tabela 3. É interessante perceber como o TPR e o FPR do Experimento I apresentam valores baixos - o comportamento inverso do Experimento II, em que tanto o TPR quanto o FPR são altos. Portanto, um modelo acerta mais a classificação das imagens com células neoplásicas e outro modelo acerta mais a classificação das imagens sem células neoplásicas. 
 
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/FinalComparison/Cópia de ROC_GeneralAnalysis.png" height="350">
 </p>
-Fig. 11. ROC Curve comparando a performance do modelo baseline com o experimentos I e II. 
+Fig. 11. ROC Curve comparando a performance do modelo baseline com os experimentos I e II. 
 
 Tab. 3. Síntese das principais métricas de performance para os três estudos envolvendo a identificação de células neoplásicas nos tecidos.
 |Estudo|AUC|TPR*|FPR*|Precision*|Accuracy*|F1-Score*|
@@ -363,6 +365,13 @@ Tab. 3. Síntese das principais métricas de performance para os três estudos e
 
 #### 4.1.2.1 Performance entre tecidos para o experimento II
 
+Nesta análise, observamos como o modelo treinado com Breast performava na classificação de cada tecido. Olhar para as melhores e piores performances, neste caso, pode dar algumas respostas interessantes para as perguntas:
+
+Quais imagens são mais ou menos semelhantes (tecnicamente falando) a ‘Breast’?
+
+Quais tecidos possuem estruturas mais ou menos parecidas com Breast?
+
+Os resultados desse estudo estão resumidos na Figura 12. Tais performances talvez indiquem que os tecidos “Lung” e “Ovarian” possuem semelhanças com “Breast”, em vista da alta performance obtida pelo modelo em classificá-las. Por outro lado, talvez exista uma diferença significativa entre as estruturas das imagens de “Breast” e “Pancreatic”. Para ter certeza se essa diferença é devido a diferenças morfológicas dos tecidos, um especialista em histologia deveria ser consultado. Em termos do modelo treinado, técnicas de interpretação de redes neurais poderiam ser empregadas para a checagem de quais elementos nas imagens são determinantes para a classificação - e se a rede neural, em nenhum momento, está “roubando”. 
 
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cancer Classification/FinalComparison/Cópia de ROC_TissueAnalysis.png" height="350">
@@ -372,6 +381,9 @@ Fig. 12. ROC Curve comparando a performance do modelo obtido no experimento II p
 ## 4.2 Classificação de Tecidos
 
 ## 4.2.1 Experimentos I e II (One vs All)
+
+A Tabela 4 sintetiza os resultados obtidos com os experimentos I e II, que envolveram uma abordagem “One vs All” usando os tecidos “Breast” e “Colon”. Para um D. Threshold=0.5, é possível ver que a rede neural foi capaz de discriminar muito bem os dois tecidos dos demais - algo que pode ser visto pelas métricas >99% em TPR, Precision, AUC e Accuracy. 
+Certamente, este resultado levantou dúvidas sobre a possibilidade de haver algum “data leak” dos dados de treino nos dados de teste. Porém, esta checagem foi feita e não foi o caso. Aparentemente, diferenciar tecidos é um problema trivial para a rede neural. Um teste adicional que poderia ser feito neste sentido é o de normalizar os dados para ver se o padrão das cores não pode ter algum efeito sobre a identificação das imagens. 
 
 Tab. 4. Síntese das principais métricas de performance para os experimentos I e II, que usam uma abordagem One vs All para a classificação de tecidos. 
 
@@ -384,15 +396,19 @@ Tab. 4. Síntese das principais métricas de performance para os experimentos I 
 
 ## 4.2.2 Experimento III (All vs All)
 
+Nesta seção, apresentamos os resultados da classificação multiclasse (com 19 tecidos). A Figura 14 apresenta a matriz de confusão associada aos dados de teste, enquanto a Tabela 4 mostra o resumo da performance do modelo para cada classe/tecido.  
+De forma geral, o modelo apresenta novamente uma elevada performance em classificar todos os tecidos. Mais precisamente:
+
+Accuracy:  0.9739
+Precision: 0.9661
+F1 score:  0.9570
+
+Apontando para a possibilidade desta ser uma tarefa trivial para algoritmos de Deep Learning. Olhando especificamente para os tecidos, observamos que “Esophagus”, “Breast” e “Colon” foram os mais fáceis do modelo identificar. Por outro lado, “skin” e “lung” se mostraram mais desafiadores. Algo que poderia explicar isso seria o desbalanço das classes no dataset e, uma possível solução, poderia envolver aplicar data augmentation para elevar a estatística de classes minoritárias. 
 
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Tissue Classification/Experiment_III/CM.png" height="450">
 </p>
 Fig. 13. Matriz de confusão da EfficientNetB0 treinada para classificar todos os tecidos.
-
-General accuracy:  0.9739
-General precision: 0.9661
-General F1 score:  0.9570
 
 
 Tab. 4. Síntese das principais métricas de performance para a EfficientNet_B0 aplicada na classificação de cada tecido.
@@ -424,6 +440,8 @@ Tab. 4. Síntese das principais métricas de performance para a EfficientNet_B0 
 
 ### 4.3.1 Desempenho geral e por tecido
 
+A Tabela 5 mostra a comparação dos atributos estatísticos dos valores preditos e verdadeiros para a contagem de células totais e neoplásicas, assim como os valores de MSE e MAE. Em geral, os atributos estatísticos dos grupos predito e verdadeiro são extremamente próximos, indicando que o modelo realizou previsões condizentes com o que se esperava (de maneira geral). O valor do MAE também se mostrou baixo, com uma margem de 2 a 3 contagens para mais ou para menos nas predições. 
+
 Tab. 5. Comparação de atributos estatísticos (Mean, standard-deviation (STD), Median, Min e Max) das distribuições dos dados reais e preditos pela EfficientNet_B0. Análise feita para o número de células totais e neoplásicas. Para as predições, foram calculados os valores de Mean Squared Error (MSE) e Mean Absolute Error (MAE). 
 
 | EfficientNet_B0 performance w.r.t the Test images (N=1571) |
@@ -435,11 +453,27 @@ Tab. 5. Comparação de atributos estatísticos (Mean, standard-deviation (STD),
 Neoplasic Cells                                     | 9.21 | 13.97 | 1 | 0 | 112 | 9.36 | 12.91 | 3 | 0 | 100 | 2.2 | 16.8 |
 | N. of Total Cells                                          | 23.71 | 20.49 | 19 | 0 | 196 | 23.17 | 20.24 | 19 | 0 | 225 | 2.7 | 16.4 |
 
+
+A Figura 14 mostra o gráfico de dispersão das predições e dos valores esperados da contagem de células totais e neoplásicas. As linhas tracejadas indicam o “Best case scenario”, onde cada previsão corresponde ao valor verdadeiro/esperado. No geral, as previsões feitas pela EfficientNet_B0 (tanto para contar células totais quanto para contas células neoplásicas) são muito condizentes com o que se espera, dada a distribuição dos dados em torno das linhas tracejadas. Os pontos mais distantes destas linhas (outliers) indicam imagens mais desafiadoras para o modelo contabilizar o número de células. 
+
 <p align="middle">
   <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cell Counting/Cópia de ScatterTotalCells.png" height="300">
   <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cell Counting/Cópia de ScatterTotalNeoplasic.png" height="300">
 </p>
 Fig. 14. Comparação entre os valores preditos do número total de células (gráfico superior) e de células neoplásicas (gráfico inferior) pela EfficientNet_B0, assim como os valores esperados para a distribuição das imagens da amostra de testes. O gráfico da esquerda mostra a correlação entre as predições e os seus respectivos valores verdadeiros. A linha diagonal tracejada, que indica um regressor ideal, foi incluída para comparação. Por completeza, o gráfico da direita mostra a correlação dos valores preditos com a diferença entre as predições e os valores esperados. 
+
+Finalmente, calculamos o valor do MAE para cada tecido considerando os dois cenários: contagem de células totais e neoplásicas. Os resultados foram organizados em BoxPlots e podem ser vistos na Figura 15. Pra contagem do número total de células, incluímos para comparação o resultado da literatura [6] (linha azul tracejada). Podemos observar que a EfficientNetB0 conseguiu uma performance consideravelmente superior na tarefa, com um valor de MAE muito próximo a zero. Obviamente, tiveram tecidos que foram mais ou menos desafiadores para o modelo trabalhar. 
+
+Os tecidos mais desafiadores:
+Uterus
+Skin
+Lung
+Tecidos menos desafiadores:
+Adrenal_gland
+Bladder
+Colon
+
+Com isso, concluímos que o modelo tem grande potencial de realizar a tarefa de contagem de células com competência. 
 
 <p align="middle">
   <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cell Counting/Cópia de BoxPlotTotalCells.png" height="300">
@@ -449,8 +483,7 @@ Fig. 15. Boxplots representando a distribuição do Erro Absoluto cometido pela 
 
 ### 4.3.1 Inspeção visual das predições feitas pela EfficientNet_B0
 
-Abaixo, temos alguns exemplos de imagens com as respectivas masks relacionadas com a performance da  EfficientNet_B0. Olhando as imagens, podemos concluir que:
-Em alguns casos, o modelo foi capaz de reconhecer com perfeição todas as estruturas dos tecidos. Identificamos também que a reden neural apresentou uma Dificuldade maior em diferenciar as células neoplásicas das demais (especialmente as inflamatórias e epiteliais)
+Abaixo, temos alguns exemplos de imagens com as respectivas masks relacionadas com a performance da  EfficientNet_B0. Olhando as imagens, é possível concluir que em alguns casos, o modelo foi capaz de reconhecer com perfeição todas as estruturas dos tecidos. Porém, identificamos também que a rede neural apresentou uma dificuldade maior em diferenciar as células neoplásicas das demais (especialmente as inflamatórias e epiteliais). Algo próximo ao que foi visto no estudo de classificação das células neoplásicas. 
 
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/Cell Counting/Cópia de CellCounts_Image_7504.png" height="250">
@@ -469,10 +502,21 @@ Fig. 16. Exemplos de imagens de diferentes tecidos classificadas incorretamente 
 
 # 5. Conclusão e futuro
 
+Este trabalho apresentou enormes desafios mas, ao mesmo tempo, foi fonte de muitos ensinamentos - especialmente no que diz respeito a técnicas de análise de imagens. As principais contribuições deste trabalho para a literatura atual estão sintetizadas na figura abaixo. Podemos afirmar que criamos um protótipo de pipeline que pode ter uma grande utilidade na rotina clínica, auxiliando médicos a diagnosticar e a otimizar o tratamento de pacientes a partir da análise das imagens de microscopia obtidas via biópsia. 
 
 <p align="center">
     <img src="../Classificação de Ocorrências de Câncer em Imagens de Celulas e Tecidos/assets/Entrega 3/ProjectConclusion.png" height="250">
 </p>
+
+Contudo, alguns testes e análises complementares ainda devem ser feitas no futuro para aumentar a eficácia do modelo e assegurar a total confiabilidade para uso prático. Em especial:
+	
+Consulta com profissionais da área para checar a confiabilidade dos resultados
+
+Complementar o pipeline com algum algoritmo de segmentação das células
+
+Realizar treinamentos exaustivos com arquiteturas maiores em máquinas dedicadas (com GPUs mais poderosas)
+
+
 
 ## Referências 
 
@@ -488,4 +532,5 @@ Sep 16;22(18):7007. doi: 10.3390/s22187007. PMID: 36146356; PMCID: PMC9504738.
 [5]: Rachel. "Classification and Types of Epithelial Tissues" (rsscience.com/epithelium-classification-and-types/)
 
 [6]: Lavitt, Falko, et al. "Deep learning and transfer learning for automatic cell counting in microscope images of human cancer cell lines." Applied Sciences 11.11 (2021): 4912.
+
 
