@@ -270,7 +270,7 @@ A partir de diferentes treinamentos, o melhor resultado para essa rede foi consi
   <img src="assets/efficientb3.png">
 </p>
 
-$$\frac{FN}{FN+VN}=\frac{86}{86+62}=0.58$$
+$$\frac{FN}{FN+VN}=\frac{86}{86+63}=0.58$$
 
 Embora a taxa de falsos positivos seja a melhor entre todos os experimentos, é importante considerar que a taxa de falsos positivos também aumentou significativamente. Tal resultado exemplifica a dificuldade em discriminar as duas classes diferentes de lesões, mesmo com as técnicas de *augmentation* apropriadas para o contexto do projeto.
 
