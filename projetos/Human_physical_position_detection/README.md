@@ -92,7 +92,7 @@ Dataset com imagens de silhuetas humanas em 4 posições (Inclenado, sentado, le
 
 Dataset com imagens de poses humanas exercendo 410 atividades diferentes, em .jpg, no tamanho total de 25000 imagens. O dataset conta com anotação em label em arquivo .mat, porém, além do fato de que não será selecionado todo, ele passará por um processo de reanotação para atender aos labels do dataset citado anteriormente para ser inserido numa rede treinada, sendo aplicado como um fine tuning. 
 
-A primeiro momento o grupo tentou utilizar as anotações que vinham associadas ao dataset, entretanto ao utilizá-lo foi possível perceber que nem todas as imagens possuem labels, só as que são usadas para treino no desafio. Desta forma então, de maneira manual foi realizada a separação das imagens, gerando um dataset com 350 imagens, sendo 112 deitados, 115 sentados e 123 em pé. Por fim, para separar as imagens em teste, treino e validação, utilizou-se a proporção de 70% para treino, 15% para validação e 15% para teste, utilizando o notebook "splitdataset_finetunning".
+A primeiro momento o grupo tentou utilizar as anotações que vinham associadas ao dataset, entretanto ao utilizá-lo foi possível perceber que nem todas as imagens possuem labels, só as que são usadas para treino no desafio. Desta forma então, de maneira manual foi realizada a separação das imagens, gerando um dataset com 340 imagens, sendo 112 deitados, 115 sentados e 113 em pé. Por fim, para separar as imagens em teste, treino e validação, utilizou-se a proporção de 70% para treino, 15% para validação e 15% para teste, utilizando o notebook "splitdataset_finetunning".
 
 ### COCO
 
