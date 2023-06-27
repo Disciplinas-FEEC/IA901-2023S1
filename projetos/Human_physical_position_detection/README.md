@@ -40,7 +40,7 @@ O dataset de silhuetas é composto por 4800 imagens e 4 labels. Cada label possu
 
 Nele é possível definir o estado atual da pessoa, que em um contexto relacionado a entender como o idoso está e em caso de emergência, o sistema robótico tomar uma decisão, ter essa informação se torna essencial.
 
-O primeiro passo para já trabalhar com este dataset, se deu em separá-lo de maneira a poder utilizar o método utilizando dataloader, conforme apresentado em aula. Desta forma, a seguinte divisão foi definida:
+O primeiro passo para já trabalhar com este dataset, se deu na remoção da classe "bending", pois sua definição pode ser ambígua a pessoas em pé, principamente quando relacionado a idosos. O segundo passo, separa-se das imagens de maneira a poder utilizar o método utilizando dataloader, conforme apresentado em aula. Desta forma, a seguinte divisão foi definida:
 
 * 60% para treinamento;
 * 20% para validação;
@@ -58,7 +58,7 @@ A partir desta primeira base de dados irão ser propostas os treinamentos de alg
 * Googlenet
 * Resnet18
 
-Todas estas redes possuem histórico de terem sido utilizadas para classificar imagens com vários labels. Então a primeiro momento, é necessário alterar o layer de saída para que seja compatível com o problema atual, com 4 labels.
+Todas estas redes possuem histórico de terem sido utilizadas para classificar imagens com vários labels. Então a primeiro momento, é necessário alterar o layer de saída para que seja compatível com o problema atual, com 3 labels. Entretanto, após inícios dos testes, o grupo percebeu que se tornava inviável o teste de muitas redes, devido a limitação da memória computacional e de tempo. Visto isso, foi realizado um estudo correlacionando a relação de custo computacional e acurácia entregue, a partir disso o grupo conseguiu concluir que ....
 
 ## Fine-Tunning
 
@@ -68,8 +68,8 @@ Para isso será utilizado um dataset menor composto de imagens com os mesmos lab
 
 ## Segunda abordagem
 
-Uma abordagem secundária que trabalha com a imagem diretamente, segmentando-a é ao utilizar uma rede de segmentação de objetos, no caso seres humanos que irá gerar a silhueta e então entrará direto na rede de silhuetas que foi treinada no passo anterior.
-A rede a ser utilizada é a [Mask R-CNN](https://github.com/matterport/Mask_RCNN), baseada FPN (Feature pyramid network) e Resnet01 a ser utilizada no desafio COCO (Common Objects in Context). Essa rede então irá encontrar objetos em uma imagem, definirá bounding boxes e a partir delas irá gerar máscaras correspondentes a silhueta do objeto.
+Uma abordegmentando-a agem secundária que trabalha com a imagem diretamente, e ao utilizar uma rede de segmentação de objetos, no caso seres humanos que irá gerar a silhueta e então entrará direto na rede de silhuetas que foi treinada no passo anterior.
+A rede a ser utilizada é a [Mask R-CNN](https://github.com/matterport/Mask_RCNN), baseada FPN (Feature pyramid network) e Resnet01 a ser utilizada no desafio COCO (Common Objects in Context). Essa rede então irá encontrar objetos em uma imagem, definirá bounding boxes e a partir delas irá gerar máscaras correspondentes a silhueta do objeto. As imagens utilizadas serão as mesmas aplicadas na rede com finetunning, visando uma comparação com as mesmas imagens.
 
 ## Bases de Dados e Evolução
 
@@ -98,7 +98,7 @@ A primeiro momento o grupo tentou utilizar as anotações que vinham associadas 
 
 ![COCO](https://github.com/liruilong940607/OCHumanApi/raw/master/figures/dataset.jpg)
 
-Este dataset é focado em seres humanos com partes do corpo ocultas, anotadas com bound-box, pose humana, modelo articulado e máscara. Composto por  13360 diferentes posições humanas em 5081 imagens. Este dataset será utilizado para treinar a rede de segmentação, responsável por gerar silhuetas humanas a partir das imagens reais.
+Este dataset é focado em seres humanos com partes do corpo ocultas, anotadas com bound-box, pose humana, modelo articulado e máscara. Composto por  13360 diferentes posições humanas em 5081 imagens. Este dataset é utilizado para treinar a rede de segmentação, responsável por gerar silhuetas humanas a partir das imagens reais.
 
 # Ferramentas
 
@@ -116,7 +116,7 @@ Neptune.ai | https://neptune.ai/ | Experiment tracker and model registry
 ![IA901a-Workflow (2)](https://github.com/OctavioGuaschi/IA901-2023S1/assets/1149623/455d5d2b-92c4-434a-9097-b218a645f39b)
 
 
-# Experimentos e Resultados preliminares
+# Experimentos e Resultados 
 
 Como informado anteriormente, foram selecionadas 6 redes conhecidas para serem treinadas e determinar qual ferramenta seria ideal para a classificação das imagens de silhuetas. Apesar da Alexnet possuir melhores resultados, ela foi a rede que foi mais treinada durante nossos experimentos, devido ao fato de que ela era a primeira a ser treinada e no meio do processo o notebook atingia seu limite de memória, acarretando na falta de treino das redes seguintes. Devido a esse fato, ficou claro que há uma necessidade de focar somente em uma rede, e dar preferência a redes mais leves como as convolucionais, para evitar problemas de processamento futuros.
 
