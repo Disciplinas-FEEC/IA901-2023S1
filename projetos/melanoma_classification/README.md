@@ -97,6 +97,11 @@ SIIM-ISIC Melanoma Classification | https://www.kaggle.com/competitions/siim-isi
 
 A base possui 33007 imagens do tipo jpg, totalizando 20 GB de tamanho com anotações de identificador exclusivo da imagem, identificador único do paciente, sexo, idade aproximada do paciente no momento da imagem, localização do site com imagem, informações de diagnóstico detalhadas e indicador de malignidade da lesão. Para este projeto, serão utilizadas apenas as imagens jpg, totalizando 33007 arquivos.
 
+Lesão | Frequancia | Proporção
+----- | ----- | -----
+Benigno | 32427 |  98%
+Maligno | 580 |  2%
+
 Não houve necessidade de reanotação dos dados para o conjunto proposto. No entanto, a base possui 2056 pacientes distintos, onde muitos se repetem por possuir mais de uma lesão de pele. Ainda, é importante ressaltar que, para a separação dos conjuntos de treino e validação, garantiu-se que pacientes repetidos tivessem todas as suas imagens em apenas um dos conjuntos. Dessa forma, não há possibilidade de que a rede treinada confunda a classificação de lesões malignas ou benignas por reconhecer o padrão de pele do paciente nas fotos.
 
 
