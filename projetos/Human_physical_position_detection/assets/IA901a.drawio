@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-06-27T02:57:55.079Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="b7cUv0i9LqWQcGNV7BVr" version="21.5.0" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2023-06-27T03:06:25.392Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="Mpa0j7CK5uZEaczR5IVv" version="21.5.0" type="github" pages="3">
   <diagram id="-KC26STIBj3t9MYH2vu2" name="Workflow">
-    <mxGraphModel dx="3980" dy="1870" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1257" dy="531" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -110,7 +110,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <UserObject label="Rodar Script &quot;Splitdataset.ipynb&quot;" link="https://github.com/OctavioGuaschi/IA901-2023S1/blob/main/projetos/Human_physical_position_detection/notebooks/Splitdataset.ipynb" id="8u5Newi8nys6xHAhAptd-4">
+        <UserObject label="Rodar Script &quot;Splitdataset.ipynb&quot; e &quot;Splitdataset_finetunning.ipynb&quot;" link="https://github.com/OctavioGuaschi/IA901-2023S1/blob/main/projetos/Human_physical_position_detection/notebooks/Splitdataset.ipynb" id="8u5Newi8nys6xHAhAptd-4">
           <mxCell style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
             <mxGeometry x="500" y="312" width="210" height="60" as="geometry" />
           </mxCell>
@@ -201,7 +201,7 @@
         <mxCell id="8u5Newi8nys6xHAhAptd-54" value="Selecionar o melhor modelo no Neptune e realizar o download" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=7;" parent="1" vertex="1">
           <mxGeometry x="450" y="1140" width="151.33" height="42" as="geometry" />
         </mxCell>
-        <mxCell id="8u5Newi8nys6xHAhAptd-57" value="Rodar sequencialmente os paragrafos do notebook para realizar o tuning do modelos;&amp;nbsp;&lt;br&gt;Detecção_de_posição_física_humana_Fluxo_Predicao.ipynb" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="8u5Newi8nys6xHAhAptd-57" value="Rodar sequencialmente os paragrafos do notebook para realizar o tuning do modelos;&amp;nbsp;&lt;br&gt;Detecção_de_posição_física_humana_Fluxo_Validacao.ipynb" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="413" y="1066.5" width="540" height="40" as="geometry" />
         </mxCell>
         <mxCell id="8u5Newi8nys6xHAhAptd-58" value="&lt;font face=&quot;-apple-system, system-ui, Segoe UI, Noto Sans, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji&quot; color=&quot;#1f2328&quot;&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;&lt;b&gt;Fluxo validação completo&lt;/b&gt;&lt;/span&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
