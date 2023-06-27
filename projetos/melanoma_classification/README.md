@@ -116,7 +116,7 @@ Draw.IO, para confecção do Workflow.
 # Workflow
 
 <p align="center">
-  <img src="assets/Workflow_Melanoma.png">
+  <img src="assets/workflow.png">
 </p>
 
 # Experimentos 
