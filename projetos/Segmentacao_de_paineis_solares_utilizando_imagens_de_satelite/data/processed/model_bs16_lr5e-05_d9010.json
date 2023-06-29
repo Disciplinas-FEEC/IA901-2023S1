@@ -1,0 +1,1 @@
+{"batch_size": 16, "learning_rate": 5e-05, "opt_databalance": "9010", "epochs": 5, "aug_prob": 0.2, "val_loss": 0.027266765013337135, "average_dice": 0.9003868148950637, "cm": [251, 45, 19, 2642]}
